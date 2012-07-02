@@ -160,7 +160,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WFS.Contract\WFS.Contract.csproj">
+    <ProjectReference Include="..\WFS.Contract\WFS.Contract.csproj">
       <Project>{B9A63AF6-F32C-4641-BF73-71453E170A63}</Project>
       <Name>WFS.Contract</Name>
     </ProjectReference>

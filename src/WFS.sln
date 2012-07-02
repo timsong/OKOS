@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFS.WebSite", "WFS.WebSite\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFS.Contract", "WFS.Contract\WFS.Contract.csproj", "{B9A63AF6-F32C-4641-BF73-71453E170A63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFS.Framework", "WFS.Framework\WFS.Framework.csproj", "{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{B9A63AF6-F32C-4641-BF73-71453E170A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A63AF6-F32C-4641-BF73-71453E170A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A63AF6-F32C-4641-BF73-71453E170A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
