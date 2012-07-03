@@ -1,7 +1,7 @@
 ﻿
 namespace WFS.Contract.Enums
 {
-    public enum CustomerTypes
+    public enum CustomerTypeEnum
     {
         School,
         Company

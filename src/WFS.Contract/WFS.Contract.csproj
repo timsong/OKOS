@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\CustomerTypes.cs" />
+    <Compile Include="Enums\CustomerTypeEnum.cs" />
+    <Compile Include="Enums\FoodCategoryTypeEnum.cs" />
+    <Compile Include="Enums\WFSUserTypeEnum.cs" />
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="FoodOption.cs" />
