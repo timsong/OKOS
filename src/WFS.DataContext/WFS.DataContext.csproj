@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9A63AF6-F32C-4641-BF73-71453E170A63}</ProjectGuid>
+    <ProjectGuid>{74B3F56C-9FD6-46ED-A433-EC622D9F95FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WFS.Contract</RootNamespace>
-    <AssemblyName>WFS.Contract</AssemblyName>
+    <RootNamespace>WFS.DataContext</RootNamespace>
+    <AssemblyName>WFS.DataContext</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FoodCategory.cs" />
-    <Compile Include="FoodItem.cs" />
-    <Compile Include="FoodOption.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Store.cs" />
-    <Compile Include="Vendor.cs" />
-    <Compile Include="WFSUser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="MainDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

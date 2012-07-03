@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9A63AF6-F32C-4641-BF73-71453E170A63}</ProjectGuid>
+    <ProjectGuid>{4A6799C8-6C35-42C4-93EA-1D09B4FC928D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WFS.Contract</RootNamespace>
-    <AssemblyName>WFS.Contract</AssemblyName>
+    <RootNamespace>WFS.Repository</RootNamespace>
+    <AssemblyName>WFS.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FoodCategory.cs" />
-    <Compile Include="FoodItem.cs" />
-    <Compile Include="FoodOption.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Store.cs" />
-    <Compile Include="Vendor.cs" />
-    <Compile Include="WFSUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MainDiagram.cd" />
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WFS.Contract\WFS.Contract.csproj">
+      <Project>{B9A63AF6-F32C-4641-BF73-71453E170A63}</Project>
+      <Name>WFS.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WFS.DataContext\WFS.DataContext.csproj">
+      <Project>{74B3F56C-9FD6-46ED-A433-EC622D9F95FB}</Project>
+      <Name>WFS.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WFS.Framework\WFS.Framework.csproj">
+      <Project>{DE19FF1A-DCFC-49BE-B1D4-5D0934773A2C}</Project>
+      <Name>WFS.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
