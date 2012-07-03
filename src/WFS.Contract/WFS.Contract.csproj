@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\CustomerTypes.cs" />
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="FoodOption.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="WFSUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MainDiagram.cd" />
+    <Folder Include="ReqResp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
