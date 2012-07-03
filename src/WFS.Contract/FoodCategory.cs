@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WFS.Contract.Enums;
 
 namespace WFS.Contract
 {
@@ -10,5 +11,7 @@ namespace WFS.Contract
         public int FoodCategoryId { get; set; }
         public string Name { get; set; }
         public int VendorId { get; set; }
+        public FoodCategoryTypeEnum CategoryType { get; set; }
+
     }
 }
