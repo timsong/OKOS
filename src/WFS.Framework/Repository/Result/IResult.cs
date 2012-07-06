@@ -8,7 +8,7 @@ namespace WFS.Repository
     public interface IResult
     {
         Status Status { get; set; }
-        IList<Message> Messages { get; set; }
+        List<Message> Messages { get; set; }
     }
 
     public interface IResult<TValue> : IResult

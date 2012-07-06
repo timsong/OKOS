@@ -1,0 +1,1898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WFSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WFSModelStoreContainer">
+          <EntitySet Name="aspnet_Applications" EntityType="WFSModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Membership" EntityType="WFSModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Paths" EntityType="WFSModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="WFSModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="WFSModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Profile" EntityType="WFSModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Roles" EntityType="WFSModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="WFSModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="WFSModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="WFSModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="WFSModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="WFSModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerUser" EntityType="WFSModel.Store.CustomerUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoodCategory" EntityType="WFSModel.Store.FoodCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoodItem" EntityType="WFSModel.Store.FoodItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoodItemOption" EntityType="WFSModel.Store.FoodItemOption" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FoodOption" EntityType="WFSModel.Store.FoodOption" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Menu" EntityType="WFSModel.Store.Menu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MenuItem" EntityType="WFSModel.Store.MenuItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Store" EntityType="WFSModel.Store.Store" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoreUser" EntityType="WFSModel.Store.StoreUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vendor" EntityType="WFSModel.Store.Vendor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VendorUser" EntityType="WFSModel.Store.VendorUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFSUser" EntityType="WFSModel.Store.WFSUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WFSUserAddress" EntityType="WFSModel.Store.WFSUserAddress" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__5FB337D6" Association="WFSModel.Store.FK__aspnet_Me__Appli__5FB337D6">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__60A75C0F" Association="WFSModel.Store.FK__aspnet_Me__UserI__60A75C0F">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__628FA481" Association="WFSModel.Store.FK__aspnet_Pa__Appli__628FA481">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__6477ECF3" Association="WFSModel.Store.FK__aspnet_Pe__PathI__6477ECF3">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__656C112C" Association="WFSModel.Store.FK__aspnet_Pe__PathI__656C112C">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__UserI__66603565" Association="WFSModel.Store.FK__aspnet_Pe__UserI__66603565">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pr__UserI__68487DD7" Association="WFSModel.Store.FK__aspnet_Pr__UserI__68487DD7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__693CA210" Association="WFSModel.Store.FK__aspnet_Ro__Appli__693CA210">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__6B24EA82" Association="WFSModel.Store.FK__aspnet_Us__Appli__6B24EA82">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__RoleI__6EF57B66" Association="WFSModel.Store.FK__aspnet_Us__RoleI__6EF57B66">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__6FE99F9F" Association="WFSModel.Store.FK__aspnet_Us__UserI__6FE99F9F">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerUser_School" Association="WFSModel.Store.FK_CustomerUser_School">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerUser" EntitySet="CustomerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerUser_WFSUser" Association="WFSModel.Store.FK_CustomerUser_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="CustomerUser" EntitySet="CustomerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodCategory_Vendor" Association="WFSModel.Store.FK_FoodCategory_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="FoodCategory" EntitySet="FoodCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItem_FoodCategory" Association="WFSModel.Store.FK_FoodItem_FoodCategory">
+            <End Role="FoodCategory" EntitySet="FoodCategory" />
+            <End Role="FoodItem" EntitySet="FoodItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItemOption_FoodItem" Association="WFSModel.Store.FK_FoodItemOption_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItem" />
+            <End Role="FoodItemOption" EntitySet="FoodItemOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItemOption_FoodOption" Association="WFSModel.Store.FK_FoodItemOption_FoodOption">
+            <End Role="FoodOption" EntitySet="FoodOption" />
+            <End Role="FoodItemOption" EntitySet="FoodItemOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodOption_Vendor" Association="WFSModel.Store.FK_FoodOption_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="FoodOption" EntitySet="FoodOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Vendor" Association="WFSModel.Store.FK_Menu_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.Store.FK_MenuItem_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItem" />
+            <End Role="MenuItem" EntitySet="MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_Menu" Association="WFSModel.Store.FK_MenuItem_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuItem" EntitySet="MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_Vendor" Association="WFSModel.Store.FK_Store_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreUSer_Store" Association="WFSModel.Store.FK_StoreUSer_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreUser" EntitySet="StoreUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreUSer_WFSUser" Association="WFSModel.Store.FK_StoreUSer_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="StoreUser" EntitySet="StoreUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorUser_Vendor1" Association="WFSModel.Store.FK_VendorUser_Vendor1">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="VendorUser" EntitySet="VendorUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorUser_WFSUser1" Association="WFSModel.Store.FK_VendorUser_WFSUser1">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="VendorUser" EntitySet="VendorUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WFSUserAddress_WFSUser" Association="WFSModel.Store.FK_WFSUserAddress_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="WFSUserAddress" EntitySet="WFSUserAddress" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNames" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="CompatibleSchemaVersion" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="char" Nullable="false" MaxLength="32" />
+          <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="EventTime" Type="datetime" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="EventSequence" Type="decimal" Nullable="false" Precision="19" />
+          <Property Name="EventOccurrence" Type="decimal" Nullable="false" Precision="19" />
+          <Property Name="EventCode" Type="int" Nullable="false" />
+          <Property Name="EventDetailCode" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="MachineName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+          <Property Name="Details" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="CustomerType" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerUser">
+          <Key>
+            <PropertyRef Name="CustomerUserId" />
+          </Key>
+          <Property Name="CustomerUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodCategory">
+          <Key>
+            <PropertyRef Name="FoodCategoryId" />
+          </Key>
+          <Property Name="FoodCategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="CategoryType" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FoodItem">
+          <Key>
+            <PropertyRef Name="FoodItemId" />
+          </Key>
+          <Property Name="FoodItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="FoodCategoryID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodItemOption">
+          <Key>
+            <PropertyRef Name="FoodItemOptionId" />
+          </Key>
+          <Property Name="FoodItemOptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FoodItemId" Type="int" Nullable="false" />
+          <Property Name="FoodOptionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodOption">
+          <Key>
+            <PropertyRef Name="FoodOptionId" />
+          </Key>
+          <Property Name="FoodOptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="MenuItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="FoodItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="StoreUser">
+          <Key>
+            <PropertyRef Name="StoreUserId" />
+          </Key>
+          <Property Name="StoreUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VendorUser">
+          <Key>
+            <PropertyRef Name="VendorUserId" />
+          </Key>
+          <Property Name="VendorUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WFSUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserType" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="AvailableCredit" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WFSUserAddress">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__5FB337D6">
+          <End Role="aspnet_Applications" Type="WFSModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="WFSModel.Store.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__60A75C0F">
+          <End Role="aspnet_Users" Type="WFSModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="WFSModel.Store.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__628FA481">
+          <End Role="aspnet_Applications" Type="WFSModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="WFSModel.Store.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__6477ECF3">
+          <End Role="aspnet_Paths" Type="WFSModel.Store.aspnet_Paths" Multiplicity="1" />
+          <End Role="aspnet_PersonalizationAllUsers" Type="WFSModel.Store.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__656C112C">
+          <End Role="aspnet_Paths" Type="WFSModel.Store.aspnet_Paths" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="WFSModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__UserI__66603565">
+          <End Role="aspnet_Users" Type="WFSModel.Store.aspnet_Users" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="WFSModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pr__UserI__68487DD7">
+          <End Role="aspnet_Users" Type="WFSModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Profile" Type="WFSModel.Store.aspnet_Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__693CA210">
+          <End Role="aspnet_Applications" Type="WFSModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Roles" Type="WFSModel.Store.aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__6B24EA82">
+          <End Role="aspnet_Applications" Type="WFSModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="WFSModel.Store.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__RoleI__6EF57B66">
+          <End Role="aspnet_Roles" Type="WFSModel.Store.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="WFSModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__6FE99F9F">
+          <End Role="aspnet_Users" Type="WFSModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="WFSModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerUser_School">
+          <End Role="Customer" Type="WFSModel.Store.Customer" Multiplicity="1" />
+          <End Role="CustomerUser" Type="WFSModel.Store.CustomerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="CustomerUser">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerUser_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
+          <End Role="CustomerUser" Type="WFSModel.Store.CustomerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodCategory_Vendor">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
+          <End Role="FoodCategory" Type="WFSModel.Store.FoodCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="FoodCategory">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItem_FoodCategory">
+          <End Role="FoodCategory" Type="WFSModel.Store.FoodCategory" Multiplicity="1" />
+          <End Role="FoodItem" Type="WFSModel.Store.FoodItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodCategory">
+              <PropertyRef Name="FoodCategoryId" />
+            </Principal>
+            <Dependent Role="FoodItem">
+              <PropertyRef Name="FoodCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItemOption_FoodItem">
+          <End Role="FoodItem" Type="WFSModel.Store.FoodItem" Multiplicity="1" />
+          <End Role="FoodItemOption" Type="WFSModel.Store.FoodItemOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="FoodItemOption">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItemOption_FoodOption">
+          <End Role="FoodOption" Type="WFSModel.Store.FoodOption" Multiplicity="1" />
+          <End Role="FoodItemOption" Type="WFSModel.Store.FoodItemOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodOption">
+              <PropertyRef Name="FoodOptionId" />
+            </Principal>
+            <Dependent Role="FoodItemOption">
+              <PropertyRef Name="FoodOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodOption_Vendor">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
+          <End Role="FoodOption" Type="WFSModel.Store.FoodOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="FoodOption">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Vendor">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
+          <End Role="Menu" Type="WFSModel.Store.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_FoodItem">
+          <End Role="FoodItem" Type="WFSModel.Store.FoodItem" Multiplicity="1" />
+          <End Role="MenuItem" Type="WFSModel.Store.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_Menu">
+          <End Role="Menu" Type="WFSModel.Store.Menu" Multiplicity="1" />
+          <End Role="MenuItem" Type="WFSModel.Store.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_Vendor">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
+          <End Role="Store" Type="WFSModel.Store.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreUSer_Store">
+          <End Role="Store" Type="WFSModel.Store.Store" Multiplicity="1" />
+          <End Role="StoreUser" Type="WFSModel.Store.StoreUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreUser">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreUSer_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
+          <End Role="StoreUser" Type="WFSModel.Store.StoreUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="StoreUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorUser_Vendor1">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
+          <End Role="VendorUser" Type="WFSModel.Store.VendorUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="VendorUser">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorUser_WFSUser1">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
+          <End Role="VendorUser" Type="WFSModel.Store.VendorUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="VendorUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WFSUserAddress_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
+          <End Role="WFSUserAddress" Type="WFSModel.Store.WFSUserAddress" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="WFSUserAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WFSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WFSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnet_Applications" EntityType="WFSModel.aspnet_Applications" />
+          <EntitySet Name="aspnet_Membership" EntityType="WFSModel.aspnet_Membership" />
+          <EntitySet Name="aspnet_Paths" EntityType="WFSModel.aspnet_Paths" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="WFSModel.aspnet_PersonalizationAllUsers" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="WFSModel.aspnet_PersonalizationPerUser" />
+          <EntitySet Name="aspnet_Profile" EntityType="WFSModel.aspnet_Profile" />
+          <EntitySet Name="aspnet_Roles" EntityType="WFSModel.aspnet_Roles" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="WFSModel.aspnet_SchemaVersions" />
+          <EntitySet Name="aspnet_Users" EntityType="WFSModel.aspnet_Users" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="WFSModel.aspnet_WebEvent_Events" />
+          <EntitySet Name="Customers" EntityType="WFSModel.Customer" />
+          <EntitySet Name="CustomerUsers" EntityType="WFSModel.CustomerUser" />
+          <EntitySet Name="FoodCategories" EntityType="WFSModel.FoodCategory" />
+          <EntitySet Name="FoodItems" EntityType="WFSModel.FoodItem" />
+          <EntitySet Name="FoodItemOptions" EntityType="WFSModel.FoodItemOption" />
+          <EntitySet Name="FoodOptions" EntityType="WFSModel.FoodOption" />
+          <EntitySet Name="Menus" EntityType="WFSModel.Menu" />
+          <EntitySet Name="MenuItems" EntityType="WFSModel.MenuItem" />
+          <EntitySet Name="Stores" EntityType="WFSModel.Store" />
+          <EntitySet Name="StoreUsers" EntityType="WFSModel.StoreUser" />
+          <EntitySet Name="Vendors" EntityType="WFSModel.Vendor" />
+          <EntitySet Name="VendorUsers" EntityType="WFSModel.VendorUser" />
+          <EntitySet Name="WFSUsers" EntityType="WFSModel.WFSUser" />
+          <EntitySet Name="WFSUserAddresses" EntityType="WFSModel.WFSUserAddress" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__5FB337D6" Association="WFSModel.FK__aspnet_Me__Appli__5FB337D6">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__628FA481" Association="WFSModel.FK__aspnet_Pa__Appli__628FA481">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__693CA210" Association="WFSModel.FK__aspnet_Ro__Appli__693CA210">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__6B24EA82" Association="WFSModel.FK__aspnet_Us__Appli__6B24EA82">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__60A75C0F" Association="WFSModel.FK__aspnet_Me__UserI__60A75C0F">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__6477ECF3" Association="WFSModel.FK__aspnet_Pe__PathI__6477ECF3">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__656C112C" Association="WFSModel.FK__aspnet_Pe__PathI__656C112C">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__UserI__66603565" Association="WFSModel.FK__aspnet_Pe__UserI__66603565">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pr__UserI__68487DD7" Association="WFSModel.FK__aspnet_Pr__UserI__68487DD7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerUser_School" Association="WFSModel.FK_CustomerUser_School">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CustomerUser" EntitySet="CustomerUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerUser_WFSUser" Association="WFSModel.FK_CustomerUser_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="CustomerUser" EntitySet="CustomerUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodCategory_Vendor" Association="WFSModel.FK_FoodCategory_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="FoodCategory" EntitySet="FoodCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItem_FoodCategory" Association="WFSModel.FK_FoodItem_FoodCategory">
+            <End Role="FoodCategory" EntitySet="FoodCategories" />
+            <End Role="FoodItem" EntitySet="FoodItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItemOption_FoodItem" Association="WFSModel.FK_FoodItemOption_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItems" />
+            <End Role="FoodItemOption" EntitySet="FoodItemOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.FK_MenuItem_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItems" />
+            <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItemOption_FoodOption" Association="WFSModel.FK_FoodItemOption_FoodOption">
+            <End Role="FoodOption" EntitySet="FoodOptions" />
+            <End Role="FoodItemOption" EntitySet="FoodItemOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodOption_Vendor" Association="WFSModel.FK_FoodOption_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="FoodOption" EntitySet="FoodOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Vendor" Association="WFSModel.FK_Menu_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Menu" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_Menu" Association="WFSModel.FK_MenuItem_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Store_Vendor" Association="WFSModel.FK_Store_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Store" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreUSer_Store" Association="WFSModel.FK_StoreUSer_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreUser" EntitySet="StoreUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreUSer_WFSUser" Association="WFSModel.FK_StoreUSer_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="StoreUser" EntitySet="StoreUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorUser_Vendor1" Association="WFSModel.FK_VendorUser_Vendor1">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="VendorUser" EntitySet="VendorUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorUser_WFSUser1" Association="WFSModel.FK_VendorUser_WFSUser1">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="VendorUser" EntitySet="VendorUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WFSUserAddress_WFSUser" Association="WFSModel.FK_WFSUserAddress_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="WFSUserAddress" EntitySet="WFSUserAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="WFSModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="WFSModel.FK__aspnet_Me__Appli__5FB337D6" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="WFSModel.FK__aspnet_Pa__Appli__628FA481" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="WFSModel.FK__aspnet_Ro__Appli__693CA210" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="aspnet_Users" Relationship="WFSModel.FK__aspnet_Us__Appli__6B24EA82" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="MobilePIN" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredEmail" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="WFSModel.FK__aspnet_Me__Appli__5FB337D6" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="WFSModel.FK__aspnet_Me__UserI__60A75C0F" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredPath" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="WFSModel.FK__aspnet_Pa__Appli__628FA481" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="WFSModel.FK__aspnet_Pe__PathI__6477ECF3" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="WFSModel.FK__aspnet_Pe__PathI__656C112C" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="WFSModel.FK__aspnet_Pe__PathI__6477ECF3" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="WFSModel.FK__aspnet_Pe__PathI__656C112C" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Users" Relationship="WFSModel.FK__aspnet_Pe__UserI__66603565" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyValuesString" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyValuesBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="WFSModel.FK__aspnet_Pr__UserI__68487DD7" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="WFSModel.FK__aspnet_Ro__Appli__693CA210" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="WFSModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="CompatibleSchemaVersion" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="WFSModel.FK__aspnet_Us__Appli__6B24EA82" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="WFSModel.FK__aspnet_Me__UserI__60A75C0F" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="WFSModel.FK__aspnet_Pe__UserI__66603565" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+          <NavigationProperty Name="aspnet_Profile" Relationship="WFSModel.FK__aspnet_Pr__UserI__68487DD7" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="WFSModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+        </EntityType>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+          <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" />
+          <Property Name="EventType" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="EventSequence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+          <Property Name="EventOccurrence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+          <Property Name="EventCode" Type="Int32" Nullable="false" />
+          <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationPath" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="RequestUrl" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
+          <Property Name="ExceptionType" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="CustomerType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CustomerUsers" Relationship="WFSModel.FK_CustomerUser_School" FromRole="Customer" ToRole="CustomerUser" />
+        </EntityType>
+        <EntityType Name="CustomerUser">
+          <Key>
+            <PropertyRef Name="CustomerUserId" />
+          </Key>
+          <Property Name="CustomerUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="WFSModel.FK_CustomerUser_School" FromRole="CustomerUser" ToRole="Customer" />
+          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_CustomerUser_WFSUser" FromRole="CustomerUser" ToRole="WFSUser" />
+        </EntityType>
+        <EntityType Name="FoodCategory">
+          <Key>
+            <PropertyRef Name="FoodCategoryId" />
+          </Key>
+          <Property Name="FoodCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_FoodCategory_Vendor" FromRole="FoodCategory" ToRole="Vendor" />
+          <NavigationProperty Name="FoodItems" Relationship="WFSModel.FK_FoodItem_FoodCategory" FromRole="FoodCategory" ToRole="FoodItem" />
+        </EntityType>
+        <EntityType Name="FoodItem">
+          <Key>
+            <PropertyRef Name="FoodItemId" />
+          </Key>
+          <Property Name="FoodItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FoodCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FoodCategory" Relationship="WFSModel.FK_FoodItem_FoodCategory" FromRole="FoodItem" ToRole="FoodCategory" />
+          <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItem" ToRole="FoodItemOption" />
+          <NavigationProperty Name="MenuItems" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="FoodItem" ToRole="MenuItem" />
+        </EntityType>
+        <EntityType Name="FoodItemOption">
+          <Key>
+            <PropertyRef Name="FoodItemOptionId" />
+          </Key>
+          <Property Name="FoodItemOptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodItemId" Type="Int32" Nullable="false" />
+          <Property Name="FoodOptionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItemOption" ToRole="FoodItem" />
+          <NavigationProperty Name="FoodOption" Relationship="WFSModel.FK_FoodItemOption_FoodOption" FromRole="FoodItemOption" ToRole="FoodOption" />
+        </EntityType>
+        <EntityType Name="FoodOption">
+          <Key>
+            <PropertyRef Name="FoodOptionId" />
+          </Key>
+          <Property Name="FoodOptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodOption" FromRole="FoodOption" ToRole="FoodItemOption" />
+          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_FoodOption_Vendor" FromRole="FoodOption" ToRole="Vendor" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_Menu_Vendor" FromRole="Menu" ToRole="Vendor" />
+          <NavigationProperty Name="MenuItems" Relationship="WFSModel.FK_MenuItem_Menu" FromRole="Menu" ToRole="MenuItem" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="MenuItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="FoodItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="MenuItem" ToRole="FoodItem" />
+          <NavigationProperty Name="Menu" Relationship="WFSModel.FK_MenuItem_Menu" FromRole="MenuItem" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_Store_Vendor" FromRole="Store" ToRole="Vendor" />
+          <NavigationProperty Name="StoreUsers" Relationship="WFSModel.FK_StoreUSer_Store" FromRole="Store" ToRole="StoreUser" />
+        </EntityType>
+        <EntityType Name="StoreUser">
+          <Key>
+            <PropertyRef Name="StoreUserId" />
+          </Key>
+          <Property Name="StoreUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Store" Relationship="WFSModel.FK_StoreUSer_Store" FromRole="StoreUser" ToRole="Store" />
+          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_StoreUSer_WFSUser" FromRole="StoreUser" ToRole="WFSUser" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FoodCategories" Relationship="WFSModel.FK_FoodCategory_Vendor" FromRole="Vendor" ToRole="FoodCategory" />
+          <NavigationProperty Name="FoodOptions" Relationship="WFSModel.FK_FoodOption_Vendor" FromRole="Vendor" ToRole="FoodOption" />
+          <NavigationProperty Name="Menus" Relationship="WFSModel.FK_Menu_Vendor" FromRole="Vendor" ToRole="Menu" />
+          <NavigationProperty Name="Stores" Relationship="WFSModel.FK_Store_Vendor" FromRole="Vendor" ToRole="Store" />
+          <NavigationProperty Name="VendorUsers" Relationship="WFSModel.FK_VendorUser_Vendor1" FromRole="Vendor" ToRole="VendorUser" />
+        </EntityType>
+        <EntityType Name="VendorUser">
+          <Key>
+            <PropertyRef Name="VendorUserId" />
+          </Key>
+          <Property Name="VendorUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_VendorUser_Vendor1" FromRole="VendorUser" ToRole="Vendor" />
+          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_VendorUser_WFSUser1" FromRole="VendorUser" ToRole="WFSUser" />
+        </EntityType>
+        <EntityType Name="WFSUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipGuid" Type="Guid" Nullable="false" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AvailableCredit" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CustomerUsers" Relationship="WFSModel.FK_CustomerUser_WFSUser" FromRole="WFSUser" ToRole="CustomerUser" />
+          <NavigationProperty Name="StoreUsers" Relationship="WFSModel.FK_StoreUSer_WFSUser" FromRole="WFSUser" ToRole="StoreUser" />
+          <NavigationProperty Name="VendorUsers" Relationship="WFSModel.FK_VendorUser_WFSUser1" FromRole="WFSUser" ToRole="VendorUser" />
+          <NavigationProperty Name="WFSUserAddress" Relationship="WFSModel.FK_WFSUserAddress_WFSUser" FromRole="WFSUser" ToRole="WFSUserAddress" />
+        </EntityType>
+        <EntityType Name="WFSUserAddress">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_WFSUserAddress_WFSUser" FromRole="WFSUserAddress" ToRole="WFSUser" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__5FB337D6">
+          <End Role="aspnet_Applications" Type="WFSModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="WFSModel.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__628FA481">
+          <End Role="aspnet_Applications" Type="WFSModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="WFSModel.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__693CA210">
+          <End Role="aspnet_Applications" Type="WFSModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Roles" Type="WFSModel.aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__6B24EA82">
+          <End Role="aspnet_Applications" Type="WFSModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="WFSModel.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__60A75C0F">
+          <End Role="aspnet_Users" Type="WFSModel.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="WFSModel.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__6477ECF3">
+          <End Role="aspnet_Paths" Type="WFSModel.aspnet_Paths" Multiplicity="1" />
+          <End Role="aspnet_PersonalizationAllUsers" Type="WFSModel.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__656C112C">
+          <End Role="aspnet_Paths" Type="WFSModel.aspnet_Paths" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="WFSModel.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__UserI__66603565">
+          <End Role="aspnet_Users" Type="WFSModel.aspnet_Users" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="WFSModel.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pr__UserI__68487DD7">
+          <End Role="aspnet_Users" Type="WFSModel.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Profile" Type="WFSModel.aspnet_Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerUser_School">
+          <End Role="Customer" Type="WFSModel.Customer" Multiplicity="1" />
+          <End Role="CustomerUser" Type="WFSModel.CustomerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="CustomerUser">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerUser_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.WFSUser" Multiplicity="1" />
+          <End Role="CustomerUser" Type="WFSModel.CustomerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CustomerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodCategory_Vendor">
+          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
+          <End Role="FoodCategory" Type="WFSModel.FoodCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="FoodCategory">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItem_FoodCategory">
+          <End Role="FoodCategory" Type="WFSModel.FoodCategory" Multiplicity="1" />
+          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodCategory">
+              <PropertyRef Name="FoodCategoryId" />
+            </Principal>
+            <Dependent Role="FoodItem">
+              <PropertyRef Name="FoodCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItemOption_FoodItem">
+          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="1" />
+          <End Role="FoodItemOption" Type="WFSModel.FoodItemOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="FoodItemOption">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_FoodItem">
+          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="1" />
+          <End Role="MenuItem" Type="WFSModel.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItemOption_FoodOption">
+          <End Role="FoodOption" Type="WFSModel.FoodOption" Multiplicity="1" />
+          <End Role="FoodItemOption" Type="WFSModel.FoodItemOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodOption">
+              <PropertyRef Name="FoodOptionId" />
+            </Principal>
+            <Dependent Role="FoodItemOption">
+              <PropertyRef Name="FoodOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodOption_Vendor">
+          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
+          <End Role="FoodOption" Type="WFSModel.FoodOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="FoodOption">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Vendor">
+          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
+          <End Role="Menu" Type="WFSModel.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_Menu">
+          <End Role="Menu" Type="WFSModel.Menu" Multiplicity="1" />
+          <End Role="MenuItem" Type="WFSModel.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Store_Vendor">
+          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
+          <End Role="Store" Type="WFSModel.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreUSer_Store">
+          <End Role="Store" Type="WFSModel.Store" Multiplicity="1" />
+          <End Role="StoreUser" Type="WFSModel.StoreUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreUser">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreUSer_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.WFSUser" Multiplicity="1" />
+          <End Role="StoreUser" Type="WFSModel.StoreUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="StoreUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorUser_Vendor1">
+          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
+          <End Role="VendorUser" Type="WFSModel.VendorUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="VendorUser">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorUser_WFSUser1">
+          <End Role="WFSUser" Type="WFSModel.WFSUser" Multiplicity="1" />
+          <End Role="VendorUser" Type="WFSModel.VendorUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="VendorUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WFSUserAddress_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.WFSUser" Multiplicity="1" />
+          <End Role="WFSUserAddress" Type="WFSModel.WFSUserAddress" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="WFSUserAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Role="aspnet_Roles" Type="WFSModel.aspnet_Roles" Multiplicity="*" />
+          <End Role="aspnet_Users" Type="WFSModel.aspnet_Users" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WFSModelStoreContainer" CdmEntityContainer="WFSEntities">
+          <EntitySetMapping Name="aspnet_Applications"><EntityTypeMapping TypeName="WFSModel.aspnet_Applications"><MappingFragment StoreEntitySet="aspnet_Applications">
+            <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+            <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Membership"><EntityTypeMapping TypeName="WFSModel.aspnet_Membership"><MappingFragment StoreEntitySet="aspnet_Membership">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+            <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+            <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+            <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+            <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+            <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+            <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+            <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+            <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+            <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+            <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+            <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+            <ScalarProperty Name="Comment" ColumnName="Comment" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Paths"><EntityTypeMapping TypeName="WFSModel.aspnet_Paths"><MappingFragment StoreEntitySet="aspnet_Paths">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="PathId" ColumnName="PathId" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationAllUsers"><EntityTypeMapping TypeName="WFSModel.aspnet_PersonalizationAllUsers"><MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
+            <ScalarProperty Name="PathId" ColumnName="PathId" />
+            <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+            <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationPerUser"><EntityTypeMapping TypeName="WFSModel.aspnet_PersonalizationPerUser"><MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="PathId" ColumnName="PathId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+            <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Profile"><EntityTypeMapping TypeName="WFSModel.aspnet_Profile"><MappingFragment StoreEntitySet="aspnet_Profile">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+            <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
+            <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
+            <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Roles"><EntityTypeMapping TypeName="WFSModel.aspnet_Roles"><MappingFragment StoreEntitySet="aspnet_Roles">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_SchemaVersions"><EntityTypeMapping TypeName="WFSModel.aspnet_SchemaVersions"><MappingFragment StoreEntitySet="aspnet_SchemaVersions">
+            <ScalarProperty Name="Feature" ColumnName="Feature" />
+            <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
+            <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users"><EntityTypeMapping TypeName="WFSModel.aspnet_Users"><MappingFragment StoreEntitySet="aspnet_Users">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+            <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+            <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+            <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_WebEvent_Events"><EntityTypeMapping TypeName="WFSModel.aspnet_WebEvent_Events"><MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
+            <ScalarProperty Name="EventId" ColumnName="EventId" />
+            <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
+            <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+            <ScalarProperty Name="EventType" ColumnName="EventType" />
+            <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
+            <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
+            <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+            <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
+            <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+            <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+            <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
+            <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+            <ScalarProperty Name="Details" ColumnName="Details" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Customers"><EntityTypeMapping TypeName="WFSModel.Customer"><MappingFragment StoreEntitySet="Customer">
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CustomerUsers"><EntityTypeMapping TypeName="WFSModel.CustomerUser"><MappingFragment StoreEntitySet="CustomerUser">
+            <ScalarProperty Name="CustomerUserId" ColumnName="CustomerUserId" />
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FoodCategories"><EntityTypeMapping TypeName="WFSModel.FoodCategory"><MappingFragment StoreEntitySet="FoodCategory">
+            <ScalarProperty Name="FoodCategoryId" ColumnName="FoodCategoryId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+            <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FoodItems"><EntityTypeMapping TypeName="WFSModel.FoodItem"><MappingFragment StoreEntitySet="FoodItem">
+            <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Cost" ColumnName="Cost" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="FoodCategoryID" ColumnName="FoodCategoryID" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FoodItemOptions"><EntityTypeMapping TypeName="WFSModel.FoodItemOption"><MappingFragment StoreEntitySet="FoodItemOption">
+            <ScalarProperty Name="FoodItemOptionId" ColumnName="FoodItemOptionId" />
+            <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
+            <ScalarProperty Name="FoodOptionId" ColumnName="FoodOptionId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FoodOptions"><EntityTypeMapping TypeName="WFSModel.FoodOption"><MappingFragment StoreEntitySet="FoodOption">
+            <ScalarProperty Name="FoodOptionId" ColumnName="FoodOptionId" />
+            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Cost" ColumnName="Cost" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Menus"><EntityTypeMapping TypeName="WFSModel.Menu"><MappingFragment StoreEntitySet="Menu">
+            <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MenuItems"><EntityTypeMapping TypeName="WFSModel.MenuItem"><MappingFragment StoreEntitySet="MenuItem">
+            <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+            <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+            <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Stores"><EntityTypeMapping TypeName="WFSModel.Store"><MappingFragment StoreEntitySet="Store">
+            <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StoreUsers"><EntityTypeMapping TypeName="WFSModel.StoreUser"><MappingFragment StoreEntitySet="StoreUser">
+            <ScalarProperty Name="StoreUserId" ColumnName="StoreUserId" />
+            <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Vendors"><EntityTypeMapping TypeName="WFSModel.Vendor"><MappingFragment StoreEntitySet="Vendor">
+            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="VendorUsers"><EntityTypeMapping TypeName="WFSModel.VendorUser"><MappingFragment StoreEntitySet="VendorUser">
+            <ScalarProperty Name="VendorUserId" ColumnName="VendorUserId" />
+            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WFSUsers"><EntityTypeMapping TypeName="WFSModel.WFSUser"><MappingFragment StoreEntitySet="WFSUser">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="MembershipGuid" ColumnName="MembershipGuid" />
+            <ScalarProperty Name="UserType" ColumnName="UserType" />
+            <ScalarProperty Name="AvailableCredit" ColumnName="AvailableCredit" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WFSUserAddresses"><EntityTypeMapping TypeName="WFSModel.WFSUserAddress"><MappingFragment StoreEntitySet="WFSUserAddress">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="WFSModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="WFSEntityDataModel">
+        <EntityTypeShape EntityType="WFSModel.aspnet_Applications" Width="1.5" PointX="10.75" PointY="7.875" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_Membership" Width="1.5" PointX="16" PointY="9.5" Height="5.4417122395833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_Paths" Width="1.5" PointX="13" PointY="6.375" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="15.25" PointY="6.75" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="15.25" PointY="3.375" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_Profile" Width="1.5" PointX="20.5" PointY="11.875" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_Roles" Width="1.5" PointX="13" PointY="15.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_Users" Width="1.5" PointX="18.25" PointY="11.375" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.aspnet_WebEvent_Events" Width="1.5" PointX="7.75" PointY="0.75" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.Customer" Width="1.5" PointX="5.75" PointY="21" Height="3.3263964843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.CustomerUser" Width="1.5" PointX="8" PointY="16.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.FoodCategory" Width="1.5" PointX="3" PointY="4.375" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.FoodItem" Width="1.5" PointX="5.25" PointY="4.125" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.FoodItemOption" Width="1.5" PointX="7.5" PointY="6.125" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.FoodOption" Width="1.5" PointX="3" PointY="7.625" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.Menu" Width="1.5" PointX="3" PointY="10.875" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.MenuItem" Width="1.5" PointX="7.5" PointY="9.625" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.Store" Width="1.5" PointX="3" PointY="14" Height="3.326396484374996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.StoreUser" Width="1.5" PointX="5.25" PointY="14.625" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.Vendor" Width="1.5" PointX="0.75" PointY="8.75" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.VendorUser" Width="1.5" PointX="8" PointY="12.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="5.75" PointY="17.375" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.WFSUserAddress" Width="1.5" PointX="8" PointY="20" Height="2.749492187499996" IsExpanded="true" />
+        <AssociationConnector Association="WFSModel.FK__aspnet_Me__Appli__5FB337D6" ManuallyRouted="false">
+          <ConnectorPoint PointX="12.25" PointY="9.9660953776041659" />
+          <ConnectorPoint PointX="16" PointY="9.9660953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Pa__Appli__628FA481" ManuallyRouted="false">
+          <ConnectorPoint PointX="12.25" PointY="8.3074446614583337" />
+          <ConnectorPoint PointX="13" PointY="8.3074446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Ro__Appli__693CA210" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.5" PointY="10.432190755208332" />
+          <ConnectorPoint PointX="11.5" PointY="16.932444661458334" />
+          <ConnectorPoint PointX="13" PointY="16.932444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Us__Appli__6B24EA82" ManuallyRouted="false">
+          <ConnectorPoint PointX="12.25" PointY="9.1199446614583337" />
+          <ConnectorPoint PointX="18.510414166666667" PointY="9.1199446614583337" />
+          <ConnectorPoint PointX="18.677080833333331" PointY="9.1199446614583337" />
+          <ConnectorPoint PointX="19" PointY="9.1199446614583337" />
+          <ConnectorPoint PointX="19" PointY="11.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Me__UserI__60A75C0F" ManuallyRouted="false">
+          <ConnectorPoint PointX="18.25" PointY="13.0381982421875" />
+          <ConnectorPoint PointX="17.5" PointY="13.0381982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Pe__PathI__6477ECF3" ManuallyRouted="false">
+          <ConnectorPoint PointX="14.5" PointY="7.6439925130208337" />
+          <ConnectorPoint PointX="15.25" PointY="7.6439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Pe__PathI__656C112C" ManuallyRouted="false">
+          <ConnectorPoint PointX="13.75" PointY="6.375" />
+          <ConnectorPoint PointX="13.75" PointY="4.5574446614583328" />
+          <ConnectorPoint PointX="15.25" PointY="4.5574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Pe__UserI__66603565" ManuallyRouted="false">
+          <ConnectorPoint PointX="18.5937475" PointY="11.375" />
+          <ConnectorPoint PointX="18.5937475" PointY="4.5574446614583328" />
+          <ConnectorPoint PointX="16.75" PointY="4.5574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK__aspnet_Pr__UserI__68487DD7" ManuallyRouted="false">
+          <ConnectorPoint PointX="19.75" PointY="12.9612939453125" />
+          <ConnectorPoint PointX="20.5" PointY="12.9612939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_CustomerUser_School" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="21.001152846153843" />
+          <ConnectorPoint PointX="7.625" PointY="20.626152846153843" />
+          <ConnectorPoint PointX="7.625" PointY="17.740143229166666" />
+          <ConnectorPoint PointX="8" PointY="17.740143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_CustomerUser_WFSUser" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="18.29771484375" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="18.29771484375" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="18.29771484375" />
+          <ConnectorPoint PointX="8" PointY="18.29771484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodCategory_Vendor" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.75" />
+          <ConnectorPoint PointX="1.5" PointY="5.461293945312498" />
+          <ConnectorPoint PointX="3" PointY="5.461293945312498" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodItem_FoodCategory" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.461293945312498" />
+          <ConnectorPoint PointX="5.25" PointY="5.461293945312498" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodItem" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="6.4997460937500016" />
+          <ConnectorPoint PointX="7.5" PointY="6.4997460937500016" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_MenuItem_FoodItem" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="6.8744921875000031" />
+          <ConnectorPoint PointX="6" PointY="10.615143229166669" />
+          <ConnectorPoint PointX="7.5" PointY="10.615143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodOption" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.8651432291666694" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="7.8651432291666685" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="7.8651432291666694" />
+          <ConnectorPoint PointX="7.5" PointY="7.8651432291666694" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodOption_Vendor" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.46609537760417" />
+          <ConnectorPoint PointX="3" PointY="9.46609537760417" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_Menu_Vendor" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="11.764150390625002" />
+          <ConnectorPoint PointX="3" PointY="11.764150390625002" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_MenuItem_Menu" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.240143229166669" />
+          <ConnectorPoint PointX="7.5" PointY="11.240143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_Store_Vendor" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="12.653300781250003" />
+          <ConnectorPoint PointX="1.5" PointY="15.663198242187498" />
+          <ConnectorPoint PointX="3" PointY="15.663198242187498" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_StoreUSer_Store" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="15.615143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="15.615143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_StoreUSer_WFSUser" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.25" PointY="17.375" />
+          <ConnectorPoint PointX="6.25" PointY="16.605286458333339" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_VendorUser_Vendor1" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="12.653300781250003" />
+          <ConnectorPoint PointX="1.9062525" PointY="13.619944661458334" />
+          <ConnectorPoint PointX="8" PointY="13.619944661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_VendorUser_WFSUser1" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.03125" PointY="17.375" />
+          <ConnectorPoint PointX="7.03125" PointY="14.122474830729161" />
+          <ConnectorPoint PointX="8" PointY="14.122474830729161" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_WFSUserAddress_WFSUser" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="19.869882062900633" />
+          <ConnectorPoint PointX="7.5660744349011217" PointY="20.185956497801754" />
+          <ConnectorPoint PointX="7.6839255650988791" PointY="20.303807627999511" />
+          <ConnectorPoint PointX="7.8125" PointY="20.432382062900633" />
+          <ConnectorPoint PointX="7.8125" PointY="19.8125" />
+          <ConnectorPoint PointX="8" PointY="20" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.aspnet_UsersInRoles" ManuallyRouted="false">
+          <ConnectorPoint PointX="14.5" PointY="16.932444661458334" />
+          <ConnectorPoint PointX="19" PointY="16.932444661458334" />
+          <ConnectorPoint PointX="19" PointY="14.701396484375" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

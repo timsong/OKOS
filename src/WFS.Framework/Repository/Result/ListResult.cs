@@ -16,7 +16,7 @@ namespace WFS.Repository
             this.Status = status;
         }
 
-        public ListResult(IList<TValue> values)
+        public ListResult(List<TValue> values)
             : this()
         {
             this.Values = values;
@@ -24,9 +24,9 @@ namespace WFS.Repository
         }
 
         public Status Status { get; set; }
-        public IList<Message> Messages { get; set; }
+        public List<Message> Messages { get; set; }
 
-        public IList<TValue> Values { get; set; }
+        public List<TValue> Values { get; set; }
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
         public int Total { get; set; }

@@ -20,7 +20,7 @@ namespace WFS.Repository
         }
 
         public Status Status { get; set; }
-        public IList<Message> Messages { get; set; }
+        public List<Message> Messages { get; set; }
         public TValue Value { get; set; }
     }
 }

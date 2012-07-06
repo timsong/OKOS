@@ -1,18 +1,22 @@
 ﻿using C = WFS.Contract;
 using System;
+using System.Linq;
+using WFS.DataContext;
+using WFS.Repository.Conversions;
 
 namespace WFS.Repository.Queries
 {
     public class GetVendorListQuery : IListQuery<C.Vendor>
     {
-
-        #region IListQuery<Vendor> Members
-
         public IListResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
-            throw new NotImplementedException();
+            var ent = (WFS.DataContext.WFSEntities)dbContext;
+            var data = ent.Vendors.AsEnumerable().Select(x=> x.ToContract());
+
+            var result = new ListResult<C.Vendor>(data.ToList());
+            result.Status = Status.Success;
+            return result;
         }
 
-        #endregion
     }
 }
