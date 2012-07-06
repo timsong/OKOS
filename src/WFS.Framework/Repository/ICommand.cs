@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data.Entity;
 
 namespace WFS.Repository
 {
     public interface ICommand<TResult>
     {
-        IResult<TResult> Execute();//DataContext dataContext);
+        IResult<TResult> Execute(DbContext dbContext);
     }
 }

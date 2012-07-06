@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data.Entity;
 
 namespace WFS.Repository
 {
     public interface IExistsQuery
     {
-        bool Execute();//DataContext dataContext);
+        bool Execute(DbContext dbContext);
     }
 }

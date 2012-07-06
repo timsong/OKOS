@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="IPagable.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Repository\ICommand.cs" />
@@ -52,12 +58,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderBy\IOrderBy.cs" />
     <Compile Include="Repository\OrderBy\OrderBy.cs" />
+    <Compile Include="Repository\EFRepository.cs" />
+    <Compile Include="Repository\Queries\CountQuery.cs" />
+    <Compile Include="Repository\Queries\ExistsQuery.cs" />
+    <Compile Include="Repository\Queries\Query.cs" />
     <Compile Include="Repository\Result\IListResult.cs" />
     <Compile Include="Repository\Result\IResult.cs" />
     <Compile Include="Repository\Result\ListResult.cs" />
     <Compile Include="Repository\Result\Result.cs" />
     <Compile Include="SortDirection.cs" />
     <Compile Include="Status.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
