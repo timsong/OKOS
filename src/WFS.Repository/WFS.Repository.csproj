@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversions\VendorConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\GetVendorListQuery.cs" />
+    <Compile Include="Queries\Vendors\GetVendorByIdQuery.cs" />
+    <Compile Include="Queries\Vendors\GetVendorListQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Conversions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WFS.Contract\WFS.Contract.csproj">
