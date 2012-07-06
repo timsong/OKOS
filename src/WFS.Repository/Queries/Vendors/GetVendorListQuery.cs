@@ -1,13 +1,14 @@
-﻿using System;
-using WFS.Contract;
+﻿using C = WFS.Contract;
+using System;
 
 namespace WFS.Repository.Queries
 {
-    public class GetVendorListQuery : IListQuery<Vendor>
+    public class GetVendorListQuery : IListQuery<C.Vendor>
     {
+
         #region IListQuery<Vendor> Members
 
-        public IListResult<Vendor> Execute()
+        public IListResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
             throw new NotImplementedException();
         }

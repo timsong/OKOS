@@ -12,9 +12,13 @@ namespace WFS.Repository.Queries.Vendors
             _vendorId = vendorId;
         }
 
-        public IResult<Vendor> Execute()
+        #region IQuery<Vendor> Members
+
+        public IResult<Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }
