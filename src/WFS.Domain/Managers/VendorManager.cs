@@ -3,6 +3,7 @@ using WFS.Contract.ReqResp;
 using WFS.Repository.Queries;
 using System.Collections.Generic;
 using System.Linq;
+using WFS.Repository.Commands;
 
 namespace WFS.Domain.Managers
 {
@@ -38,6 +39,19 @@ namespace WFS.Domain.Managers
                 response.Vendor = result.Value;
 
             return response;
+        }
+
+        public ChangeVendorActiveStatusResponse ChangeVendorActiveStatus(ChangeVendorActiveStatusRequest request)
+        {
+            var resp = new ChangeVendorActiveStatusResponse();
+
+            var command = new ChangeVendorActiveStatusCommand(request.VendorID, request.NewActiveStatus);
+            var result = _repository.ExecuteCommand(command);
+
+            if (result.Status == Status.Success)
+                resp.Vendor = result.Value;
+
+            return resp;
 
         }
     }

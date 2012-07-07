@@ -1,8 +1,7 @@
-﻿using C = WFS.Contract;
-using System;
-using System.Linq;
-using WFS.DataContext;
+﻿using System.Linq;
 using WFS.Repository.Conversions;
+using C = WFS.Contract;
+
 
 namespace WFS.Repository.Queries
 {
@@ -11,7 +10,7 @@ namespace WFS.Repository.Queries
         public IListResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
-            var data = ent.Vendors.AsEnumerable().Select(x=> x.ToContract());
+            var data = ent.Vendors.AsEnumerable().Select(x => x.ToContract());
 
             var result = new ListResult<C.Vendor>(data.ToList());
             result.Status = Status.Success;

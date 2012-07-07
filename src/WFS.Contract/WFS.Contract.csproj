@@ -48,6 +48,7 @@
     <Compile Include="FoodOption.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReqResp\ChangeVendorActiveStatus.cs" />
     <Compile Include="ReqResp\GetVendorById.cs" />
     <Compile Include="ReqResp\GetVendorList.cs" />
     <Compile Include="Store.cs" />
