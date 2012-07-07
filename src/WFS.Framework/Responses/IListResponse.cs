@@ -1,5 +1,5 @@
 ﻿
-namespace WFS.Framework.Responses
+namespace WFS.Framework
 {
     public interface IListResponse : IResponse, IPageable
     {

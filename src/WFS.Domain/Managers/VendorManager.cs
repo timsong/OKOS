@@ -26,6 +26,18 @@ namespace WFS.Domain.Managers
                 response.Vendors = result.Values;
 
             return response;
+        }
+        public GetVendorByIdResponse GetVendorById(GetVendorByIdRequest request)
+        {
+            var response = new GetVendorByIdResponse();
+
+            var query = new GetVendorByIdQuery(request.VendorID);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.Vendor = result.Value;
+
+            return response;
 
         }
     }

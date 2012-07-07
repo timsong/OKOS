@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using WFS.Repository;
-using WFS.Framework.Responses;
+using WFS.Framework;
 
 namespace WFS.Contract.ReqResp
 {

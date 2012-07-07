@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WFS.Framework.Responses
+namespace WFS.Framework
 {
     public class BaseListResponse : BaseResponse, IListResponse
     {

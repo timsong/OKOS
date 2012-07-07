@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace WFS.Framework.Responses
+namespace WFS.Framework
 {
     public class BaseResponse : IResponse
     {
