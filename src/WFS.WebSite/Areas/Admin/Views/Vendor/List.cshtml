@@ -2,80 +2,27 @@
 
 @{
     ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
 }
 
-<h2>List</h2>
+<h2>Vendor List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Address1
-        </th>
-        <th>
-            Address2
-        </th>
-        <th>
-            City
-        </th>
-        <th>
-            State
-        </th>
-        <th>
-            ZipCode
-        </th>
-        <th>
-            PhoneNumber
-        </th>
-        <th>
-            PhoneExt
-        </th>
-        <th>
-            IsActive
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneExt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VendorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VendorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VendorId })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="w60">
+    @foreach (var item in Model)
+    {
+        <div class="left">@Html.DisplayFor(x => item.Name)</div>
+        <div class="left">
+            @Html.ActionLink("Edit", "Edit", new { id = item.VendorId }) |
+        </div>
+        <div class="left">
+            @Html.ActionLink((item.IsActive) ? "Deactivate" : "Activate", "Edit", new { id = item.VendorId })
+        </div>
+        <div class="left">
+            @Html.ActionLink("Delete", "Delete", new { id = item.VendorId })
+        </div>
+    }    
+</div>
