@@ -1,9 +1,10 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-*.suo
-*.csproj.user
-
 bin
 obj
+
+# Visual Studio Files
+*.suo
+*.csproj.user
 
 # mstest test results
 TestResults
