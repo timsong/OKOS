@@ -1,9 +1,10 @@
-﻿using System;
-using WFS.Contract;
+﻿using System.Linq;
+using WFS.Repository.Conversions;
+using C = WFS.Contract;
 
-namespace WFS.Repository.Queries.Vendors
+namespace WFS.Repository.Queries
 {
-    public class GetVendorByIdQuery : IQuery<Vendor>
+    public class GetVendorByIdQuery : IQuery<C.Vendor>
     {
         public int _vendorId { get; set; }
 
@@ -12,9 +13,19 @@ namespace WFS.Repository.Queries.Vendors
             _vendorId = vendorId;
         }
 
-        public IResult<Vendor> Execute()
+        #region IQuery<Vendor> Members
+
+        public IResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
-            throw new NotImplementedException();
+            var ent = (WFS.DataContext.WFSEntities)dbContext;
+            var data = (from x in ent.Vendors
+                        where x.VendorId == _vendorId
+                        select x).FirstOrDefault().ToContract();
+
+            var result = new Result<C.Vendor>(Status.Success, data);
+            return result;
         }
+
+        #endregion
     }
 }

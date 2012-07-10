@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WFS.Framework;
 
 namespace WFS.Contract.ReqResp
 {
@@ -6,7 +7,7 @@ namespace WFS.Contract.ReqResp
     {
     }
 
-    public class GetVendorListResponse
+    public class GetVendorListResponse : BaseResponse
     {
         public GetVendorListResponse()
         {
@@ -14,6 +15,7 @@ namespace WFS.Contract.ReqResp
         }
 
         public List<Vendor> Vendors { get; set; }
+
 
     }
 }

@@ -66,11 +66,15 @@
     <Compile Include="Repository\Result\IResult.cs" />
     <Compile Include="Repository\Result\ListResult.cs" />
     <Compile Include="Repository\Result\Result.cs" />
+    <Compile Include="Responses\BaseListResponse.cs" />
+    <Compile Include="Responses\BaseResponse.cs" />
+    <Compile Include="Responses\IListResponse.cs" />
+    <Compile Include="Responses\IResponse.cs" />
+    <Compile Include="Responses\ResponseExtensions.cs" />
     <Compile Include="SortDirection.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

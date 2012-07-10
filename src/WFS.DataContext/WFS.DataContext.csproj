@@ -38,6 +38,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,11 +47,113 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aspnet_Applications.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Membership.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Paths.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_PersonalizationAllUsers.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_PersonalizationPerUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Profile.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Roles.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_SchemaVersions.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Users.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_WebEvent_Events.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodCategory.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItem.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemOption.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodOption.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuItem.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Store.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StoreUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFSDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFSDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFSDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFSEntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WFSEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WFSUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WFSUserAddress.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="WFSEntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WFSEntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WFSDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WFSDataContext.Context.cs</LastGenOutput>
+    </None>
+    <None Include="WFSDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WFSDataContext.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,6 +12,6 @@ namespace WFS.Repository
 
     public interface IListResult<TValue> : IListResult
     {
-        IList<TValue> Values { get; set; }
+        List<TValue> Values { get; set; }
     }
 }
