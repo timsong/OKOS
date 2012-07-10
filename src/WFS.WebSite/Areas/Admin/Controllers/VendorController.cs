@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using WFS.Domain.Managers;
 using WFS.Contract.ReqResp;
+using WFS.Domain.Managers;
 
 namespace WFS_WebSite.Areas.Admin.Controllers
 {
@@ -16,6 +16,16 @@ namespace WFS_WebSite.Areas.Admin.Controllers
         {
             var data = _venMan.GetVendorList(new GetVendorListRequest());
             return View(data.Vendors);
+        }
+
+        public ActionResult Edit(int vendorId)
+        {
+            return View("AddEdit");
+        }
+
+        public ActionResult Delete(int vendorId)
+        {
+            return View("AddEdit");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "List";
-    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Vendor List</h2>
@@ -16,13 +16,14 @@
     {
         <div class="left">@Html.DisplayFor(x => item.Name)</div>
         <div class="left">
-            @Html.ActionLink("Edit", "Edit", new { id = item.VendorId }) |
+            @Html.ActionLink("Edit", "Edit", "Vendor", new { Area = "Admin", vendorId = item.VendorId }, new { }) |
         </div>
         <div class="left">
-            @Html.ActionLink((item.IsActive) ? "Deactivate" : "Activate", "Edit", new { id = item.VendorId })
+            @Html.ActionLink((item.IsActive) ? "Deactivate" : "Activate", "Edit", new { id = item.VendorId }) |
         </div>
         <div class="left">
             @Html.ActionLink("Delete", "Delete", new { id = item.VendorId })
         </div>
+        <div class="clear"></div>
     }    
 </div>

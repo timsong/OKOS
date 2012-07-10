@@ -7,6 +7,12 @@ namespace WFS_WebSite.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
+
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToRoute("admin.vendor.dashboard");
+            }
+
             return View();
         }
 
