@@ -47,34 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aspnet_Applications.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Membership.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Paths.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_PersonalizationAllUsers.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_PersonalizationPerUser.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Profile.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Roles.cs">
+    <Compile Include="Application.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="aspnet_SchemaVersions.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_Users.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="aspnet_WebEvent_Events.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
@@ -95,17 +71,29 @@
     <Compile Include="FoodOption.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Membership.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuItem.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Store.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreUser.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
