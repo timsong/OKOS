@@ -85,6 +85,33 @@ namespace WFS.Domain.Managers
 
         }
 
+
+
+
+        public CreateFoodOptionResponse CreateFoodOption(CreateFoodOptionRequest request)
+        {
+            var resp = new CreateFoodOptionResponse();
+
+            //Create Vendor and VendorUser
+            var faCmd = new CreateFoodOptionCommand(request.Name, request.VendorId, request.Description, request.Cost, request.Price);
+            var fcRes = _repository.ExecuteCommand(faCmd);
+
+            resp.Merge(fcRes);
+
+            return resp;
+        }
+        public CreateFoodCategoryResponse CreateFoodCategory(CreateFoodCategoryRequest request)
+        {
+            var resp = new CreateFoodCategoryResponse();
+
+            //Create Vendor and VendorUser
+            var faCmd = new CreateFoodCategoryCommand(request.Name, request.VendorID, request.CategoryType.ToString());
+            var fcRes = _repository.ExecuteCommand(faCmd);
+
+            resp.Merge(fcRes);
+
+            return resp;
+        }
         private CreateVendorResponse HandleMembershipCreationError(MembershipCreateStatus memStat)
         {
             var msg = new Message();

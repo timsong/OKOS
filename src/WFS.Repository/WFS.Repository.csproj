@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\FoodCategory\CreateFoodCategoryCommand.cs" />
+    <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
     <Compile Include="Commands\Vendor\ChangeVendorActiveStatusCommand.cs" />
     <Compile Include="Commands\Vendor\CreateVendorAndUserCommand.cs" />
     <Compile Include="Commands\CreateWFSUserCommand.cs" />
     <Compile Include="Conversions\FoodCategoryConversion.cs" />
+    <Compile Include="Conversions\FoodOptionConversion.cs" />
     <Compile Include="Conversions\VendorConversion.cs" />
     <Compile Include="Conversions\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@ namespace WFS.Contract
     public class FoodOption
     {
         public int FoodOptionId { get; set; }
-        public int FoodItemId { get; set; }
+        public int VendorId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
