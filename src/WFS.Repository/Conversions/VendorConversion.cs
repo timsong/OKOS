@@ -1,7 +1,6 @@
 ﻿
-using C = WFS.Contract;
 using WFS.DataContext;
-using System.Data.Entity;
+using C = WFS.Contract;
 
 namespace WFS.Repository.Conversions
 {
@@ -14,16 +13,16 @@ namespace WFS.Repository.Conversions
 
             var model = new C.Vendor()
             {
+                VendorId = data.VendorId,
                 IsActive = data.IsActive,
                 Name = data.Name,
-                VendorId = data.VendorId,
                 Address1 = data.Address1,
                 Address2 = data.Address2,
                 City = data.City,
                 Phone = data.PhoneNumber,
                 PhoneExt = data.PhoneExt,
                 State = data.State,
-                ZipCode = data.ZipCode
+                ZipCode = data.ZipCode,
             };
 
             return model;

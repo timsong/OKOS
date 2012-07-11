@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
+using WFS.Framework;
 namespace WFS.Contract.ReqResp
 {
     public class CreateVendorRequest
@@ -13,13 +10,17 @@ namespace WFS.Contract.ReqResp
         }
 
         public string Name { get; set; }
-        public PhoneAddress ContactInfo { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+        public PhoneAddress ContactInfo { get; set; }
+
 
     }
 
-    public class CreateVendorResponse
+    public class CreateVendorResponse : BaseResponse
     {
         public Vendor Vendor { get; set; }
     }

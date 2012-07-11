@@ -25,6 +25,8 @@ namespace WFS.DataContext
         public System.Guid MembershipGuid { get; set; }
         public string UserType { get; set; }
         public decimal AvailableCredit { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     
         public virtual ICollection<CustomerUser> CustomerUsers { get; set; }
         public virtual ICollection<StoreUser> StoreUsers { get; set; }

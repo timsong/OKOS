@@ -1,9 +1,11 @@
-﻿using WFS.Repository;
+﻿using System;
+using System.Web.Security;
+using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
-using WFS.Repository.Queries;
-using System.Collections.Generic;
-using System.Linq;
+using WFS.Framework;
+using WFS.Repository;
 using WFS.Repository.Commands;
+using WFS.Repository.Queries;
 
 namespace WFS.Domain.Managers
 {
@@ -23,7 +25,7 @@ namespace WFS.Domain.Managers
             var query = new GetVendorListQuery();
             var result = this._repository.ExecuteQuery(query);
 
-            if (result.Status ==  Status.Success)
+            if (result.Status == Status.Success)
                 response.Vendors = result.Values;
 
             return response;
@@ -52,7 +54,71 @@ namespace WFS.Domain.Managers
                 resp.Vendor = result.Value;
 
             return resp;
+        }
 
+        public CreateVendorResponse CreateVendor(CreateVendorRequest request)
+        {
+            var resp = new CreateVendorResponse();
+
+            //check that Membername is OK
+            MembershipCreateStatus memStat;
+            var newMem = Membership.CreateUser(request.Email, request.Password, request.Email, null, null, true, out memStat);
+
+            if (memStat != MembershipCreateStatus.Success)
+                return HandleMembershipCreationError(memStat);
+
+            //Create WFS User
+            var wfsComm = new CreateWFSUserCommand((Guid)newMem.ProviderUserKey, request.FirstName, request.LastName, WFSUserTypeEnum.Vendor.ToString());
+            var wfsRes = _repository.ExecuteCommand(wfsComm);
+
+            resp.Merge(wfsRes);
+            if (resp.Status != Status.Success)
+                return resp;
+
+            //Create Vendor and VendorUser
+            var venCmd = new CreateVendorAndUserCommand(request.ContactInfo, request.Name, wfsRes.Value.UserId);
+            var venRes = _repository.ExecuteCommand(venCmd);
+
+            resp.Merge(venRes);
+
+            return resp;
+
+        }
+
+        private CreateVendorResponse HandleMembershipCreationError(MembershipCreateStatus memStat)
+        {
+            var msg = new Message();
+
+            switch (memStat)
+            {
+                case MembershipCreateStatus.DuplicateEmail:
+                    msg.Text = "An account with this email already exists";
+                    break;
+                case MembershipCreateStatus.DuplicateProviderUserKey:
+                    break;
+                case MembershipCreateStatus.DuplicateUserName:
+                    msg.Text = "An account with this email already exists";
+                    break;
+                case MembershipCreateStatus.InvalidEmail:
+                    msg.Text = "Your email is not a vaild email address";
+                    break;
+                case MembershipCreateStatus.InvalidPassword:
+                    msg.Text = "The password was not long enough or contained invalid characters";
+                    break;
+                case MembershipCreateStatus.InvalidProviderUserKey:
+                    break;
+                case MembershipCreateStatus.InvalidUserName:
+                    msg.Text = "Your email is not a vaild email address";
+                    break;
+                default:
+                    msg.Text = "An error occurred please try again";
+                    break;
+            }
+
+            var resp = new CreateVendorResponse();
+            resp.Status = Status.Error;
+            resp.Messages.Add(msg);
+            return resp;
         }
     }
 }

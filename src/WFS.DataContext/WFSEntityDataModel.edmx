@@ -331,6 +331,8 @@
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MembershipGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="UserType" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="AvailableCredit" Type="money" Nullable="false" />
         </EntityType>
@@ -912,6 +914,8 @@
           <NavigationProperty Name="StoreUsers" Relationship="WFSModel.FK_StoreUSer_WFSUser" FromRole="WFSUser" ToRole="StoreUser" />
           <NavigationProperty Name="VendorUsers" Relationship="WFSModel.FK_VendorUser_WFSUser1" FromRole="WFSUser" ToRole="VendorUser" />
           <NavigationProperty Name="WFSUserAddress" Relationship="WFSModel.FK_WFSUserAddress_WFSUser" FromRole="WFSUser" ToRole="WFSUserAddress" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WFSUserAddress">
           <Key>
@@ -1359,7 +1363,9 @@
             <ScalarProperty Name="UserId" ColumnName="UserId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="WFSUsers"><EntityTypeMapping TypeName="WFSModel.WFSUser"><MappingFragment StoreEntitySet="WFSUser">
-            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
             <ScalarProperty Name="MembershipGuid" ColumnName="MembershipGuid" />
             <ScalarProperty Name="UserType" ColumnName="UserType" />
             <ScalarProperty Name="AvailableCredit" ColumnName="AvailableCredit" />
