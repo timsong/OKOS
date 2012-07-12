@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\FoodItemManager.cs" />
     <Compile Include="Managers\MembershipManager.cs" />
     <Compile Include="Managers\VendorManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

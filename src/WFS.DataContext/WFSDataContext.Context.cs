@@ -29,7 +29,6 @@ namespace WFS.DataContext
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerUser> CustomerUsers { get; set; }
         public DbSet<FoodCategory> FoodCategories { get; set; }
-        public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<FoodItemOption> FoodItemOptions { get; set; }
         public DbSet<FoodOption> FoodOptions { get; set; }
         public DbSet<Menu> Menus { get; set; }
@@ -45,5 +44,6 @@ namespace WFS.DataContext
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<FoodItem> FoodItems { get; set; }
     }
 }

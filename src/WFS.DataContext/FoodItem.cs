@@ -26,6 +26,7 @@ namespace WFS.DataContext
         public decimal Price { get; set; }
         public int FoodCategoryID { get; set; }
         public bool IsActive { get; set; }
+        public string Name { get; set; }
     
         public virtual FoodCategory FoodCategory { get; set; }
         public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }

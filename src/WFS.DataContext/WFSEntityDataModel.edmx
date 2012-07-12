@@ -175,11 +175,12 @@
             <PropertyRef Name="FoodItemId" />
           </Key>
           <Property Name="FoodItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="FoodCategoryID" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
         </EntityType>
         <EntityType Name="FoodItemOption">
           <Key>
@@ -634,7 +635,6 @@
           <EntitySet Name="Customers" EntityType="WFSModel.Customer" />
           <EntitySet Name="CustomerUsers" EntityType="WFSModel.CustomerUser" />
           <EntitySet Name="FoodCategories" EntityType="WFSModel.FoodCategory" />
-          <EntitySet Name="FoodItems" EntityType="WFSModel.FoodItem" />
           <EntitySet Name="FoodItemOptions" EntityType="WFSModel.FoodItemOption" />
           <EntitySet Name="FoodOptions" EntityType="WFSModel.FoodOption" />
           <EntitySet Name="Menus" EntityType="WFSModel.Menu" />
@@ -656,18 +656,6 @@
           <AssociationSet Name="FK_FoodCategory_Vendor" Association="WFSModel.FK_FoodCategory_Vendor">
             <End Role="Vendor" EntitySet="Vendors" />
             <End Role="FoodCategory" EntitySet="FoodCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FoodItem_FoodCategory" Association="WFSModel.FK_FoodItem_FoodCategory">
-            <End Role="FoodCategory" EntitySet="FoodCategories" />
-            <End Role="FoodItem" EntitySet="FoodItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FoodItemOption_FoodItem" Association="WFSModel.FK_FoodItemOption_FoodItem">
-            <End Role="FoodItem" EntitySet="FoodItems" />
-            <End Role="FoodItemOption" EntitySet="FoodItemOptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.FK_MenuItem_FoodItem">
-            <End Role="FoodItem" EntitySet="FoodItems" />
-            <End Role="MenuItem" EntitySet="MenuItems" />
           </AssociationSet>
           <AssociationSet Name="FK_FoodItemOption_FoodOption" Association="WFSModel.FK_FoodItemOption_FoodOption">
             <End Role="FoodOption" EntitySet="FoodOptions" />
@@ -738,6 +726,19 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="FoodItems" EntityType="WFSModel.FoodItem" />
+          <AssociationSet Name="FK_FoodItem_FoodCategory" Association="WFSModel.FK_FoodItem_FoodCategory">
+            <End Role="FoodCategory" EntitySet="FoodCategories" />
+            <End Role="FoodItem" EntitySet="FoodItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FoodItemOption_FoodItem" Association="WFSModel.FK_FoodItemOption_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItems" />
+            <End Role="FoodItemOption" EntitySet="FoodItemOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.FK_MenuItem_FoodItem">
+            <End Role="FoodItem" EntitySet="FoodItems" />
+            <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_SchemaVersions">
           <Key>
@@ -786,20 +787,6 @@
           <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_FoodCategory_Vendor" FromRole="FoodCategory" ToRole="Vendor" />
           <NavigationProperty Name="FoodItems" Relationship="WFSModel.FK_FoodItem_FoodCategory" FromRole="FoodCategory" ToRole="FoodItem" />
         </EntityType>
-        <EntityType Name="FoodItem">
-          <Key>
-            <PropertyRef Name="FoodItemId" />
-          </Key>
-          <Property Name="FoodItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="FoodCategoryID" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="FoodCategory" Relationship="WFSModel.FK_FoodItem_FoodCategory" FromRole="FoodItem" ToRole="FoodCategory" />
-          <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItem" ToRole="FoodItemOption" />
-          <NavigationProperty Name="MenuItems" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="FoodItem" ToRole="MenuItem" />
-        </EntityType>
         <EntityType Name="FoodItemOption">
           <Key>
             <PropertyRef Name="FoodItemOptionId" />
@@ -807,8 +794,8 @@
           <Property Name="FoodItemOptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FoodItemId" Type="Int32" Nullable="false" />
           <Property Name="FoodOptionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItemOption" ToRole="FoodItem" />
           <NavigationProperty Name="FoodOption" Relationship="WFSModel.FK_FoodItemOption_FoodOption" FromRole="FoodItemOption" ToRole="FoodOption" />
+          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItemOption" ToRole="FoodItem" />
         </EntityType>
         <EntityType Name="FoodOption">
           <Key>
@@ -842,8 +829,8 @@
           <Property Name="MenuItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MenuId" Type="Int32" Nullable="false" />
           <Property Name="FoodItemId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="MenuItem" ToRole="FoodItem" />
           <NavigationProperty Name="Menu" Relationship="WFSModel.FK_MenuItem_Menu" FromRole="MenuItem" ToRole="Menu" />
+          <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="MenuItem" ToRole="FoodItem" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -964,42 +951,6 @@
             </Principal>
             <Dependent Role="FoodCategory">
               <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FoodItem_FoodCategory">
-          <End Role="FoodCategory" Type="WFSModel.FoodCategory" Multiplicity="1" />
-          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FoodCategory">
-              <PropertyRef Name="FoodCategoryId" />
-            </Principal>
-            <Dependent Role="FoodItem">
-              <PropertyRef Name="FoodCategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FoodItemOption_FoodItem">
-          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="1" />
-          <End Role="FoodItemOption" Type="WFSModel.FoodItemOption" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FoodItem">
-              <PropertyRef Name="FoodItemId" />
-            </Principal>
-            <Dependent Role="FoodItemOption">
-              <PropertyRef Name="FoodItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MenuItem_FoodItem">
-          <End Role="FoodItem" Type="WFSModel.FoodItem" Multiplicity="1" />
-          <End Role="MenuItem" Type="WFSModel.MenuItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FoodItem">
-              <PropertyRef Name="FoodItemId" />
-            </Principal>
-            <Dependent Role="MenuItem">
-              <PropertyRef Name="FoodItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1260,6 +1211,57 @@
           <End Type="WFSModel.Role" Role="Role" Multiplicity="*" />
           <End Type="WFSModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <EntityType Name="FoodItem">
+          <Key>
+            <PropertyRef Name="FoodItemId" />
+          </Key>
+          <Property Type="Int32" Name="FoodItemId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="FoodCategoryID" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FoodCategory" Relationship="WFSModel.FK_FoodItem_FoodCategory" FromRole="FoodItem" ToRole="FoodCategory" />
+          <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodItem" FromRole="FoodItem" ToRole="FoodItemOption" />
+          <NavigationProperty Name="MenuItems" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="FoodItem" ToRole="MenuItem" />
+        </EntityType>
+        <Association Name="FK_FoodItem_FoodCategory">
+          <End Type="WFSModel.FoodCategory" Role="FoodCategory" Multiplicity="1" />
+          <End Type="WFSModel.FoodItem" Role="FoodItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodCategory">
+              <PropertyRef Name="FoodCategoryId" />
+            </Principal>
+            <Dependent Role="FoodItem">
+              <PropertyRef Name="FoodCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FoodItemOption_FoodItem">
+          <End Type="WFSModel.FoodItem" Role="FoodItem" Multiplicity="1" />
+          <End Type="WFSModel.FoodItemOption" Role="FoodItemOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="FoodItemOption">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_FoodItem">
+          <End Type="WFSModel.FoodItem" Role="FoodItem" Multiplicity="1" />
+          <End Type="WFSModel.MenuItem" Role="MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodItem">
+              <PropertyRef Name="FoodItemId" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="FoodItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1294,14 +1296,6 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="VendorID" ColumnName="VendorID" />
             <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FoodItems"><EntityTypeMapping TypeName="WFSModel.FoodItem"><MappingFragment StoreEntitySet="FoodItem">
-            <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Cost" ColumnName="Cost" />
-            <ScalarProperty Name="Price" ColumnName="Price" />
-            <ScalarProperty Name="FoodCategoryID" ColumnName="FoodCategoryID" />
-            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="FoodItemOptions"><EntityTypeMapping TypeName="WFSModel.FoodItemOption"><MappingFragment StoreEntitySet="FoodItemOption">
             <ScalarProperty Name="FoodItemOptionId" ColumnName="FoodItemOptionId" />
@@ -1454,6 +1448,19 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="FoodItems">
+            <EntityTypeMapping TypeName="WFSModel.FoodItem">
+              <MappingFragment StoreEntitySet="FoodItem">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FoodCategoryID" ColumnName="FoodCategoryID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1475,12 +1482,11 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="WFSEntityDataModel" ZoomLevel="74">
+      <Diagram Name="WFSEntityDataModel" ZoomLevel="97">
         <EntityTypeShape EntityType="WFSModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.Customer" Width="1.5" PointX="5.75" PointY="21" Height="3.3263964843750031" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.CustomerUser" Width="1.5" PointX="8" PointY="16.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.FoodCategory" Width="1.5" PointX="3" PointY="4.375" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="WFSModel.FoodItem" Width="1.5" PointX="5.25" PointY="4.125" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.FoodItemOption" Width="1.5" PointX="7.5" PointY="6.125" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.FoodOption" Width="1.5" PointX="3" PointY="7.625" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.Menu" Width="1.5" PointX="3" PointY="10.875" Height="2.3648893229166674" IsExpanded="true" />
@@ -1502,27 +1508,14 @@
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodCategory_Vendor" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="8.75" />
-          <ConnectorPoint PointX="1.5" PointY="5.461293945312498" />
-          <ConnectorPoint PointX="3" PointY="5.461293945312498" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_FoodItem_FoodCategory" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5.461293945312498" />
-          <ConnectorPoint PointX="5.25" PointY="5.461293945312498" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodItem" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="6.4997460937500016" />
-          <ConnectorPoint PointX="7.5" PointY="6.4997460937500016" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_MenuItem_FoodItem" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="6.8744921875000031" />
-          <ConnectorPoint PointX="6" PointY="10.615143229166669" />
-          <ConnectorPoint PointX="7.5" PointY="10.615143229166669" />
+          <ConnectorPoint PointX="1.5" PointY="5.4612939453125" />
+          <ConnectorPoint PointX="3" PointY="5.4612939453125" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodOption" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="7.8651432291666694" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="7.8651432291666685" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="7.8651432291666694" />
-          <ConnectorPoint PointX="7.5" PointY="7.8651432291666694" />
+          <ConnectorPoint PointX="4.5" PointY="7.8651432291666667" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="7.8651432291666659" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="7.8651432291666667" />
+          <ConnectorPoint PointX="7.5" PointY="7.8651432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodOption_Vendor" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="9.46609537760417" />
@@ -1533,8 +1526,8 @@
           <ConnectorPoint PointX="3" PointY="11.764150390625002" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_MenuItem_Menu" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.240143229166669" />
-          <ConnectorPoint PointX="7.5" PointY="11.240143229166669" />
+          <ConnectorPoint PointX="4.5" PointY="11.240143229166666" />
+          <ConnectorPoint PointX="7.5" PointY="11.240143229166666" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Store_Vendor" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="12.653300781250003" />
@@ -1595,6 +1588,20 @@
         <AssociationConnector Association="WFSModel.UsersInRoles" >
           <ConnectorPoint PointX="19.75" PointY="23.999746093749998" />
           <ConnectorPoint PointX="16.375" PointY="23.999746093749998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WFSModel.FoodItem" Width="1.5" PointX="5.25" PointY="4" Height="2.9417936197916674" />
+        <AssociationConnector Association="WFSModel.FK_FoodItem_FoodCategory" >
+          <ConnectorPoint PointX="4.5" PointY="5.4612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="5.4612939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodItem" >
+          <ConnectorPoint PointX="6.75" PointY="6.5333968098958337" />
+          <ConnectorPoint PointX="7.5" PointY="6.5333968098958337" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_MenuItem_FoodItem" >
+          <ConnectorPoint PointX="6" PointY="6.9417936197916674" />
+          <ConnectorPoint PointX="6" PointY="10.401319114583332" />
+          <ConnectorPoint PointX="7.5" PointY="10.401319114583332" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

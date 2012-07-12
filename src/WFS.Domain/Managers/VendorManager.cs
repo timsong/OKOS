@@ -112,6 +112,10 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
+       
+        
+        
+        
         private CreateVendorResponse HandleMembershipCreationError(MembershipCreateStatus memStat)
         {
             var msg = new Message();

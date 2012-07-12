@@ -18,8 +18,8 @@ namespace WFS.DataContext
         public int MenuId { get; set; }
         public int FoodItemId { get; set; }
     
-        public virtual FoodItem FoodItem { get; set; }
         public virtual Menu Menu { get; set; }
+        public virtual FoodItem FoodItem { get; set; }
     }
     
 }

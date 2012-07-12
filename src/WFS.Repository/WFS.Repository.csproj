@@ -50,10 +50,14 @@
     <Compile Include="Commands\Vendor\CreateVendorAndUserCommand.cs" />
     <Compile Include="Commands\CreateWFSUserCommand.cs" />
     <Compile Include="Conversions\FoodCategoryConversion.cs" />
+    <Compile Include="Conversions\FoodItemConversion.cs" />
     <Compile Include="Conversions\FoodOptionConversion.cs" />
     <Compile Include="Conversions\VendorConversion.cs" />
     <Compile Include="Conversions\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />
+    <Compile Include="Queries\FoodOptions\GetFoodOptionListQuery.cs" />
+    <Compile Include="Queries\GetFoodItemListQuery.cs" />
     <Compile Include="Queries\Vendors\GetVendorByIdQuery.cs" />
     <Compile Include="Queries\Vendors\GetVendorListQuery.cs" />
     <Compile Include="WFSRepository.cs" />
