@@ -1,10 +1,28 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-bin
-obj
+*\obj
+*\bin
+*\Debug
+*\Release
 
 # Visual Studio Files
-.suo
-.csproj.user
+*.dep 
+*.aps 
+*.vbw 
+*.suo 
+*.obj 
+*.ncb 
+*.plg 
+*.bsc 
+*.ilk 
+*.exp 
+*.sbr 
+*.opt 
+*.pdb 
+*.idb 
+*.pch 
+*.res 
+*.user
 
 # mstest test results
 TestResults
+./Resharp*
