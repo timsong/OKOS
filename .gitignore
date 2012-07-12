@@ -3,8 +3,8 @@ bin
 obj
 
 # Visual Studio Files
-*.suo
-*.csproj.user
+.suo
+.csproj.user
 
 # mstest test results
 TestResults
