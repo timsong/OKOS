@@ -1,5 +1,7 @@
-﻿using WFS.Repository;
-using WFS.Contract.ReqResp;
+﻿using WFS.Contract.ReqResp;
+using WFS.Framework;
+using WFS.Repository;
+using WFS.Repository.Commands;
 using WFS.Repository.Queries;
 
 namespace WFS.Domain.Managers
@@ -37,6 +39,18 @@ namespace WFS.Domain.Managers
                 response.FoodItems = result.Values;
 
             return response;
+        }
+
+        public CreateMenuResponse CreateMenuByVendor(CreateMenuRequest request)
+        {
+            var resp = new CreateMenuResponse();
+
+            var faCmd = new CreateVendorMenuCommand(request.Name, request.VendorId, request.Description, request.IsActive);
+            var fcRes = _repository.ExecuteCommand(faCmd);
+
+            resp.Merge(fcRes);
+
+            return resp;
         }
     }
 }
