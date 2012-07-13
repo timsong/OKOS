@@ -5,22 +5,22 @@
 *\Release
 
 # Visual Studio Files
-*.dep 
-*.aps 
-*.vbw 
-*.suo 
-*.obj 
-*.ncb 
-*.plg 
-*.bsc 
-*.ilk 
-*.exp 
-*.sbr 
-*.opt 
-*.pdb 
-*.idb 
-*.pch 
-*.res 
+*.dep
+*.aps
+*.vbw
+*.suo
+*.obj
+*.ncb
+*.plg
+*.bsc
+*.ilk
+*.exp
+*.sbr
+*.opt
+*.pdb
+*.idb
+*.pch
+*.res
 *.user
 
 # mstest test results

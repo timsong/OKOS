@@ -51,9 +51,16 @@
     <Compile Include="PhoneAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReqResp\ChangeVendorActiveStatus.cs" />
-    <Compile Include="ReqResp\Creates\CreateFoodCategory.cs" />
-    <Compile Include="ReqResp\Creates\CreateFoodOption.cs" />
-    <Compile Include="ReqResp\Creates\CreateVendor.cs" />
+    <Compile Include="ReqResp\Creates\CreateFoodCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReqResp\Creates\CreateFoodOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReqResp\Creates\CreateMenu.cs" />
+    <Compile Include="ReqResp\Creates\CreateVendor.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ReqResp\GetFoodItemsByVendorID.cs" />
     <Compile Include="ReqResp\GetFoodOptionsByVendor.cs" />
     <Compile Include="ReqResp\GetVendorById.cs" />
