@@ -232,7 +232,7 @@
           <Property Name="MenuId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="VendorId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MenuItem">
