@@ -276,6 +276,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Content Include="Views\Home\Why.cshtml" />
   </ItemGroup>
@@ -288,6 +289,8 @@
   <ItemGroup>
     <Content Include="Views\Home\Support.cshtml" />
   </ItemGroup>
+=======
+>>>>>>> ddf3ded... test
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
