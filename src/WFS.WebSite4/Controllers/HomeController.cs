@@ -15,17 +15,35 @@ namespace WFS.WebSite4.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult AboutUs()
         {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ContactUs()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult Why()
+        {
+            return View();
+        }
+
+        public ActionResult HealthAndNutrition()
+        {
+            return View();
+        }
+
+        public ActionResult Testimonials()
+        {
+            return View();
+        }
+
+        public ActionResult Support()
+        {
             return View();
         }
     }
