@@ -35,6 +35,8 @@ namespace WFS.WebSite4
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+			bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
         }
     }
 }
