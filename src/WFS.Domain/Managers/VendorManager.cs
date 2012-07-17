@@ -68,7 +68,7 @@ namespace WFS.Domain.Managers
                 return HandleMembershipCreationError(memStat);
 
             //Create WFS User
-            var wfsComm = new CreateWFSUserCommand((Guid)newMem.ProviderUserKey, request.FirstName, request.LastName, WFSUserTypeEnum.Vendor.ToString());
+            var wfsComm = new CreateWFSUserCommand((Guid)newMem.ProviderUserKey, request.FirstName, request.LastName, (request.ParentVendorId.HasValue) ? WFSUserTypeEnum.Store.ToString() : WFSUserTypeEnum.Vendor.ToString());
             var wfsRes = _repository.ExecuteCommand(wfsComm);
 
             resp.Merge(wfsRes);
@@ -76,18 +76,16 @@ namespace WFS.Domain.Managers
                 return resp;
 
             //Create Vendor and VendorUser
-            var venCmd = new CreateVendorAndUserCommand(request.ContactInfo, request.Name, wfsRes.Value.UserId);
+            var venCmd = new CreateVendorAndUserCommand(request.ContactInfo, request.Name, wfsRes.Value.UserId, request.ParentVendorId);
             var venRes = _repository.ExecuteCommand(venCmd);
 
             resp.Merge(venRes);
+            if (resp.Status == Status.Success)
+                resp.Vendor = venRes.Value;
 
             return resp;
 
         }
-
-
-
-
         public CreateFoodOptionResponse CreateFoodOption(CreateFoodOptionRequest request)
         {
             var resp = new CreateFoodOptionResponse();
@@ -97,6 +95,8 @@ namespace WFS.Domain.Managers
             var fcRes = _repository.ExecuteCommand(faCmd);
 
             resp.Merge(fcRes);
+            if (resp.Status == Status.Success)
+                resp.FoodOption = fcRes.Value;
 
             return resp;
         }
@@ -109,13 +109,12 @@ namespace WFS.Domain.Managers
             var fcRes = _repository.ExecuteCommand(faCmd);
 
             resp.Merge(fcRes);
+            if (resp.Status == Status.Success)
+                resp.FoodCategory = fcRes.Value;
 
             return resp;
         }
        
-        
-        
-        
         private CreateVendorResponse HandleMembershipCreationError(MembershipCreateStatus memStat)
         {
             var msg = new Message();

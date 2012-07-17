@@ -16,6 +16,7 @@ namespace WFS.Contract.ReqResp
         public string Password { get; set; }
 
         public PhoneAddress ContactInfo { get; set; }
+        public int? ParentVendorId { get; set; }
 
 
     }

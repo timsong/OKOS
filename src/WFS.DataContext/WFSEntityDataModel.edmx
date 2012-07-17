@@ -19,8 +19,6 @@
           <EntitySet Name="MenuItem" EntityType="WFSModel.Store.MenuItem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profiles" EntityType="WFSModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="WFSModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Store" EntityType="WFSModel.Store.Store" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="StoreUser" EntityType="WFSModel.Store.StoreUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="WFSModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersInRoles" EntityType="WFSModel.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vendor" EntityType="WFSModel.Store.Vendor" store:Type="Tables" Schema="dbo" />
@@ -67,17 +65,9 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuItem" EntitySet="MenuItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_Store_Vendor" Association="WFSModel.Store.FK_Store_Vendor">
+          <AssociationSet Name="FK_Vendor_Vendor" Association="WFSModel.Store.FK_Vendor_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
-            <End Role="Store" EntitySet="Store" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StoreUSer_Store" Association="WFSModel.Store.FK_StoreUSer_Store">
-            <End Role="Store" EntitySet="Store" />
-            <End Role="StoreUser" EntitySet="StoreUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StoreUSer_WFSUser" Association="WFSModel.Store.FK_StoreUSer_WFSUser">
-            <End Role="WFSUser" EntitySet="WFSUser" />
-            <End Role="StoreUser" EntitySet="StoreUser" />
+            <End Role="Vendor1" EntitySet="Vendor" />
           </AssociationSet>
           <AssociationSet Name="FK_VendorUser_Vendor1" Association="WFSModel.Store.FK_VendorUser_Vendor1">
             <End Role="Vendor" EntitySet="Vendor" />
@@ -262,29 +252,6 @@
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
         </EntityType>
-        <EntityType Name="Store">
-          <Key>
-            <PropertyRef Name="StoreId" />
-          </Key>
-          <Property Name="StoreId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="VendorId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
-          <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Address2" Type="varchar" MaxLength="100" />
-          <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="State" Type="varchar" Nullable="false" MaxLength="2" />
-          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="StoreUser">
-          <Key>
-            <PropertyRef Name="StoreUserId" />
-          </Key>
-          <Property Name="StoreUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="StoreId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -308,6 +275,7 @@
             <PropertyRef Name="VendorId" />
           </Key>
           <Property Name="VendorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentVendorId" Type="int" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Address2" Type="varchar" MaxLength="100" />
@@ -470,39 +438,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Store_Vendor">
-          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="1" />
-          <End Role="Store" Type="WFSModel.Store.Store" Multiplicity="*" />
+        <Association Name="FK_Vendor_Vendor">
+          <End Role="Vendor" Type="WFSModel.Store.Vendor" Multiplicity="0..1" />
+          <End Role="Vendor1" Type="WFSModel.Store.Vendor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vendor">
               <PropertyRef Name="VendorId" />
             </Principal>
-            <Dependent Role="Store">
-              <PropertyRef Name="VendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StoreUSer_Store">
-          <End Role="Store" Type="WFSModel.Store.Store" Multiplicity="1" />
-          <End Role="StoreUser" Type="WFSModel.Store.StoreUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="StoreId" />
-            </Principal>
-            <Dependent Role="StoreUser">
-              <PropertyRef Name="StoreId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StoreUSer_WFSUser">
-          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
-          <End Role="StoreUser" Type="WFSModel.Store.StoreUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WFSUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="StoreUser">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Vendor1">
+              <PropertyRef Name="ParentVendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -639,8 +583,6 @@
           <EntitySet Name="FoodOptions" EntityType="WFSModel.FoodOption" />
           <EntitySet Name="Menus" EntityType="WFSModel.Menu" />
           <EntitySet Name="MenuItems" EntityType="WFSModel.MenuItem" />
-          <EntitySet Name="Stores" EntityType="WFSModel.Store" />
-          <EntitySet Name="StoreUsers" EntityType="WFSModel.StoreUser" />
           <EntitySet Name="Vendors" EntityType="WFSModel.Vendor" />
           <EntitySet Name="VendorUsers" EntityType="WFSModel.VendorUser" />
           <EntitySet Name="WFSUsers" EntityType="WFSModel.WFSUser" />
@@ -672,18 +614,6 @@
           <AssociationSet Name="FK_MenuItem_Menu" Association="WFSModel.FK_MenuItem_Menu">
             <End Role="Menu" EntitySet="Menus" />
             <End Role="MenuItem" EntitySet="MenuItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Store_Vendor" Association="WFSModel.FK_Store_Vendor">
-            <End Role="Vendor" EntitySet="Vendors" />
-            <End Role="Store" EntitySet="Stores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StoreUSer_Store" Association="WFSModel.FK_StoreUSer_Store">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="StoreUser" EntitySet="StoreUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StoreUSer_WFSUser" Association="WFSModel.FK_StoreUSer_WFSUser">
-            <End Role="WFSUser" EntitySet="WFSUsers" />
-            <End Role="StoreUser" EntitySet="StoreUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_VendorUser_Vendor1" Association="WFSModel.FK_VendorUser_Vendor1">
             <End Role="Vendor" EntitySet="Vendors" />
@@ -738,6 +668,10 @@
           <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.FK_MenuItem_FoodItem">
             <End Role="FoodItem" EntitySet="FoodItems" />
             <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendor_Vendor" Association="WFSModel.FK_Vendor_Vendor">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Vendor1" EntitySet="Vendors" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_SchemaVersions">
@@ -832,33 +766,6 @@
           <NavigationProperty Name="Menu" Relationship="WFSModel.FK_MenuItem_Menu" FromRole="MenuItem" ToRole="Menu" />
           <NavigationProperty Name="FoodItem" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="MenuItem" ToRole="FoodItem" />
         </EntityType>
-        <EntityType Name="Store">
-          <Key>
-            <PropertyRef Name="StoreId" />
-          </Key>
-          <Property Name="StoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="PhoneExt" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Vendor" Relationship="WFSModel.FK_Store_Vendor" FromRole="Store" ToRole="Vendor" />
-          <NavigationProperty Name="StoreUsers" Relationship="WFSModel.FK_StoreUSer_Store" FromRole="Store" ToRole="StoreUser" />
-        </EntityType>
-        <EntityType Name="StoreUser">
-          <Key>
-            <PropertyRef Name="StoreUserId" />
-          </Key>
-          <Property Name="StoreUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoreId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Store" Relationship="WFSModel.FK_StoreUSer_Store" FromRole="StoreUser" ToRole="Store" />
-          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_StoreUSer_WFSUser" FromRole="StoreUser" ToRole="WFSUser" />
-        </EntityType>
         <EntityType Name="Vendor">
           <Key>
             <PropertyRef Name="VendorId" />
@@ -876,8 +783,9 @@
           <NavigationProperty Name="FoodCategories" Relationship="WFSModel.FK_FoodCategory_Vendor" FromRole="Vendor" ToRole="FoodCategory" />
           <NavigationProperty Name="FoodOptions" Relationship="WFSModel.FK_FoodOption_Vendor" FromRole="Vendor" ToRole="FoodOption" />
           <NavigationProperty Name="Menus" Relationship="WFSModel.FK_Menu_Vendor" FromRole="Vendor" ToRole="Menu" />
-          <NavigationProperty Name="Stores" Relationship="WFSModel.FK_Store_Vendor" FromRole="Vendor" ToRole="Store" />
           <NavigationProperty Name="VendorUsers" Relationship="WFSModel.FK_VendorUser_Vendor1" FromRole="Vendor" ToRole="VendorUser" />
+          <Property Type="Int32" Name="ParentVendorId" />
+          <NavigationProperty Name="Stores" Relationship="WFSModel.FK_Vendor_Vendor" FromRole="Vendor1" ToRole="Vendor" />
         </EntityType>
         <EntityType Name="VendorUser">
           <Key>
@@ -898,7 +806,6 @@
           <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="AvailableCredit" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="CustomerUsers" Relationship="WFSModel.FK_CustomerUser_WFSUser" FromRole="WFSUser" ToRole="CustomerUser" />
-          <NavigationProperty Name="StoreUsers" Relationship="WFSModel.FK_StoreUSer_WFSUser" FromRole="WFSUser" ToRole="StoreUser" />
           <NavigationProperty Name="VendorUsers" Relationship="WFSModel.FK_VendorUser_WFSUser1" FromRole="WFSUser" ToRole="VendorUser" />
           <NavigationProperty Name="WFSUserAddress" Relationship="WFSModel.FK_WFSUserAddress_WFSUser" FromRole="WFSUser" ToRole="WFSUserAddress" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -999,42 +906,6 @@
             </Principal>
             <Dependent Role="MenuItem">
               <PropertyRef Name="MenuId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Store_Vendor">
-          <End Role="Vendor" Type="WFSModel.Vendor" Multiplicity="1" />
-          <End Role="Store" Type="WFSModel.Store" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vendor">
-              <PropertyRef Name="VendorId" />
-            </Principal>
-            <Dependent Role="Store">
-              <PropertyRef Name="VendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StoreUSer_Store">
-          <End Role="Store" Type="WFSModel.Store" Multiplicity="1" />
-          <End Role="StoreUser" Type="WFSModel.StoreUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="StoreId" />
-            </Principal>
-            <Dependent Role="StoreUser">
-              <PropertyRef Name="StoreId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StoreUSer_WFSUser">
-          <End Role="WFSUser" Type="WFSModel.WFSUser" Multiplicity="1" />
-          <End Role="StoreUser" Type="WFSModel.StoreUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WFSUser">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="StoreUser">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1262,6 +1133,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vendor_Vendor">
+          <End Type="WFSModel.Vendor" Role="Vendor" Multiplicity="0..1" />
+          <End Type="WFSModel.Vendor" Role="Vendor1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Vendor1">
+              <PropertyRef Name="ParentVendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1322,25 +1205,9 @@
             <ScalarProperty Name="MenuId" ColumnName="MenuId" />
             <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Stores"><EntityTypeMapping TypeName="WFSModel.Store"><MappingFragment StoreEntitySet="Store">
-            <ScalarProperty Name="StoreId" ColumnName="StoreId" />
-            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Address1" ColumnName="Address1" />
-            <ScalarProperty Name="Address2" ColumnName="Address2" />
-            <ScalarProperty Name="City" ColumnName="City" />
-            <ScalarProperty Name="State" ColumnName="State" />
-            <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-            <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="StoreUsers"><EntityTypeMapping TypeName="WFSModel.StoreUser"><MappingFragment StoreEntitySet="StoreUser">
-            <ScalarProperty Name="StoreUserId" ColumnName="StoreUserId" />
-            <ScalarProperty Name="StoreId" ColumnName="StoreId" />
-            <ScalarProperty Name="UserId" ColumnName="UserId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Vendors"><EntityTypeMapping TypeName="WFSModel.Vendor"><MappingFragment StoreEntitySet="Vendor">
-            <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+            <ScalarProperty Name="ParentVendorId" ColumnName="ParentVendorId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Address1" ColumnName="Address1" />
             <ScalarProperty Name="Address2" ColumnName="Address2" />
@@ -1491,11 +1358,9 @@
         <EntityTypeShape EntityType="WFSModel.FoodOption" Width="1.5" PointX="3" PointY="7.625" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.Menu" Width="1.5" PointX="3" PointY="10.875" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.MenuItem" Width="1.5" PointX="7.5" PointY="9.625" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="WFSModel.Store" Width="1.5" PointX="3" PointY="14" Height="3.326396484374996" IsExpanded="true" />
-        <EntityTypeShape EntityType="WFSModel.StoreUser" Width="1.5" PointX="5.25" PointY="14.625" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="WFSModel.Vendor" Width="1.5" PointX="0.75" PointY="8.75" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.Vendor" Width="1.5" PointX="0.75" PointY="8.75" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.VendorUser" Width="1.5" PointX="8" PointY="12.75" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="5.75" PointY="17.375" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="4.625" PointY="15.375" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.WFSUserAddress" Width="1.5" PointX="3" PointY="18.125" Height="2.749492187499996" IsExpanded="true" />
         <AssociationConnector Association="WFSModel.FK_CustomerUser_School" ManuallyRouted="false">
           <ConnectorPoint PointX="7.25" PointY="22.6631982421875" />
@@ -1503,13 +1368,13 @@
           <ConnectorPoint PointX="8.75" PointY="18.730286458333332" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_CustomerUser_WFSUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.25" PointY="18.29771484375" />
-          <ConnectorPoint PointX="8" PointY="18.29771484375" />
+          <ConnectorPoint PointX="6.125" PointY="17.43724609375" />
+          <ConnectorPoint PointX="8" PointY="17.43724609375" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodCategory_Vendor" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="8.75" />
-          <ConnectorPoint PointX="1.5" PointY="5.4612939453125" />
-          <ConnectorPoint PointX="3" PointY="5.4612939453125" />
+          <ConnectorPoint PointX="1.5" PointY="5.461293945312498" />
+          <ConnectorPoint PointX="3" PointY="5.461293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodOption" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.8651432291666667" />
@@ -1522,39 +1387,27 @@
           <ConnectorPoint PointX="3" PointY="9.46609537760417" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Menu_Vendor" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="11.764150390625002" />
-          <ConnectorPoint PointX="3" PointY="11.764150390625002" />
+          <ConnectorPoint PointX="2.25" PointY="11.860301106770834" />
+          <ConnectorPoint PointX="3" PointY="11.860301106770834" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_MenuItem_Menu" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="11.240143229166666" />
           <ConnectorPoint PointX="7.5" PointY="11.240143229166666" />
         </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_Store_Vendor" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="12.653300781250003" />
-          <ConnectorPoint PointX="1.5" PointY="15.663198242187498" />
-          <ConnectorPoint PointX="3" PointY="15.663198242187498" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_StoreUSer_Store" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.615143229166669" />
-          <ConnectorPoint PointX="5.25" PointY="15.615143229166669" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_StoreUSer_WFSUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.25" PointY="17.375" />
-          <ConnectorPoint PointX="6.25" PointY="16.605286458333339" />
-        </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_VendorUser_Vendor1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="12.653300781250003" />
-          <ConnectorPoint PointX="1.9062525" PointY="13.619944661458334" />
-          <ConnectorPoint PointX="8" PointY="13.619944661458334" />
+          <ConnectorPoint PointX="1.5" PointY="12.845602213541666" />
+          <ConnectorPoint PointX="1.5" PointY="13.748921573893231" />
+          <ConnectorPoint PointX="8" PointY="13.748921573893231" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_VendorUser_WFSUser1" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.03125" PointY="17.375" />
-          <ConnectorPoint PointX="7.03125" PointY="14.122474830729161" />
-          <ConnectorPoint PointX="8" PointY="14.122474830729161" />
+          <ConnectorPoint PointX="5.375" PointY="15.375" />
+          <ConnectorPoint PointX="5.375" PointY="14.257958824869796" />
+          <ConnectorPoint PointX="8" PointY="14.257958824869796" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_WFSUserAddress_WFSUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.75" PointY="19.028595377604162" />
-          <ConnectorPoint PointX="4.5" PointY="19.028595377604162" />
+          <ConnectorPoint PointX="5.375" PointY="18.124492187500003" />
+          <ConnectorPoint PointX="5.375" PointY="19.499746093749998" />
+          <ConnectorPoint PointX="4.5" PointY="19.499746093749998" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.Application" Width="1.5" PointX="20" PointY="18.875" Height="2.1725878906250102" />
         <EntityTypeShape EntityType="WFSModel.Membership" Width="1.5" PointX="17.625" PointY="18" Height="5.05710937500001" />
@@ -1602,6 +1455,12 @@
           <ConnectorPoint PointX="6" PointY="6.9417936197916674" />
           <ConnectorPoint PointX="6" PointY="10.401319114583332" />
           <ConnectorPoint PointX="7.5" PointY="10.401319114583332" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_Vendor_Vendor" >
+          <ConnectorPoint PointX="0.75" PointY="10.160434595352564" />
+          <ConnectorPoint PointX="0.5" PointY="10.160434595352564" />
+          <ConnectorPoint PointX="0.5" PointY="11.465518404447117" />
+          <ConnectorPoint PointX="0.75" PointY="11.465518404447117" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

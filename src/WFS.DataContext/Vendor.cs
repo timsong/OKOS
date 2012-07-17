@@ -19,7 +19,6 @@ namespace WFS.DataContext
             this.FoodCategories = new HashSet<FoodCategory>();
             this.FoodOptions = new HashSet<FoodOption>();
             this.Menus = new HashSet<Menu>();
-            this.Stores = new HashSet<Store>();
             this.VendorUsers = new HashSet<VendorUser>();
         }
     
@@ -33,12 +32,13 @@ namespace WFS.DataContext
         public string PhoneNumber { get; set; }
         public string PhoneExt { get; set; }
         public bool IsActive { get; set; }
+        public Nullable<int> ParentVendorId { get; set; }
     
         public virtual ICollection<FoodCategory> FoodCategories { get; set; }
         public virtual ICollection<FoodOption> FoodOptions { get; set; }
         public virtual ICollection<Menu> Menus { get; set; }
-        public virtual ICollection<Store> Stores { get; set; }
         public virtual ICollection<VendorUser> VendorUsers { get; set; }
+        public virtual Vendor Stores { get; set; }
     }
     
 }

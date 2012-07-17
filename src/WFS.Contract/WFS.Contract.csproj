@@ -43,6 +43,7 @@
     <Compile Include="Enums\ActiveDataRequestEnum.cs" />
     <Compile Include="Enums\CustomerTypeEnum.cs" />
     <Compile Include="Enums\FoodCategoryTypeEnum.cs" />
+    <Compile Include="Enums\VendorTypeEnum.cs" />
     <Compile Include="Enums\WFSUserTypeEnum.cs" />
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodItem.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="ReqResp\Creates\CreateFoodCategory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ReqResp\Creates\CreateFoodItem.cs" />
     <Compile Include="ReqResp\Creates\CreateFoodOption.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -65,7 +67,6 @@
     <Compile Include="ReqResp\GetFoodOptionsByVendor.cs" />
     <Compile Include="ReqResp\GetVendorById.cs" />
     <Compile Include="ReqResp\GetVendorList.cs" />
-    <Compile Include="Store.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="WFSUser.cs" />
   </ItemGroup>

@@ -33,8 +33,6 @@ namespace WFS.DataContext
         public DbSet<FoodOption> FoodOptions { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<StoreUser> StoreUsers { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<VendorUser> VendorUsers { get; set; }
         public DbSet<WFSUser> WFSUsers { get; set; }

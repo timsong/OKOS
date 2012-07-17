@@ -17,7 +17,6 @@ namespace WFS.DataContext
         public WFSUser()
         {
             this.CustomerUsers = new HashSet<CustomerUser>();
-            this.StoreUsers = new HashSet<StoreUser>();
             this.VendorUsers = new HashSet<VendorUser>();
         }
     
@@ -29,7 +28,6 @@ namespace WFS.DataContext
         public string LastName { get; set; }
     
         public virtual ICollection<CustomerUser> CustomerUsers { get; set; }
-        public virtual ICollection<StoreUser> StoreUsers { get; set; }
         public virtual ICollection<VendorUser> VendorUsers { get; set; }
         public virtual WFSUserAddress WFSUserAddress { get; set; }
     }

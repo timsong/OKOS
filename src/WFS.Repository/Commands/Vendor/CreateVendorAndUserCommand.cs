@@ -9,12 +9,14 @@ namespace WFS.Repository.Commands
         private readonly C.PhoneAddress _addInfo;
         private readonly string _name;
         private readonly int _userId;
+        private readonly int? _parentVendorId;
 
-        public CreateVendorAndUserCommand(C.PhoneAddress addInfo, string name, int userId)
+        public CreateVendorAndUserCommand(C.PhoneAddress addInfo, string name, int userId, int? parentVendorId)
         {
             _addInfo = addInfo;
             _name = name;
             _userId = userId;
+            _parentVendorId = parentVendorId;
         }
         #region ICommand<Vendor> Members
 
@@ -33,6 +35,7 @@ namespace WFS.Repository.Commands
                 PhoneExt = _addInfo.PhoneExt,
                 ZipCode = _addInfo.ZipCode,
                 IsActive = true,
+                ParentVendorId = _parentVendorId,
             };
 
             try

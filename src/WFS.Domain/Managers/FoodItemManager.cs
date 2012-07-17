@@ -41,6 +41,19 @@ namespace WFS.Domain.Managers
             return response;
         }
 
+        public CreateFoodItemResponse CreateFoodItem(CreateFoodItemRequest request)
+        {
+            var resp = new CreateFoodItemResponse();
+
+            var faCmd = new CreateFoodItemCommand(request.Name, request.Description, request.FoodCatId, request.IsActive, request.Cost, request.Price);
+            var fcRes = _repository.ExecuteCommand(faCmd);
+
+            resp.Merge(fcRes);
+            if (resp.Status == Status.Success)
+                resp.FoodItem = fcRes.Value;
+
+            return resp;
+        }
         public CreateMenuResponse CreateMenuByVendor(CreateMenuRequest request)
         {
             var resp = new CreateMenuResponse();
@@ -49,6 +62,8 @@ namespace WFS.Domain.Managers
             var fcRes = _repository.ExecuteCommand(faCmd);
 
             resp.Merge(fcRes);
+            if (resp.Status == Status.Success)
+                resp.Menu = fcRes.Value;
 
             return resp;
         }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using WFS.Contract.Enums;
 
 namespace WFS.Contract
 {
@@ -11,6 +13,7 @@ namespace WFS.Contract
         }
 
         public int VendorId { get; set; }
+        public int? ParentVendorId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
 
@@ -22,8 +25,19 @@ namespace WFS.Contract
         public string Phone { get; set; }
         public string PhoneExt { get; set; }
 
+        public VendorTypeEnum VendorType { get; set; }
 
         public List<Store> Stores { get; set; }
         public List<Menu> Menus { get; set; }
+    }
+
+    public class Store : Vendor
+    {
+        public int AdvanceDays { get; set; }
+        public DateTime CutoffTime { get; set; }
+        public int CutoffDay { get; set; }
+
+        public int ParentVendorId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using WFS.DataContext;
 using C = WFS.Contract;
+using WFS.Contract.Enums;
 
 namespace WFS.Repository.Conversions
 {
@@ -23,7 +24,10 @@ namespace WFS.Repository.Conversions
                 PhoneExt = data.PhoneExt,
                 State = data.State,
                 ZipCode = data.ZipCode,
+                ParentVendorId = data.ParentVendorId,
+                VendorType = (data.ParentVendorId.HasValue) ? VendorTypeEnum.Store : VendorTypeEnum.Vendor
             };
+
 
             return model;
 
