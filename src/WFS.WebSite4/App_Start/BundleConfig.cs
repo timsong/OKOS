@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace WFS.WebSite4
 {
@@ -20,7 +19,7 @@ namespace WFS.WebSite4
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/foundation.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
@@ -36,8 +35,11 @@ namespace WFS.WebSite4
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-			bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
-			// blah
+            bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js"));
+
+            // blah
         }
     }
 }

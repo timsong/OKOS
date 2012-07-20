@@ -8,6 +8,7 @@ namespace WFS.WebSite4 {
                                     {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
+                                        scan.LookForRegistries();
                                     });
             //                x.For<IExample>().Use<Example>();
                         });

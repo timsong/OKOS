@@ -138,10 +138,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\SmDependencyResolver.cs" />
+    <Compile Include="DependencyResolution\WFSRegistry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,6 +154,7 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\foundation.css" />
     <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\WFS_Logo-High Res.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -180,8 +184,18 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Error.htm" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\foundation\left-arrow.png" />
+    <Content Include="Images\foundation\mask-black.png" />
+    <Content Include="Images\foundation\pause-black.png" />
+    <Content Include="Images\foundation\right-arrow.png" />
+    <Content Include="Images\foundation\rotator-black.png" />
+    <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\foundation\foundation.js" />
+    <Content Include="Scripts\foundation\jquery.min.js" />
+    <Content Include="Scripts\foundation\modernizr.foundation.js" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
@@ -245,8 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +300,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Support.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\AddVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\EditVendor.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,35 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.VendorListViewModel
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model.Vendors) {
+    <div class="panel">
+        <div class="row">
+            <div class="eight columns">
+                <div class="four columns">
+                    @item.Name
+                </div>
+                <div class="two columns">
+                    @Html.RouteLink("Edit/View","Admin_Vendor_EditVendor",new {vendorID = item.VendorId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.VendorId })
+                </div>
+                <div class="one columns"></div>
+
+            </div>
+        </div>
+    </div>
+}
+
+</table>
