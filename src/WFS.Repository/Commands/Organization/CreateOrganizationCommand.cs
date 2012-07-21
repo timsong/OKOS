@@ -5,7 +5,7 @@ using System.Text;
 using C = WFS.Contract;
 using WFS.Repository.Conversions;
 
-namespace WFS.Repository.Commands.Organization
+namespace WFS.Repository.Commands
 {
     public class CreateOrganizationCommand : ICommand<C.Organization>
     {

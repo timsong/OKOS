@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WFS.Contract.Enums;
+using System.Runtime.Serialization;
 
 namespace WFS.Contract
 {
+    [Serializable]
+    [KnownType(typeof(Vendor))]
     public abstract class Organization
     {
         public int OrganizationId { get; set; }

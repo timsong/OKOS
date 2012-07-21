@@ -10,9 +10,9 @@ namespace WFS.WebSite4.Areas.Admin.Models
     {
         public VendorListViewModel()
         {
-            Vendors = new List<Vendor>();
+            Vendors = new List<Organization>();
         }
 
-        public List<Vendor> Vendors { get; set; }
+        public List<Organization> Vendors { get; set; }
     }
 }

@@ -20,22 +20,22 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            var resp = _vendorMgr.GetVendorList(new GetVendorListRequest());
+            var resp = _vendorMgr.GetVendorList(new GetOrganizationByTypeListRequest());
 
             var m = new VendorListViewModel()
             {
-                Vendors = resp.Vendors
+                Vendors = resp.Organizations
             };
 
             return View(m);
         }
         public ActionResult EditVendor(int vendorID)
         {
-            var resp = _vendorMgr.GetVendorList(new GetVendorListRequest());
+            var resp = _vendorMgr.GetVendorList(new GetOrganizationByTypeListRequest());
 
             var m = new VendorListViewModel()
             {
-                Vendors = resp.Vendors
+                Vendors = resp.Organizations
             };
 
             return View(m);

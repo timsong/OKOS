@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,7 +44,7 @@
     <Compile Include="Enums\ActiveDataRequestEnum.cs" />
     <Compile Include="Enums\CustomerTypeEnum.cs" />
     <Compile Include="Enums\FoodCategoryTypeEnum.cs" />
-    <Compile Include="Enums\VendorTypeEnum.cs" />
+    <Compile Include="Enums\OrganizationTypeEnum.cs" />
     <Compile Include="Enums\WFSUserTypeEnum.cs" />
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodItem.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="Organization.cs" />
     <Compile Include="PhoneAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReqResp\ChangeVendorActiveStatus.cs" />
+    <Compile Include="ReqResp\ChangeOrganizationActiveStatus.cs" />
     <Compile Include="ReqResp\Creates\CreateFoodCategory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,14 +62,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ReqResp\Creates\CreateMenu.cs" />
-    <Compile Include="ReqResp\Creates\CreateVendor.cs">
+    <Compile Include="ReqResp\Creates\CreateOrganization.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ReqResp\GetFoodItemsByVendorID.cs" />
     <Compile Include="ReqResp\GetFoodOptionsByVendor.cs" />
-    <Compile Include="ReqResp\GetVendorById.cs" />
-    <Compile Include="ReqResp\GetVendorList.cs" />
-    <Compile Include="Vendor.cs" />
+    <Compile Include="ReqResp\GetOrganizationById.cs" />
+    <Compile Include="ReqResp\GetOrganizationListByType.cs" />
     <Compile Include="WFSUser.cs" />
   </ItemGroup>
   <ItemGroup />
