@@ -1,20 +1,21 @@
 ﻿
+using WFS.Contract.Enums;
 using WFS.DataContext;
 using C = WFS.Contract;
-using WFS.Contract.Enums;
+using System;
 
 namespace WFS.Repository.Conversions
 {
     public static class VendorConversion
     {
-        public static C.Vendor ToContract(this Vendor data)
+        public static C.Vendor ToContract(this Organization data)
         {
             if (data == null)
                 return null;
 
             var model = new C.Vendor()
             {
-                VendorId = data.VendorId,
+                VendorId = data.OrganizationId,
                 IsActive = data.IsActive,
                 Name = data.Name,
                 Address1 = data.Address1,
@@ -24,8 +25,8 @@ namespace WFS.Repository.Conversions
                 PhoneExt = data.PhoneExt,
                 State = data.State,
                 ZipCode = data.ZipCode,
-                ParentVendorId = data.ParentVendorId,
-                VendorType = (data.ParentVendorId.HasValue) ? VendorTypeEnum.Store : VendorTypeEnum.Vendor
+                ParentVendorId = data.ParentOrgId,
+                OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.OrganizationType)
             };
 
 

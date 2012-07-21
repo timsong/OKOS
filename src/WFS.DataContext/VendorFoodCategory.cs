@@ -12,20 +12,20 @@ using System.Collections.Generic;
 
 namespace WFS.DataContext
 {
-    public partial class FoodCategory
+    public partial class VendorFoodCategory
     {
-        public FoodCategory()
+        public VendorFoodCategory()
         {
             this.FoodItems = new HashSet<FoodItem>();
         }
     
-        public int FoodCategoryId { get; set; }
+        public int VendorFoodCategoryId { get; set; }
         public string Name { get; set; }
-        public int VendorID { get; set; }
+        public int OrganizationID { get; set; }
         public string CategoryType { get; set; }
     
-        public virtual Vendor Vendor { get; set; }
         public virtual ICollection<FoodItem> FoodItems { get; set; }
+        public virtual Organization Organization { get; set; }
     }
     
 }

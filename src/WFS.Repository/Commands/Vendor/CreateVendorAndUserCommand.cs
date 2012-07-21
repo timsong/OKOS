@@ -1,6 +1,7 @@
 ﻿using System;
 using WFS.Repository.Conversions;
 using C = WFS.Contract;
+using WFS.Contract.Enums;
 
 namespace WFS.Repository.Commands
 {
@@ -24,7 +25,7 @@ namespace WFS.Repository.Commands
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
-            var vend = new WFS.DataContext.Vendor()
+            var vend = new WFS.DataContext.Organization()
             {
                 Address1 = _addInfo.Address1,
                 Address2 = _addInfo.Address2,
@@ -35,25 +36,10 @@ namespace WFS.Repository.Commands
                 PhoneExt = _addInfo.PhoneExt,
                 ZipCode = _addInfo.ZipCode,
                 IsActive = true,
-                ParentVendorId = _parentVendorId,
+                ParentOrgId = _parentVendorId,
+                OrganizationType = OrganizationTypeEnum.Vendor.ToString(),
+                UserId = _userId
             };
-
-            try
-            {
-                vend.VendorUsers.Add(new DataContext.VendorUser()
-                    {
-                        UserId = _userId,
-                    });
-
-                ent.Vendors.Add(vend);
-                dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                var fail = new Result<C.Vendor>(Status.Error);
-                fail.Messages.Add(new Message() { Text = ex.Message });
-                return fail;
-            }
 
             var result = new Result<C.Vendor>(Status.Success, vend.ToContract());
             return result;

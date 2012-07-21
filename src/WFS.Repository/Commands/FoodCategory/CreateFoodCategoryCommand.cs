@@ -21,16 +21,16 @@ namespace WFS.Repository.Commands
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
-            var fc = new WFS.DataContext.FoodCategory()
+            var fc = new WFS.DataContext.VendorFoodCategory()
             {
                 Name = _name,
-                VendorID = _vendorId,
+                OrganizationID = _vendorId,
                 CategoryType = _catType,
             };
 
             try
             {
-                ent.FoodCategories.Add(fc);
+                ent.VendorFoodCategories.Add(fc);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)

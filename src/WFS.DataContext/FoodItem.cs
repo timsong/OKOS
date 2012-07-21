@@ -24,13 +24,13 @@ namespace WFS.DataContext
         public string Description { get; set; }
         public decimal Cost { get; set; }
         public decimal Price { get; set; }
-        public int FoodCategoryID { get; set; }
         public bool IsActive { get; set; }
         public string Name { get; set; }
+        public int VendorFoodCategoryID { get; set; }
     
-        public virtual FoodCategory FoodCategory { get; set; }
         public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }
         public virtual ICollection<MenuItem> MenuItems { get; set; }
+        public virtual VendorFoodCategory VendorFoodCategory { get; set; }
     }
     
 }

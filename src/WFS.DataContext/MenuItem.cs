@@ -15,11 +15,11 @@ namespace WFS.DataContext
     public partial class MenuItem
     {
         public int MenuItemId { get; set; }
-        public int MenuId { get; set; }
         public int FoodItemId { get; set; }
+        public int VendorMenuId { get; set; }
     
-        public virtual Menu Menu { get; set; }
         public virtual FoodItem FoodItem { get; set; }
+        public virtual VendorMenu VendorMenu { get; set; }
     }
     
 }

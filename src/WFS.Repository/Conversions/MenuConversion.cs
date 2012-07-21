@@ -8,7 +8,7 @@ namespace WFS.Repository.Conversions
 {
     public static class MenuConversion
     {
-        public static C.Menu ToContract(this Menu data)
+        public static C.Menu ToContract(this VendorMenu data)
         {
             if (data == null)
                 return null;
@@ -17,8 +17,8 @@ namespace WFS.Repository.Conversions
             {
                 Name = data.Name,
                 Description = data.Description,
-                MenuId = data.MenuId,
-                VendorId = data.VendorId
+                MenuId = data.VendorMenuId,
+                VendorId = data.OrganizationId
             };
 
 

@@ -21,8 +21,8 @@ namespace WFS.Repository.Queries
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
             var data = from fi in ent.FoodItems
-                       join fc in ent.FoodCategories on fi.FoodCategoryID equals fc.FoodCategoryId
-                       where fc.VendorID == _vendorId
+                       join fc in ent.VendorFoodCategories on fi.VendorFoodCategoryID equals fc.VendorFoodCategoryId
+                       where fc.OrganizationID == _vendorId
                        select fi;
 
             if (_activeDataRequest == ActiveDataRequestEnum.ActiveOnly)

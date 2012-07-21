@@ -51,34 +51,19 @@
     <Compile Include="Application.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="aspnet_SchemaVersions.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerUser.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FoodCategory.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="FoodItem.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="FoodItemOption.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="FoodOption.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Membership.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="MenuItem.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="MenuItem.cs">
+    <Compile Include="Organization.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Profile.cs">
@@ -91,10 +76,13 @@
     <Compile Include="User.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vendor.cs">
+    <Compile Include="VendorFoodCategory.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="VendorUser.cs">
+    <Compile Include="VendorFoodOption.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorMenu.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="WFSDataContext.Context.cs">

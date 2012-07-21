@@ -23,17 +23,17 @@ namespace WFS.Repository.Commands
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
-            var fo = new WFS.DataContext.Menu()
+            var fo = new WFS.DataContext.VendorMenu()
             {
                 Name = _name,
-                VendorId = _vendorId,
+                OrganizationId = _vendorId,
                 Description = _description,
                 IsActive = _isActive
             };
 
             try
             {
-                ent.Menus.Add(fo);
+                ent.VendorMenus.Add(fo);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)

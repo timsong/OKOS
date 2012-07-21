@@ -16,8 +16,7 @@ namespace WFS.DataContext
     {
         public WFSUser()
         {
-            this.CustomerUsers = new HashSet<CustomerUser>();
-            this.VendorUsers = new HashSet<VendorUser>();
+            this.Organizations = new HashSet<Organization>();
         }
     
         public int UserId { get; set; }
@@ -27,9 +26,8 @@ namespace WFS.DataContext
         public string FirstName { get; set; }
         public string LastName { get; set; }
     
-        public virtual ICollection<CustomerUser> CustomerUsers { get; set; }
-        public virtual ICollection<VendorUser> VendorUsers { get; set; }
         public virtual WFSUserAddress WFSUserAddress { get; set; }
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
     
 }

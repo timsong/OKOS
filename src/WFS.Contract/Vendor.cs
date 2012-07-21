@@ -25,7 +25,7 @@ namespace WFS.Contract
         public string Phone { get; set; }
         public string PhoneExt { get; set; }
 
-        public VendorTypeEnum VendorType { get; set; }
+        public OrganizationTypeEnum OrganizationType { get; set; }
 
         public List<Store> Stores { get; set; }
         public List<Menu> Menus { get; set; }

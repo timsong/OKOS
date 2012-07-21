@@ -12,26 +12,21 @@ using System.Collections.Generic;
 
 namespace WFS.DataContext
 {
-    public partial class Customer
+    public partial class VendorMenu
     {
-        public Customer()
+        public VendorMenu()
         {
-            this.CustomerUsers = new HashSet<CustomerUser>();
+            this.MenuItems = new HashSet<MenuItem>();
         }
     
-        public int CustomerId { get; set; }
+        public int VendorMenuId { get; set; }
+        public int OrganizationId { get; set; }
         public string Name { get; set; }
-        public string CustomerType { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PhoneExt { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual ICollection<CustomerUser> CustomerUsers { get; set; }
+        public virtual ICollection<MenuItem> MenuItems { get; set; }
+        public virtual Organization Organization { get; set; }
     }
     
 }

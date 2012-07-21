@@ -31,7 +31,7 @@ namespace WFS.Repository.Commands
             {
                 Name = _name,
                 Description = _description,
-                FoodCategoryID = _foodCatId,
+                VendorFoodCategoryID = _foodCatId,
                 IsActive = _isActive,
                 Cost = _cost,
                 Price = _price,

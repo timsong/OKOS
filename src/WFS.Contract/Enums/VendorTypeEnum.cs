@@ -1,9 +1,12 @@
 ﻿
 namespace WFS.Contract.Enums
 {
-    public enum VendorTypeEnum
+    public enum OrganizationTypeEnum
     {
         Vendor,
-        Store
+        Store,
+        Company,
+        District,
+        School,
     }
 }

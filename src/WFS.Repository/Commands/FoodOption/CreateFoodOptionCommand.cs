@@ -25,10 +25,10 @@ namespace WFS.Repository.Commands
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
-            var fo = new WFS.DataContext.FoodOption()
+            var fo = new WFS.DataContext.VendorFoodOption()
             {
                 Name = _name,
-                VendorId = _vendorId,
+                OrganizationId = _vendorId,
                 Description = _description,
                 Cost = _cost,
                 Price = _price,
@@ -36,7 +36,7 @@ namespace WFS.Repository.Commands
 
             try
             {
-                ent.FoodOptions.Add(fo);
+                ent.VendorFoodOptions.Add(fo);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)

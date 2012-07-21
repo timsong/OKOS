@@ -25,16 +25,8 @@ namespace WFS.DataContext
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<aspnet_SchemaVersions> aspnet_SchemaVersions { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<CustomerUser> CustomerUsers { get; set; }
-        public DbSet<FoodCategory> FoodCategories { get; set; }
         public DbSet<FoodItemOption> FoodItemOptions { get; set; }
-        public DbSet<FoodOption> FoodOptions { get; set; }
-        public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
-        public DbSet<Vendor> Vendors { get; set; }
-        public DbSet<VendorUser> VendorUsers { get; set; }
         public DbSet<WFSUser> WFSUsers { get; set; }
         public DbSet<WFSUserAddress> WFSUserAddresses { get; set; }
         public DbSet<Application> Applications { get; set; }
@@ -43,5 +35,9 @@ namespace WFS.DataContext
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<VendorFoodCategory> VendorFoodCategories { get; set; }
+        public DbSet<VendorFoodOption> VendorFoodOptions { get; set; }
+        public DbSet<VendorMenu> VendorMenus { get; set; }
     }
 }

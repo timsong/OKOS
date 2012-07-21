@@ -17,18 +17,18 @@ namespace WFS.Repository.Conversions
             {
                 Name = data.Name,
                 Description = data.Description,
-                FoodCategoryId = data.FoodCategoryID,
+                FoodCategoryId = data.VendorFoodCategoryID,
                 FoodItemId = data.FoodItemId,
                 IsActive = data.IsActive,
                 Cost = data.Cost,
                 Price = data.Price,
-                Category = data.FoodCategory.Name,
-                CategoryType = (FoodCategoryTypeEnum)Enum.Parse(typeof(FoodCategoryTypeEnum), data.FoodCategory.CategoryType)
+                Category = data.VendorFoodCategory.Name,
+                CategoryType = (FoodCategoryTypeEnum)Enum.Parse(typeof(FoodCategoryTypeEnum), data.VendorFoodCategory.CategoryType)
             };
 
 
             if (data.FoodItemOptions.Count > 0)
-                model.Options.AddRange(data.FoodItemOptions.Select(x => x.FoodOption.ToContract()).ToList());
+                model.Options.AddRange(data.FoodItemOptions.Select(x => x.VendorFoodOption.ToContract()).ToList());
 
             return model;
         }

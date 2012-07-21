@@ -22,8 +22,8 @@ namespace WFS.Repository.Commands
         public IResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
-            var data = (from x in ent.Vendors
-                        where x.VendorId == _vendorId
+            var data = (from x in ent.Organizations
+                        where x.OrganizationId == _vendorId
                         select x).FirstOrDefault();
 
             data.IsActive = _isActive;
