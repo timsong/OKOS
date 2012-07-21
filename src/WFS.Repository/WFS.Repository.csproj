@@ -49,6 +49,7 @@
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
     <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />
+    <Compile Include="Commands\Organization\CreateOrganizationCommand.cs" />
     <Compile Include="Commands\Vendor\ChangeVendorActiveStatusCommand.cs" />
     <Compile Include="Commands\Vendor\CreateVendorAndUserCommand.cs" />
     <Compile Include="Commands\CreateWFSUserCommand.cs" />

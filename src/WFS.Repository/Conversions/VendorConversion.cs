@@ -15,7 +15,7 @@ namespace WFS.Repository.Conversions
 
             var model = new C.Vendor()
             {
-                VendorId = data.OrganizationId,
+                OrganizationId = data.OrganizationId,
                 IsActive = data.IsActive,
                 Name = data.Name,
                 Address1 = data.Address1,
@@ -25,7 +25,7 @@ namespace WFS.Repository.Conversions
                 PhoneExt = data.PhoneExt,
                 State = data.State,
                 ZipCode = data.ZipCode,
-                ParentVendorId = data.ParentOrgId,
+                ParentOrgId = data.ParentOrgId,
                 OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.OrganizationType)
             };
 
