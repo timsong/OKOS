@@ -25,6 +25,12 @@ namespace WFS.WebSite4.Areas.Admin
                 "Admin/Vendors/EditVendor/{vendorID}",
                 new { controller = "Vendor", action = "EditVendor" }
             );
+
+            context.MapRoute(
+                "Admin_Vendor_CreateVendor",
+                "Admin/Vendors/AddVendor",
+                new { controller = "Vendor", action = "AddVendor" }
+            );
         }
     }
 }

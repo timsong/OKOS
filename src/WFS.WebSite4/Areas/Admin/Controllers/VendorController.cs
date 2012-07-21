@@ -40,6 +40,10 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
             return View(m);
         }
+        public ActionResult AddVendor()
+        {
+            return View("EditVendor", new VendorEditModel());
+        }
 
     }
 }

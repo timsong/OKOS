@@ -18,7 +18,9 @@ namespace WFS.Repository.Queries
         public IListResult<C.Organization> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
-            var data = ent.Organizations.Where(x => x.OrganizationType == _type.ToString()).AsEnumerable().Select(x => x.ToContract());
+            var type = _type.ToString();
+
+            var data = ent.Organizations.Where(x => x.OrganizationType == type).AsEnumerable().Select(x => x.ToContract());
 
             var result = new ListResult<C.Organization>(data.ToList());
             result.Status = Status.Success;

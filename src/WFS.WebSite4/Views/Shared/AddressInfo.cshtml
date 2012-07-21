@@ -1,0 +1,20 @@
+﻿@model WFS.WebSite4.Models.IAddressInfo
+
+<div class="panel">
+    <div class="eight columns">
+        <div class="row">
+            <div class="one columns">Address:</div>
+            <div class="four columns">
+                @Html.TextAreaFor(x => x.Address1);
+            </div>
+        </div>
+        <div class="row">
+            <div class="four columns offset-by-one">
+                @Html.TextAreaFor(x => x.Address2);
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    
+    </div>
+</div>

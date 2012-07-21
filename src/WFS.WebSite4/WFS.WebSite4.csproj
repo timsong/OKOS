@@ -139,6 +139,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -150,6 +151,7 @@
     </Compile>
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\IAddressInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
@@ -305,10 +307,10 @@
     <Content Include="Areas\Admin\Views\Vendor\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\AddVendor.cshtml" />
+    <Content Include="Areas\Admin\Views\Vendor\EditVendor.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\EditVendor.cshtml" />
+    <Content Include="Views\Shared\AddressInfo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
