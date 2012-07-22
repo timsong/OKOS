@@ -1,0 +1,19 @@
+﻿/* overrides for the top-nav
+*/
+.top-bar { height: 35px; }
+.top-bar .nav-bar { height: 35px; background: #111111; margin-top: 20px; padding: 0; }
+.top-bar .nav-bar > li { float: left; display: block; position: relative; padding: 0; margin: 0; border: 1px solid #333333; 
+                         border-right: none; line-height: 38px; 
+                         -webkit-box-shadow: none; 
+                         -moz-box-shadow: none; 
+                         box-shadow: none; }
+.top-bar .nav-bar > li:first-child { -webkit-box-shadow: 0 0 0; -moz-box-shadow: 0 0 0; box-shadow: 0 0 0; }
+.top-bar .nav-bar > li:last-child { border-right: solid 1px #333333; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+.top-bar .nav-bar > li > a { color: white; }
+.top-bar .nav-bar > li.active { background: #111111; border-color: #333333; border-bottom: 3px #111111 solid; }
+.top-bar .nav-bar > li.active > a { color: #e0e0e0; cursor: default; }
+.top-bar .nav-bar > li { border-bottom: #111111 3px solid; border-top: none; } 
+.top-bar .nav-bar > li > a:hover { color: lime; }
+.top-bar .nav-bar > li.active > a:hover { color: white; cursor: default; }
+
+.text.small { font-size: 8pt; height: 12px; padding: 0; }

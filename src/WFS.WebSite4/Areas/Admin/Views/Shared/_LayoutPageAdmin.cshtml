@@ -1,0 +1,22 @@
+﻿@using WFS.WebSite.Helpers
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";	
+}
+@section primaryNav {
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "admin.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendors", RouteName = "Admin_Vendor_List", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Schools", RouteName = "admin.schools", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Companies", RouteName = "admin.companies", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Users", RouteName = "admin.users", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Reports", RouteName = "admin.reports", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendor (Home)", RouteName = "vendor.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
+	@{ @RenderSection("primaryNav", false) }
+}
+
+@section styles{
+	@{ @RenderSection("styles", false) }
+}
+@section scripts{
+	@{ @RenderSection("scripts", false) }
+}
+@RenderBody()

@@ -1,0 +1,17 @@
+﻿@using WFS.WebSite.Helpers
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";	
+}
+@section primaryNav {
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "vendor.dashboard", UserType = UserType.Admin | UserType.SystemAdmin | UserType.Vendor })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Admin", RouteName = "admin.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
+	@{ @RenderSection("primaryNav", false) }
+}
+
+@section styles{
+	@{ @RenderSection("styles", false) }
+}
+@section scripts{
+	@{ @RenderSection("scripts", false) }
+}
+@RenderBody()

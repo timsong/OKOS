@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using WFS.Contract;
+using C=WFS.Contract;
+
+namespace WFS.WebSite4.Areas.Admin.Models
+{
+    public class VendorListViewModel
+    {
+        public VendorListViewModel()
+        {
+<<<<<<< HEAD
+            Vendors = new List<C.Vendor>();
+        }
+
+		public List<C.Vendor> Vendors { get; set; }
+=======
+            Vendors = new List<Organization>();
+        }
+
+        public List<Organization> Vendors { get; set; }
+>>>>>>> 72e0d9ac47759fa6afa640c7ead23bf5f66d1b13
+    }
+}
