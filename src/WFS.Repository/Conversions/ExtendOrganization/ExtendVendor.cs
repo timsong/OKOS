@@ -13,6 +13,7 @@ namespace WFS.Repository.Conversions.ExtendOrganization
                 OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.OrganizationType)
             };
 
+
             return model;
         }
     }

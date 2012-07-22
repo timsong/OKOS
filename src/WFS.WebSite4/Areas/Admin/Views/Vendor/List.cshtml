@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "List";
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
-    
 }
 
 <h2>List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.RouteLink("Add New Vendor", "Admin_Vendor_CreateVendor")
 </p>
 
 @foreach (var item in Model.Vendors) {

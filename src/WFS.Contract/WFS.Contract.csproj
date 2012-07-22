@@ -49,6 +49,7 @@
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="FoodOption.cs" />
+    <Compile Include="Interfaces\IAddressInfo.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="PhoneAddress.cs" />

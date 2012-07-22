@@ -1,20 +1,42 @@
-﻿@model WFS.WebSite4.Models.IAddressInfo
+﻿@model WFS.Contract.Interfaces.IAddressInfo
 
-<div class="panel">
-    <div class="eight columns">
+<div class="eleven columns end">
+    <div class="panel">
+        <label>Address & Contact Info</label>
         <div class="row">
-            <div class="one columns">Address:</div>
-            <div class="four columns">
-                @Html.TextAreaFor(x => x.Address1);
+            <div class="twelve columns">
+                @Html.TextBoxFor(x => x.Address1, new { placeholder = "Address Line 1" })
             </div>
         </div>
+        <br />
         <div class="row">
-            <div class="four columns offset-by-one">
-                @Html.TextAreaFor(x => x.Address2);
+            <div class="twelve columns end">
+                @Html.TextBoxFor(x => x.Address2, new { placeholder = "Address Line 2" })
             </div>
         </div>
+        <br />
+
         <div class="row">
-        </div>
-    
+            <div class="six columns">
+                @Html.TextBoxFor(x => x.City, new {placeholder = "City" })
+            </div>
+            <div class="three columns">
+                @Html.TextBoxFor(x => x.State, new {placeholder = "State" })
+            </div>
+            <div class="three columns">
+                @Html.TextBoxFor(x => x.ZipCode, new {placeholder = "Zip Code" })
+            </div>
+        </div>  
+
+        <br />
+
+        <div class="row">
+            <div class="six columns">
+                @Html.TextBoxFor(x => x.PhoneNumber, new {placeholder = "Phone Number" })
+            </div>
+            <div class="three columns end">
+                @Html.TextBoxFor(x => x.PhoneExt, new {placeholder = "Extension" })
+            </div>
+        </div>  
     </div>
 </div>

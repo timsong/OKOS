@@ -6,11 +6,12 @@ using System.Web.Mvc;
 using WFS.Domain.Managers;
 using WFS.Contract.ReqResp;
 using WFS.WebSite4.Areas.Admin.Models;
+using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
 	[Authorize(Roles = "Admin,SystemAdmin")]
-	public class VendorController : Controller
+	public class VendorController : BaseController
     {
         private readonly VendorManager _vendorMgr;
 
@@ -46,5 +47,10 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             return View("EditVendor", new VendorEditModel());
         }
 
+        [HttpPost]
+        public ActionResult AddVendor(VendorEditModel model)
+        {
+            return View("EditVendor", new VendorEditModel());
+        }
     }
 }

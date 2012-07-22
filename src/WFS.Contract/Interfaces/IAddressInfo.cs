@@ -1,5 +1,5 @@
 ﻿
-namespace WFS.WebSite4.Models
+namespace WFS.Contract.Interfaces
 {
     public interface IAddressInfo
     {

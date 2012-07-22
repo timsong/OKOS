@@ -33,4 +33,10 @@ legend
 {
 	color: Black;
 }
+
 h2 { color: Black !important; }
+
+.clear 
+{
+	display:block;
+}

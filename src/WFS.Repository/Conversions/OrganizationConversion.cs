@@ -25,12 +25,17 @@ namespace WFS.Repository.Conversions
             model.Address1 = data.Address1;
             model.Address2 = data.Address2;
             model.City = data.City;
-            model.Phone = data.PhoneNumber;
+            model.PhoneNumber = data.PhoneNumber;
             model.PhoneExt = data.PhoneExt;
             model.State = data.State;
             model.ZipCode = data.ZipCode;
             model.ParentOrgId = data.ParentOrgId;
 
+            model.User.FirstName = data.WFSUser.FirstName;
+            model.User.LastName = data.WFSUser.LastName;
+            model.User.UserId = data.UserId;
+            model.User.UserType = (C.Enums.WFSUserTypeEnum)Enum.Parse(typeof(C.Enums.WFSUserTypeEnum), data.WFSUser.UserType);
+            model.User.MembershipGuid = data.WFSUser.MembershipGuid;
 
             return model;
 

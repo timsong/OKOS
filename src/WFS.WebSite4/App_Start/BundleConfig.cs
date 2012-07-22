@@ -35,9 +35,10 @@ namespace WFS.WebSite4
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.home.js"
-				, "~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
+                , "~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js", "~/Scripts/foundation/foundation.js"));
+            bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js", "~/Scripts/foundation/foundation.js"));
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
 
 
             // blah

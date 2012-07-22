@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WFS.Contract.Enums;
 using System.Runtime.Serialization;
+using WFS.Contract.Enums;
+using WFS.Contract.Interfaces;
 
 namespace WFS.Contract
 {
     [Serializable]
     [KnownType(typeof(Vendor))]
-    public abstract class Organization
+    public abstract class Organization : IAddressInfo
     {
+        public Organization()
+        {
+            User = new WFSUser();
+        }
+
         public int OrganizationId { get; set; }
         public int? ParentOrgId { get; set; }
         public string Name { get; set; }
@@ -21,10 +25,11 @@ namespace WFS.Contract
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         public string PhoneExt { get; set; }
 
         public OrganizationTypeEnum OrganizationType { get; set; }
+        public WFSUser User { get; set; }
     }
 
     public class Vendor : Organization
