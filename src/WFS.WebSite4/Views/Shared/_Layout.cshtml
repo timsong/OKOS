@@ -1,19 +1,44 @@
-﻿<!DOCTYPE html>
+﻿@using WFS.WebSite.Helpers
+@using WFS.WebSite4.Models
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" href="http://www.zurb.com/assets/foundation.top-bar.css"> <!-- TODO ADD TO BUNDLE --> 
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-		@Scripts.Render("~/bundles/jquery")
-		@Scripts.Render("~/bundles/jqueryval")
-		@Scripts.Render("~/bundles/okos")
-		@Scripts.Render("~/bundles/foundation")
+        @RenderSection("styles", required: false)
     </head>
-    <body>
-        <header>
+    <body class="off-canvas">
+		<header>
+			<div class="container top-bar home-border">
+				<div class="attached">
+					<ul class="left nav-bar">
+						@Html.RouteLinkExists(new RouteInfo{
+							LinkText = "Home"
+							, RouteName = "home"
+							, AccessType = RouteAccessType.NonAuth })
+						@Html.RouteLinkExists(new RouteInfo{
+							LinkText = "About us"
+							, RouteName = "AboutUs"
+							, AccessType = RouteAccessType.NonAuth })
+						@if (IsSectionDefined("primaryNav")) { @RenderSection("primaryNav") }
+					</ul>
+					<div class="right">
+						@{ Html.RenderPartial("_LoginPartial"); }
+					</div>
+				</div>
+			</div>
+		</header>
+@*		<header>
+			<div class="container top-bar home-border">
+				<div class="attached">
+				</div>
+			</div>
+		</header>*@
+@*        <header>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p class="site-title">
@@ -36,13 +61,16 @@
                 </div>
             </div>
         </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
+*@
+        <div id="body" class="row">
+			<div class="twelve columns">
+				<section class="content-wrapper main-content clear-fix">
+					@RenderSection("featured", required: false)
+				</section>
+				@RenderBody()
+			</div>
         </div>
-        <footer>
+@*        <footer>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; @DateTime.Now.Year - <strong><em>Wholesome Food Services.</em></strong> All rights reserverd.</p>
@@ -60,9 +88,12 @@
                     </ul>
                 </div>
             </div>
-        </footer>
-
+        </footer>*@
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+		@Scripts.Render("~/bundles/jqueryval")
+		@Scripts.Render("~/bundles/foundation")
+		@Scripts.Render("~/bundles/okos")
         @RenderSection("scripts", required: false)
     </body>
 </html>

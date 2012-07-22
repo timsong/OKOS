@@ -1,19 +1,7 @@
 ﻿@model WFS.WebSite4.Models.LoginModel
-
-@{
-    ViewBag.Title = "Log in";
-}
-
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Use this form to enter your user name and password.</h2>
-</hgroup>
-
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
-
-    <fieldset>
-        <legend>Log in Form</legend>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl })) {
+        <h2 class="">Please login below</h2>
+	    @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
@@ -28,13 +16,8 @@
                 @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
             </li>
         </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
+        <input type="submit" class="medium success button" value="Log in" />
     <p>
         @Html.ActionLink("Register", "Register") if you don't have an account.
     </p>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -6,19 +6,15 @@ using System.Web.Mvc;
 
 namespace WFS.WebSite4.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DirectorBaseController
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to kick-start your ASP.NET MVC application.";
-
             return View();
         }
 
         public ActionResult AboutUs()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 

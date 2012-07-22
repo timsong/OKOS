@@ -17,7 +17,7 @@ namespace WFS.WebSite4
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "home",
                 url: "",
                 defaults: new { controller = "Home", action = "Index" }
             );

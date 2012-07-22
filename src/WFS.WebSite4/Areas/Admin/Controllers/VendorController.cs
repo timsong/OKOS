@@ -9,7 +9,8 @@ using WFS.WebSite4.Areas.Admin.Models;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    public class VendorController : Controller
+	[Authorize(Roles = "Admin,SystemAdmin")]
+	public class VendorController : Controller
     {
         private readonly VendorManager _vendorMgr;
 

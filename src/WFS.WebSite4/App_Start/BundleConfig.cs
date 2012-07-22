@@ -7,8 +7,7 @@ namespace WFS.WebSite4
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-1.*"));
-
+                        "~/Scripts/foundation/jquery.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
 
@@ -19,7 +18,7 @@ namespace WFS.WebSite4
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/foundation.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/foundation.css", "~/Content/foundation.overrides.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
@@ -35,9 +34,11 @@ namespace WFS.WebSite4
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
+            bundles.Add(new ScriptBundle("~/bundles/okos").Include("~/Scripts/okos/okos.home.js"
+				, "~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js"));
+			bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js", "~/Scripts/foundation/foundation.js"));
+
 
             // blah
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WFS.Contract;
+using C=WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Models
 {
@@ -10,9 +11,9 @@ namespace WFS.WebSite4.Areas.Admin.Models
     {
         public VendorListViewModel()
         {
-            Vendors = new List<Vendor>();
+            Vendors = new List<C.Vendor>();
         }
 
-        public List<Vendor> Vendors { get; set; }
+		public List<C.Vendor> Vendors { get; set; }
     }
 }

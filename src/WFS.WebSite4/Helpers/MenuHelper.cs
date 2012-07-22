@@ -14,7 +14,7 @@ namespace WFS.WebSite.Helpers
     [Flags]
     public enum UserType
     {
-        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, UserAdmin = 0x4, Client = 0x8, Contractor = 0x16
+        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16
     }
 
     public class RouteInfo
@@ -26,6 +26,7 @@ namespace WFS.WebSite.Helpers
         {
             this.AccessType = RouteAccessType.All;
             this.RouteValues = new { };
+			ExactMatch = false;
             this.HtmlAttributes = new { };
         }
 
@@ -120,14 +121,14 @@ namespace WFS.WebSite.Helpers
             }
             else if (url == HttpContext.Current.Request.Url.AbsolutePath)
             {
-                return new MvcHtmlString (string.Format(TMP_URL, "currentMenuItem", routeInfo.RouteMatchClass, routeInfo.LinkText));
+				return new MvcHtmlString(string.Format(TMP_URL, "active", routeInfo.RouteMatchClass, helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
             }
             else if (area == currentArea && !routeInfo.ExactMatch)
             {
-                return new MvcHtmlString (string.Format(TMP_URL, "menuItem", "currentMenuItem", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
+                return new MvcHtmlString (string.Format(TMP_URL, "", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
             }
 
-            return new MvcHtmlString(string.Format(TMP_URL, "menuItem", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
+            return new MvcHtmlString(string.Format(TMP_URL, "", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
         }
     }
 }

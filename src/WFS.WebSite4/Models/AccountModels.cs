@@ -4,11 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web;
 
 namespace WFS.WebSite4.Models
 {
-
-    public class ChangePasswordModel
+	public interface ILoginConverter
+	{
+		LoginModel ToLogin();
+	}
+    public class ChangePasswordModel : ILoginConverter
     {
         [Required]
         [DataType(DataType.Password)]
@@ -25,9 +29,14 @@ namespace WFS.WebSite4.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
+    
+		public LoginModel  ToLogin()
+		{
+ 			return new LoginModel{ UserName = HttpContext.Current.User.Identity.Name };
+		}
+	}
 
-    public class LoginModel
+    public class LoginModel : ILoginConverter
     {
         [Required]
         [Display(Name = "User name")]
@@ -40,9 +49,14 @@ namespace WFS.WebSite4.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+		public LoginModel ToLogin()
+		{
+			return this;
+		}
     }
 
-    public class RegisterModel
+    public class RegisterModel : ILoginConverter
     {
         [Required]
         [Display(Name = "User name")]
@@ -63,5 +77,18 @@ namespace WFS.WebSite4.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+		public LoginModel ToLogin()
+		{
+			return new LoginModel { UserName = UserName };
+		}
     }
+
+	public static class AccountModelExtensions
+	{
+		public static LoginModel GetLoginModel(this ILoginConverter subject)
+		{
+			return subject.ToLogin();
+		}
+	}
 }
