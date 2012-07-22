@@ -49,24 +49,29 @@
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
     <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />
-    <Compile Include="Commands\Vendor\ChangeVendorActiveStatusCommand.cs" />
-    <Compile Include="Commands\Vendor\CreateVendorAndUserCommand.cs" />
+    <Compile Include="Commands\Organization\ChangeOrganizationActivateStatusCommand.cs" />
+    <Compile Include="Commands\Organization\CreateOrganizationCommand.cs" />
     <Compile Include="Commands\CreateWFSUserCommand.cs" />
+    <Compile Include="Conversions\ExtendOrganization\ExtendVendor.cs" />
+    <Compile Include="Conversions\ExtendOrganization\IExtendedOrganization.cs" />
     <Compile Include="Conversions\FoodCategoryConversion.cs" />
     <Compile Include="Conversions\FoodItemConversion.cs" />
     <Compile Include="Conversions\FoodOptionConversion.cs" />
     <Compile Include="Conversions\MenuConversion.cs" />
-    <Compile Include="Conversions\VendorConversion.cs" />
+    <Compile Include="Conversions\OrganizationConversion.cs" />
     <Compile Include="Conversions\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />
     <Compile Include="Queries\FoodOptions\GetFoodOptionListQuery.cs" />
     <Compile Include="Queries\GetFoodItemListQuery.cs" />
-    <Compile Include="Queries\Vendors\GetVendorByIdQuery.cs" />
-    <Compile Include="Queries\Vendors\GetVendorListQuery.cs" />
+    <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />
+    <Compile Include="Queries\Organizations\GetOrganizationsByTypeListQuery.cs" />
     <Compile Include="WFSRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\Vendor\" />
+    <Folder Include="Queries\Vendors\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WFS.Contract\WFS.Contract.csproj">
       <Project>{B9A63AF6-F32C-4641-BF73-71453E170A63}</Project>

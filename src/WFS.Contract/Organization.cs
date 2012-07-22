@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using WFS.Contract.Enums;
+using System.Runtime.Serialization;
 
 namespace WFS.Contract
 {
-    public class Vendor
+    [Serializable]
+    [KnownType(typeof(Vendor))]
+    public abstract class Organization
     {
-        public Vendor()
-        {
-            Stores = new List<Store>();
-            Menus = new List<Menu>();
-        }
-
-        public int VendorId { get; set; }
-        public int? ParentVendorId { get; set; }
+        public int OrganizationId { get; set; }
+        public int? ParentOrgId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
 
@@ -26,6 +25,16 @@ namespace WFS.Contract
         public string PhoneExt { get; set; }
 
         public OrganizationTypeEnum OrganizationType { get; set; }
+    }
+
+    public class Vendor : Organization
+    {
+        public Vendor()
+        {
+            Stores = new List<Store>();
+            Menus = new List<Menu>();
+            OrganizationType = OrganizationTypeEnum.Vendor;
+        }
 
         public List<Store> Stores { get; set; }
         public List<Menu> Menus { get; set; }
@@ -36,8 +45,7 @@ namespace WFS.Contract
         public int AdvanceDays { get; set; }
         public DateTime CutoffTime { get; set; }
         public int CutoffDay { get; set; }
-
-        public int ParentVendorId { get; set; }
-        public bool IsActive { get; set; }
     }
+
+
 }

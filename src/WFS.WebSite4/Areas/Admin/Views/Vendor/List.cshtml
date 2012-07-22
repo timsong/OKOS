@@ -20,10 +20,10 @@
                     @item.Name
                 </div>
                 <div class="two columns">
-                    @Html.RouteLink("Edit/View","Admin_Vendor_EditVendor",new {vendorID = item.VendorId })
+                    @Html.RouteLink("Edit/View","Admin_Vendor_EditVendor",new {vendorID = item.OrganizationId })
                 </div>
                 <div class="one columns">
-                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.VendorId })
+                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrganizationId })
                 </div>
                 <div class="one columns"></div>
 

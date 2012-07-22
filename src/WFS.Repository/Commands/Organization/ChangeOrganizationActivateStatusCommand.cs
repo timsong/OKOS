@@ -7,29 +7,29 @@ using WFS.Repository.Conversions;
 
 namespace WFS.Repository.Commands
 {
-    public class ChangeVendorActiveStatusCommand : ICommand<C.Vendor>
+    public class ChangeOrganizationActivateStatusCommand: ICommand<C.Organization>
     {
-        private readonly  int _vendorId;
+        private readonly  int _orgId;
         private readonly bool _isActive;
 
-        public ChangeVendorActiveStatusCommand(int vendorId, bool isActive)
+        public ChangeOrganizationActivateStatusCommand(int organizationId, bool isActive)
         {
-            _vendorId = vendorId;
+            _orgId = organizationId;
             _isActive = isActive;
         }
         #region ICommand<Vendor> Members
 
-        public IResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
+        public IResult<C.Organization> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
             var data = (from x in ent.Organizations
-                        where x.OrganizationId == _vendorId
+                        where x.OrganizationId == _orgId
                         select x).FirstOrDefault();
 
             data.IsActive = _isActive;
             dbContext.SaveChanges();
 
-            var result = new Result<C.Vendor>(Status.Success, data.ToContract());
+            var result = new Result<C.Organization>(Status.Success, data.ToContract());
             return result;
         }
 

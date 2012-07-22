@@ -1,27 +1,31 @@
 ﻿using System;
-using WFS.Repository.Conversions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using C = WFS.Contract;
-using WFS.Contract.Enums;
+using WFS.Repository.Conversions;
 
 namespace WFS.Repository.Commands
 {
-    public class CreateVendorAndUserCommand : ICommand<C.Vendor>
+    public class CreateOrganizationCommand : ICommand<C.Organization>
     {
         private readonly C.PhoneAddress _addInfo;
         private readonly string _name;
         private readonly int _userId;
         private readonly int? _parentVendorId;
+        private readonly C.Enums.OrganizationTypeEnum _type;
 
-        public CreateVendorAndUserCommand(C.PhoneAddress addInfo, string name, int userId, int? parentVendorId)
+        public CreateOrganizationCommand(C.PhoneAddress addInfo, string name, int userId, int? parentVendorId, C.Enums.OrganizationTypeEnum type)
         {
             _addInfo = addInfo;
             _name = name;
             _userId = userId;
             _parentVendorId = parentVendorId;
+            _type = type;
         }
         #region ICommand<Vendor> Members
 
-        public IResult<C.Vendor> Execute(System.Data.Entity.DbContext dbContext)
+        public IResult<C.Organization> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
@@ -37,11 +41,11 @@ namespace WFS.Repository.Commands
                 ZipCode = _addInfo.ZipCode,
                 IsActive = true,
                 ParentOrgId = _parentVendorId,
-                OrganizationType = OrganizationTypeEnum.Vendor.ToString(),
+                OrganizationType = _type.ToString(),
                 UserId = _userId
             };
 
-            var result = new Result<C.Vendor>(Status.Success, vend.ToContract());
+            var result = new Result<C.Organization>(Status.Success, vend.ToContract());
             return result;
         }
 

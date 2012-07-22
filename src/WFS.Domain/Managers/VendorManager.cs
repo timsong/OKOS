@@ -6,6 +6,7 @@ using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
+using WFS.Contract;
 
 namespace WFS.Domain.Managers
 {
@@ -18,73 +19,42 @@ namespace WFS.Domain.Managers
             _repository = repository;
         }
 
-        public GetVendorListResponse GetVendorList(GetVendorListRequest request)
+        public GetOrganizationListByTypeResponse GetVendorList(GetOrganizationByTypeListRequest request)
         {
-            var response = new GetVendorListResponse();
+            var response = new GetOrganizationListByTypeResponse();
 
-            var query = new GetVendorListQuery();
+            var query = new GetOrganizationsByTypeListQuery(request.Type);
             var result = this._repository.ExecuteQuery(query);
 
             if (result.Status == Status.Success)
-                response.Vendors = result.Values;
+                response.Organizations = result.Values;
 
             return response;
         }
-        public GetVendorByIdResponse GetVendorById(GetVendorByIdRequest request)
+        public GetOrganizationByIdResponse GetVendorById(GetOrganizationByIdRequest request)
         {
-            var response = new GetVendorByIdResponse();
+            var response = new GetOrganizationByIdResponse();
 
-            var query = new GetVendorByIdQuery(request.VendorID);
+            var query = new GetOrganizationByIdQuery(request.OrganizationID);
             var result = this._repository.ExecuteQuery(query);
 
             if (result.Status == Status.Success)
-                response.Vendor = result.Value;
+                response.Organization = result.Value;
 
             return response;
         }
 
-        public ChangeVendorActiveStatusResponse ChangeVendorActiveStatus(ChangeVendorActiveStatusRequest request)
+        public ChangeOrganizationActiveStatusResponse ChangeVendorActiveStatus(ChangeOrganizationActiveStatusRequest request)
         {
-            var resp = new ChangeVendorActiveStatusResponse();
+            var resp = new ChangeOrganizationActiveStatusResponse();
 
-            var command = new ChangeVendorActiveStatusCommand(request.VendorID, request.NewActiveStatus);
+            var command = new ChangeOrganizationActivateStatusCommand(request.OrganizationID, request.NewActiveStatus);
             var result = _repository.ExecuteCommand(command);
 
             if (result.Status == Status.Success)
-                resp.Vendor = result.Value;
+                resp.Organization = (Vendor)result.Value;
 
             return resp;
-        }
-
-        public CreateVendorResponse CreateVendor(CreateVendorRequest request)
-        {
-            var resp = new CreateVendorResponse();
-
-            //check that Membername is OK
-            MembershipCreateStatus memStat;
-            var newMem = Membership.CreateUser(request.Email, request.Password, request.Email, null, null, true, out memStat);
-
-            if (memStat != MembershipCreateStatus.Success)
-                return HandleMembershipCreationError(memStat);
-
-            //Create WFS User
-            var wfsComm = new CreateWFSUserCommand((Guid)newMem.ProviderUserKey, request.FirstName, request.LastName, (request.ParentVendorId.HasValue) ? WFSUserTypeEnum.Store.ToString() : WFSUserTypeEnum.Vendor.ToString());
-            var wfsRes = _repository.ExecuteCommand(wfsComm);
-
-            resp.Merge(wfsRes);
-            if (resp.Status != Status.Success)
-                return resp;
-
-            //Create Vendor and VendorUser
-            var venCmd = new CreateVendorAndUserCommand(request.ContactInfo, request.Name, wfsRes.Value.UserId, request.ParentVendorId);
-            var venRes = _repository.ExecuteCommand(venCmd);
-
-            resp.Merge(venRes);
-            if (resp.Status == Status.Success)
-                resp.Vendor = venRes.Value;
-
-            return resp;
-
         }
         public CreateFoodOptionResponse CreateFoodOption(CreateFoodOptionRequest request)
         {
@@ -115,40 +85,5 @@ namespace WFS.Domain.Managers
             return resp;
         }
        
-        private CreateVendorResponse HandleMembershipCreationError(MembershipCreateStatus memStat)
-        {
-            var msg = new Message();
-
-            switch (memStat)
-            {
-                case MembershipCreateStatus.DuplicateEmail:
-                    msg.Text = "An account with this email already exists";
-                    break;
-                case MembershipCreateStatus.DuplicateProviderUserKey:
-                    break;
-                case MembershipCreateStatus.DuplicateUserName:
-                    msg.Text = "An account with this email already exists";
-                    break;
-                case MembershipCreateStatus.InvalidEmail:
-                    msg.Text = "Your email is not a vaild email address";
-                    break;
-                case MembershipCreateStatus.InvalidPassword:
-                    msg.Text = "The password was not long enough or contained invalid characters";
-                    break;
-                case MembershipCreateStatus.InvalidProviderUserKey:
-                    break;
-                case MembershipCreateStatus.InvalidUserName:
-                    msg.Text = "Your email is not a vaild email address";
-                    break;
-                default:
-                    msg.Text = "An error occurred please try again";
-                    break;
-            }
-
-            var resp = new CreateVendorResponse();
-            resp.Status = Status.Error;
-            resp.Messages.Add(msg);
-            return resp;
-        }
     }
 }

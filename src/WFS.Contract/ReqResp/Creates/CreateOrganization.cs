@@ -2,9 +2,9 @@
 using WFS.Framework;
 namespace WFS.Contract.ReqResp
 {
-    public class CreateVendorRequest
+    public class CreateOrganizationRequest
     {
-        public CreateVendorRequest()
+        public CreateOrganizationRequest()
         {
             ContactInfo = new PhoneAddress();
         }
@@ -16,14 +16,16 @@ namespace WFS.Contract.ReqResp
         public string Password { get; set; }
 
         public PhoneAddress ContactInfo { get; set; }
-        public int? ParentVendorId { get; set; }
+        public int? ParentOrgId { get; set; }
+
+        public Enums.OrganizationTypeEnum Type { get; set; }
 
 
     }
 
-    public class CreateVendorResponse : BaseResponse
+    public class CreateOrganizationResponse : BaseResponse
     {
-        public Vendor Vendor { get; set; }
+        public Organization Organization { get; set; }
     }
 
 }
