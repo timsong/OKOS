@@ -22,13 +22,13 @@ namespace WFS.Repository.Conversions
             model.OrganizationId = data.OrganizationId;
             model.IsActive = data.IsActive;
             model.Name = data.Name;
-            model.Address1 = data.Address1;
-            model.Address2 = data.Address2;
-            model.City = data.City;
-            model.PhoneNumber = data.PhoneNumber;
-            model.PhoneExt = data.PhoneExt;
-            model.State = data.State;
-            model.ZipCode = data.ZipCode;
+            model.AddressInfo.Address1 = data.Address1;
+            model.AddressInfo.Address2 = data.Address2;
+            model.AddressInfo.City = data.City;
+            model.AddressInfo.PhoneNumber = data.PhoneNumber;
+            model.AddressInfo.PhoneExt = data.PhoneExt;
+            model.AddressInfo.State = data.State;
+            model.AddressInfo.ZipCode = data.ZipCode;
             model.ParentOrgId = data.ParentOrgId;
 
             model.User.FirstName = data.WFSUser.FirstName;

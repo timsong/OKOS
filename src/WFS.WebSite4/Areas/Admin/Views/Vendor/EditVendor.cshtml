@@ -7,8 +7,9 @@
 
 <h2>EditVendor</h2>
 
-<form id="vendorEditForm">
+<form id="vendorEditForm" method="post">
     @Html.HiddenFor(x => x.Vendor.OrganizationId)
+    @Html.HiddenFor(x => x.Vendor.User.UserId)
 
     <div class="nine columns">
         <div class="row">
@@ -32,8 +33,20 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Contact Email:</label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBoxFor(x => x.Vendor.User.EmailAddress, new { placeholder = "Contact Email Address" })
+            </div>
+        </div>
 
-        @{Html.RenderPartial("AddressInfo", (object)Model.Vendor);}
+        @{Html.RenderPartial("AddressInfo", 
+                Model.Vendor.AddressInfo, 
+                new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+
+})
     </div>
 </form>
 
@@ -46,8 +59,8 @@
 
 <br />
 <div class="">
-   <a href="#" id="save-link" class="[radius, round] button">Save</a>
-   <a href="#" class="[radius, round] button">CancelS</a>
+   <a href="#" id="save-link"  onclick="editVendor.saveVendor()" class="[radius, round] button">Save</a>
+   <a href="#" class="[radius, round] button">Cancel</a>
 </div>
 
 

@@ -9,7 +9,7 @@
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Companies", RouteName = "admin.companies", UserType = UserType.Admin | UserType.SystemAdmin })
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Users", RouteName = "admin.users", UserType = UserType.Admin | UserType.SystemAdmin })
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Reports", RouteName = "admin.reports", UserType = UserType.Admin | UserType.SystemAdmin })
-	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendor (Home)", RouteName = "vendor.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendor (Home)", RouteName = "vendoradmin.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
 	@{ @RenderSection("primaryNav", false) }
 }
 

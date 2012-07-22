@@ -8,11 +8,12 @@ namespace WFS.Contract
 {
     [Serializable]
     [KnownType(typeof(Vendor))]
-    public abstract class Organization : IAddressInfo
+    public abstract class Organization
     {
         public Organization()
         {
             User = new WFSUser();
+            AddressInfo = new PhoneAddress();
         }
 
         public int OrganizationId { get; set; }
@@ -20,13 +21,7 @@ namespace WFS.Contract
         public string Name { get; set; }
         public bool IsActive { get; set; }
 
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PhoneExt { get; set; }
+        public PhoneAddress AddressInfo { get; set; }
 
         public OrganizationTypeEnum OrganizationType { get; set; }
         public WFSUser User { get; set; }

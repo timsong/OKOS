@@ -1,11 +1,11 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.VendorListViewModel
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Vendor List";
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
 
-<h2>List</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.RouteLink("Add New Vendor", "Admin_Vendor_CreateVendor")

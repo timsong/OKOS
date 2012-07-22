@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using WFS.Domain.Managers;
+﻿using System.Web.Mvc;
 using WFS.Contract.ReqResp;
+using WFS.Domain.Managers;
 using WFS.WebSite4.Areas.Admin.Models;
 using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-	[Authorize(Roles = "Admin,SystemAdmin")]
-	public class VendorController : BaseController
+    [Authorize(Roles = "Admin,SystemAdmin")]
+    public class VendorController : BaseController
     {
         private readonly VendorManager _vendorMgr;
 
@@ -44,7 +40,15 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         }
         public ActionResult AddVendor()
         {
-            return View("EditVendor", new VendorEditModel());
+            var model = new VendorEditModel()
+            {
+                IsNew = false,
+            };
+
+            model.Vendor.Name = "temp";
+            model.Vendor.AddressInfo.Address2 = "456 Main St";
+
+            return View("EditVendor", model);
         }
 
         [HttpPost]

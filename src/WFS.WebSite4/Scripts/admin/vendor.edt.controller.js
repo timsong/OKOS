@@ -1,14 +1,10 @@
 ﻿(function (window) {
     window.editVendor = {
 
-
+	    saveVendor: function (e) {
+            document.forms.item(0).submit();		
+        }
     };
-
-    $(function () {
-        $("#save-link").click(function () {
-            $("#vendorEditForm").submit();
-        });
-    });
 
 
     $(document).ready(function () {

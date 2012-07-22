@@ -146,8 +146,8 @@
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
-    <Compile Include="Areas\Vendor\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Vendor\VendorAreaRegistration.cs" />
+    <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DirectorBaseController.cs" />
@@ -164,6 +164,7 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
     <Content Include="Content\images\logo.jpg" />
@@ -273,7 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Vendor\Models\" />
+    <Folder Include="Areas\VendorAdmin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -331,13 +332,7 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Vendor\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Vendor\Views\Shared\_LayoutPageVendor.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Vendor\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\VendorAdmin\Views\Shared\_LayoutPageVendor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
@@ -350,6 +345,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\VendorAdmin\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

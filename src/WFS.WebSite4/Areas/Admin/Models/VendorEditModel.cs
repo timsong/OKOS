@@ -13,5 +13,6 @@ namespace WFS.WebSite4.Areas.Admin.Models
         public C.Vendor Vendor { get; set; }
 
         public bool IsNew { get; set; }
+
     }
 }

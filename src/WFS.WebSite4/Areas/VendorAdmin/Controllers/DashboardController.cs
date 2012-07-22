@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WFS.WebSite4.Controllers;
 
-namespace WFS.WebSite4.Areas.Vendor.Controllers
+namespace WFS.WebSite4.Areas.VendorAdmin.Controllers
 {
     public class DashboardController : BaseController
     {

@@ -9,6 +9,7 @@ namespace WFS.Contract
         public Guid MembershipGuid { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string EmailAddress { get; set; }
 
         public WFSUserTypeEnum UserType { get; set; }
 
