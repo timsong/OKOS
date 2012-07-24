@@ -14,17 +14,38 @@ namespace WFS.WebSite4.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-			context.MapRoute("admin.dashboard", "Admin/Dashboard", new { controller="Dashboard", action="Index" });
+            context.MapRoute("admin.dashboard", "Admin/Dashboard", new { controller = "Dashboard", action = "Index" });
 
-			context.MapRoute("admin.schools", "Admin/Schools", new { controller = "School", action = "Index" });
+            context.MapRoute("admin.schools", "Admin/Schools", new { controller = "School", action = "Index" });
 
-			context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
+            context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
 
-			context.MapRoute("admin.users", "Admin/Users", new { controller = "User", action = "Index" });
+            context.MapRoute("admin.users", "Admin/Users", new { controller = "User", action = "Index" });
 
-			context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
+            context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
 
-			context.MapRoute(
+            #region food category
+            context.MapRoute(
+                "Admin_FoodCategory_List",
+                "Admin/FoodCategorys/GetList",
+                new { controller = "FoodCategory", action = "Index" }
+            );
+
+            context.MapRoute(
+                "Admin_FoodCategory_EditFoodCategory",
+                "Admin/FoodCategorys/EditFoodCategory/{FoodCategoryID}",
+                new { controller = "FoodCategory", action = "EditFoodCategory" }
+            );
+
+            context.MapRoute(
+                "Admin_FoodCategory_CreateFoodCategory",
+                "Admin/FoodCategorys/AddFoodCategory",
+                new { controller = "FoodCategory", action = "AddFoodCategory" }
+            );
+            #endregion
+
+
+            context.MapRoute(
                 "Admin_Vendor_List",
                 "Admin/Vendors/GetList",
                 new { controller = "Vendor", action = "List" }

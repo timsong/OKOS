@@ -43,6 +43,30 @@ namespace WFS.Domain.Managers
 
             return response;
         }
+        public GetFoodCategoriesByVendorResponse GetFoodCategoriesByVendor(GetFoodCategoriesByVendorRequest request)
+        {
+            var response = new GetFoodCategoriesByVendorResponse();
+
+            var query = new GetFoodCategoryListQuery(request.VendorId);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.FoodCategories = result.Values;
+
+            return response;
+        }
+        public GetFoodCategoryByIdResponse GetVendorById(GetFoodCategoryByIdRequest request)
+        {
+            var response = new GetFoodCategoryByIdResponse();
+
+            var query = new GetFoodCategoryByIdQuery(request.FoodCategoryID);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.FoodCategory = result.Value;
+
+            return response;
+        }
 
         public ChangeOrganizationActiveStatusResponse ChangeVendorActiveStatus(ChangeOrganizationActiveStatusRequest request)
         {

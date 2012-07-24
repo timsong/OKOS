@@ -4,20 +4,20 @@ using C = WFS.Contract;
 
 namespace WFS.Repository.Queries
 {
-    public class GetFoodCategoryListQuery : IListQuery<C.FoodCategory>
+    public class GetFoodOptionListQuery : IListQuery<C.FoodOption>
     {
         private readonly int _vendorID;
-        public GetFoodCategoryListQuery(int vendorId)
+        public GetFoodOptionListQuery(int vendorId)
         {
             _vendorID = vendorId;
         }
 
-        public IListResult<C.FoodCategory> Execute(System.Data.Entity.DbContext dbContext)
+        public IListResult<C.FoodOption> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
-            var data = ent.VendorFoodCategories.Where(x => x.OrganizationID == _vendorID).AsEnumerable().Select(x => x.ToContract());
+            var data = ent.VendorFoodOptions.Where(x => x.OrganizationId == _vendorID).AsEnumerable().Select(x => x.ToContract());
 
-            var result = new ListResult<C.FoodCategory>(data.ToList());
+            var result = new ListResult<C.FoodOption>(data.ToList());
             result.Status = Status.Success;
             return result;
         }

@@ -66,6 +66,8 @@
     <Compile Include="ReqResp\Creates\CreateOrganization.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ReqResp\GetFoodCategoryById.cs" />
+    <Compile Include="ReqResp\GetFoodCategoriesByVendor.cs" />
     <Compile Include="ReqResp\GetFoodItemsByVendorID.cs" />
     <Compile Include="ReqResp\GetFoodOptionsByVendor.cs" />
     <Compile Include="ReqResp\GetOrganizationById.cs" />
