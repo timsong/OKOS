@@ -1,12 +1,9 @@
-﻿using System;
-using System.Web.Security;
-using WFS.Contract.Enums;
+﻿using WFS.Contract;
 using WFS.Contract.ReqResp;
 using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
-using WFS.Contract;
 
 namespace WFS.Domain.Managers
 {
@@ -55,7 +52,7 @@ namespace WFS.Domain.Managers
 
             return response;
         }
-        public GetFoodCategoryByIdResponse GetVendorById(GetFoodCategoryByIdRequest request)
+        public GetFoodCategoryByIdResponse GetFoodCategoryById(GetFoodCategoryByIdRequest request)
         {
             var response = new GetFoodCategoryByIdResponse();
 
@@ -108,6 +105,6 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
-       
+
     }
 }
