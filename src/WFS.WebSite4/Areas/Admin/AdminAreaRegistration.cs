@@ -16,7 +16,9 @@ namespace WFS.WebSite4.Areas.Admin
         {
             context.MapRoute("admin.dashboard", "Admin/Dashboard", new { controller = "Dashboard", action = "Index" });
 
-            context.MapRoute("admin.schools", "Admin/Schools", new { controller = "School", action = "Index" });
+
+            MapSchoolRoutes(context);
+            
 
             context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
 
@@ -61,6 +63,21 @@ namespace WFS.WebSite4.Areas.Admin
                 "Admin_Vendor_CreateVendor",
                 "Admin/Vendors/AddVendor",
                 new { controller = "Vendor", action = "AddVendor" }
+            );
+        }
+
+        private void MapSchoolRoutes(AreaRegistrationContext context)
+        {
+            context.MapRoute(
+                "admin.schools",
+                "Admin/Schools",
+                new { controller = "School", action = "Schools" }
+            );
+            
+            context.MapRoute(
+                "admin.school.view",
+                "Admin/Schools/{schoolid}",
+                new { controller = "School", action = "School" }
             );
         }
     }

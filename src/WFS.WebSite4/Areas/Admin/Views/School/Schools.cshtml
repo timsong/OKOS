@@ -1,0 +1,34 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolsViewModel
+
+@{
+    ViewBag.Title = "School";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.RouteLink("Add New School", "Admin_Vendor_CreateVendor")
+</p>
+
+@foreach (var item in Model.Schools) {
+    <div class="panel">
+        <div class="row">
+            <div class="eight columns">
+                <div class="four columns">
+                    @item.Name
+                </div>
+                <div class="two columns">
+                    @Html.RouteLink("View","admin.school.view",new { schoolID = item.OrganizationId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "admin.school.delete", new { vendorID = item.OrganizationId })
+                </div>
+                <div class="one columns"></div>
+
+            </div>
+        </div>
+    </div>
+}
+
+</table>
