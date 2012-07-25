@@ -64,6 +64,7 @@
     <Compile Include="Queries\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />
+    <Compile Include="Queries\FoodCategory\GetFoodCategoryByIdQuery.cs" />
     <Compile Include="Queries\FoodOptions\GetFoodOptionListQuery.cs" />
     <Compile Include="Queries\GetFoodItemListQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />

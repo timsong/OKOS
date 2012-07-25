@@ -11,11 +11,17 @@
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
             </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
         </ol>
+    
+        <div class="row">
+            <div class="four columns">
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </div>
+            <div class="three columns end">
+                @Html.CheckBoxFor(m => m.RememberMe)
+            </div>
+        </div>  
+
         <input type="submit" class="medium success button" value="Log in" />
     <p>
         @Html.ActionLink("Register", "Register") if you don't have an account.

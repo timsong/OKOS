@@ -14,19 +14,42 @@ namespace WFS.WebSite4.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-			context.MapRoute("admin.dashboard", "Admin/Dashboard", new { controller="Dashboard", action="Index" });
+            context.MapRoute("admin.dashboard", "Admin/Dashboard", new { controller = "Dashboard", action = "Index" });
 
-			context.MapRoute("admin.schools", "Admin/Schools", new { controller = "School", action = "Index" });
 
-			context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
+            MapSchoolRoutes(context);
+            
 
-			context.MapRoute("admin.users", "Admin/Users", new { controller = "User", action = "Index" });
+            context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
 
-			context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
+            context.MapRoute("admin.users", "Admin/Users", new { controller = "User", action = "Index" });
+
+            context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
 
 			context.MapRoute("admin.vendor.save", "Admin/Vendor/Save", new { controller = "Vendor", action = "Save" });
 
-			context.MapRoute(
+            #region food category
+            context.MapRoute(
+                "Admin_FoodCategory_List",
+                "Admin/FoodCategorys/GetList",
+                new { controller = "FoodCategory", action = "Index" }
+            );
+
+            context.MapRoute(
+                "Admin_FoodCategory_EditFoodCategory",
+                "Admin/FoodCategorys/EditFoodCategory/{FoodCategoryID}",
+                new { controller = "FoodCategory", action = "EditFoodCategory" }
+            );
+
+            context.MapRoute(
+                "Admin_FoodCategory_CreateFoodCategory",
+                "Admin/FoodCategorys/AddFoodCategory",
+                new { controller = "FoodCategory", action = "AddFoodCategory" }
+            );
+            #endregion
+
+
+            context.MapRoute(
                 "Admin_Vendor_List",
                 "Admin/Vendors/GetList",
                 new { controller = "Vendor", action = "List" }
@@ -42,6 +65,21 @@ namespace WFS.WebSite4.Areas.Admin
                 "Admin_Vendor_CreateVendor",
                 "Admin/Vendors/AddVendor",
                 new { controller = "Vendor", action = "AddVendor" }
+            );
+        }
+
+        private void MapSchoolRoutes(AreaRegistrationContext context)
+        {
+            context.MapRoute(
+                "admin.schools",
+                "Admin/Schools",
+                new { controller = "School", action = "Schools" }
+            );
+            
+            context.MapRoute(
+                "admin.school.view",
+                "Admin/Schools/{schoolid}",
+                new { controller = "School", action = "School" }
             );
         }
     }

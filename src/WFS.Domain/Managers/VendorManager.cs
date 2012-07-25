@@ -1,12 +1,9 @@
-﻿using System;
-using System.Web.Security;
-using WFS.Contract.Enums;
+﻿using WFS.Contract;
 using WFS.Contract.ReqResp;
 using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
-using WFS.Contract;
 using WFS.Contract.ReqResp.Creates;
 using WFS.Repository.Commands.Vendor;
 
@@ -42,6 +39,30 @@ namespace WFS.Domain.Managers
 
             if (result.Status == Status.Success)
                 response.Organization = result.Value;
+
+            return response;
+        }
+        public GetFoodCategoriesByVendorResponse GetFoodCategoriesByVendor(GetFoodCategoriesByVendorRequest request)
+        {
+            var response = new GetFoodCategoriesByVendorResponse();
+
+            var query = new GetFoodCategoryListQuery(request.VendorId);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.FoodCategories = result.Values;
+
+            return response;
+        }
+        public GetFoodCategoryByIdResponse GetFoodCategoryById(GetFoodCategoryByIdRequest request)
+        {
+            var response = new GetFoodCategoryByIdResponse();
+
+            var query = new GetFoodCategoryByIdQuery(request.FoodCategoryID);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.FoodCategory = result.Value;
 
             return response;
         }
@@ -96,6 +117,6 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
-       
+
     }
 }

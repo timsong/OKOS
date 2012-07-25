@@ -1,0 +1,14 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.FoodCategoryListViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.RouteLink("Add New Food Category", "Admin_FoodCategory_CreateFoodCategory")
+</p>
+

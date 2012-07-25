@@ -140,10 +140,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
@@ -338,7 +342,7 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\School\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\School\Schools.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
@@ -351,6 +355,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Vendor\VendorList.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodCategory\AddEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\School\School.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

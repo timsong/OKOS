@@ -15,19 +15,6 @@ namespace WFS.Domain.Managers
             _repository = repository;
         }
 
-        public GetFoodOptionsByVendorResponse GetFoodOptionsByVendorId(GetFoodOptionsByVendorRequest request)
-        {
-            var response = new GetFoodOptionsByVendorResponse();
-
-            var query = new GetFoodOptionListQuery(request.VendorId);
-            var result = this._repository.ExecuteQuery(query);
-
-            if (result.Status == Status.Success)
-                response.FoodOptions = result.Values;
-
-            return response;
-
-        }
         public GetFoodItemsByVendorIdResponse GetFoodItemsByVendor(GetFoodItemsByVendorIdRequest request)
         {
             var response = new GetFoodItemsByVendorIdResponse();
