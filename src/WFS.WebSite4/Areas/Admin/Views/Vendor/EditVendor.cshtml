@@ -1,70 +1,52 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.VendorEditModel
-
-@{
-    ViewBag.Title = "EditVendor";
-	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
-}
-
 <h2>EditVendor</h2>
-
 <form id="vendorEditForm" method="post">
-    @Html.HiddenFor(x => x.Vendor.OrganizationId)
-    @Html.HiddenFor(x => x.Vendor.User.UserId)
+    @Html.Hidden("OrganizationId", Model.Vendor.OrganizationId)
+    @Html.Hidden("UserId", Model.Vendor.User.UserId)
 
-    <div class="nine columns">
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">Vendor Name:</label>
-            </div>
-            <div class="eight columns end">
-                @Html.TextBoxFor(x => x.Vendor.Name)
-            </div>
-        </div>
+	<div class="row">
+		<div class="twelve columns">
+			<div class="row">
+				<div class="three columns">
+					<label class="right inline">Vendor Name:</label>
+				</div>
+				<div class="eight columns end">
+					@Html.TextBox("Name", Model.Vendor.Name)
+				</div>
+			</div>
 
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">Contact Name:</label>
-            </div>
-            <div class="four columns">
-                @Html.TextBoxFor(x => x.Vendor.User.FirstName, new { placeholder = "First Name" })
-            </div>
-            <div class="four columns end">
-                @Html.TextBoxFor(x => x.Vendor.User.LastName, new { placeholder = "Last Name" })
-            </div>
-        </div>
+			<div class="row">
+				<div class="three columns">
+					<label class="right inline">Contact Name:</label>
+				</div>
+				<div class="four columns">
+					@Html.TextBox("User.FirstName", Model.Vendor.User.FirstName, new { placeholder = "First Name" })
+				</div>
+				<div class="four columns end">
+					@Html.TextBox("User.LastName", Model.Vendor.User.LastName, new { placeholder = "Last Name" })
+				</div>
+			</div>
 
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">Contact Email:</label>
-            </div>
-            <div class="eight columns end">
-                @Html.TextBoxFor(x => x.Vendor.User.EmailAddress, new { placeholder = "Contact Email Address" })
-            </div>
-        </div>
+			<div class="row">
+				<div class="three columns">
+					<label class="right inline">Contact Email:</label>
+				</div>
+				<div class="eight columns end">
+					@Html.TextBox("User.EmailAddress", Model.Vendor.User.EmailAddress, new { placeholder = "Contact Email Address" })
+				</div>
+			</div>
 
-        @{Html.RenderPartial("AddressInfo", 
-                Model.Vendor.AddressInfo, 
-                new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
-
-})
-    </div>
+			@{Html.RenderPartial("AddressInfo", 
+					Model.Vendor.AddressInfo, 
+					new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+		</div>
+	</div>
 </form>
-
-<div class="three columns">
-    @if (!Model.IsNew)
-    { 
-       <label>Add Links Here</label>
-    }
+<div class="row">
+	<div class="six columns">
+		<a href="#" id="save-link" msclick="vendor.save" class="radius button">Save</a>
+	</div>
+	<div class="six columns">
+		<a href="#" class="close-reveal-modal radius button">Cancel</a>
+	</div>
 </div>
-
-<br />
-<div class="">
-   <a href="#" id="save-link"  onclick="editVendor.saveVendor()" class="[radius, round] button">Save</a>
-   <a href="#" class="[radius, round] button">Cancel</a>
-</div>
-
-
-
-@section Scripts {
-    @System.Web.Optimization.Scripts.Render("~/bundles/admin")
-}

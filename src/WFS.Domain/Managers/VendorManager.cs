@@ -4,6 +4,8 @@ using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
+using WFS.Contract.ReqResp.Creates;
+using WFS.Repository.Commands.Vendor;
 
 namespace WFS.Domain.Managers
 {
@@ -77,6 +79,16 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
+
+		public SaveVendorResponse SaveVendor(SaveVendorRequest request)
+		{
+			var command = new SaveVendorCommand(request.Subject);
+
+			var resp = (SaveVendorResponse)_repository.ExecuteCommand<Vendor>(command);
+
+			return resp;
+		}
+
         public CreateFoodOptionResponse CreateFoodOption(CreateFoodOptionRequest request)
         {
             var resp = new CreateFoodOptionResponse();

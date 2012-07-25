@@ -1,33 +1,20 @@
-﻿@model WFS.WebSite4.Areas.Admin.Models.VendorListViewModel
+@model WFS.WebSite4.Areas.Admin.Models.VendorListViewModel
 
 @{
     ViewBag.Title = "Vendor List";
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
-
 <h2>@ViewBag.Title</h2>
-
+<div id="modalEdit" class="reveal-modal">
+	
+</div>
 <p>
     @Html.RouteLink("Add New Vendor", "Admin_Vendor_CreateVendor")
 </p>
+<div id="vendorListPanel">
+@{ Html.RenderPartial("VendorList", Model); }
+</div>
 
-@foreach (var item in Model.Vendors) {
-    <div class="panel">
-        <div class="row">
-            <div class="eight columns">
-                <div class="four columns">
-                    @item.Name
-                </div>
-                <div class="two columns">
-                    @Html.RouteLink("Edit/View","Admin_Vendor_EditVendor",new {vendorID = item.OrganizationId })
-                </div>
-                <div class="one columns">
-                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrganizationId })
-                </div>
-                <div class="one columns"></div>
-
-            </div>
-        </div>
-    </div>
+@section scripts{
+	@System.Web.Optimization.Scripts.Render("~/bundles/admin/vendor")
 }
-

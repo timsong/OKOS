@@ -1,0 +1,50 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolViewModel
+
+@{
+    ViewBag.Title = "School";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>EditVendor</h2>
+
+    <div class="nine columns">
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">School Name:</label>
+            </div>
+            <div class="eight columns end">
+                @Model.School.Name
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Contact Name:</label>
+            </div>
+            <div class="four columns">
+                @Model.School.User.FirstName
+            </div>
+            <div class="four columns end">
+                @Model.School.User.LastName
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Contact Email:</label>
+            </div>
+            <div class="eight columns end">
+                @Model.School.User.EmailAddress, new { placeholder = "Contact Email Address" })
+            </div>
+        </div>
+
+        @{Html.RenderPartial("AddressInfo", 
+                Model.School.AddressInfo, 
+                new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+
+})
+
+
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/admin")
+}

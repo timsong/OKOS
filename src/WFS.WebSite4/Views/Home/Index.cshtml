@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -17,6 +17,7 @@
 <ol class="round">
     <li class="one">
         <h5>Getting Started</h5>
-           @Html.RouteLink("Food Cates", "Admin_FoodCategory_List", new { vendorID = 3 });
+           @Html.RouteLink("Vendors", "Admin_Vendor_List");
+           @Html.RouteLink("Schools", "admin.schools");
     </li>
 </ol>
