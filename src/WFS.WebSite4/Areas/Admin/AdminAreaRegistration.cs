@@ -27,19 +27,26 @@ namespace WFS.WebSite4.Areas.Admin
             #region food category
             context.MapRoute(
                 "Admin_FoodCategory_List",
-                "Admin/FoodCategorys/GetList",
+                "Admin/FoodCategory/GetList/{vendorID}",
                 new { controller = "FoodCategory", action = "Index" }
             );
 
             context.MapRoute(
                 "Admin_FoodCategory_EditFoodCategory",
-                "Admin/FoodCategorys/EditFoodCategory/{FoodCategoryID}",
+                "Admin/FoodCategory/EditFoodCategory/{FoodCategoryID}",
                 new { controller = "FoodCategory", action = "EditFoodCategory" }
+            );
+
+
+            context.MapRoute(
+                "Admin_FoodCategory_DeleteFoodCategory",
+                "Admin/FoodCategory/DeleteFoodCategory/{FoodCategoryID}",
+                new { controller = "FoodCategory", action = "DeleteFoodCategory" }
             );
 
             context.MapRoute(
                 "Admin_FoodCategory_CreateFoodCategory",
-                "Admin/FoodCategorys/AddFoodCategory",
+                "Admin/FoodCategory/AddFoodCategory",
                 new { controller = "FoodCategory", action = "AddFoodCategory" }
             );
             #endregion

@@ -2,7 +2,37 @@
 
 @{
     ViewBag.Title = "AddEdit";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
 
 <h2>AddEdit</h2>
+
+<form id="foodCategoryEditForm" method="post">
+    <div class="panel">
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Name: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBoxFor(x => x.Name);
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Category: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.DropDownListFor(x => x.CategoryType, (SelectList)ViewData["categoryTypes"])
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+            </div>
+            <div class="six columns">
+                   <a href="#" id="save-link" msclick="foodcategory.saveFoodCategory"  class="[radius, round] button">Save</a>
+                   <a href="#" class="[radius, round] button">Cancel</a>
+            </div>
+        
+        </div>
+
+    </div>
+</form>

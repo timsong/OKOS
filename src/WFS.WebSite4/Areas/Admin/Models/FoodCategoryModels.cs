@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Models
@@ -18,6 +15,8 @@ namespace WFS.WebSite4.Areas.Admin.Models
 
     public class FoodCategoryEditModel
     {
-
+        public int FoodCategoryId { get; set; }
+        public string Name { get; set; }
+        public string CategoryType { get; set; }
     }
 }

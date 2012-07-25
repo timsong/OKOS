@@ -6,11 +6,11 @@ namespace WFS.Repository.Queries
 {
     public class GetFoodCategoryByIdQuery : IQuery<C.FoodCategory>
     {
-        public int _vendorId { get; set; }
+        public int _foodCategoryId { get; set; }
 
-        public GetFoodCategoryByIdQuery(int vendorId)
+        public GetFoodCategoryByIdQuery(int foodCategoryId)
         {
-            _vendorId = vendorId;
+            _foodCategoryId = foodCategoryId;
         }
 
         #region IQuery<Vendor> Members
@@ -19,7 +19,7 @@ namespace WFS.Repository.Queries
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
             var data = (from x in ent.VendorFoodCategories
-                        where x.OrganizationID == _vendorId
+                        where x.VendorFoodCategoryId == _foodCategoryId
                         select x).FirstOrDefault().ToContract();
 
             var result = new Result<C.FoodCategory>(Status.Success, data);

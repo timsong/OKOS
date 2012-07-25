@@ -357,6 +357,9 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodCategory\AddEdit.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\admin\foodcategory.list.controller.js" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
