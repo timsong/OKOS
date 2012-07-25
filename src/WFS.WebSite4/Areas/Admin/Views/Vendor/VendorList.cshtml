@@ -1,0 +1,20 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.VendorListViewModel
+@foreach (var item in Model.Vendors) {
+    <div class="panel">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="eight columns">
+                    @item.Name
+                </div>
+                <div class="one columns">
+					<a href="javascript:void(0)" msclick="vendor.edit" data-id="@item.OrganizationId">Edit</a>
+                    @Html.RouteLink("Edit/View","Admin_Vendor_EditVendor",new {vendorID = item.OrganizationId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrganizationId })
+                </div>
+                <div class="one columns"></div>
+            </div>
+        </div>
+    </div>
+}
