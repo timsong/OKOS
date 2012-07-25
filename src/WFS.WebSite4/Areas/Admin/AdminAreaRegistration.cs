@@ -24,6 +24,8 @@ namespace WFS.WebSite4.Areas.Admin
 
 			context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
 
+			context.MapRoute("admin.vendor.save", "Admin/Vendor/Save", new { controller = "Vendor", action = "Save" });
+
 			context.MapRoute(
                 "Admin_Vendor_List",
                 "Admin/Vendors/GetList",

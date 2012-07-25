@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\UIResponseExtensions.cs" />
     <Compile Include="IPagable.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Repository\ICommand.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Responses\IListResponse.cs" />
     <Compile Include="Responses\IResponse.cs" />
     <Compile Include="Responses\ResponseExtensions.cs" />
+    <Compile Include="Responses\UIResponse.cs" />
     <Compile Include="SortDirection.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>

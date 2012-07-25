@@ -38,10 +38,13 @@ namespace WFS.WebSite4
                 , "~/Scripts/okos/okos.mikerowsoft.js", "~/Scripts/okos/okos.ms.js", "~/Scripts/okos/okos.messaging.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js", "~/Scripts/foundation/foundation.js"));
-            bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
 
+			#region admin scripts 
 
-            // blah
-        }
+			bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/admin/vendor").Include("~/Scripts/admin/vendor.js"));
+			#endregion 
+		}
     }
 }
