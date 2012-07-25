@@ -14,7 +14,21 @@
         }
 
         , saveFoodCategory: function (e) {
-            $('#foodCategoryEditForm').submit();
+            var data = $('#foodCategoryEditForm').serialize();
+            var url = '/Admin/FoodCategory/Save';
+            ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status == 0) {
+				        $('#modalEditWindow', data.HtmlResult);
+				    }
+				    else {
+				        $('#foodCategoryListPanel', data.HtmlResult);
+				        $('.close-reveal-modal').click();
+				    }
+				}
+            });
         }
     };
 

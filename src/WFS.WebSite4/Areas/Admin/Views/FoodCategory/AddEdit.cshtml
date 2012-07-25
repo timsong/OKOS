@@ -7,7 +7,9 @@
 <h2>AddEdit</h2>
 
 <form id="foodCategoryEditForm" method="post">
-    <div class="panel">
+    @Html.HiddenFor(x => x.FoodCategoryId)
+    @Html.HiddenFor(x => x.VendorId)
+
         <div class="row">
             <div class="three columns">
                 <label class="right inline">Name: </label>
@@ -24,15 +26,13 @@
                 @Html.DropDownListFor(x => x.CategoryType, (SelectList)ViewData["categoryTypes"])
             </div>
         </div>
-        <div class="row">
-            <div class="six columns">
-            </div>
-            <div class="six columns">
-                   <a href="#" id="save-link" msclick="foodcategory.saveFoodCategory"  class="[radius, round] button">Save</a>
-                   <a href="#" class="[radius, round] button">Cancel</a>
-            </div>
-        
-        </div>
-
-    </div>
 </form>
+
+<div class="row">
+    <div class="six columns">
+        <a href="#" id="save-link" msclick="foodcategory.saveFoodCategory"  class="radius button">Save</a>
+    </div>
+    <div class="six columns">
+        <a href="#" class="close-reveal-modal radius button">Cancel</a>
+    </div>
+</div>

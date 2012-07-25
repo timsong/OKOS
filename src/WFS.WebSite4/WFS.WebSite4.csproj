@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -210,6 +210,7 @@
     <Content Include="Images\foundation\right-arrow.png" />
     <Content Include="Images\foundation\rotator-black.png" />
     <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\admin\foodcategory.list.js" />
     <Content Include="Scripts\admin\vendor.js" />
     <Content Include="Scripts\foundation\foundation.js" />
     <Content Include="Scripts\foundation\jquery.min.js" />
@@ -362,6 +363,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\School\School.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodCategory\FoodCategoryList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

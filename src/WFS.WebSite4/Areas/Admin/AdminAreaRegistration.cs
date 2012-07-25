@@ -18,7 +18,7 @@ namespace WFS.WebSite4.Areas.Admin
 
 
             MapSchoolRoutes(context);
-            
+
 
             context.MapRoute("admin.companies", "Admin/Companies", new { controller = "Company", action = "Index" });
 
@@ -26,7 +26,7 @@ namespace WFS.WebSite4.Areas.Admin
 
             context.MapRoute("admin.reports", "Admin/Reports", new { controller = "Report", action = "Index" });
 
-			context.MapRoute("admin.vendor.save", "Admin/Vendor/Save", new { controller = "Vendor", action = "Save" });
+            context.MapRoute("admin.vendor.save", "Admin/Vendor/Save", new { controller = "Vendor", action = "Save" });
 
             #region food category
             context.MapRoute(
@@ -41,6 +41,12 @@ namespace WFS.WebSite4.Areas.Admin
                 new { controller = "FoodCategory", action = "EditFoodCategory" }
             );
 
+
+            context.MapRoute(
+                "Admin_FoodCategory_Save",
+                "Admin/FoodCategory/Save",
+                new { controller = "FoodCategory", action = "Save" }
+            );
 
             context.MapRoute(
                 "Admin_FoodCategory_DeleteFoodCategory",
@@ -68,6 +74,7 @@ namespace WFS.WebSite4.Areas.Admin
                 new { controller = "Vendor", action = "EditVendor" }
             );
 
+
             context.MapRoute(
                 "Admin_Vendor_CreateVendor",
                 "Admin/Vendors/AddVendor",
@@ -82,7 +89,7 @@ namespace WFS.WebSite4.Areas.Admin
                 "Admin/Schools",
                 new { controller = "School", action = "Schools" }
             );
-            
+
             context.MapRoute(
                 "admin.school.view",
                 "Admin/Schools/{schoolid}",

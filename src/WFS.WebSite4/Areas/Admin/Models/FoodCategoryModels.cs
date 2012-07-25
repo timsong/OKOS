@@ -16,6 +16,7 @@ namespace WFS.WebSite4.Areas.Admin.Models
     public class FoodCategoryEditModel
     {
         public int FoodCategoryId { get; set; }
+        public int VendorId { get; set; }
         public string Name { get; set; }
         public string CategoryType { get; set; }
     }

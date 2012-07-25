@@ -51,13 +51,14 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
                     Name = resp.FoodCategory.Name,
                     CategoryType = resp.FoodCategory.CategoryType.ToString(),
                     FoodCategoryId = resp.FoodCategory.FoodCategoryId,
+                    VendorId = resp.FoodCategory.VendorId
                 };
 
             var retString = RenderPartialViewToString("AddEdit", m);
             return Json(retString, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult EditFoodCategory(FoodCategoryEditModel model)
+        public ActionResult Save(FoodCategoryEditModel model)
         {
             return null;
         }

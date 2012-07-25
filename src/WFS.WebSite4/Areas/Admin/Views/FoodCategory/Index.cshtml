@@ -12,35 +12,12 @@
     @Html.RouteLink("Add New Food Category", "Admin_FoodCategory_CreateFoodCategory")
 </p>
 
-<br />
-
-@foreach (var item in Model.Categories) {
-
-    <div class="panel">
-        <div class="row">
-            <div class="four columns">
-                @item.Name
-            </div>
-            <div class="four columns">
-                @item.CategoryType.ToString()
-            </div>
-            <div class="two columns">
-                <a href="javascript:void(0)" msclick="foodcategory.openEditWindow" msid="@item.FoodCategoryId">Edit/View</a>
-            </div>
-            <div class="one columns end">
-                @Html.RouteLink("Delete", "Admin_FoodCategory_DeleteFoodCategory", new { FoodCategoryID = item.FoodCategoryId })
-            </div>
-
-        </div>
-    </div>
-
-}
-
-
-
 <div id="modalEditWindow" class="reveal-modal">
 </div>
     
+<div id="foodCategoryListPanel">
+@{ Html.RenderPartial("FoodCategoryList", Model); }
+</div>
 
 
 @section Scripts {
