@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WFS.WebSite4.Models;
@@ -88,8 +87,8 @@ namespace WFS.WebSite4.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-					Roles.AddUserToRole(model.UserName, "Vendor"); /// TODO - FIX THIS.... ONLY TO MAKE THIS WORK.
-																   /// 
+                    Roles.AddUserToRole(model.UserName, "VendorAdmin"); /// TODO - FIX THIS.... ONLY TO MAKE THIS WORK.
+                    /// 
                     FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
                     return RedirectToAction("Index", "Home");
                 }
