@@ -1,0 +1,18 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.VendorEditModel
+<div class="panel">
+	<div class="row">
+		<div class="one columns">
+			<div>
+				@Html.Label(@Model.Vendor.User.FirstName + " " + @Model.Vendor.User.LastName, new { @class = "label radius primary" })
+			</div>
+			<br />
+			<div class="label secondary">
+				<a href="mailto:@Model.Vendor.User.EmailAddress">@Model.Vendor.User.EmailAddress</a>
+			</div>
+			<div class="label secondary">
+				@Model.Vendor.AddressInfo.PhoneNumber
+				@{if (!string.IsNullOrEmpty(Model.Vendor.AddressInfo.PhoneExt)) { @Model.Vendor.AddressInfo.PhoneExt }}
+			</div>
+		</div>
+	</div>
+</div>

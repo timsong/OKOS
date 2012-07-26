@@ -43,13 +43,24 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             return View(m);
         }
 
+
+		public ActionResult DisplayVendor(int vendorId)
+		{
+			var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorId });
+
+			var viewModel = new VendorEditModel((C.Vendor)resp.Organization);
+
+			return View("DisplayVendor", viewModel);
+		}
+
+
         public ActionResult EditVendor(int vendorID)
         {
             var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorID });
 
-			var uiresponse = resp.ToUIResult<VendorEditModel>(() => new VendorEditModel ((C.Vendor)resp.Organization), (vm) => RenderPartialViewToString("EditVendor", vm));
+			var viewModel = new VendorEditModel ((C.Vendor)resp.Organization);
 
-			return Json(uiresponse, JsonRequestBehavior.AllowGet);
+			return View("EditVendor",  viewModel);
         }
 
 		[HttpPost]
