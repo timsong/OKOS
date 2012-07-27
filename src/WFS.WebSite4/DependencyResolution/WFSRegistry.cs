@@ -7,11 +7,9 @@ namespace WFS.WebSite4.DependencyResolution
     {
         public WFSRegistry()
         {
-            var ent = new WFS.DataContext.WFSEntities();
-
             For<WFS.Repository.WFSRepository>()
                 .HybridHttpOrThreadLocalScoped()
-                 .Use(() => new WFS.Repository.WFSRepository((DbContext)ent));
+				 .Use(() => new WFS.Repository.WFSRepository((DbContext)new WFS.DataContext.WFSEntities()));
         }
     }
 }

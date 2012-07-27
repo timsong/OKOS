@@ -14,7 +14,7 @@
 		@{Html.RenderPartial("DisplayContact", Model);}
 	</div>
 	<div class="two columns" style="text-align: center">
-		<a href="javascript:void(0)" class="button radius small">Edit</a>
+		<a href="javascript:void(0)" msclick="vendor.edit" data-id="@Model.Vendor.OrganizationId" class="button radius small">Edit</a>
 		<a href="/Admin/Vendors/GetList" class="button radius small">Back</a>
 	</div>
 </div>
@@ -32,6 +32,7 @@
 	<li id="menusPanelTab"> menus </li>
 	<li id="storesPanelTab"> stores </li>
 </ul>
+<div id="modalEdit" class="reveal-modal"></div>
 @section Scripts {
     @System.Web.Optimization.Scripts.Render("~/bundles/admin")
 }

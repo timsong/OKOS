@@ -58,9 +58,10 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         {
             var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorID });
 
-			var viewModel = new VendorEditModel ((C.Vendor)resp.Organization);
+			var uiresult = resp.ToUIResult<VendorEditModel>(() => new VendorEditModel((C.Vendor)resp.Organization)
+				, (vm) => RenderPartialViewToString("EditVendor", vm));
 
-			return View("EditVendor",  viewModel);
+			return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

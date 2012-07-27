@@ -6,6 +6,11 @@ using WFS.Repository.Commands;
 using WFS.Repository.Queries;
 using WFS.Contract.ReqResp.Creates;
 using WFS.Repository.Commands.Vendor;
+using System.Web.Security;
+using WFS.Framework.Extensions;
+using WFS.Framework;
+using System;
+using WFS.Contract.Enums;
 
 namespace WFS.Domain.Managers
 {
@@ -82,9 +87,27 @@ namespace WFS.Domain.Managers
 
 		public SaveVendorResponse SaveVendor(SaveVendorRequest request)
 		{
-			var command = new SaveVendorCommand(request.Subject);
+			var resp = new SaveVendorResponse();
 
-			var resp = (SaveVendorResponse)_repository.ExecuteCommand<Vendor>(command);
+			var user = request.Subject.User;
+
+			var userCommand = new SaveWFSUserCommand(request.Subject.User);
+	
+			var userResponse = _repository.ExecuteCommand(userCommand);
+
+			resp.Merge<Vendor, WFSUser>((Result<WFSUser>)userResponse);
+
+			if (resp.Status != Status.Success)
+				return resp;
+
+			var vendorCommand = new SaveVendorCommand(request.Subject);
+
+			var venRes = _repository.ExecuteCommand(vendorCommand);
+
+			((Result<Vendor>)venRes).Merge<Vendor, Vendor>(resp);
+
+			if (resp.Status == Status.Success)
+				resp.Value = (Vendor)venRes.Value;
 
 			return resp;
 		}

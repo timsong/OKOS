@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,10 +50,11 @@
     <Compile Include="Commands\FoodCategory\CreateFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
     <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
+    <Compile Include="Commands\MembershipCreateStatus.cs" />
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />
     <Compile Include="Commands\Organization\ChangeOrganizationActivateStatusCommand.cs" />
     <Compile Include="Commands\Organization\CreateOrganizationCommand.cs" />
-    <Compile Include="Commands\CreateWFSUserCommand.cs" />
+    <Compile Include="Commands\SaveWFSUserCommand.cs" />
     <Compile Include="Commands\Vendor\SaveVendorCommand.cs" />
     <Compile Include="Conversions\VendorConversion.cs" />
     <Compile Include="Conversions\ExtendOrganization\ExtendVendor.cs" />
@@ -61,7 +64,7 @@
     <Compile Include="Conversions\FoodOptionConversion.cs" />
     <Compile Include="Conversions\MenuConversion.cs" />
     <Compile Include="Conversions\OrganizationConversion.cs" />
-    <Compile Include="Queries\WFSUserConversion.cs" />
+    <Compile Include="Conversions\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryByIdQuery.cs" />

@@ -39,6 +39,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\MembershipExtensions.cs" />
     <Compile Include="Extensions\UIResponseExtensions.cs" />
     <Compile Include="IPagable.cs" />
     <Compile Include="Message.cs" />
