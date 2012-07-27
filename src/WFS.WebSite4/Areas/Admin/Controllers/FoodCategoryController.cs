@@ -9,7 +9,7 @@ using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,SystemAdmin")]
+    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin)]
     public class FoodCategoryController : BaseController
     {
         private readonly VendorManager _vendorMgr;

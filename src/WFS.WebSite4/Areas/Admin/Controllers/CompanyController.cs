@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WFS.WebSite4.Controllers;
+using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-	[Authorize(Roles = "Admin,SystemAdmin")]
+    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin)]
 	public class CompanyController : BaseController
     {
         public ActionResult Index()

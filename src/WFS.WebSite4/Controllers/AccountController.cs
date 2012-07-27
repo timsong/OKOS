@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using WFS.Contract.Enums;
 using WFS.WebSite4.Models;
 
 namespace WFS.WebSite4.Controllers
@@ -87,8 +88,8 @@ namespace WFS.WebSite4.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    Roles.AddUserToRole(model.UserName, "VendorAdmin"); /// TODO - FIX THIS.... ONLY TO MAKE THIS WORK.
-                    /// 
+                    Roles.AddUserToRole(model.UserName, WFSRoleEnum.Customer.ToString());
+
                     FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
                     return RedirectToAction("Index", "Home");
                 }
