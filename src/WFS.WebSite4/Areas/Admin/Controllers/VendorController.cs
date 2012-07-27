@@ -6,6 +6,7 @@ using WFS.Framework;
 using WFS.WebSite4.Areas.Admin.Models;
 using WFS.WebSite4.Controllers;
 using C = WFS.Contract;
+using WFS.Framework.Responses;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
@@ -53,6 +54,19 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			return View("DisplayVendor", viewModel);
 		}
 
+		public ActionResult AddVendor()
+		{
+			var viewModel = new VendorEditModel(new C.Vendor ());
+
+			var uiresult = new UIResponse<VendorEditModel>();
+
+			uiresult.Subject = viewModel;
+
+			uiresult.HtmlResult = RenderPartialViewToString("EditVendor", viewModel);
+
+			return Json(uiresult, JsonRequestBehavior.AllowGet);
+		}
+
         public ActionResult EditVendor(int vendorID)
         {
             var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorID });
@@ -66,7 +80,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Save(C.Vendor model)
         {
-            var resp = _vendorMgr.SaveVendor(new C.ReqResp.Creates.SaveVendorRequest() { Subject = model });
+            var resp = _vendorMgr.SaveVendor(new C.ReqResp.SaveVendorRequest() { Subject = model });
 
             if (resp.Status == Status.Success)
             {

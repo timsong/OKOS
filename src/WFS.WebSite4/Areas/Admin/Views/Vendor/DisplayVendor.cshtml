@@ -26,7 +26,10 @@
 	<dd><a href="#storesPanel">Stores</a></dd>
 </dl>
 <ul class="tabs-content contained">
-	<li class="active" id="categoriesPanelTab"> categories </li>
+	<li class="active" id="categoriesPanelTab">
+		@{Html.RenderAction("List", "FoodCategory", new { controller="FoodCategory"
+			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
+	</li>
 	<li id="optionsPanelTab"> options </li>
 	<li id="foodItemsPanelTab"> food items </li>
 	<li id="menusPanelTab"> menus </li>

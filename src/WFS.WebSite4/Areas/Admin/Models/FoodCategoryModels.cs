@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using WFS.Contract;
+using WFS.Framework;
+
 
 namespace WFS.WebSite4.Areas.Admin.Models
 {
@@ -11,13 +13,22 @@ namespace WFS.WebSite4.Areas.Admin.Models
         }
 
         public List<FoodCategory> Categories { get; set; }
+
+		public int VendorId { get; set; }
     }
 
-    public class FoodCategoryEditModel
+	public class FoodCategoryEditModel : EditModelBase<FoodCategory>
     {
-        public int FoodCategoryId { get; set; }
-        public int VendorId { get; set; }
-        public string Name { get; set; }
-        public string CategoryType { get; set; }
-    }
+		public FoodCategoryEditModel()
+		{
+			Subject = new FoodCategory();
+		}
+
+		public FoodCategoryEditModel(FoodCategory category)
+		{
+			Subject = category;
+		}
+
+		public FoodCategory Subject { get; set; }
+	}
 }

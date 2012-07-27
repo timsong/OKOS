@@ -65,7 +65,7 @@
     <Compile Include="ReqResp\GetVendorById.cs" />
     <Compile Include="ReqResp\GetSchools.cs" />
     <Compile Include="ReqResp\GetSchool.cs" />
-    <Compile Include="ReqResp\Creates\CreateFoodCategory.cs">
+    <Compile Include="ReqResp\SaveFoodCategory.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ReqResp\Creates\CreateFoodItem.cs" />

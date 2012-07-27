@@ -29,7 +29,7 @@ namespace WFS.Contract
 
     public class Vendor : Organization
     {
-        public Vendor()
+        public Vendor() : base()
         {
             Stores = new List<Store>();
             Menus = new List<Menu>();

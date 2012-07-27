@@ -10,7 +10,7 @@
                 @item.CategoryType.ToString()
             </div>
             <div class="two columns">
-                <a href="javascript:void(0)" msclick="foodcategory.openEditWindow" msid="@item.FoodCategoryId">Edit/View</a>
+                <a href="javascript:void(0)" msclick="category.edit" data-id="@item.FoodCategoryId">Edit/View</a>
             </div>
             <div class="one columns end">
                 @Html.RouteLink("Delete", "Admin_FoodCategory_DeleteFoodCategory", new { FoodCategoryID = item.FoodCategoryId })

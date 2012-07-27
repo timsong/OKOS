@@ -1,10 +1,9 @@
 ﻿using WFS.Contract;
 using WFS.Contract.ReqResp;
-using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
-using WFS.Contract.ReqResp.Creates;
+using WFS.Contract.ReqResp;
 using WFS.Repository.Commands.Vendor;
 using System.Web.Security;
 using WFS.Framework.Extensions;
@@ -102,6 +101,8 @@ namespace WFS.Domain.Managers
 			if (resp.Status != Status.Success)
 				return resp;
 
+			request.Subject.User = userResponse.Value;
+
 			var vendorCommand = new SaveVendorCommand(request.Subject);
 
 			var venRes = _repository.ExecuteCommand(vendorCommand);
@@ -128,20 +129,19 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
-        public CreateFoodCategoryResponse CreateFoodCategory(CreateFoodCategoryRequest request)
-        {
-            var resp = new CreateFoodCategoryResponse();
 
-            //Create Vendor and VendorUser
-            var faCmd = new CreateFoodCategoryCommand(request.Name, request.VendorID, request.CategoryType.ToString());
-            var fcRes = _repository.ExecuteCommand(faCmd);
+		public SaveFoodCategoryResponse SaveFoodCategory(SaveFoodCategoryRequest request)
+		{
+			var resp = new SaveFoodCategoryResponse();
 
-            resp.Merge(fcRes);
-            if (resp.Status == Status.Success)
-                resp.FoodCategory = fcRes.Value;
+			//Create Vendor and VendorUser
+			var faCmd = new SaveFoodCategoryCommand(request.Subject);
 
-            return resp;
-        }
+			var fcRes = _repository.ExecuteCommand(faCmd);
 
-    }
+			((Result<FoodCategory>)fcRes).Merge<FoodCategory, FoodCategory>(resp);
+
+			return resp;
+		}
+	}
 }

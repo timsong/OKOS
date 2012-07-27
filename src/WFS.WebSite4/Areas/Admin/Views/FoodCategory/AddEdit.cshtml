@@ -1,21 +1,15 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.FoodCategoryEditModel
-
-@{
-    ViewBag.Title = "AddEdit";
-}
-
-<h2>AddEdit</h2>
-
+<h2>Manage Food Category</h2>
 <form id="foodCategoryEditForm" method="post">
-    @Html.HiddenFor(x => x.FoodCategoryId)
-    @Html.HiddenFor(x => x.VendorId)
-
+    @Html.Hidden("FoodCategoryId", Model.Subject.FoodCategoryId)
+    @Html.Hidden("VendorId", Model.Subject.VendorId)
+	<div class="panel">
         <div class="row">
             <div class="three columns">
                 <label class="right inline">Name: </label>
             </div>
             <div class="eight columns end">
-                @Html.TextBoxFor(x => x.Name);
+                @Html.TextBox("Name", Model.Subject.Name)
             </div>
         </div>
         <div class="row">
@@ -23,14 +17,15 @@
                 <label class="right inline">Category: </label>
             </div>
             <div class="eight columns end">
-                @Html.DropDownListFor(x => x.CategoryType, (SelectList)ViewData["categoryTypes"])
+                @Html.DropDownList("CategoryType", (SelectList)ViewData["categoryTypes"])
             </div>
         </div>
+	</div>
 </form>
 
 <div class="row">
     <div class="six columns">
-        <a href="#" id="save-link" msclick="foodcategory.saveFoodCategory"  class="radius button">Save</a>
+        <a href="#" id="save-link" msclick="category.save" class="radius button">Save</a>
     </div>
     <div class="six columns">
         <a href="#" class="close-reveal-modal radius button">Cancel</a>

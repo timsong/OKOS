@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\FoodCategory\CreateFoodCategoryCommand.cs" />
+    <Compile Include="Commands\FoodCategory\SaveFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
     <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
     <Compile Include="Commands\MembershipCreateStatus.cs" />

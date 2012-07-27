@@ -6,6 +6,10 @@ using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.WebSite4.Areas.Admin.Models;
 using WFS.WebSite4.Controllers;
+using WFS.Framework.Responses;
+using WFS.Framework;
+using WFS.Framework.Extensions;
+using WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
@@ -19,66 +23,94 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             this._vendorMgr = vendorMgr;
         }
 
+		FoodCategoryListViewModel GetList(int vendorId)
+		{
+			var resp = _vendorMgr.GetFoodCategoriesByVendor(new GetFoodCategoriesByVendorRequest() {
+				VendorId = vendorId,
+				ActiveDataRequest = ActiveDataRequestEnum.All
+			});
 
-        public ActionResult Index(int vendorID)
+			var m = new FoodCategoryListViewModel() {
+				Categories = resp.FoodCategories
+				, VendorId = vendorId
+			};
+
+			return m;
+		}
+
+
+        public ActionResult List(int vendorID)
         {
-            var resp = _vendorMgr.GetFoodCategoriesByVendor(new GetFoodCategoriesByVendorRequest()
-                {
-                    VendorId = vendorID,
-                    ActiveDataRequest = ActiveDataRequestEnum.All
-                });
-
-            var m = new FoodCategoryListViewModel()
-            {
-                Categories = resp.FoodCategories
-            };
-
-            return View(m);
+            return View(GetList(vendorID));
         }
+
+		void SetCategoryTypes(FoodCategoryTypeEnum categoryType)
+		{
+			var list = Enum.GetValues(typeof(FoodCategoryTypeEnum));
+			var cateTypes = from FoodCategoryTypeEnum s in list
+							select new { ID = s.ToString(), Name = s.ToString() };
+
+			ViewData["categoryTypes"] = new SelectList(cateTypes, "ID", "Name", categoryType);
+		}
 
         public ActionResult EditFoodCategory(int foodCategoryId)
         {
             var resp = _vendorMgr.GetFoodCategoryById(new GetFoodCategoryByIdRequest() { FoodCategoryID = foodCategoryId });
 
-            var list = Enum.GetValues(typeof(FoodCategoryTypeEnum));
-            var cateTypes = from FoodCategoryTypeEnum s in list
-                            select new { ID = s.ToString(), Name = s.ToString() };
+			SetCategoryTypes(resp.FoodCategory.CategoryType);
 
-            ViewData["categoryTypes"] = new SelectList(cateTypes, "ID", "Name", resp.FoodCategory.CategoryType);
-
-            var m = new FoodCategoryEditModel()
-                {
-                    Name = resp.FoodCategory.Name,
-                    CategoryType = resp.FoodCategory.CategoryType.ToString(),
-                    FoodCategoryId = resp.FoodCategory.FoodCategoryId,
-                    VendorId = resp.FoodCategory.VendorId
-                };
-
-            var retString = RenderPartialViewToString("AddEdit", m);
-            return Json(retString, JsonRequestBehavior.AllowGet);
+			var uiresult = resp.ToUIResult(() => new FoodCategoryEditModel(resp.FoodCategory)
+				, (vm) => RenderPartialViewToString("AddEdit", vm));
+			
+			return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public ActionResult Save(FoodCategoryEditModel model)
+
+		[HttpPost]
+        public ActionResult Save(FoodCategory model)
         {
-            return null;
-        }
+			SaveFoodCategoryResponse resp = _vendorMgr.SaveFoodCategory(new SaveFoodCategoryRequest { Subject = model });
 
+			if (resp.Status == Status.Success)
+			{
+				var uiresponse = resp.ToUIResult<FoodCategoryListViewModel
+					, FoodCategory>((foodCategory) => GetList(model.VendorId)
+					, (vm) => RenderPartialViewToString("FoodCategoryList", vm));
+
+				return Json(uiresponse);
+			}
+			else
+			{
+				var uiresponse = resp.ToUIResult<FoodCategoryEditModel
+					, FoodCategory>((foodCategory) => new FoodCategoryEditModel(foodCategory)
+					, (vm) => {
+						vm.Merge(resp);
+
+						return RenderPartialViewToString("AddEdit", vm);
+					});
+				return Json(uiresponse);
+			}
+        }
 
         public ActionResult DeleteFoodCategory(int vendorID)
         {
             return null;
         }
 
-        public ActionResult AddFoodCategory()
+        public ActionResult AddFoodCategory(int vendorId)
         {
             var m = new FoodCategoryEditModel();
-            return View("AddEdit", m);
-        }
 
-        [HttpPost]
-        public ActionResult AddFoodCategory(FoodCategoryEditModel model)
-        {
-            return null;
+			m.Subject.VendorId = vendorId;
+
+			SetCategoryTypes(FoodCategoryTypeEnum.Entree);
+
+			var uiresult = new UIResponse<FoodCategoryEditModel>();
+
+			uiresult.Subject = m;
+
+			uiresult.HtmlResult = RenderPartialViewToString("AddEdit", m);
+
+			return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
     }
 }

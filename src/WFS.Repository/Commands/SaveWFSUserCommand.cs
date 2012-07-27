@@ -83,9 +83,13 @@ namespace WFS.Repository.Commands
 				{
 					if (NewMembershipUser(result))
 					{
-						context.WFSUsers.Add(_user.ToDataModel());
+						var user = context.WFSUsers.Add(_user.ToDataModel());
+
+						user.User = context.Users.FirstOrDefault(x => x.UserId.Equals(user.MembershipGuid));
 
 						context.SaveChanges();
+
+						result.Value = user.ToDomainModel();
 					}
 					else
 					{
