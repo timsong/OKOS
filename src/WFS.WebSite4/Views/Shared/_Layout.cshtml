@@ -32,36 +32,7 @@
 				</div>
 			</div>
 		</header>
-@*		<header>
-			<div class="container top-bar home-border">
-				<div class="attached">
-				</div>
-			</div>
-		</header>*@
-@*        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">
-                    <a href="@Href("/")" title="logo">
-                        <img src="@Href("/content/images/logo.jpg")" alt="logo" />
-                    </a>
-                    </p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-*@
+
         <div id="body" class="row">
 			<div class="twelve columns">
 				<section class="content-wrapper main-content clear-fix">
@@ -70,25 +41,28 @@
 				@RenderBody()
 			</div>
         </div>
-@*        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - <strong><em>Wholesome Food Services.</em></strong> All rights reserverd.</p>
-                </div>
-                <div class="float-right">
-                    <ul id="social">
-                        <li><a href="/about-us">About Us</a></li>
-                        <li><a href="/contact-us">Contact Us</a></li>
-                        <li><a href="/why">Why WFS?</a></li>
-                        <li><a href="/school-causes">School Causes</a></li>
-                        <li><a href="/heath-and-nutrition">Health & Nutrition</a></li>
-                        <li><a href="/testimonials">Testimonials</a></li>
-                        <li><a href="http://www.zwaggle.com/">Zwaggle</a></li>
-                        <li><a href="http://www.turnthetidefoundation.org/">Turn the Tide Foundation</a></li>
-                    </ul>
+
+        <br />
+        <br />
+        <div id="footer" class="p_t10 row">
+            <div class="row">
+                <div class="eleven columns centered">
+                    <a href="/about-us">About Us</a>
+                    <span class="p_l10"><a href="/contact-us">Contact Us</a></span>
+                    <span class="p_l10"><a href="/why">Why WFS?</a></span>
+                    <span class="p_l10"><a href="/school-causes">School Causes</a></span>
+                    <span class="p_l10"><a href="/heath-and-nutrition">Health & Nutrition</a></span>
+                    <span class="p_l10"><a href="/testimonials">Testimonials</a></span>
+                    <span class="p_l10"><a href="http://www.zwaggle.com/">Zwaggle</a></span>
+                    <span class="p_l10"><a href="http://www.turnthetidefoundation.org/">Turn the Tide Foundation</a></span>
                 </div>
             </div>
-        </footer>*@
+            <div class="p_t10 row">
+                <div class="five column centered">
+                    <p>&copy; @DateTime.Now.Year - <strong><em>Wholesome Food Services.</em></strong> All rights reserverd.</p>
+                </div>
+            </div>
+        </div>
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/modernizr")
 		@Scripts.Render("~/bundles/jqueryval")

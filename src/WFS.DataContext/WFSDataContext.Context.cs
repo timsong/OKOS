@@ -39,5 +39,6 @@ namespace WFS.DataContext
         public DbSet<VendorFoodCategory> VendorFoodCategories { get; set; }
         public DbSet<VendorFoodOption> VendorFoodOptions { get; set; }
         public DbSet<VendorMenu> VendorMenus { get; set; }
+        public DbSet<SupportTicket> SupportTickets { get; set; }
     }
 }

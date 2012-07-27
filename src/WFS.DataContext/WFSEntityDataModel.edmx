@@ -14,6 +14,7 @@
           <EntitySet Name="Organization" EntityType="WFSModel.Store.Organization" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profiles" EntityType="WFSModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="WFSModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SupportTicket" EntityType="WFSModel.Store.SupportTicket" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="WFSModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersInRoles" EntityType="WFSModel.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="VendorFoodCategory" EntityType="WFSModel.Store.VendorFoodCategory" store:Type="Tables" Schema="dbo" />
@@ -52,6 +53,14 @@
           <AssociationSet Name="FK_Organization_WFSUser" Association="WFSModel.Store.FK_Organization_WFSUser">
             <End Role="WFSUser" EntitySet="WFSUser" />
             <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportTicket_WFSUser" Association="WFSModel.Store.FK_SupportTicket_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="SupportTicket" EntitySet="SupportTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportTicket_WFSUser1" Association="WFSModel.Store.FK_SupportTicket_WFSUser1">
+            <End Role="WFSUser" EntitySet="WFSUser" />
+            <End Role="SupportTicket" EntitySet="SupportTicket" />
           </AssociationSet>
           <AssociationSet Name="FK_Vendor_Vendor" Association="WFSModel.Store.FK_Vendor_Vendor">
             <End Role="Organization" EntitySet="Organization" />
@@ -190,6 +199,21 @@
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="SupportTicket">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="int" Nullable="false" />
+          <Property Name="IssueCategory" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="CreatedUserID" Type="int" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IssueText" Type="text" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+          <Property Name="ResolvedUserID" Type="int" />
+          <Property Name="ResolvedText" Type="text" />
+          <Property Name="ResolvedDate" Type="date" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -356,6 +380,30 @@
             </Principal>
             <Dependent Role="Organization">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportTicket_WFSUser">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="0..1" />
+          <End Role="SupportTicket" Type="WFSModel.Store.SupportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SupportTicket">
+              <PropertyRef Name="CreatedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportTicket_WFSUser1">
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="0..1" />
+          <End Role="SupportTicket" Type="WFSModel.Store.SupportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SupportTicket">
+              <PropertyRef Name="ResolvedUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -566,6 +614,15 @@
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="VendorMenu" EntitySet="VendorMenus" />
           </AssociationSet>
+          <EntitySet Name="SupportTickets" EntityType="WFSModel.SupportTicket" />
+          <AssociationSet Name="FK_SupportTicket_WFSUser" Association="WFSModel.FK_SupportTicket_WFSUser">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="SupportTicket" EntitySet="SupportTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportTicket_WFSUser1" Association="WFSModel.FK_SupportTicket_WFSUser1">
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+            <End Role="SupportTicket" EntitySet="SupportTickets" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FoodItemOption">
           <Key>
@@ -599,6 +656,8 @@
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Organizations" Relationship="WFSModel.FK_Organization_WFSUser" FromRole="WFSUser" ToRole="Organization" />
+          <NavigationProperty Name="SupportTickets" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="WFSUser" ToRole="SupportTicket" />
+          <NavigationProperty Name="SupportTickets1" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="WFSUser" ToRole="SupportTicket" />
         </EntityType>
         <EntityType Name="WFSUserAddress">
           <Key>
@@ -958,6 +1017,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SupportTicket">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Type="Int32" Name="TicketId" Nullable="false" />
+          <Property Type="String" Name="IssueCategory" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CreatedUserID" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IssueText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
+          <Property Type="Int32" Name="ResolvedUserID" />
+          <Property Type="String" Name="ResolvedText" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ResolvedDate" />
+          <NavigationProperty Name="CreatedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="SupportTicket" ToRole="WFSUser" />
+          <NavigationProperty Name="ResolvedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="SupportTicket" ToRole="WFSUser" />
+        </EntityType>
+        <Association Name="FK_SupportTicket_WFSUser">
+          <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="0..1" />
+          <End Type="WFSModel.SupportTicket" Role="SupportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SupportTicket">
+              <PropertyRef Name="CreatedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportTicket_WFSUser1">
+          <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="0..1" />
+          <End Type="WFSModel.SupportTicket" Role="SupportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WFSUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SupportTicket">
+              <PropertyRef Name="ResolvedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1131,6 +1231,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SupportTickets">
+            <EntityTypeMapping TypeName="WFSModel.SupportTicket">
+              <MappingFragment StoreEntitySet="SupportTicket">
+                <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
+                <ScalarProperty Name="ResolvedText" ColumnName="ResolvedText" />
+                <ScalarProperty Name="ResolvedUserID" ColumnName="ResolvedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IssueText" ColumnName="IssueText" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="IssueCategory" ColumnName="IssueCategory" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1158,8 +1274,8 @@
         <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="0.75" PointY="9.125" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.WFSUserAddress" Width="1.5" PointX="3" PointY="5.25" Height="2.749492187499996" IsExpanded="true" />
         <AssociationConnector Association="WFSModel.FK_WFSUserAddress_WFSUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="9.125" />
-          <ConnectorPoint PointX="1.9062525" PointY="6.624746093749998" />
+          <ConnectorPoint PointX="1.5" PointY="9.125" />
+          <ConnectorPoint PointX="1.5" PointY="6.624746093749998" />
           <ConnectorPoint PointX="3" PointY="6.624746093749998" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.Application" Width="1.5" PointX="11.75" PointY="4.5" Height="2.1725878906250102" />
@@ -1235,8 +1351,8 @@
           <ConnectorPoint PointX="5.25" PointY="13.903595377604169" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Organization_WFSUser" >
-          <ConnectorPoint PointX="2.25" PointY="11.499746093750002" />
-          <ConnectorPoint PointX="3" PointY="11.499746093750002" />
+          <ConnectorPoint PointX="2.25" PointY="11.595896809895834" />
+          <ConnectorPoint PointX="3" PointY="11.595896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Vendor_Vendor1" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="15.797506510416667" />
@@ -1245,9 +1361,21 @@
           <ConnectorPoint PointX="3.9784615384615383" PointY="15.797506510416667" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_VendorMenu_Organization" >
-          <ConnectorPoint PointX="3.2347090384615385" PointY="15.797506510416667" />
-          <ConnectorPoint PointX="3.2347090384615385" PointY="17.143697916666667" />
-          <ConnectorPoint PointX="5.25" PointY="17.143697916666667" />
+          <ConnectorPoint PointX="4.5" PointY="15.797506510416667" />
+          <ConnectorPoint PointX="4.875" PointY="16.172506510416667" />
+          <ConnectorPoint PointX="4.875" PointY="15.498847153846153" />
+          <ConnectorPoint PointX="5.2511528461538459" PointY="15.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WFSModel.SupportTicket" Width="1.5" PointX="3" PointY="16.875" Height="3.326396484374996" />
+        <AssociationConnector Association="WFSModel.FK_SupportTicket_WFSUser" >
+          <ConnectorPoint PointX="1.5" PointY="12.066793619791666" />
+          <ConnectorPoint PointX="1.5" PointY="18.538198242187498" />
+          <ConnectorPoint PointX="3" PointY="18.538198242187498" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_SupportTicket_WFSUser1" >
+          <ConnectorPoint PointX="1.9062525" PointY="12.066793619791666" />
+          <ConnectorPoint PointX="1.9062525" PointY="17.675346621093755" />
+          <ConnectorPoint PointX="3" PointY="17.675346621093755" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
