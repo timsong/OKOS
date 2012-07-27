@@ -73,6 +73,9 @@
     <Compile Include="Role.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="SupportTicket.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
