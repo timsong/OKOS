@@ -1,0 +1,37 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.VendorEditModel
+
+@{
+    ViewBag.Title = "EditVendor";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Manage Vendor</h2>
+<div class="row">
+	<div class="five columns">
+		@{Html.RenderPartial("DisplayAddress", Model);}
+	</div>
+	<div class="five columns">
+		@{Html.RenderPartial("DisplayContact", Model);}
+	</div>
+	<div class="two columns" style="text-align: center">
+		<a href="javascript:void(0)" class="button radius small">Edit</a>
+		<a href="/Admin/Vendors/GetList" class="button radius small">Back</a>
+	</div>
+</div>
+<dl class="tabs contained">  
+	<dd class="active"><a href="#categoriesPanel">Categories</a></dd>
+	<dd><a href="#optionsPanel">Options</a></dd>
+	<dd><a href="#foodItemsPanel">Food Items</a></dd>
+	<dd><a href="#menusPanel">Menus</a></dd>
+	<dd><a href="#storesPanel">Stores</a></dd>
+</dl>
+<ul class="tabs-content contained">
+	<li class="active" id="categoriesPanelTab"> categories </li>
+	<li id="optionsPanelTab"> options </li>
+	<li id="foodItemsPanelTab"> food items </li>
+	<li id="menusPanelTab"> menus </li>
+	<li id="storesPanelTab"> stores </li>
+</ul>
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/admin")
+}

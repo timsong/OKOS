@@ -169,6 +169,9 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
@@ -368,6 +371,12 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodCategory\FoodCategoryList.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -384,7 +393,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>20132</DevelopmentServerPort>
+          <DevelopmentServerPort>22536</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
