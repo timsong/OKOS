@@ -25,8 +25,8 @@ namespace WFS.DataContext
         public string ResolvedText { get; set; }
         public Nullable<System.DateTime> ResolvedDate { get; set; }
     
-        public virtual WFSUser WFSUser { get; set; }
-        public virtual WFSUser WFSUser1 { get; set; }
+        public virtual WFSUser CreatedUser { get; set; }
+        public virtual WFSUser ResolvedUser { get; set; }
     }
     
 }

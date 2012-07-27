@@ -16,6 +16,7 @@ namespace WFS.Contract
         public int? ResolvedByUserID { get; set; }
         public string ResolvedText { get; set; }
         public DateTime? ResolvedDate { get; set; }
+        public string ResolvedBy { get; set; }
 
     }
 }

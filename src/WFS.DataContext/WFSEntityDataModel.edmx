@@ -1031,8 +1031,8 @@
           <Property Type="Int32" Name="ResolvedUserID" />
           <Property Type="String" Name="ResolvedText" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="ResolvedDate" />
-          <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="SupportTicket" ToRole="WFSUser" />
-          <NavigationProperty Name="WFSUser1" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="SupportTicket" ToRole="WFSUser" />
+          <NavigationProperty Name="CreatedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="SupportTicket" ToRole="WFSUser" />
+          <NavigationProperty Name="ResolvedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="SupportTicket" ToRole="WFSUser" />
         </EntityType>
         <Association Name="FK_SupportTicket_WFSUser">
           <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="0..1" />

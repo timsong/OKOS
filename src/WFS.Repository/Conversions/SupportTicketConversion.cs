@@ -25,8 +25,10 @@ namespace WFS.Repository.Conversions
                     ResolvedText = data.ResolvedText,
                     ResolvedDate = data.ResolvedDate,
                     ResolvedByUserID = data.ResolvedUserID,
-
                 };
+
+            if (data.ResolvedUserID.HasValue)
+                model.ResolvedBy = String.Format("{0} {1}", data.ResolvedUser.FirstName, data.ResolvedUser.LastName);
 
             return model;
         }
