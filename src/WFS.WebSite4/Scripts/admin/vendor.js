@@ -22,13 +22,13 @@
 				, type: 'POST'
 				, data: data
 				, successHandler: function (data) {
-					if (data.Status == 0) {
-						$('#modalEdit', data.HtmlResult);
+					if (data.Status == 0 || data.Status == 4) {
+						ms.ml.html('#modalEdit', data.HtmlResult);
 					}
 					else {
 						ms.ml.html('#displayAddressPanel', data.AdditionalPayload.addressHtml);
 						ms.ml.html('#displayContactPanel', data.AdditionalPayload.contactHtml);
-						$('.close-reveal-modal').click();
+						$('#modalEdit').trigger('reveal:close');
 					}
 				}
 			});

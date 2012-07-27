@@ -1,11 +1,18 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.VendorEditModel
-<h2>EditVendor</h2>
+<h2>Edit Vendor</h2>
 <form id="vendorEditForm" method="post">
     @Html.Hidden("OrganizationId", Model.Vendor.OrganizationId)
     @Html.Hidden("User.UserId", Model.Vendor.User.UserId)
     @Html.Hidden("User.MembershipGuid", Model.Vendor.User.MembershipGuid)
     @Html.Hidden("User.MembershipGuid", WFS.Contract.Enums.WFSUserTypeEnum.Vendor)
     @Html.Hidden("User.AvailableCredit", Model.Vendor.User.AvailableCredit)
+	@if (Model.Status != WFS.Status.Success) {
+	<div class="alert-box alert round">
+		@foreach (var msg in Model.Messages) {
+		<div>@msg.Text</div>
+		}
+	</div>
+	}
 	<div class="panel">
 		<div class="row">
 			<div class="twelve columns">
@@ -39,7 +46,7 @@
 					</div>
 				</div>
 
-				@{Html.RenderPartial("AddressInfo", 
+				@{Html.RenderPartial("AddressInfo",		
 						Model.Vendor.AddressInfo, 
 						new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
 			</div>

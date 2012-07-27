@@ -46,6 +46,18 @@ namespace WFS.Repository.Commands
 		{
 			var wfsUser = context.WFSUsers.FirstOrDefault(x => x.UserId.Equals(_user.UserId));
 
+			int matchingUsers = context.Users.Count(x => !x.UserId.Equals(_user.MembershipGuid) && x.UserName.Equals(_user.EmailAddress));
+
+			// TODO REFACTOR INTO ITS OWN VALIDATION COMMAND
+			if (matchingUsers > 0)
+			{
+				response.Status = Status.Error;
+
+				response.Messages.Add(new Message ("UNIQUEVALIDATION", "Email address is not unique"));
+
+				return false;
+			}
+
 			var mUser = context.Users.FirstOrDefault(x => x.UserId.Equals(wfsUser.MembershipGuid));
 
 			mUser.UserName = _user.EmailAddress;

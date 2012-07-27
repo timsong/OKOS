@@ -1,18 +1,22 @@
 ﻿using C = WFS.Contract;
+using WFS.Framework;
 
 namespace WFS.WebSite4.Areas.Admin.Models
 {
-    public class VendorEditModel
+    public class VendorEditModel : EditModelBase<C.Vendor>
     {
-
-        public VendorEditModel()
+        public VendorEditModel() : base()
         {
             Vendor = new C.Vendor();
+
+			Status = WFS.Status.Success;
         }
 		
 		public VendorEditModel(C.Vendor vendor)
 		{
 			Vendor = vendor;
+
+			Status = WFS.Status.Success;
 		}
 
 

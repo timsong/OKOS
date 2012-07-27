@@ -4,11 +4,17 @@ namespace WFS.Framework
 {
     public static class ResponseExtensions
     {
-        public static void Merge(this IResponse originalResponse, IResponse newResponse)
+
+		public static void Merge(this IResponse originalResponse, IResponse newResponse)
         {
             originalResponse.Status = MergeStatus(originalResponse.Status, newResponse.Status);
             originalResponse.Messages.AddRange(newResponse.Messages);
         }
+		public static void Merge<T1>(this Result<T1> originalResponse, IResponse newResponse)
+		{
+			originalResponse.Status = MergeStatus(originalResponse.Status, newResponse.Status);
+			originalResponse.Messages.AddRange(newResponse.Messages);
+		}
 
 		public static void Merge<T1,T2>(this Result<T1> originalResponse, Result<T2> newResponse)
 		{

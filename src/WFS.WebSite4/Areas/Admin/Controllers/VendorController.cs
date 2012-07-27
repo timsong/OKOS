@@ -2,6 +2,7 @@
 using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.Framework.Extensions;
+using WFS.Framework;
 using WFS.WebSite4.Areas.Admin.Models;
 using WFS.WebSite4.Controllers;
 using C = WFS.Contract;
@@ -43,7 +44,6 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             return View(m);
         }
 
-
 		public ActionResult DisplayVendor(int vendorId)
 		{
 			var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorId });
@@ -52,7 +52,6 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
 			return View("DisplayVendor", viewModel);
 		}
-
 
         public ActionResult EditVendor(int vendorID)
         {
@@ -85,10 +84,12 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             }
             else
             {
-                var uiresponse = resp.ToUIResult<VendorEditModel, C.Vendor>((vendor) => new VendorEditModel(vendor)
-                    , (vm) => RenderPartialViewToString("EditVendor", vm));
+				var uiresponse = resp.ToUIResult<VendorEditModel, C.Vendor>((vendor) => new VendorEditModel(vendor)
+					, (vm) => {
+						vm.Merge(resp);
 
-                return Json(uiresponse);
+						return RenderPartialViewToString("EditVendor", vm); });
+				return Json(uiresponse);
             }
         }
         #endregion

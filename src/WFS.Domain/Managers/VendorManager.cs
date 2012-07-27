@@ -89,6 +89,8 @@ namespace WFS.Domain.Managers
 		{
 			var resp = new SaveVendorResponse();
 
+			resp.Value = request.Subject;
+
 			var user = request.Subject.User;
 
 			var userCommand = new SaveWFSUserCommand(request.Subject.User);
