@@ -18,13 +18,19 @@ namespace WFS.WebSite4.Controllers
 			{
 				var roles = Roles.GetRolesForUser(User.Identity.Name);
 
-				string routeName = string.Format("{0}.dashboard", roles.First());
+				var role = roles.FirstOrDefault();
 
-				var context = new RequestContext(filterContext.HttpContext, filterContext.RouteData);
+				if (role != null)
+				{
 
-				var url = string.Format("/{0}/Dashboard", roles.First());
+					string routeName = string.Format("{0}.dashboard", role);
 
-				context.HttpContext.Response.Redirect(url, true);
+					var context = new RequestContext(filterContext.HttpContext, filterContext.RouteData);
+
+					var url = string.Format("/{0}/Dashboard", roles.First());
+
+					context.HttpContext.Response.Redirect(url, true);
+				}
 
 			}
 		}

@@ -7,6 +7,20 @@ namespace WFS.Repository.Conversions
 {
     public static class WFSUserConversion
     {
+		public static C.WFSUser ToDomainModel(this WFSUser data)
+		{
+			C.WFSUser model = new C.WFSUser {
+				FirstName = data.FirstName,
+				LastName = data.LastName,
+				AvailableCredit = data.AvailableCredit,
+				EmailAddress = data.User.UserName,
+				 MembershipGuid = data.MembershipGuid,
+				  UserId = data.UserId,
+				   UserType = (C.Enums.WFSUserTypeEnum)Enum.Parse(typeof(C.Enums.WFSUserTypeEnum), data.UserType)
+			};
+			return model;
+		}
+
 		public static WFSUser ToDataModel(this C.WFSUser model)
 		{
 			WFSUser data = new WFSUser {

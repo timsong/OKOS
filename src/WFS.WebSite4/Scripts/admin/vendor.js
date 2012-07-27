@@ -26,7 +26,8 @@
 						$('#modalEdit', data.HtmlResult);
 					}
 					else {
-						$('#vendorListPanel', data.HtmlResult);
+						ms.ml.html('#displayAddressPanel', data.AdditionalPayload.addressHtml);
+						ms.ml.html('#displayContactPanel', data.AdditionalPayload.contactHtml);
 						$('.close-reveal-modal').click();
 					}
 				}

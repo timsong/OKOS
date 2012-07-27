@@ -34,13 +34,21 @@ namespace WFS.Repository.Commands.Vendor
 					var org = context.Organizations.FirstOrDefault(x => x.OrganizationId.Equals(_vendor.OrganizationId));
 
 					org.ForUpdate(_vendor);
+
+					dbContext.SaveChanges();
+
+					result.Value = (C.Vendor)org.ToContract();
 				}
 				else
 				{
-					context.Organizations.Add(_vendor.ToDataModel());
+					var org = _vendor.ToDataModel();
+
+					context.Organizations.Add(org);
+
+					dbContext.SaveChanges();
+
+					result.Value = (C.Vendor)org.ToContract();
 				}
-				
-				dbContext.SaveChanges();
 			}
 			catch (Exception ex)
 			{
@@ -51,7 +59,5 @@ namespace WFS.Repository.Commands.Vendor
 
 			return result;
 		}
-
-
 	}
 }

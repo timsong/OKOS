@@ -22,8 +22,9 @@ namespace WFS.Repository.Queries
                         where x.OrganizationId == _organizationId
                         select x).FirstOrDefault().ToContract();
 
-            var result = new Result<C.Organization>(Status.Success, data);
-            return result;
+			var result = new Result<C.Organization>(Status.Success, data);
+
+			return result;
         }
 
         #endregion

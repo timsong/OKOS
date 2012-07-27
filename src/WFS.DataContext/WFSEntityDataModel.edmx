@@ -70,6 +70,10 @@
             <End Role="Organization" EntitySet="Organization" />
             <End Role="VendorMenu" EntitySet="VendorMenu" />
           </AssociationSet>
+          <AssociationSet Name="FK_WFSUser_Users" Association="WFSModel.Store.FK_WFSUser_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="WFSUser" EntitySet="WFSUser" />
+          </AssociationSet>
           <AssociationSet Name="FK_WFSUserAddress_WFSUser" Association="WFSModel.Store.FK_WFSUserAddress_WFSUser">
             <End Role="WFSUser" EntitySet="WFSUser" />
             <End Role="WFSUserAddress" EntitySet="WFSUserAddress" />
@@ -431,6 +435,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WFSUser_Users">
+          <End Role="Users" Type="WFSModel.Store.Users" Multiplicity="1" />
+          <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="WFSUser">
+              <PropertyRef Name="MembershipGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WFSUserAddress_WFSUser">
           <End Role="WFSUser" Type="WFSModel.Store.WFSUser" Multiplicity="1" />
           <End Role="WFSUserAddress" Type="WFSModel.Store.WFSUserAddress" Multiplicity="0..1" />
@@ -623,6 +639,10 @@
             <End Role="WFSUser" EntitySet="WFSUsers" />
             <End Role="SupportTicket" EntitySet="SupportTickets" />
           </AssociationSet>
+          <AssociationSet Name="FK_WFSUser_Users" Association="WFSModel.FK_WFSUser_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="WFSUser" EntitySet="WFSUsers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FoodItemOption">
           <Key>
@@ -658,6 +678,7 @@
           <NavigationProperty Name="Organizations" Relationship="WFSModel.FK_Organization_WFSUser" FromRole="WFSUser" ToRole="Organization" />
           <NavigationProperty Name="SupportTickets" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="WFSUser" ToRole="SupportTicket" />
           <NavigationProperty Name="SupportTickets1" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="WFSUser" ToRole="SupportTicket" />
+          <NavigationProperty Name="User" Relationship="WFSModel.FK_WFSUser_Users" FromRole="WFSUser" ToRole="User" />
         </EntityType>
         <EntityType Name="WFSUserAddress">
           <Key>
@@ -757,6 +778,7 @@
           <NavigationProperty Name="Membership" Relationship="WFSModel.MembershipUser" FromRole="User" ToRole="Membership" />
           <NavigationProperty Name="Profile" Relationship="WFSModel.UserProfile" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="Roles" Relationship="WFSModel.UsersInRoles" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="WFSUsers" Relationship="WFSModel.FK_WFSUser_Users" FromRole="User" ToRole="WFSUser" />
         </EntityType>
         <Association Name="MembershipApplication">
           <End Type="WFSModel.Application" Role="Application" Multiplicity="1" />
@@ -1058,6 +1080,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WFSUser_Users">
+          <End Type="WFSModel.User" Role="User" Multiplicity="1" />
+          <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="WFSUser">
+              <PropertyRef Name="MembershipGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1268,7 +1302,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="WFSEntityDataModel" ZoomLevel="63">
+      <Diagram Name="WFSEntityDataModel" ZoomLevel="69">
         <EntityTypeShape EntityType="WFSModel.FoodItemOption" Width="1.5" PointX="9.75" PointY="10.875" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.MenuItem" Width="1.5" PointX="9.75" PointY="14.375" Height="1.9802864583333353" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="0.75" PointY="9.125" Height="2.7494921875000031" IsExpanded="true" />
@@ -1294,8 +1328,8 @@
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.UserApplication" >
           <ConnectorPoint PointX="12.9062525" PointY="6.67258789062501" />
-          <ConnectorPoint PointX="12.9062525" PointY="8.9345507812500031" />
-          <ConnectorPoint PointX="16.25" PointY="8.9345507812500031" />
+          <ConnectorPoint PointX="12.9062525" PointY="9.0307014973958388" />
+          <ConnectorPoint PointX="16.25" PointY="9.0307014973958388" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.MembershipUser" >
           <ConnectorPoint PointX="16.25" PointY="7.5285546875000051" />
@@ -1308,7 +1342,7 @@
         <AssociationConnector Association="WFSModel.UsersInRoles" >
           <ConnectorPoint PointX="15.5" PointY="11.336293945312505" />
           <ConnectorPoint PointX="17" PointY="11.336293945312505" />
-          <ConnectorPoint PointX="17" PointY="9.749492187499996" />
+          <ConnectorPoint PointX="17" PointY="9.9417936197916674" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.FoodItem" Width="1.5" PointX="7.5" PointY="8.75" Height="2.9417936197916656" />
         <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodItem" >
@@ -1351,8 +1385,8 @@
           <ConnectorPoint PointX="5.25" PointY="13.903595377604169" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Organization_WFSUser" >
-          <ConnectorPoint PointX="2.25" PointY="11.595896809895834" />
-          <ConnectorPoint PointX="3" PointY="11.595896809895834" />
+          <ConnectorPoint PointX="2.25" PointY="11.692047526041666" />
+          <ConnectorPoint PointX="3" PointY="11.692047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Vendor_Vendor1" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="15.797506510416667" />
@@ -1368,14 +1402,23 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.SupportTicket" Width="1.5" PointX="3" PointY="16.875" Height="3.326396484374996" />
         <AssociationConnector Association="WFSModel.FK_SupportTicket_WFSUser" >
-          <ConnectorPoint PointX="1.5" PointY="12.066793619791666" />
-          <ConnectorPoint PointX="1.5" PointY="18.538198242187498" />
-          <ConnectorPoint PointX="3" PointY="18.538198242187498" />
+          <ConnectorPoint PointX="1.2773446875" PointY="12.259095052083334" />
+          <ConnectorPoint PointX="1.2773446875" PointY="19.077480505371085" />
+          <ConnectorPoint PointX="3" PointY="19.077480505371085" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_SupportTicket_WFSUser1" >
-          <ConnectorPoint PointX="1.9062525" PointY="12.066793619791666" />
-          <ConnectorPoint PointX="1.9062525" PointY="17.675346621093755" />
-          <ConnectorPoint PointX="3" PointY="17.675346621093755" />
+          <ConnectorPoint PointX="1.79492484375" PointY="12.259095052083334" />
+          <ConnectorPoint PointX="1.79492484375" PointY="17.944987752685549" />
+          <ConnectorPoint PointX="3" PointY="17.944987752685549" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_WFSUser_Users" >
+          <ConnectorPoint PointX="16.25" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="12.989585833333335" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="12.822919166666667" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="12.416666666666666" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="1.9062525" PointY="8.4035546875000051" />
+          <ConnectorPoint PointX="1.9062525" PointY="9.125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -71,7 +71,15 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
             if (resp.Status == Status.Success)
             {
-                var uiresponse = resp.ToUIResult<VendorListViewModel, C.Vendor>((vendor) => GetVendors(), (vm) => RenderPartialViewToString("VendorList", vm));
+                var uiresponse = resp.ToUIResult<VendorEditModel, C.Vendor>((vendor) => new VendorEditModel(resp.Value)
+					, (vm) => string.Empty);
+
+				uiresponse.AdditionalPayload = new
+				{
+					addressHtml = RenderPartialViewToString("DisplayAddress", uiresponse.Subject)
+					,
+					contactHtml = RenderPartialViewToString("DisplayContact", uiresponse.Subject)
+				};
 
                 return Json(uiresponse);
             }

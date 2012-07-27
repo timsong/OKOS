@@ -32,6 +32,7 @@ namespace WFS.DataContext
         public virtual ICollection<Organization> Organizations { get; set; }
         public virtual ICollection<SupportTicket> SupportTickets { get; set; }
         public virtual ICollection<SupportTicket> SupportTickets1 { get; set; }
+        public virtual User User { get; set; }
     }
     
 }
