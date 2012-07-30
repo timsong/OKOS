@@ -7,13 +7,13 @@ using WFS.Repository;
 
 namespace WFS.Contract.ReqResp
 {
-	public class SaveVendorRequest
+	public class SaveWFSUserRequest
 	{
-		public Vendor Subject { get; set; }
+		public WFSUser Subject { get; set; }
 	}
 
-	public class SaveVendorResponse : Result<Vendor>
+	public class SaveWFSUserResponse : Result<WFSUser>
 	{
-		public Vendor Subject { get; set; }
+		public WFSUser Subject { get; set; }
 	}
 }

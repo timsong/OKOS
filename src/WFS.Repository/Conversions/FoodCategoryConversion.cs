@@ -7,6 +7,26 @@ namespace WFS.Repository.Conversions
 {
     public static class FoodCategoryConversion
     {
+		static void Map(this C.FoodCategory foodCategory, VendorFoodCategory existing)
+		{
+			existing.Name = foodCategory.Name;
+
+			existing.CategoryType = foodCategory.CategoryType.ToString();
+
+			existing.OrganizationID = foodCategory.VendorId;
+		}
+
+		public static VendorFoodCategory ToDataModel(this C.FoodCategory domain)
+		{
+			if (domain == null) return null;
+
+			var data = new VendorFoodCategory ();
+
+			domain.Map(data);
+
+			return data;
+		}
+
         public static C.FoodCategory ToContract(this VendorFoodCategory data)
         {
             if (data == null)
@@ -22,6 +42,11 @@ namespace WFS.Repository.Conversions
 
             return model;
         }
+
+		public static void ForUpdate(this VendorFoodCategory existing, C.FoodCategory foodCategory)
+		{
+			foodCategory.Map(existing);
+		}
     }
 }
 

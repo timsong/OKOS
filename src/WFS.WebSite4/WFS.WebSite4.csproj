@@ -362,7 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Vendor\VendorList.cshtml" />
-    <Content Include="Areas\Admin\Views\FoodCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodCategory\AddEdit.cshtml" />
@@ -398,7 +398,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22536</DevelopmentServerPort>
+          <DevelopmentServerPort>53610</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

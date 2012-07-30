@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using C = WFS.Contract;
-using WFS.Contract.ReqResp.Creates;
+using WFS.Contract.ReqResp;
 using WFS.Repository.Conversions;
 using System.Data.Objects;
 using System.Data.Entity;
+using WFS.Contract.ReqResp;
 
 namespace WFS.Repository.Commands.Vendor
 {
@@ -29,18 +30,26 @@ namespace WFS.Repository.Commands.Vendor
 
 			try
 			{
-				if (_vendor.OrganizationId >= 0)
+				if (_vendor.OrganizationId > 0)
 				{
 					var org = context.Organizations.FirstOrDefault(x => x.OrganizationId.Equals(_vendor.OrganizationId));
 
 					org.ForUpdate(_vendor);
+
+					dbContext.SaveChanges();
+
+					result.Value = (C.Vendor)org.ToContract();
 				}
 				else
 				{
-					context.Organizations.Add(_vendor.ToDataModel());
+					var org = _vendor.ToDataModel();
+
+					context.Organizations.Add(org);
+
+					dbContext.SaveChanges();
+
+					result.Value = (C.Vendor)org.ToContract();
 				}
-				
-				dbContext.SaveChanges();
 			}
 			catch (Exception ex)
 			{
@@ -51,7 +60,5 @@ namespace WFS.Repository.Commands.Vendor
 
 			return result;
 		}
-
-
 	}
 }

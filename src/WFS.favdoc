@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Favorites xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <folders>
+    <Folder>
+      <name>Vendor</name>
+      <favorites>
+        <Favorite>
+          <name>vendor.js</name>
+          <path>WFS.WebSite4\Scripts\admin\vendor.js</path>
+          <absolutePath>C:\meat\git\OKOS\OKOS\src\WFS.WebSite4\Scripts\admin\vendor.js</absolutePath>
+        </Favorite>
+        <Favorite>
+          <name>DisplayVendor.cshtml</name>
+          <path>WFS.WebSite4\Areas\Admin\Views\Vendor\DisplayVendor.cshtml</path>
+          <absolutePath>C:\meat\git\OKOS\OKOS\src\WFS.WebSite4\Areas\Admin\Views\Vendor\DisplayVendor.cshtml</absolutePath>
+        </Favorite>
+        <Favorite>
+          <name>EditVendor.cshtml</name>
+          <path>WFS.WebSite4\Areas\Admin\Views\Vendor\EditVendor.cshtml</path>
+          <absolutePath>C:\meat\git\OKOS\OKOS\src\WFS.WebSite4\Areas\Admin\Views\Vendor\EditVendor.cshtml</absolutePath>
+        </Favorite>
+        <Favorite>
+          <name>List.cshtml</name>
+          <path>WFS.WebSite4\Areas\Admin\Views\Vendor\List.cshtml</path>
+          <absolutePath>C:\meat\git\OKOS\OKOS\src\WFS.WebSite4\Areas\Admin\Views\Vendor\List.cshtml</absolutePath>
+        </Favorite>
+      </favorites>
+    </Folder>
+  </folders>
+  <favorites />
+</Favorites>

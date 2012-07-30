@@ -1,11 +1,15 @@
 ﻿using WFS.Contract;
 using WFS.Contract.ReqResp;
-using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
-using WFS.Contract.ReqResp.Creates;
+using WFS.Contract.ReqResp;
 using WFS.Repository.Commands.Vendor;
+using System.Web.Security;
+using WFS.Framework.Extensions;
+using WFS.Framework;
+using System;
+using WFS.Contract.Enums;
 
 namespace WFS.Domain.Managers
 {
@@ -82,9 +86,31 @@ namespace WFS.Domain.Managers
 
 		public SaveVendorResponse SaveVendor(SaveVendorRequest request)
 		{
-			var command = new SaveVendorCommand(request.Subject);
+			var resp = new SaveVendorResponse();
 
-			var resp = (SaveVendorResponse)_repository.ExecuteCommand<Vendor>(command);
+			resp.Value = request.Subject;
+
+			var user = request.Subject.User;
+
+			var userCommand = new SaveWFSUserCommand(request.Subject.User);
+	
+			var userResponse = _repository.ExecuteCommand(userCommand);
+
+			resp.Merge<Vendor, WFSUser>((Result<WFSUser>)userResponse);
+
+			if (resp.Status != Status.Success)
+				return resp;
+
+			request.Subject.User = userResponse.Value;
+
+			var vendorCommand = new SaveVendorCommand(request.Subject);
+
+			var venRes = _repository.ExecuteCommand(vendorCommand);
+
+			((Result<Vendor>)venRes).Merge<Vendor, Vendor>(resp);
+
+			if (resp.Status == Status.Success)
+				resp.Value = (Vendor)venRes.Value;
 
 			return resp;
 		}
@@ -103,20 +129,19 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
-        public CreateFoodCategoryResponse CreateFoodCategory(CreateFoodCategoryRequest request)
-        {
-            var resp = new CreateFoodCategoryResponse();
 
-            //Create Vendor and VendorUser
-            var faCmd = new CreateFoodCategoryCommand(request.Name, request.VendorID, request.CategoryType.ToString());
-            var fcRes = _repository.ExecuteCommand(faCmd);
+		public SaveFoodCategoryResponse SaveFoodCategory(SaveFoodCategoryRequest request)
+		{
+			var resp = new SaveFoodCategoryResponse();
 
-            resp.Merge(fcRes);
-            if (resp.Status == Status.Success)
-                resp.FoodCategory = fcRes.Value;
+			//Create Vendor and VendorUser
+			var faCmd = new SaveFoodCategoryCommand(request.Subject);
 
-            return resp;
-        }
+			var fcRes = _repository.ExecuteCommand(faCmd);
 
-    }
+			((Result<FoodCategory>)fcRes).Merge<FoodCategory, FoodCategory>(resp);
+
+			return resp;
+		}
+	}
 }

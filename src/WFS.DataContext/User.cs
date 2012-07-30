@@ -17,6 +17,7 @@ namespace WFS.DataContext
         public User()
         {
             this.Roles = new HashSet<Role>();
+            this.WFSUsers = new HashSet<WFSUser>();
         }
     
         public System.Guid ApplicationId { get; set; }
@@ -29,6 +30,7 @@ namespace WFS.DataContext
         public virtual Membership Membership { get; set; }
         public virtual Profile Profile { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<WFSUser> WFSUsers { get; set; }
     }
     
 }

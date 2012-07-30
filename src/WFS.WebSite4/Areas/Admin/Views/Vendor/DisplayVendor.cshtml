@@ -7,14 +7,14 @@
 
 <h2>Manage Vendor</h2>
 <div class="row">
-	<div class="five columns">
+	<div id="displayAddressPanel" class="five columns">
 		@{Html.RenderPartial("DisplayAddress", Model);}
 	</div>
-	<div class="five columns">
+	<div id="displayContactPanel" class="five columns">
 		@{Html.RenderPartial("DisplayContact", Model);}
 	</div>
 	<div class="two columns" style="text-align: center">
-		<a href="javascript:void(0)" class="button radius small">Edit</a>
+		<a href="javascript:void(0)" msclick="vendor.edit" data-id="@Model.Vendor.OrganizationId" class="button radius small">Edit</a>
 		<a href="/Admin/Vendors/GetList" class="button radius small">Back</a>
 	</div>
 </div>
@@ -26,12 +26,16 @@
 	<dd><a href="#storesPanel">Stores</a></dd>
 </dl>
 <ul class="tabs-content contained">
-	<li class="active" id="categoriesPanelTab"> categories </li>
+	<li class="active" id="categoriesPanelTab">
+		@{Html.RenderAction("List", "FoodCategory", new { controller="FoodCategory"
+			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
+	</li>
 	<li id="optionsPanelTab"> options </li>
 	<li id="foodItemsPanelTab"> food items </li>
 	<li id="menusPanelTab"> menus </li>
 	<li id="storesPanelTab"> stores </li>
 </ul>
+<div id="modalEdit" class="reveal-modal"></div>
 @section Scripts {
     @System.Web.Optimization.Scripts.Render("~/bundles/admin")
 }

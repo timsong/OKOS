@@ -9,7 +9,7 @@
 	
 </div>
 <p>
-    @Html.RouteLink("Add New Vendor", "Admin_Vendor_CreateVendor")
+	<a href="javascript:void(0)" msclick="vendor.add">Add New Vendor</a>
 </p>
 <div id="vendorListPanel">
 @{ Html.RenderPartial("VendorList", Model); }
