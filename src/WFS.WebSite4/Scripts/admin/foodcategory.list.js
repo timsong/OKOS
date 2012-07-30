@@ -10,7 +10,6 @@
                     $('#modalEditWindow').reveal();
                 }
             });
-
         }
 
         , saveFoodCategory: function (e) {
