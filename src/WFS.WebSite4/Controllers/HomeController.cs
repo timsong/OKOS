@@ -20,10 +20,7 @@ namespace WFS.WebSite4.Controllers
 
         public ActionResult ContactUs()
         {
-            if ()
-            {
-                
-            }
+
             return View();
         }
 

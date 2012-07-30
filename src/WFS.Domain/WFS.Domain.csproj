@@ -49,6 +49,7 @@
     <Compile Include="Managers\SchoolManager.cs" />
     <Compile Include="Managers\SupportTicketManager.cs" />
     <Compile Include="Managers\VendorManager.cs" />
+    <Compile Include="Managers\WFSUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
