@@ -155,6 +155,7 @@
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\DirectorBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SupportTicketController.cs" />
@@ -278,8 +279,6 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -317,18 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Why.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\HealthAndNutrition.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Testimonials.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Support.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Vendor\List.cshtml" />
@@ -390,6 +377,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\School\CreateSchool.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\AboutUs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\ContactUs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\HealthAndNutrition.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\Support.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\Testimonials.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\Why.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

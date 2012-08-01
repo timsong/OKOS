@@ -27,37 +27,37 @@ namespace WFS.WebSite4
             routes.MapRoute(
                 name: "AboutUs",
                 url: "about-us",
-                defaults: new { controller = "Home", action = "AboutUs" }
+                defaults: new { controller = "General", action = "AboutUs" }
             );
 
             routes.MapRoute(
                 name: "ContactUs",
                 url: "contact-us",
-                defaults: new { controller = "Home", action = "ContactUs" }
+				defaults: new { controller = "General", action = "ContactUs" }
             );
 
             routes.MapRoute(
                 name: "Why",
                 url: "why",
-                defaults: new { controller = "Home", action = "Why" }
+				defaults: new { controller = "General", action = "Why" }
             );
 
             routes.MapRoute(
                 name: "HeathAndNutrition",
                 url: "heath-and-nutrition",
-                defaults: new { controller = "Home", action = "HealthAndNutrition" }
+				defaults: new { controller = "General", action = "HealthAndNutrition" }
             );
 
             routes.MapRoute(
                 name: "Testimonials",
                 url: "testimonials",
-                defaults: new { controller = "Home", action = "Testimonials" }
+				defaults: new { controller = "General", action = "Testimonials" }
             );
 
             routes.MapRoute(
                 name: "Support",
                 url: "support",
-                defaults: new { controller = "Home", action = "Support" }
+				defaults: new { controller = "General", action = "Support" }
             );
 
             routes.MapRoute(
