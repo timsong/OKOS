@@ -15,10 +15,12 @@
             <span class="right">Last Name:</span>
         </div>
         <div class="three columns">
-            @if (Model.IsNew)
+            @if (Model.IsNew) {
                 @Html.TextBoxFor(x => x.Ticket.LastName)
-            else
+            }
+            else {
                 @Model.Ticket.LastName
+            }
         </div>
     </div>
     <div class="p_t5 row">
