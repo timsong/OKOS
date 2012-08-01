@@ -17,3 +17,8 @@
 .top-bar .nav-bar > li.active > a:hover { color: white; cursor: default; }
 
 .text.small { font-size: 8pt; height: 12px; padding: 0; }
+
+.largeReveal
+{
+	width:600px;
+}
