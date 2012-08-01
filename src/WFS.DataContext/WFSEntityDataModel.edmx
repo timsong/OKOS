@@ -218,6 +218,8 @@
           <Property Name="ResolvedUserID" Type="int" />
           <Property Name="ResolvedText" Type="text" />
           <Property Name="ResolvedDate" Type="date" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="ContactPhone" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1055,6 +1057,8 @@
           <Property Type="DateTime" Name="ResolvedDate" />
           <NavigationProperty Name="CreatedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser" FromRole="SupportTicket" ToRole="WFSUser" />
           <NavigationProperty Name="ResolvedUser" Relationship="WFSModel.FK_SupportTicket_WFSUser1" FromRole="SupportTicket" ToRole="WFSUser" />
+          <Property Type="String" Name="EmailAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPhone" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_SupportTicket_WFSUser">
           <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="0..1" />
@@ -1268,6 +1272,8 @@
           <EntitySetMapping Name="SupportTickets">
             <EntityTypeMapping TypeName="WFSModel.SupportTicket">
               <MappingFragment StoreEntitySet="SupportTicket">
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="ResolvedDate" ColumnName="ResolvedDate" />
                 <ScalarProperty Name="ResolvedText" ColumnName="ResolvedText" />
                 <ScalarProperty Name="ResolvedUserID" ColumnName="ResolvedUserID" />
