@@ -6,10 +6,12 @@
             <span class="right">First Name:</span>
         </div>
         <div class="three columns">
-            @if (Model.IsNew)
+            @if (Model.IsNew) {
                 @Html.TextBoxFor(x => x.Ticket.FirstName)
-            else
+            }
+            else { 
                 @Model.Ticket.FirstName
+            }
         </div>
         <div class="three columns">
             <span class="right">Last Name:</span>
@@ -28,10 +30,12 @@
             <span class="right">Question/Problem:</span>
         </div>
         <div class="nine columns">
-            @if (Model.IsNew)
+            @if (Model.IsNew) {
                 @Html.TextAreaFor(x => x.Ticket.IssueText)
-            else
+            }
+            else {
                 @Model.Ticket.IssueText
+            }
         </div>
     </div>
 </div>
