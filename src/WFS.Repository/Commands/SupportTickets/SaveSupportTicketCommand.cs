@@ -23,7 +23,7 @@ namespace WFS.Repository.Commands.SupportTickets
 
             try
             {
-                if (_supportTicket.TicketId >= 0)
+                if (_supportTicket.TicketId > 0)
                 {
                     var tick = context.SupportTickets.FirstOrDefault(x => x.TicketId.Equals(_supportTicket.TicketId));
 

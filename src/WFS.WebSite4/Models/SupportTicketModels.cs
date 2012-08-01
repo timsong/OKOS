@@ -28,11 +28,36 @@ namespace WFS.WebSite4.Models
     }
     public class SupportTicketNewModel
     {
+        public SupportTicketNewModel()
+        {
+            Categories = new List<SelectListItem>();
+
+            Categories.Add(new SelectListItem()
+                {
+                    Text = "Billing",
+                    Value = "Billing"
+                });
+
+            Categories.Add(new SelectListItem()
+            {
+                Text = "Account",
+                Value = "Account"
+            });
+
+        }
+
+        public SupportTicketNewModel(SupportTicket ticket)
+        {
+        }
+
         public int? UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string ContactPhone { get; set; }
         public string IssueText { get; set; }
+
+        public string SelectedCategory { get; set; }
+        public List<SelectListItem> Categories { get; set; }
     }
 }

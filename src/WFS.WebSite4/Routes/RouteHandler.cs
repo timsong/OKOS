@@ -45,7 +45,7 @@ namespace WFS.WebSite4
             routes.MapRoute(
                 name: "HeathAndNutrition",
                 url: "heath-and-nutrition",
-                defaults: new { controller = "Home", action = "HeathAndNutrition" }
+                defaults: new { controller = "Home", action = "HealthAndNutrition" }
             );
 
             routes.MapRoute(

@@ -1,0 +1,79 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolAddModel
+
+<h2>Manage School</h2>
+<form id="schoolEditForm" method="post">
+    @Html.Hidden("OrganizationId", Model.School.OrganizationId)
+    @Html.Hidden("User.UserId", Model.School.User.UserId)
+    @Html.Hidden("User.MembershipGuid", Model.School.User.MembershipGuid)
+    @Html.Hidden("User.MembershipGuid", WFS.Contract.Enums.WFSUserTypeEnum.Vendor)
+    @Html.Hidden("User.AvailableCredit", Model.School.User.AvailableCredit)
+	@if (Model.Status != WFS.Status.Success) {
+	<div class="alert-box alert round">
+		@foreach (var msg in Model.Messages) {
+		<div>@msg.Text</div>
+		}
+	</div>
+	}
+	<div class="panel">
+		<div class="row">
+			<div class="twelve columns">
+				<div class="row">
+					<div class="three columns">
+						<label class="right inline">School Name:</label>
+					</div>
+					<div class="eight columns end">
+						@Html.TextBox("Name", Model.School.Name)
+					</div>
+				</div>
+				<div class="row">
+					<div class="three columns">
+						<label class="right inline">Contact Name:</label>
+					</div>
+					<div class="four columns">
+						@Html.TextBox("User.FirstName", Model.School.User.FirstName, new { placeholder = "First Name" })
+					</div>
+					<div class="four columns end">
+						@Html.TextBox("User.LastName", Model.School.User.LastName, new { placeholder = "Last Name" })
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="three columns">
+						<label class="right inline">Contact Email:</label>
+					</div>
+					<div class="eight columns end">
+						@Html.TextBox("User.EmailAddress", Model.School.User.EmailAddress, new { placeholder = "Contact Email Address" })
+					</div>
+				</div>
+				<div class="row @(Model.School.OrganizationId <= 0 ? string.Empty : "hide")">
+					<div class="five columns">
+						<label class="right inline">Enter Password</label>
+					</div>
+					<div class="five columns end">
+						@Html.Password("User.Password")
+					</div>
+				</div>
+				<div class="row @(Model.School.OrganizationId <= 0 ? string.Empty : "hide")">
+					<div class="five columns">
+						<label class="right inline">Re-enter Password</label>
+					</div>
+					<div class="five columns end">
+						@Html.Password("User.Repassword")
+					</div>
+				</div>
+
+				@{Html.RenderPartial("AddressInfo",
+                        Model.School.AddressInfo, 
+						new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+			</div>
+		</div>
+	</div>
+</form>
+<div class="row">
+	<div class="three columns"></div>
+	<div class="six columns">
+		<a href="#" id="save-link" msclick="school.save" class="radius button">Save</a>
+		<a href="#" class="radius button close-reveal-modal ">Cancel</a>
+	</div>
+	<div class="two columns"></div>
+</div>

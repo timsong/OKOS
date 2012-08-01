@@ -58,6 +58,7 @@
     <Compile Include="Commands\SupportTickets\DeleteSupportTicketCommand.cs" />
     <Compile Include="Commands\SupportTickets\SaveSupportTicketCommand.cs" />
     <Compile Include="Commands\Vendor\SaveVendorCommand.cs" />
+    <Compile Include="Conversions\ExtendOrganization\ExtendSchool.cs" />
     <Compile Include="Conversions\SupportTicketConversion.cs" />
     <Compile Include="Conversions\VendorConversion.cs" />
     <Compile Include="Conversions\ExtendOrganization\ExtendVendor.cs" />

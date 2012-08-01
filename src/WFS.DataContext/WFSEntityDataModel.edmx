@@ -208,7 +208,7 @@
           <Key>
             <PropertyRef Name="TicketId" />
           </Key>
-          <Property Name="TicketId" Type="int" Nullable="false" />
+          <Property Name="TicketId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IssueCategory" Type="varchar" Nullable="false" MaxLength="25" />
           <Property Name="CreatedUserID" Type="int" />
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />

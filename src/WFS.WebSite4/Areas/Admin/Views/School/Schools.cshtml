@@ -8,9 +8,13 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.RouteLink("Add New School", "Admin_Vendor_CreateVendor")
+    <a href="javascript:void(0)" msclick="school.add">Add New School</a>
 </p>
 
+<div id="modalEdit" class="reveal-modal">
+</div>
+
+<div id="schoolList">
 @foreach (var item in Model.Schools) {
     <div class="panel">
         <div class="row">
@@ -25,10 +29,12 @@
                     @Html.ActionLink("Delete", "admin.school.delete", new { vendorID = item.OrganizationId })
                 </div>
                 <div class="one columns"></div>
-
             </div>
         </div>
     </div>
 }
+</div>
 
-</table>
+@section scripts{
+	@System.Web.Optimization.Scripts.Render("~/bundles/admin/school")
+}
