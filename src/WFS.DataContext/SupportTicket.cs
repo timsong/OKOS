@@ -24,6 +24,8 @@ namespace WFS.DataContext
         public Nullable<int> ResolvedUserID { get; set; }
         public string ResolvedText { get; set; }
         public Nullable<System.DateTime> ResolvedDate { get; set; }
+        public string EmailAddress { get; set; }
+        public string ContactPhone { get; set; }
     
         public virtual WFSUser CreatedUser { get; set; }
         public virtual WFSUser ResolvedUser { get; set; }

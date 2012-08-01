@@ -25,6 +25,9 @@ namespace WFS.Repository.Conversions
                     ResolvedText = data.ResolvedText,
                     ResolvedDate = data.ResolvedDate,
                     ResolvedByUserID = data.ResolvedUserID,
+                    EmailAddress = data.EmailAddress,
+                    ContactPhone = data.ContactPhone
+
                 };
 
             if (data.ResolvedUserID.HasValue)
@@ -45,6 +48,8 @@ namespace WFS.Repository.Conversions
                 CreatedUserID = model.CreatedByUserID,
                 IssueCategory = model.SupportCategory.ToString(),
                 IssueText = model.IssueText,
+                EmailAddress = model.EmailAddress,
+                ContactPhone = model.ContactPhone
             };
 
             return data;

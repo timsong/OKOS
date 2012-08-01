@@ -10,6 +10,8 @@ namespace WFS.Contract
         public int? CreatedByUserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+        public string ContactPhone { get; set; }
         public string IssueText { get; set; }
         public DateTime CreatedDate { get; set; }
 

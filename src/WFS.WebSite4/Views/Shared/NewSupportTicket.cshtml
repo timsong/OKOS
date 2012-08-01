@@ -1,0 +1,23 @@
+﻿@model WFS.WebSite4.Models.SupportTicketNewModel
+
+<h2>New Suport Ticket</h2>
+<form id="newSupportForm"  method="post"> 
+
+    <fieldset>
+        <legend>Contact Information</legend>
+    
+        <div class="row">
+            <div class="two columns">
+                <label class="right inline">Name:</label>
+            </div>
+            <div class="four columns">
+                @Html.TextBox("FirstName", Model.FirstName, new { placeholder="First Name" })
+            </div>
+            <div class="four columns end">
+                @Html.TextBox("LastName", Model.LastName, new { placeholder = "Last Name"})
+            </div>
+        </div>
+            
+    </fieldset>
+
+</form>

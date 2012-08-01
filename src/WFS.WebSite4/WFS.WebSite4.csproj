@@ -382,6 +382,9 @@
   <ItemGroup>
     <Content Include="Views\AddViewSupportTicket.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\NewSupportTicket.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

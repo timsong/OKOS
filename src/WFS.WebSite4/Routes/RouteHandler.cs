@@ -16,6 +16,8 @@ namespace WFS.WebSite4
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            MapSupportRoutes(routes);
+
             routes.MapRoute(
                 name: "home",
                 url: "",
@@ -88,5 +90,15 @@ namespace WFS.WebSite4
                 defaults: new { controller = "Account", action = "ChangePasswordSuccess" }
             );
         }
+
+        private static void MapSupportRoutes(RouteCollection routes)
+        {
+            routes.MapRoute(
+                name: "Support_NewSupportTicket",
+                url: "Support/NewSupportTicket",
+                defaults: new { controller = "SupportTicket", action = "NewSupportTicket" }
+            );
+        }
+
     }
 }
