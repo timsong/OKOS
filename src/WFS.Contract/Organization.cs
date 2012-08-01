@@ -40,6 +40,15 @@ namespace WFS.Contract
         public List<Menu> Menus { get; set; }
     }
 
+    public class School : Organization
+    {
+        public School()
+            : base()
+        {
+            OrganizationType = OrganizationTypeEnum.School;
+        }
+    }
+
     public class Store : Vendor
     {
         public int AdvanceDays { get; set; }

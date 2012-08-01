@@ -42,7 +42,7 @@ namespace WFS.WebSite4
 			#region admin scripts 
 
 			bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/admin/school").Include("~/Scripts/admin/school.js"));
 			bundles.Add(new ScriptBundle("~/bundles/admin/vendor").Include("~/Scripts/admin/vendor.js"));
 			#endregion 
 		}

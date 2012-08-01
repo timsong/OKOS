@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using WFS.WebSite4.Controllers;
-using WFS.Domain.Managers;
-using WFS.Contract.ReqResp;
+﻿using System.Web.Mvc;
+using WFS.Contract;
 using WFS.Contract.Enums;
+using WFS.Contract.ReqResp;
+using WFS.Domain.Managers;
+using WFS.Framework;
+using WFS.Framework.Responses;
 using WFS.WebSite4.Areas.Admin.Models;
+using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin,SystemAdmin")]
+    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin)]
 	public class SchoolController : BaseController
     {
         private readonly SchoolManager _schoolMgr;
@@ -43,6 +42,39 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             };
 
             return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            var viewModel = new SchoolAddModel(new School());
+            var uiresult = new UIResponse<SchoolAddModel>();
+
+            uiresult.Subject = viewModel;
+            uiresult.HtmlResult = RenderPartialViewToString("createschool", viewModel);
+
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Create(School model)
+        {
+            var response = this._schoolMgr.CreateSchool(new CreateSchoolRequest() { School = model });
+
+            if (response.Status == Status.Success)
+            {
+                return RedirectToRoute("admin.school.view", new { schoolId = response.School.OrganizationId });
+            }
+            else
+            {
+                var viewModel = new SchoolAddModel(model);
+                var uiresult = new UIResponse<SchoolAddModel>();
+
+                viewModel.Merge(response);
+                uiresult.Subject = viewModel;
+                uiresult.HtmlResult = RenderPartialViewToString("createschool", viewModel);
+
+                return Json(uiresult);
+            }
         }
     }
 }

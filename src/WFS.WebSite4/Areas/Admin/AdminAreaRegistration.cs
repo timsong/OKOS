@@ -93,6 +93,12 @@ namespace WFS.WebSite4.Areas.Admin
             );
 
             context.MapRoute(
+                "admin.school.create",
+                "Admin/Schools/create",
+                new { controller = "School", action = "Create" }
+            );
+
+            context.MapRoute(
                 "admin.school.view",
                 "Admin/Schools/{schoolid}",
                 new { controller = "School", action = "School" }
