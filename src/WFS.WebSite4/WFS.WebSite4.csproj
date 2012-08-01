@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\RoleAuthorize.cs" />
+    <Compile Include="Helpers\SelectListItem.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\SupportTicketModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
