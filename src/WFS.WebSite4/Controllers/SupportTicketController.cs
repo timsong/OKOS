@@ -53,6 +53,7 @@ namespace WFS.WebSite4.Controllers
 
             return Json(noUserResult, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult NewSupportTicket(SupportTicketNewModel model)
         {
@@ -84,6 +85,23 @@ namespace WFS.WebSite4.Controllers
 
                 return Json(uiresponse);
             }
+        }
+
+        public ActionResult GetUnresolvedTickets()
+        {
+            var resp = _tickManager.GetUnresolvedSupportTickets(new GetUnResolvedSupportTicketRequest());
+
+            var model = new SupportTicketListViewModel()
+            {
+                Tickets = resp.Tickets
+            };
+
+            var uiresult = new UIResponse<SupportTicketListViewModel>();
+            uiresult.Subject = model;
+            uiresult.HtmlResult = RenderPartialViewToString("UnresolvedTicketList", model);
+            uiresult.Status = resp.Status;
+
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -219,6 +219,7 @@
     <Content Include="Images\foundation\right-arrow.png" />
     <Content Include="Images\foundation\rotator-black.png" />
     <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\admin\dashboard.js" />
     <Content Include="Scripts\admin\school.js" />
     <Content Include="Scripts\admin\foodcategory.list.js" />
     <Content Include="Scripts\admin\vendor.js" />

@@ -98,6 +98,14 @@ namespace WFS.WebSite4
                 url: "Support/NewSupportTicket",
                 defaults: new { controller = "SupportTicket", action = "NewSupportTicket" }
             );
+
+            routes.MapRoute(
+                name: "Support_GetUnresolvedTickets",
+                url: "Support/Tickets/Get",
+                defaults: new { controller = "SupportTicket", action = "GetUnresolvedTickets" }
+            );
+
+
         }
 
     }

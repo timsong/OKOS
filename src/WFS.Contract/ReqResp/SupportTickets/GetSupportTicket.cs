@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WFS.Framework;
+using WFS.Repository;
 
 namespace WFS.Contract.ReqResp
 {
@@ -19,12 +19,12 @@ namespace WFS.Contract.ReqResp
     }
 
 
-    public class GetSupportTicketResponse : BaseResponse
+    public class GetSupportTicketResponse : Result<SupportTicket>
     {
         public SupportTicket Ticket { get; set; }
     }
 
-    public class GetSupportTicketListResponse : BaseResponse
+    public class GetSupportTicketListResponse : ListResult<SupportTicket>
     {
         public GetSupportTicketListResponse()
         {

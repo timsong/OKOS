@@ -2,6 +2,7 @@
 using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands.SupportTickets;
+using WFS.Repository.Queries;
 
 namespace WFS.Domain.Managers
 {
@@ -26,6 +27,19 @@ namespace WFS.Domain.Managers
                 resp.Ticket = result.Value;
 
             return resp;
+        }
+
+        public GetSupportTicketListResponse GetUnresolvedSupportTickets(GetUnResolvedSupportTicketRequest request)
+        {
+            var response = new GetSupportTicketListResponse();
+
+            var query = new GetUnResolvedSupportTicketsQuery();
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.Tickets = result.Values;
+
+            return response;
         }
     }
 }

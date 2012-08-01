@@ -74,6 +74,7 @@
     <Compile Include="Queries\FoodCategory\GetFoodCategoryByIdQuery.cs" />
     <Compile Include="Queries\FoodOptions\GetFoodOptionListQuery.cs" />
     <Compile Include="Queries\GetFoodItemListQuery.cs" />
+    <Compile Include="Queries\GetUnResolvedSupportTicketsQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByUserNameQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationsByTypeListQuery.cs" />

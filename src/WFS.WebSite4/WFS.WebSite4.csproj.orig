@@ -138,20 +138,50 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolAddModel.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
+    <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
+    <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\DirectorBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SupportTicketController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\SmDependencyResolver.cs" />
+    <Compile Include="DependencyResolution\WFSRegistry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Helpers\RoleAuthorize.cs" />
+    <Compile Include="Helpers\SelectListItem.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\SupportTicketModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\VendorAdmin\Views\Web.config" />
+    <Content Include="Content\old.Site.css" />
+    <Content Include="Content\foundation.css" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\WFS_Logo-High Res.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -179,8 +209,23 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\foundation.overrides.css" />
+    <Content Include="Error.htm" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\foundation\left-arrow.png" />
+    <Content Include="Images\foundation\mask-black.png" />
+    <Content Include="Images\foundation\pause-black.png" />
+    <Content Include="Images\foundation\right-arrow.png" />
+    <Content Include="Images\foundation\rotator-black.png" />
+    <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\admin\dashboard.js" />
+    <Content Include="Scripts\admin\school.js" />
+    <Content Include="Scripts\admin\foodcategory.list.js" />
+    <Content Include="Scripts\admin\vendor.js" />
+    <Content Include="Scripts\foundation\foundation.js" />
+    <Content Include="Scripts\foundation\jquery.min.js" />
+    <Content Include="Scripts\foundation\modernizr.foundation.js" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
@@ -197,6 +242,7 @@
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\knockout-2.0.0.debug.js" />
     <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\okos\okos.home.js" />
     <Content Include="Scripts\okos\okos.messaging.js" />
     <Content Include="Scripts\okos\okos.mikerowsoft.js" />
     <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
@@ -234,8 +280,6 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -244,9 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\VendorAdmin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -276,21 +318,89 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\EditVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AddressInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\_LayoutPageAdmin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\VendorAdmin\Views\Shared\_LayoutPageVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\School\Schools.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\VendorAdmin\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\VendorList.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodCategory\AddEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\School\School.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodCategory\FoodCategoryList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AddViewSupportTicket.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\NewSupportTicket.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\School\CreateSchool.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
 <<<<<<< HEAD
-  <ItemGroup>
-    <Content Include="Views\Home\Why.cshtml" />
+    <Content Include="Views\General\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\HealthAndNutrition.cshtml" />
+    <Content Include="Views\General\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Testimonials.cshtml" />
+    <Content Include="Views\General\HealthAndNutrition.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Support.cshtml" />
+    <Content Include="Views\General\Support.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\Testimonials.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\General\Why.cshtml" />
 =======
->>>>>>> ddf3ded... test
+    <Content Include="Views\Shared\UnresolvedTicketList.cshtml" />
+>>>>>>> 0577af94b9b036ed30b6838ea41841f1fbc81787
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -307,7 +417,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>20132</DevelopmentServerPort>
+          <DevelopmentServerPort>53610</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

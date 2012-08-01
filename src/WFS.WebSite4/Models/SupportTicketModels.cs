@@ -5,6 +5,11 @@ namespace WFS.WebSite4.Models
 {
     public class SupportTicketListViewModel
     {
+        public SupportTicketListViewModel()
+        {
+            Tickets = new List<SupportTicket>();
+        }
+
         public List<SupportTicket> Tickets { get; set; }
     }
 
