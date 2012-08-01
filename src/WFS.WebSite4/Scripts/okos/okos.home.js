@@ -5,7 +5,7 @@
 	        var url = '/Support/NewSupportTicket';
 	        ms.ajax.send({ url: url
                 , successHandler: function (data) {
-                    ms.ml.html('#modalNewSupportTicketWindow', data);
+                    ms.ml.html('#modalNewSupportTicketWindow', data.HtmlResult);
                     $('#modalNewSupportTicketWindow').reveal();
                 }
 	        });

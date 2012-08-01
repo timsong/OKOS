@@ -91,10 +91,11 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			}
         }
 
-        public ActionResult DeleteFoodCategory(int vendorID)
+        public ActionResult DeleteFoodCategory(int foodCategoryId)
         {
-            return null;
-        }
+			//var resp = _vendorMgr.DeleteFoodCategory(new DeleteFoodCategory{ FoodCategoryId 
+			throw new NotImplementedException();
+		}
 
         public ActionResult AddFoodCategory(int vendorId)
         {
