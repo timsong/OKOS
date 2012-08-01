@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<hgroup class="title">
+    <h2>Need some help? Have a question? </h2>
+</hgroup>
+
+<section class="contact">
+    <header>
+        <h3>Phone</h3>
+    </header>
+    <p>
+        <span class="label">Main:</span>
+        <span>303-688-2700</span>
+    </p>
+</section>
+
+<section class="contact">
+    <header>
+        <h3>Email</h3>
+    </header>
+    <p>
+        <span class="label">Support:</span>
+        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
+    </p>
+    <p>
+        <span class="label">General:</span>
+        <span><a href="mailto:General@example.com">General@example.com</a></span>
+    </p>
+</section>
+
+<section class="contact">
+    <header>
+        <h3>Support</h3>
+    </header>
+    <p>
+     <a href="#" id="save-link"  onclick="home.openNewSupportTicket()" class="[radius, round] button">Contact Our Support Team</a>
+        <a href="/support" title="Contact support team"></a>
+    </p>
+</section>
+
+<div id="modalNewSupportTicketWindow" class="reveal-modal"></div>
