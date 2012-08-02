@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using WFS.Contract;
 using WFS.Contract.Enums;
 
@@ -51,10 +52,20 @@ namespace WFS.WebSite4.Models
         }
 
         public int? UserId { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required]
         public string EmailAddress { get; set; }
+
+        [Required]
         public string ContactPhone { get; set; }
+
+        [Required]
         public string IssueText { get; set; }
 
         public string SelectedCategory { get; set; }

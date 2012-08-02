@@ -2,7 +2,7 @@
 @if (Request.IsAuthenticated)
 {
     <div>
-        Welcome @Html.ActionLink(User.Identity.Name, "ChangePassword", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Change password" })
+		Welcome @Html.RouteLink(User.Identity.Name, "ChangePassword", new { }, new { @class = "radius success button small", title = "Change password" })
 		@Html.RouteLink("Logout", "LogOff", new { }, new { @class = "radius success button small" })
     </div>
 }
@@ -14,13 +14,13 @@ else
 	</div>
 	<div id="loginModal" class="reveal-modal">
 	@if (Model == null)
-	  {
-		  Html.RenderPartial("~/Views/Account/Login.cshtml");
-	  }
-	  else
-	  {
-		  Html.RenderPartial("~/Views/Account/Login.cshtml", ((WFS.WebSite4.Models.ILoginConverter)Model).GetLoginModel());
-	  }
+ {
+     Html.RenderPartial("~/Views/Account/Login.cshtml");
+ }
+ else
+ {
+     Html.RenderPartial("~/Views/Account/Login.cshtml", ((WFS.WebSite4.Models.ILoginConverter)Model).GetLoginModel());
+ }
 		
 	</div>
 }

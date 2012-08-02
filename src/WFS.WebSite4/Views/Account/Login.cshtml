@@ -1,29 +1,47 @@
 ﻿@model WFS.WebSite4.Models.LoginModel
+
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl })) {
-        <h2 class="">Please login below</h2>
-	    @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-        </ol>
-    
+       
+        <h2>Please login below</h2>
         <div class="row">
-            <div class="four columns">
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            <div class="ten rows centered">
+                @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
             </div>
-            <div class="three columns end">
+        </div>
+
+        <div class="row p_t5">
+            <div class="three columns">
+                <label class="right inline">User Name: </label>
+            </div>
+
+            <div class="seven columns end">
+                @Html.TextBoxFor(m => m.UserName)
+            </div>
+        </div>
+        <div class="row p_t5">
+            <div class="three columns">
+                <label class="right inline">Password: </label>
+            </div>
+
+            <div class="seven columns end ">
+                @Html.PasswordFor(m => m.Password)
+            </div>
+        </div>
+    
+        <div class="row p_t5">
+            <div class="three columns">
+                <label class="right inline p_t5">Remember Me: </label>
+            </div>
+            <div class="seven columns end">
                 @Html.CheckBoxFor(m => m.RememberMe)
             </div>
         </div>  
 
-        <input type="submit" class="medium success button" value="Log in" />
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
+        <div class="row p_t5">
+            <div class="three columns">
+            </div>
+            <div class="seven columns end">
+                <input type="submit" class="medium success button right" value="Log in" />
+            </div>
+        </div>  
 }

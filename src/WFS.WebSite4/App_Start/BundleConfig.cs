@@ -18,7 +18,9 @@ namespace WFS.WebSite4
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/foundation.css", "~/Content/foundation.overrides.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css",
+                                                                 "~/Content/foundation.css",
+                                                                 "~/Content/foundation.overrides.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
@@ -39,12 +41,12 @@ namespace WFS.WebSite4
 
             bundles.Add(new ScriptBundle("~/bundles/foundation").Include("~/Scripts/foundation/modernizr.foundation.js", "~/Scripts/foundation/foundation.js"));
 
-			#region admin scripts 
+            #region admin scripts
 
-			bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
             bundles.Add(new ScriptBundle("~/bundles/admin/school").Include("~/Scripts/admin/school.js"));
-			bundles.Add(new ScriptBundle("~/bundles/admin/vendor").Include("~/Scripts/admin/vendor.js"));
-			#endregion 
-		}
+            bundles.Add(new ScriptBundle("~/bundles/admin/vendor").Include("~/Scripts/admin/vendor.js"));
+            #endregion
+        }
     }
 }

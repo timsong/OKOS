@@ -1,5 +1,8 @@
-﻿/* overrides for the top-nav
-*/
+﻿body { font-size: 12px; font-size: 1.2rem}
+label { font-size: 12px; font-size: 1.2rem}
+
+
+/* overrides for the top-nav*/
 .top-bar { height: 35px; }
 .top-bar .nav-bar { height: 35px; background: #111111; margin-top: 20px; padding: 0; }
 .top-bar .nav-bar > li { float: left; display: block; position: relative; padding: 0; margin: 0; border: 1px solid #333333; 
