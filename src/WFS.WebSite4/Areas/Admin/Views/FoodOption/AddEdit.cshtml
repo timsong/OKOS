@@ -1,0 +1,48 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.FoodOptionEditModel
+<h2>Manage Food Option</h2>
+<form id="foodOptionEditForm" method="post">
+    @Html.Hidden("FoodOptionId", Model.Subject.FoodOptionId)
+    @Html.Hidden("VendorId", Model.Subject.VendorId)
+	<div class="panel">
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Name: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Name", Model.Subject.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Description: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextArea("Description", Model.Subject.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Cost: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Cost", Model.Subject.Cost)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Price: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Price", Model.Subject.Price)
+            </div>
+        </div>
+	</div>
+</form>
+<div class="row">
+    <div class="six columns">
+        <a href="#" id="save-link" msclick="foodOption.save" class="radius button">Save</a>
+    </div>
+    <div class="six columns">
+        <a href="#" class="close-reveal-modal radius button">Cancel</a>
+    </div>
+</div>

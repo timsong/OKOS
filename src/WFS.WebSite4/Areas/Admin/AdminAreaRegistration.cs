@@ -29,37 +29,29 @@ namespace WFS.WebSite4.Areas.Admin
 			context.MapRoute("admin.vendor.categories.list", "Admin/Vendor/Categories", new { controller = "FoodCategory", action = "Index" });
 
 			#region food category
-            context.MapRoute(
-                "Admin_FoodCategory_List",
-                "Admin/FoodCategory/GetList/{vendorID}",
-				new { controller = "FoodCategory", action = "List" }
-            );
+            context.MapRoute("Admin_FoodCategory_List", "Admin/FoodCategory/GetList/{vendorID}", new { controller = "FoodCategory", action = "List" });
 
-            context.MapRoute(
-                "Admin_FoodCategory_EditFoodCategory",
-                "Admin/FoodCategory/EditFoodCategory/{FoodCategoryID}",
-                new { controller = "FoodCategory", action = "EditFoodCategory" }
-            );
+			context.MapRoute("Admin_FoodCategory_EditFoodCategory", "Admin/FoodCategory/EditFoodCategory/{FoodCategoryID}", new { controller = "FoodCategory", action = "EditFoodCategory" } );
 
+            context.MapRoute("Admin_FoodCategory_Save", "Admin/FoodCategory/Save", new { controller = "FoodCategory", action = "Save" });
 
-            context.MapRoute(
-                "Admin_FoodCategory_Save",
-                "Admin/FoodCategory/Save",
-                new { controller = "FoodCategory", action = "Save" }
-            );
+            context.MapRoute("Admin_FoodCategory_DeleteFoodCategory","Admin/FoodCategory/DeleteFoodCategory/{FoodCategoryID}",new { controller = "FoodCategory", action = "DeleteFoodCategory" });
 
-            context.MapRoute(
-                "Admin_FoodCategory_DeleteFoodCategory",
-                "Admin/FoodCategory/DeleteFoodCategory/{FoodCategoryID}",
-                new { controller = "FoodCategory", action = "DeleteFoodCategory" }
-            );
-
-            context.MapRoute(
-                "Admin_FoodCategory_CreateFoodCategory",
-                "Admin/FoodCategory/AddFoodCategory/{vendorId}",
-                new { controller = "FoodCategory", action = "AddFoodCategory" }
-            );
+            context.MapRoute("Admin_FoodCategory_CreateFoodCategory", "Admin/FoodCategory/AddFoodCategory/{vendorId}", new { controller = "FoodCategory", action = "AddFoodCategory" });
             #endregion
+
+			#region food option
+			context.MapRoute("admin.foodoption.list", "Admin/FoodOption/GetList/{vendorID}", new { controller = "FoodOption", action = "List" });
+
+			context.MapRoute("admin.foodoption.editfoodoption", "Admin/FoodOption/EditFoodOption/{foodOptionID}", new { controller = "FoodOption", action = "EditFoodOption" });
+
+			context.MapRoute("admin.foodoption.save", "Admin/FoodOption/Save", new { controller = "FoodOption", action = "Save" });
+
+			context.MapRoute("admin.foodoption.deletefoodoption", "Admin/FoodOption/DeleteFoodOption/{FoodOptionID}", new { controller = "FoodOption", action = "DeleteFoodOption" });
+
+			context.MapRoute("admin.foodoption.createfoodoption", "Admin/FoodOption/AddFoodOption/{vendorId}", new { controller = "FoodOption", action = "AddFoodOption" });
+			#endregion
+
 
 
             context.MapRoute(

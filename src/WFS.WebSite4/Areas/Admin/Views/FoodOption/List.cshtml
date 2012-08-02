@@ -1,0 +1,7 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.FoodOptionsListViewModel
+<p>
+	<a href="javascript:void(0)" msclick="foodOption.add" data-vendor-id="@Model.VendorId">Add New Food Option</a>
+</p>
+<div id="foodOptionListPanel">
+@{ Html.RenderPartial("FoodOptionList", Model); }
+</div>

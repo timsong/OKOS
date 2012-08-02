@@ -5,6 +5,26 @@ namespace WFS.Repository.Conversions
 {
     public static class FoodOptionConversion
     {
+		static void Map(this C.FoodOption foodOption, VendorFoodOption existing)
+		{
+			existing.Cost = foodOption.Cost;
+
+			existing.Description = foodOption.Description;
+
+			existing.Name = foodOption.Name;
+
+			existing.OrganizationId = foodOption.VendorId;
+
+			existing.Price = foodOption.Price;
+
+			existing.VendorFoodOptionId = foodOption.FoodOptionId;
+		}
+
+		public static void ForUpdate(this VendorFoodOption existing, C.FoodOption FoodOption)
+		{
+			FoodOption.Map(existing);
+		}
+
         public static C.FoodOption ToContract(this VendorFoodOption data)
         {
             if (data == null)
@@ -22,6 +42,15 @@ namespace WFS.Repository.Conversions
 
             return model;
         }
-    }
+
+		public static VendorFoodOption ToDataModel (this C.FoodOption domain)
+		{
+			var model = new VendorFoodOption { };
+
+			domain.Map(model);
+
+			return model;
+		}
+	}
 }
 
