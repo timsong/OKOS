@@ -103,5 +103,9 @@ namespace WFS.WebSite4.Controllers
 
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetTicket(int ticketId)
+        {
+            return null;
+        }
     }
 }

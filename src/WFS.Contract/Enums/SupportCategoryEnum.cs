@@ -3,8 +3,8 @@ namespace WFS.Contract.Enums
 {
     public enum SupportCategoryEnum
     {
-        Billing,
         Account,
+        Billing,
         Technical,
         Other
     }

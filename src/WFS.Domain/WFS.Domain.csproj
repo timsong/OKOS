@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\EmailManager.cs" />
     <Compile Include="Managers\FoodItemManager.cs" />
     <Compile Include="Managers\MembershipManager.cs" />
     <Compile Include="Managers\OrganizationManager.cs" />
+    <Compile Include="Managers\PayPalManager.cs" />
     <Compile Include="Managers\SaveOrganization.cs" />
     <Compile Include="Managers\SchoolManager.cs" />
     <Compile Include="Managers\SupportTicketManager.cs" />

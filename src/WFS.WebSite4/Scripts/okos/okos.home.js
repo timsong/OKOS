@@ -23,10 +23,16 @@
 				        ms.ml.html('#modalNewSupportTicketWindow', data.HtmlResult);
 				    }
 				    else {
-				            $('#modalNewSupportTicketWindow').trigger('reveal:close');
+				        $('#modalNewSupportTicketWindow').trigger('reveal:close');
 				    }
 				}
             });
+        }
+
+        , viewTicket: function (e) {
+            var id = $(this).attr('data-id');
+            var url = '/Support/Tickets/Get/{ticketId}'.bind({ ticketId: id });
+            alert('Ticket Clicked: ' + id);
         }
     };
 })(window);

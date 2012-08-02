@@ -33,31 +33,31 @@ namespace WFS.WebSite4
             routes.MapRoute(
                 name: "ContactUs",
                 url: "contact-us",
-				defaults: new { controller = "General", action = "ContactUs" }
+                defaults: new { controller = "General", action = "ContactUs" }
             );
 
             routes.MapRoute(
                 name: "Why",
                 url: "why",
-				defaults: new { controller = "General", action = "Why" }
+                defaults: new { controller = "General", action = "Why" }
             );
 
             routes.MapRoute(
                 name: "HeathAndNutrition",
                 url: "heath-and-nutrition",
-				defaults: new { controller = "General", action = "HealthAndNutrition" }
+                defaults: new { controller = "General", action = "HealthAndNutrition" }
             );
 
             routes.MapRoute(
                 name: "Testimonials",
                 url: "testimonials",
-				defaults: new { controller = "General", action = "Testimonials" }
+                defaults: new { controller = "General", action = "Testimonials" }
             );
 
             routes.MapRoute(
                 name: "Support",
                 url: "support",
-				defaults: new { controller = "General", action = "Support" }
+                defaults: new { controller = "General", action = "Support" }
             );
 
             routes.MapRoute(
@@ -100,8 +100,14 @@ namespace WFS.WebSite4
             );
 
             routes.MapRoute(
+                name: "Support_GetTicketById",
+                url: "Support/Tickets/Get/{ticketId}",
+                defaults: new { controller = "SupportTicket", action = "GetTicket" }
+            );
+
+            routes.MapRoute(
                 name: "Support_GetUnresolvedTickets",
-                url: "Support/Tickets/Get",
+                url: "Support/Tickets/GetList",
                 defaults: new { controller = "SupportTicket", action = "GetUnresolvedTickets" }
             );
 

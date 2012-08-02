@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WFS.Contract;
+using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Models
 {
@@ -15,7 +17,6 @@ namespace WFS.WebSite4.Models
 
     public class SupportTicketEditModel
     {
-
         public SupportTicketEditModel()
         {
             Ticket = new SupportTicket();
@@ -26,10 +27,8 @@ namespace WFS.WebSite4.Models
             Ticket = ticket;
         }
 
-
         public SupportTicket Ticket { get; set; }
 
-        public bool IsNew { get; set; }
     }
     public class SupportTicketNewModel
     {
@@ -37,18 +36,14 @@ namespace WFS.WebSite4.Models
         {
             Categories = new List<SelectListItem>();
 
-            Categories.Add(new SelectListItem()
-                {
-                    Text = "Billing",
-                    Value = "Billing"
-                });
-
-            Categories.Add(new SelectListItem()
+            foreach (var item in Enum.GetNames(typeof(SupportCategoryEnum)))
             {
-                Text = "Account",
-                Value = "Account"
-            });
-
+                Categories.Add(new SelectListItem()
+                {
+                    Text = item,
+                    Value = item
+                });
+            }
         }
 
         public SupportTicketNewModel(SupportTicket ticket)

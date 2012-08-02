@@ -371,10 +371,7 @@
     <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AddViewSupportTicket.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\NewSupportTicket.cshtml" />
+    <Content Include="Views\SupportTicket\NewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\School\CreateSchool.cshtml" />
@@ -396,6 +393,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\General\Why.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SupportTicket\UnresolvedTicketList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SupportTicket\ResolveSupportTicket.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
