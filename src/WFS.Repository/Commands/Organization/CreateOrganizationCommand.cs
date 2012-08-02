@@ -1,51 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using C = WFS.Contract;
-using WFS.Repository.Conversions;
+﻿using WFS.Repository.Conversions;
+using WFS.Contract.Enums;
+using WFS.Contract;
 
 namespace WFS.Repository.Commands
 {
-    public class CreateOrganizationCommand : ICommand<C.Organization>
+    public class CreateOrganizationCommand : ICommand<Organization>
     {
-        private readonly C.PhoneAddress _addInfo;
+        private readonly PhoneAddress _addressInfo;
         private readonly string _name;
         private readonly int _userId;
-        private readonly int? _parentVendorId;
-        private readonly C.Enums.OrganizationTypeEnum _type;
+        private readonly int? _parentId;
+        private readonly OrganizationTypeEnum _type;
 
-        public CreateOrganizationCommand(C.PhoneAddress addInfo, string name, int userId, int? parentVendorId, C.Enums.OrganizationTypeEnum type)
+        public CreateOrganizationCommand(PhoneAddress addressInfo, string name, int userId, int? parentId, OrganizationTypeEnum type)
         {
-            _addInfo = addInfo;
-            _name = name;
-            _userId = userId;
-            _parentVendorId = parentVendorId;
-            _type = type;
+            this._addressInfo = addressInfo;
+            this._name = name;
+            this._userId = userId;
+            this._parentId = parentId;
+            this._type = type;
         }
         #region ICommand<Vendor> Members
 
-        public IResult<C.Organization> Execute(System.Data.Entity.DbContext dbContext)
+        public IResult<Organization> Execute(System.Data.Entity.DbContext dbContext)
         {
-            var ent = (WFS.DataContext.WFSEntities)dbContext;
-
-            var vend = new WFS.DataContext.Organization()
+            var organization = new WFS.DataContext.Organization()
             {
-                Address1 = _addInfo.Address1,
-                Address2 = _addInfo.Address2,
-                City = _addInfo.City,
-                Name = _name,
-                State = _addInfo.State,
-                PhoneNumber = _addInfo.PhoneNumber,
-                PhoneExt = _addInfo.PhoneExt,
-                ZipCode = _addInfo.ZipCode,
+                Address1 = this._addressInfo.Address1,
+                Address2 = this._addressInfo.Address2,
+                City = this._addressInfo.City,
+                Name = this._name,
+                State = this._addressInfo.State,
+                PhoneNumber = this._addressInfo.PhoneNumber,
+                PhoneExt = this._addressInfo.PhoneExt,
+                ZipCode = this._addressInfo.ZipCode,
                 IsActive = true,
-                ParentOrgId = _parentVendorId,
-                OrganizationType = _type.ToString(),
-                UserId = _userId
+                ParentOrgId = this._parentId,
+                OrganizationType = this._type.ToString(),
+                UserId = this._userId
             };
 
-            var result = new Result<C.Organization>(Status.Success, vend.ToContract());
+            dbContext.Set<WFS.DataContext.Organization>().Add(organization);
+            dbContext.SaveChanges();
+
+            var result = new Result<Organization>(Status.Success, organization.ToContract());
             return result;
         }
 

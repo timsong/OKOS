@@ -4,15 +4,15 @@ using WFS.Framework;
 
 namespace WFS.WebSite4.Areas.Admin.Models
 {
-    public class SchoolAddModel : EditModelBase<School>
+    public class SchoolAddEditModel : EditModelBase<School>
     {
-        public SchoolAddModel() : base()
+        public SchoolAddEditModel() : base()
         {
             this.School = new School();
 			this.Status = Status.Success;
         }
 
-        public SchoolAddModel(School school)
+        public SchoolAddEditModel(School school)
 		{
             this.School = school;
 			this.Status = Status.Success;

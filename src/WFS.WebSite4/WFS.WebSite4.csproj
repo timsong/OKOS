@@ -145,7 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
-    <Compile Include="Areas\Admin\Models\SchoolAddModel.cs" />
+    <Compile Include="Areas\Admin\Models\SchoolAddEditModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
@@ -174,9 +174,6 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
@@ -368,16 +365,13 @@
     <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\AddViewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\School\CreateSchool.cshtml" />
+    <Content Include="Areas\Admin\Views\School\CreateEditSchool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\General\AboutUs.cshtml" />
@@ -396,6 +390,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\General\Why.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\DisplayContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\DisplayAddress.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
