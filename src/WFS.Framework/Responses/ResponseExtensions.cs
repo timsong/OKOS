@@ -16,6 +16,12 @@ namespace WFS.Framework
 			originalResponse.Messages.AddRange(newResponse.Messages);
 		}
 
+        public static void Merge<T1, T2>(this IResult<T1> originalResponse, IResult<T2> newResponse)
+        {
+            originalResponse.Status = MergeStatus(originalResponse.Status, newResponse.Status);
+            originalResponse.Messages.AddRange(newResponse.Messages);
+        }
+
 		public static void Merge<T1,T2>(this Result<T1> originalResponse, Result<T2> newResponse)
 		{
 			originalResponse.Status = MergeStatus(originalResponse.Status, newResponse.Status);

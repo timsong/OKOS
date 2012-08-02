@@ -37,6 +37,11 @@
 		    var url = '/admin/schools/create';
 		    school.loadF(url);
 		}
+        , edit: function (e) {
+            var id = $(this).attr('data-id');
+            var url = '/admin/schools/edit/{schoolId}'.bind({ schoolId: id });
+            school.loadF(url);
+        }
 		, save: function (e) {
 		    school.saveF('/admin/schools/create', '#schoolEditForm'
 				, function (data) {

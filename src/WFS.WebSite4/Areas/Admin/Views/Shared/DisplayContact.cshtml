@@ -1,0 +1,18 @@
+﻿@model WFS.Contract.Organization
+<div class="panel">
+	<div class="row">
+		<div class="one columns">
+			<div>
+				@Html.Label(@Model.User.FirstName + " " + @Model.User.LastName, new { @class = "label radius primary" })
+			</div>
+			<br />
+			<div class="label secondary">
+				<a href="mailto:@Model.User.EmailAddress">@Model.User.EmailAddress</a>
+			</div>
+			<div class="label secondary">
+				@Model.AddressInfo.PhoneNumber
+				@{if (!string.IsNullOrEmpty(Model.AddressInfo.PhoneExt)) { @Model.AddressInfo.PhoneExt }}
+			</div>
+		</div>
+	</div>
+</div>
