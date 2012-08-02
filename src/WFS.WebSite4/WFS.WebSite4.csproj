@@ -148,7 +148,6 @@
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\FoodOptionModels.cs" />
     <Compile Include="Areas\Admin\Models\SchoolAddEditModel.cs" />
-    <Compile Include="Areas\Admin\Models\SchoolAddModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />

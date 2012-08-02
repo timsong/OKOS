@@ -139,13 +139,19 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Areas\Admin\Models\FoodOptionModels.cs" />
     <Compile Include="Areas\Admin\Models\SchoolAddModel.cs" />
+=======
+    <Compile Include="Areas\Admin\Models\SchoolAddEditModel.cs" />
+>>>>>>> b8832b6af1255ea75af8da826da7008a32b63729
     <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
@@ -174,9 +180,6 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
@@ -368,19 +371,15 @@
     <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\AddViewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\School\CreateSchool.cshtml" />
+    <Content Include="Areas\Admin\Views\School\CreateEditSchool.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Content Include="Views\General\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -397,9 +396,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\General\Why.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD
+    <Content Include="Views\Shared\CommonMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodOption\AddEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodOption\FoodOptionList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodOption\List.cshtml" />
 =======
-    <Content Include="Views\Shared\UnresolvedTicketList.cshtml" />
->>>>>>> 0577af94b9b036ed30b6838ea41841f1fbc81787
+    <Content Include="Areas\Admin\Views\Shared\DisplayContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\DisplayAddress.cshtml" />
+>>>>>>> b8832b6af1255ea75af8da826da7008a32b63729
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
