@@ -24,6 +24,7 @@
 							LinkText = "About us"
 							, RouteName = "AboutUs"
 							, AccessType = RouteAccessType.NonAuth })
+						@{ Html.RenderPartial("CommonMenu"); }
 						@if (IsSectionDefined("primaryNav")) { @RenderSection("primaryNav") }
 					</ul>
 					<div class="right">

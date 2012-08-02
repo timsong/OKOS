@@ -1,0 +1,8 @@
+﻿@using WFS.WebSite.Helpers
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "admin.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendors", RouteName = "Admin_Vendor_List", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Schools", RouteName = "admin.schools", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Companies", RouteName = "admin.companies", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Users", RouteName = "admin.users", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Reports", RouteName = "admin.reports", UserType = UserType.Admin | UserType.SystemAdmin })
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Vendor (Home)", RouteName = "vendoradmin.dashboard", UserType = UserType.Admin | UserType.SystemAdmin })

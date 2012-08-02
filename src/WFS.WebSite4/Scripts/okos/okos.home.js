@@ -29,10 +29,44 @@
             });
         }
 
+        , loadTickets: function (e) {
+            var url = '/Support/Tickets/GetList';
+            ms.ajax.send({ url: url
+                , successHandler: function (data) {
+                    ms.ml.html('#ticketList', data.HtmlResult);
+                }
+            });
+        }
+
         , viewTicket: function (e) {
             var id = $(this).attr('data-id');
             var url = '/Support/Tickets/Get/{ticketId}'.bind({ ticketId: id });
-            alert('Ticket Clicked: ' + id);
+
+            ms.ajax.send({ url: url
+                , successHandler: function (data) {
+                    ms.ml.html('#resolveTicketModal', data.HtmlResult);
+                    $('#resolveTicketModal').reveal();
+                }
+            });
+        }
+
+        , resolveSupportTicket: function (e) {
+            var url = '/Support/Tickets/Resolve';
+
+            var data = $(resolveSupportForm).serialize();
+            ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status == 0 || data.Status == 4) {
+				        ms.ml.html('#resolveTicketModal', data.HtmlResult);
+				    }
+				    else {
+				        $('#resolveTicketModal').trigger('reveal:close');
+				        home.loadTickets();
+				    }
+				}
+            });
         }
     };
 })(window);

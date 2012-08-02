@@ -1,0 +1,19 @@
+﻿@model WFS.Contract.Organization
+
+<div class="panel">
+	<div class="row">
+		<div class="one columns">
+			<div>
+				@Html.Label(Model.Name, new { @class = "label radius primary" })
+			</div>
+			<br />
+			<div>
+				<div class="label radius secondary">@Model.AddressInfo.Address1</div>
+				@if (!string.IsNullOrEmpty(Model.AddressInfo.Address2)) {
+                    <div class="label secondary">@Model.AddressInfo.Address2</div>
+                }
+				<div class="label secondary">@Model.AddressInfo.City, @Model.AddressInfo.State @Model.AddressInfo.ZipCode</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -38,7 +38,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
             var model = new SchoolViewModel()
             {
-                School = response.School
+                School = response.Value
             };
 
             return View(model);
@@ -46,8 +46,8 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            var viewModel = new SchoolAddModel(new School());
-            var uiresult = new UIResponse<SchoolAddModel>();
+            var viewModel = new SchoolAddEditModel(new School());
+            var uiresult = new UIResponse<SchoolAddEditModel>();
 
             uiresult.Subject = viewModel;
             uiresult.HtmlResult = RenderPartialViewToString("createschool", viewModel);
@@ -62,12 +62,47 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
             if (response.Status == Status.Success)
             {
-                return RedirectToRoute("admin.school.view", new { schoolId = response.School.OrganizationId });
+                return RedirectToRoute("admin.school.view", new { schoolId = response.Value.OrganizationId });
             }
             else
             {
-                var viewModel = new SchoolAddModel(model);
-                var uiresult = new UIResponse<SchoolAddModel>();
+                var viewModel = new SchoolAddEditModel(model);
+                var uiresult = new UIResponse<SchoolAddEditModel>();
+
+                viewModel.Merge(response);
+                uiresult.Subject = viewModel;
+                uiresult.HtmlResult = RenderPartialViewToString("createeditschool", viewModel);
+
+                return Json(uiresult);
+            }
+        }
+
+        public ActionResult Edit(int schoolId)
+        {
+            var school = this._schoolMgr.GetSchool(new GetSchoolRequest() { SchoolID = schoolId });
+
+            var viewModel = new SchoolAddEditModel(school.Value);
+            var uiresult = new UIResponse<SchoolAddEditModel>();
+
+            uiresult.Subject = viewModel;
+            uiresult.HtmlResult = RenderPartialViewToString("createeditschool", viewModel);
+
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(School model)
+        {
+            var response = this._schoolMgr.CreateSchool(new CreateSchoolRequest() { School = model });
+
+            if (response.Status == Status.Success)
+            {
+                return RedirectToRoute("admin.school.view", new { schoolId = response.Value.OrganizationId });
+            }
+            else
+            {
+                var viewModel = new SchoolAddEditModel(model);
+                var uiresult = new UIResponse<SchoolAddEditModel>();
 
                 viewModel.Merge(response);
                 uiresult.Subject = viewModel;

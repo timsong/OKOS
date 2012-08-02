@@ -1,16 +1,13 @@
-﻿using System.Web.Mvc;
-using WFS.Contract.ReqResp;
-using WFS.Domain.Managers;
-using WFS.Framework;
-using WFS.Framework.Extensions;
-using WFS.Framework.Responses;
-using WFS.WebSite4.Areas.Admin.Models;
-using WFS.WebSite4.Controllers;
+﻿using System;
+using System.Web.Mvc;
 using WFS.Contract;
 using WFS.Contract.Enums;
-using WFS.WebSite4.Models;
+using WFS.Contract.ReqResp;
+using WFS.Domain.Managers;
+using WFS.Framework.Extensions;
+using WFS.Framework.Responses;
 using WFS.Repository;
-using System;
+using WFS.WebSite4.Models;
 
 namespace WFS.WebSite4.Controllers
 {
@@ -105,7 +102,44 @@ namespace WFS.WebSite4.Controllers
         }
         public ActionResult GetTicket(int ticketId)
         {
-            return null;
+            var resp = _tickManager.GetSupportTicketById(new GetSupportTicketByIDRequest() { TicketID = ticketId });
+            var model = new SupportTicketEditModel(resp.Ticket);
+
+            var uiresult = new UIResponse<SupportTicketEditModel>();
+            uiresult.Subject = model;
+            uiresult.HtmlResult = RenderPartialViewToString("ResolveSupportTicket", model);
+            uiresult.Status = resp.Status;
+
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin, WFSRoleEnum.AccountManager)]
+        public ActionResult ResolveTicket(SupportTicketEditModel model)
+        {
+            var userResp = _wfsUserMgr.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
+
+            model.Ticket.ResolvedByUserID = userResp.UserInfo.UserId;
+
+            var resp = _tickManager.SaveSupportTicket(new SaveSupportTicketRequest()
+                {
+                    Ticket = model.Ticket
+                });
+
+            if (resp.Status == Status.Success)
+            {
+                var uiresponse = resp.ToUIResult<SupportTicketNewModel>(() => new SupportTicketNewModel(resp.Ticket), (vm) => string.Empty);
+                return Json(uiresponse);
+            }
+            else
+            {
+                var uiresponse = new Result<SupportTicketNewModel>(Status.Error);
+                uiresponse.Messages.AddRange(resp.Messages);
+
+                return Json(uiresponse);
+            }
+
+
         }
     }
 }

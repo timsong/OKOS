@@ -115,21 +115,6 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
-        public CreateFoodOptionResponse CreateFoodOption(CreateFoodOptionRequest request)
-        {
-            var resp = new CreateFoodOptionResponse();
-
-            //Create Vendor and VendorUser
-            var faCmd = new CreateFoodOptionCommand(request.Name, request.VendorId, request.Description, request.Cost, request.Price);
-            var fcRes = _repository.ExecuteCommand(faCmd);
-
-            resp.Merge(fcRes);
-            if (resp.Status == Status.Success)
-                resp.FoodOption = fcRes.Value;
-
-            return resp;
-        }
-
 		public SaveFoodCategoryResponse SaveFoodCategory(SaveFoodCategoryRequest request)
 		{
 			var resp = new SaveFoodCategoryResponse();
@@ -140,6 +125,48 @@ namespace WFS.Domain.Managers
 			var fcRes = _repository.ExecuteCommand(faCmd);
 
 			((Result<FoodCategory>)fcRes).Merge<FoodCategory, FoodCategory>(resp);
+
+			return resp;
+		}
+
+		public GetFoodOptionsByVendorResponse GetFoodOptionByVendorId(GetFoodOptionsByVendorRequest request)
+		{
+			var response = new GetFoodOptionsByVendorResponse();
+
+			var query = new GetFoodOptionsByVendorQuery(request.VendorId);
+
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodOptions = result.Value;
+
+			return response;
+		}
+		
+		public GetFoodOptionByIdResponse GetFoodOptionById(GetFoodOptionByIdRequest request)
+		{
+			var response = new GetFoodOptionByIdResponse();
+
+			var query = new GetFoodOptionByIdQuery(request.FoodOptionId);
+
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodOption = result.Value;
+
+			return response;
+		}
+
+		public Contract.ReqResp.SaveFoodOptionResponse SaveFoodOption(Contract.ReqResp.SaveFoodOptionRequest request)
+		{
+			var resp = new SaveFoodOptionResponse();
+
+			//Create Vendor and VendorUser
+			var faCmd = new SaveFoodOptionCommand(request.Subject);
+
+			var fcRes = _repository.ExecuteCommand(faCmd);
+
+			((Result<FoodOption>)fcRes).Merge<FoodOption, FoodOption>(resp);
 
 			return resp;
 		}

@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Commands\FoodCategory\SaveFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
-    <Compile Include="Commands\FoodOption\CreateFoodOptionCommand.cs" />
+    <Compile Include="Commands\FoodOption\SaveFoodOptionCommand.cs" />
     <Compile Include="Commands\MembershipCreateStatus.cs" />
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />
     <Compile Include="Commands\Organization\ChangeOrganizationActivateStatusCommand.cs" />
@@ -72,8 +72,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryByIdQuery.cs" />
+    <Compile Include="Queries\FoodOptions\GetFoodOptionByIdQuery.cs" />
+    <Compile Include="Queries\FoodOptions\GetFoodOptionsByVendorQuery.cs" />
     <Compile Include="Queries\FoodOptions\GetFoodOptionListQuery.cs" />
     <Compile Include="Queries\GetFoodItemListQuery.cs" />
+    <Compile Include="Queries\GetSupportTicketByIdQuery.cs" />
     <Compile Include="Queries\GetUnResolvedSupportTicketsQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByUserNameQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />

@@ -38,7 +38,7 @@ namespace WFS.Domain.Managers
             var result = this._repository.ExecuteQuery(query);
 
             if (result.Status == Status.Success)
-                response.School = result.Value;
+                response.Value = (School)result.Value;
 
             return response;
         }
@@ -51,7 +51,7 @@ namespace WFS.Domain.Managers
             var user = request.School.User;
             var userResponse = _repository.ExecuteCommand(new SaveWFSUserCommand(request.School.User));
 
-            response.Merge<School, WFSUser>((Result<WFSUser>)userResponse);
+            response.Merge(userResponse);
 
             if (response.Status != Status.Success)
                 return response;
@@ -59,7 +59,7 @@ namespace WFS.Domain.Managers
             request.School.User = userResponse.Value;
             var schoolResponse = _repository.ExecuteCommand(new CreateOrganizationCommand(request.School.AddressInfo, request.School.Name, request.School.User.UserId, null, OrganizationTypeEnum.School));
 
-            ((Result<School>)schoolResponse).Merge<School, School>(response);
+            schoolResponse.Merge(response);
 
             if (response.Status == Status.Success)
                 response.Value = (School)schoolResponse.Value;

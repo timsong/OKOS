@@ -5,46 +5,40 @@
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
 
-<h2>EditVendor</h2>
-
-    <div class="nine columns">
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">School Name:</label>
-            </div>
-            <div class="eight columns end">
-                @Model.School.Name
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">Contact Name:</label>
-            </div>
-            <div class="four columns">
-                @Model.School.User.FirstName
-            </div>
-            <div class="four columns end">
-                @Model.School.User.LastName
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="three columns">
-                <label class="right inline">Contact Email:</label>
-            </div>
-            <div class="eight columns end">
-                @Model.School.User.EmailAddress, new { placeholder = "Contact Email Address" })
-            </div>
-        </div>
-
-        @{Html.RenderPartial("AddressInfo", 
-                Model.School.AddressInfo, 
-                new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
-
-})
-
-
+<h2>@Model.School.Name</h2>
+<div class="row">
+	<div id="displayAddressPanel" class="five columns">
+		@{Html.RenderPartial("DisplayAddress", Model.School);}
+	</div>
+	<div id="displayContactPanel" class="five columns">
+		@{Html.RenderPartial("DisplayContact", Model.School);}
+	</div>
+	<div class="two columns" style="text-align: center">
+		<a href="javascript:void(0)" msclick="school.edit" data-id="@Model.School.OrganizationId" class="button radius small">Edit</a>
+		<a href="/admin/schools" class="button radius small">Back</a>
+	</div>
+</div>
+<dl class="tabs contained">  
+	<dd class="active"><a href="#gradesPanel">Grades</a></dd>
+	<dd><a href="#teachersPanel">Teachers</a></dd>
+	<dd><a href="#lunchPeriodPanel">Lunch Periods</a></dd>
+	<dd><a href="#daysOffPanel">Days Off</a></dd>
+</dl>
+<ul class="tabs-content contained">
+	<li class="active" id="gradesPanelTab">
+        <a href="#" title="Add Grades" a>Add Grade</a>
+	</li>
+	<li id="teachersPanelTab">
+        <a href="#" title="Add Teachers">Add Teacher</a>
+    </li>
+	<li id="lunchPeriodPanelTab">
+        <a href="#" title="Add Lunch Period">Add Lunch Period</a>
+    </li>
+	<li id="daysOffPanelTab">
+        <a href="#" title="Add Days Off">Add Day Off</a>
+    </li>
+</ul>
+<div id="modalEdit" class="reveal-modal"></div>
 @section Scripts {
     @System.Web.Optimization.Scripts.Render("~/bundles/admin")
 }

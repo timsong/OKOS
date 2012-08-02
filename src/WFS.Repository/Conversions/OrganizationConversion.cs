@@ -14,38 +14,25 @@ namespace WFS.Repository.Conversions
             if (data == null)
                 return null;
 
-            var type = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.OrganizationType);
-
+            var type = data.OrganizationType.TryParseEnum<OrganizationTypeEnum>();
             var extClass = OrganizationExtensionFactory.GetExtensionClass(type);
-
             var model = extClass.Extend(data);
 
             model.OrganizationId = data.OrganizationId;
-
             model.IsActive = data.IsActive;
-            
 			model.Name = data.Name;
-            
 			model.AddressInfo.Address1 = data.Address1;
-            
 			model.AddressInfo.Address2 = data.Address2;
-            
 			model.AddressInfo.City = data.City;
-            
 			model.AddressInfo.PhoneNumber = data.PhoneNumber;
-            
 			model.AddressInfo.PhoneExt = data.PhoneExt;
-            
 			model.AddressInfo.State = data.State;
-            
 			model.AddressInfo.ZipCode = data.ZipCode;
-            
 			model.ParentOrgId = data.ParentOrgId;
 
 			model.User = data.WFSUser.ToDomainModel();
 
             return model;
-
         }
     }
 }

@@ -8,10 +8,10 @@
 <h2>Manage Vendor</h2>
 <div class="row">
 	<div id="displayAddressPanel" class="five columns">
-		@{Html.RenderPartial("DisplayAddress", Model);}
+		@{Html.RenderPartial("DisplayAddress", Model.Vendor);}
 	</div>
 	<div id="displayContactPanel" class="five columns">
-		@{Html.RenderPartial("DisplayContact", Model);}
+		@{Html.RenderPartial("DisplayContact", Model.Vendor);}
 	</div>
 	<div class="two columns" style="text-align: center">
 		<a href="javascript:void(0)" msclick="vendor.edit" data-id="@Model.Vendor.OrganizationId" class="button radius small">Edit</a>
@@ -30,7 +30,10 @@
 		@{Html.RenderAction("List", "FoodCategory", new { controller="FoodCategory"
 			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
 	</li>
-	<li id="optionsPanelTab"> options </li>
+	<li id="optionsPanelTab">
+		@{Html.RenderAction("List", "FoodOption", new { controller="FoodOption"
+			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
+	</li>
 	<li id="foodItemsPanelTab"> food items </li>
 	<li id="menusPanelTab"> menus </li>
 	<li id="storesPanelTab"> stores </li>

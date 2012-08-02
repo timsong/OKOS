@@ -9,6 +9,5 @@ namespace WFS.Contract.ReqResp
 
     public class CreateSchoolResponse : Result<School>
     {
-        public School School { get; set; }
     }
 }

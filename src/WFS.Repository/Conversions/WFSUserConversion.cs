@@ -69,6 +69,7 @@ namespace WFS.Repository.Conversions
                 LastName = data.LastName,
                 AvailableCredit = data.AvailableCredit,
                 MembershipGuid = data.MembershipGuid,
+                EmailAddress = data.User.Membership.Email,
                 UserId = data.UserId,
                 UserType = (WFSUserTypeEnum)Enum.Parse(typeof(WFSUserTypeEnum), data.UserType),
             };

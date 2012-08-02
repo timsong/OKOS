@@ -106,6 +106,12 @@ namespace WFS.WebSite4
             );
 
             routes.MapRoute(
+                name: "Support_ResolveTicketById",
+                url: "Support/Tickets/Resolve",
+                defaults: new { controller = "SupportTicket", action = "ResolveTicket" }
+            );
+
+            routes.MapRoute(
                 name: "Support_GetUnresolvedTickets",
                 url: "Support/Tickets/GetList",
                 defaults: new { controller = "SupportTicket", action = "GetUnresolvedTickets" }

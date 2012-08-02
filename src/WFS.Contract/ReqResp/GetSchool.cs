@@ -1,4 +1,5 @@
 ﻿using WFS.Framework;
+using WFS.Repository;
 
 namespace WFS.Contract.ReqResp
 {
@@ -7,8 +8,7 @@ namespace WFS.Contract.ReqResp
         public int SchoolID { get; set; }
     }
 
-    public class GetSchoolResponse : BaseResponse
+    public class GetSchoolResponse : Result<School>
     {
-        public Organization School { get; set; }
     }
 }

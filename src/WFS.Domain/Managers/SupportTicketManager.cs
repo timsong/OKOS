@@ -23,6 +23,8 @@ namespace WFS.Domain.Managers
             var result = _repository.ExecuteCommand(command);
             resp.Merge(result);
 
+            //TODO - Email User and Support if a new Ticket... Email User when Resolved
+
             if (resp.Status == Status.Success)
                 resp.Ticket = result.Value;
 
@@ -38,6 +40,19 @@ namespace WFS.Domain.Managers
 
             if (result.Status == Status.Success)
                 response.Tickets = result.Values;
+
+            return response;
+        }
+
+        public GetSupportTicketResponse GetSupportTicketById(GetSupportTicketByIDRequest request)
+        {
+            var response = new GetSupportTicketResponse();
+
+            var query = new GetSupportTicketByIdQuery(request.TicketID);
+            var result = this._repository.ExecuteQuery(query);
+
+            if (result.Status == Status.Success)
+                response.Ticket = result.Value;
 
             return response;
         }
