@@ -54,6 +54,7 @@
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />
     <Compile Include="Commands\Organization\ChangeOrganizationActivateStatusCommand.cs" />
     <Compile Include="Commands\Organization\CreateOrganizationCommand.cs" />
+    <Compile Include="Commands\SaveWfsBillingAddressCommand.cs" />
     <Compile Include="Commands\SaveWFSUserCommand.cs" />
     <Compile Include="Commands\SupportTickets\DeleteSupportTicketCommand.cs" />
     <Compile Include="Commands\SupportTickets\SaveSupportTicketCommand.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Conversions\FoodOptionConversion.cs" />
     <Compile Include="Conversions\MenuConversion.cs" />
     <Compile Include="Conversions\OrganizationConversion.cs" />
+    <Compile Include="Conversions\WFSUserAddressConversion.cs" />
     <Compile Include="Conversions\WFSUserConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FoodCategory\GetFoodCategoryListQuery.cs" />

@@ -26,17 +26,11 @@ namespace WFS.Repository.Conversions
         {
             WFSUser data = new WFSUser
             {
-                FirstName = model.FirstName
-                ,
-                LastName = model.LastName
-                ,
-                MembershipGuid = model.MembershipGuid
-                    //, Organizations = model.Organizations TODO
-                ,
-                UserId = model.UserId
-                ,
-                UserType = model.UserType.ToString()
-                ,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                MembershipGuid = model.MembershipGuid,
+                UserId = model.UserId,
+                UserType = model.UserType.ToString(),
                 AvailableCredit = model.AvailableCredit
                 // , WFSUserAddress = model.WFSUserAddress TODO
             };
@@ -47,9 +41,7 @@ namespace WFS.Repository.Conversions
         public static void ForUpdate(this WFSUser modified, WFSUser existing)
         {
             existing.AvailableCredit = modified.AvailableCredit;
-
             existing.FirstName = modified.FirstName;
-
             existing.LastName = modified.LastName;
         }
 

@@ -70,7 +70,8 @@ namespace WFS.WebSite4.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var m = new RegisterModel();
+            return View(m);
         }
 
         //

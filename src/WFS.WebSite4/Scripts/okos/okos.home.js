@@ -68,5 +68,24 @@
 				}
             });
         }
+
+        , createAccount: function (e) {
+            var url = '/register';
+
+            var data = $(newRegistrationForm).serialize();
+            ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status == 0 || data.Status == 4) {
+				    }
+				    else {
+				        window.location('/Customer/Profile/GetList');
+				    }
+				}
+            });
+
+        }
+
     };
 })(window);

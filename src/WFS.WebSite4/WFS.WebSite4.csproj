@@ -153,6 +153,8 @@
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
+    <Compile Include="Areas\Customer\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -290,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\VendorAdmin\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +416,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodOption\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Shared\_LayoutPageCustomer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
