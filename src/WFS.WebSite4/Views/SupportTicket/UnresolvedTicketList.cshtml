@@ -1,0 +1,54 @@
+﻿@model WFS.WebSite4.Models.SupportTicketListViewModel
+
+@if (Model.Tickets.Count <= 0)
+{
+    <div>No Open Support Tickets at this time</div>
+}
+else
+{
+    <h4>Open Issues</h4>
+    
+    <div class="row">
+        <div class="one columns">
+            Issue
+        </div>
+        <div class="one columns">
+            Date
+        </div>
+        <div class="two columns">
+            Category
+        </div>
+        <div class="four columns end">
+            Created By
+        </div>
+    </div>   
+
+    foreach (var x in Model.Tickets)
+    {
+        <div class="p_t10" msclick="home.viewTicket" data-id="@x.TicketId" >
+            <div class="row">
+                <div class="one columns">
+		            @x.TicketId
+                </div>
+                <div class="one columns">
+                    @x.CreatedDate.ToShortDateString()
+                </div>
+                <div class="two columns">
+                    @x.SupportCategory.ToString()
+                </div>
+                <div class="four columns end">
+                    @String.Format("{0}, {1}", x.LastName, x.FirstName)
+                </div>
+            </div> 
+            <div class="row">
+                <div class="one columns">
+                
+                </div>
+                <div class="eleven columns end">
+                    @x.IssueText
+                </div>
+            </div>     
+        </div>
+    }
+        
+}
