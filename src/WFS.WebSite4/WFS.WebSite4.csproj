@@ -178,9 +178,6 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
@@ -371,9 +368,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\SupportTicket\NewSupportTicket.cshtml" />
