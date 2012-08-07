@@ -20,6 +20,10 @@ namespace WFS.DataContext
             this.VendorFoodOptions = new HashSet<VendorFoodOption>();
             this.Organization1 = new HashSet<Organization>();
             this.VendorMenus = new HashSet<VendorMenu>();
+            this.SchoolDaysOffs = new HashSet<SchoolDaysOff>();
+            this.SchoolGrades = new HashSet<SchoolGrade>();
+            this.SchoolLunchPeriods = new HashSet<SchoolLunchPeriod>();
+            this.SchoolTeachers = new HashSet<SchoolTeacher>();
         }
     
         public int OrganizationId { get; set; }
@@ -42,6 +46,10 @@ namespace WFS.DataContext
         public virtual ICollection<Organization> Organization1 { get; set; }
         public virtual Organization Organization2 { get; set; }
         public virtual ICollection<VendorMenu> VendorMenus { get; set; }
+        public virtual ICollection<SchoolDaysOff> SchoolDaysOffs { get; set; }
+        public virtual ICollection<SchoolGrade> SchoolGrades { get; set; }
+        public virtual ICollection<SchoolLunchPeriod> SchoolLunchPeriods { get; set; }
+        public virtual ICollection<SchoolTeacher> SchoolTeachers { get; set; }
     }
     
 }
