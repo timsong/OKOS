@@ -51,10 +51,19 @@
     <Compile Include="Application.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="DaysOff.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="FoodItem.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="FoodItemOption.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Grade.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LunchPeriod.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Membership.cs">
@@ -73,7 +82,22 @@
     <Compile Include="Role.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="SchoolDaysOff.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolGrade.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolLunchPeriod.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolTeacher.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="SupportTicket.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">

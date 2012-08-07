@@ -66,5 +66,31 @@ namespace WFS.Domain.Managers
 
             return response;
         }
+
+        public GetGradesResponse GetGrades(GetGradesRequest request)
+        {
+            var response = new GetGradesResponse();
+
+            //var query = new GetOrganizationByIdQuery(request.SchoolID);
+            //var result = this._repository.ExecuteQuery(query);
+
+            //if (result.Status == Status.Success)
+            //    response.Value = (School)result.Value;
+
+            return response;
+        }
+
+        public GetTeachersResponse GetTeachers(GetTeachersRequest request)
+        {
+            var response = new GetTeachersResponse();
+
+            //var query = new GetOrganizationByIdQuery(request.SchoolID);
+            //var result = this._repository.ExecuteQuery(query);
+
+            //if (result.Status == Status.Success)
+            //    response.Value = (School)result.Value;
+
+            return response;
+        }
     }
 }

@@ -59,6 +59,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReqResp\ChangeOrganizationActiveStatus.cs" />
     <Compile Include="ReqResp\Creates\CreateCustomerAccount.cs" />
+    <Compile Include="ReqResp\GetGrades.cs" />
+    <Compile Include="ReqResp\GetTeachers.cs" />
     <Compile Include="ReqResp\SaveFoodOption.cs" />
     <Compile Include="ReqResp\GetFoodOptionById.cs" />
     <Compile Include="ReqResp\Creates\CreateSchoolRequest.cs" />
