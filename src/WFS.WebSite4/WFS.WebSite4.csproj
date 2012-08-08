@@ -153,8 +153,10 @@
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
+    <Compile Include="Areas\Customer\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\OrderProfileViewModel.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -289,7 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\VendorAdmin\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -423,6 +424,12 @@
   <ItemGroup>
     <Content Include="Areas\Customer\Views\Profile\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\AddEditProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\ProfileList.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -439,7 +446,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53610</DevelopmentServerPort>
+          <DevelopmentServerPort>25393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

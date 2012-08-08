@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using WFS.Contract;
 using WFS.Contract.Enums;
+using WFS.Domain.Managers;
+using WFS.Framework;
+using WFS.Framework.Responses;
 using WFS.WebSite4.Models;
 
 namespace WFS.WebSite4.Controllers
@@ -12,9 +16,11 @@ namespace WFS.WebSite4.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-
-        //
-        // GET: /Account/Login
+        private readonly CustomerManager _customerManager;
+        public AccountController(CustomerManager customerManager)
+        {
+            _customerManager = customerManager;
+        }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -22,9 +28,6 @@ namespace WFS.WebSite4.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
-        //
-        // POST: /Account/Login
 
         [AllowAnonymous]
         [HttpPost]
@@ -54,18 +57,12 @@ namespace WFS.WebSite4.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/LogOff
-
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
-
-        //
-        // GET: /Account/Register
 
         [AllowAnonymous]
         public ActionResult Register()
@@ -74,33 +71,56 @@ namespace WFS.WebSite4.Controllers
             return View(m);
         }
 
-        //
-        // POST: /Account/Register
-
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                var user = Membership.CreateUser(model.UserName, model.Password, model.Email, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);
-
-                if (createStatus == MembershipCreateStatus.Success)
+                var acct = new CustomerAccount();
+                acct.User.FirstName = model.FirstName;
+                acct.User.LastName = model.LastName;
+                acct.User.Password = model.Password;
+                acct.User.UserType = WFSUserTypeEnum.Customer;
+                acct.User.EmailAddress = model.Email;
+                acct.AddressInfo = new PhoneAddress()
                 {
-                    Roles.AddUserToRole(model.UserName, WFSRoleEnum.Customer.ToString());
+                    Address1 = model.AddressInfo.Address1,
+                    Address2 = model.AddressInfo.Address2,
+                    City = model.AddressInfo.City,
+                    State = model.AddressInfo.State,
+                    ZipCode = model.AddressInfo.ZipCode,
+                    PhoneNumber = model.AddressInfo.PhoneNumber,
+                    PhoneExt = model.AddressInfo.PhoneExt,
+                };
 
-                    FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
-                    return RedirectToAction("Index", "Home");
+                var resp = _customerManager.SaveCustomer(new Contract.ReqResp.CreateCustomerAccountRequest()
+                    {
+                        AccountInfo = acct
+                    });
+
+                if (resp.Status == Status.Success)
+                {
+                    Roles.AddUserToRole(model.Email, WFSRoleEnum.Customer.ToString());
+                    FormsAuthentication.SetAuthCookie(model.Email, createPersistentCookie: false);
+
+                    var uiresponse = new UIResponse<int>();
+                    uiresponse.Subject = resp.AccountInfo.User.UserId;
+                    return Json(uiresponse);
                 }
                 else
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                    var uiresponse = new UIResponse<RegisterModel>();
+
+                    model.Merge(resp);
+                    uiresponse.Status = resp.Status;
+                    uiresponse.Subject = model;
+                    uiresponse.HtmlResult = RenderPartialViewToString("Register", model);
+
+                    return Json(uiresponse);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 

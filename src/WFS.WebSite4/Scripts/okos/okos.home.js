@@ -80,7 +80,8 @@
 				    if (data.Status == 0 || data.Status == 4) {
 				    }
 				    else {
-				        window.location('/Customer/Profile/GetList');
+				        var profUrl = '/Customer/Profile/Index/{userId}'.bind({ userId: data.Subject });
+				        window.location(profUrl);
 				    }
 				}
             });

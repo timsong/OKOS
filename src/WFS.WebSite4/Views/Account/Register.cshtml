@@ -19,28 +19,35 @@
     <fieldset>
         <legend>Registration Information</legend>
         <div class="row">
-            <div class="one columns">
-                <label class="right inline">User Name:</label>
+            <div class="two columns">
+                <label class="right inline">First Name:</label>
             </div>
             <div class="four columns">
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.FirstName)
             </div>
+            <div class="two columns">
+                <label class="right inline">Last Name:</label>
+            </div>
+            <div class="four columns end">
+                @Html.TextBoxFor(m => m.LastName)
+            </div>
+        </div>
+        <div class="p_t5 row">
             <div class="two columns">
                 <label class="right inline">Email Address:</label>
             </div>
-            <div class="four columns end">
+            <div class="four columns">
                 @Html.TextBoxFor(m => m.Email)
             </div>
-        </div>
-
-        <div class="row">
-            <div class="one columns">
+            <div class="two columns">
                 <label class="right inline">Password:</label>
             </div>
             <div class="four columns">
                 @Html.PasswordFor(m => m.Password)
             </div>
-            <div class="two columns">
+        </div>
+        <div class="row">
+            <div class="two columns push eight">
                 <label class="right inline">Confirm Password</label>
             </div>
             <div class="four columns end">

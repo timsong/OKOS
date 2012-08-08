@@ -1,20 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using WFS.WebSite4.Areas.Customer.Models;
 
 namespace WFS.WebSite4.Areas.Customer.Controllers
 {
     public class ProfileController : Controller
     {
-        //
-        // GET: /Customer/Profile/
-
-        public ActionResult Index()
+        public ActionResult Index(int userId)
         {
-            return View();
+            var m = new OrderProfileViewModel();
+
+            return View(m);
         }
+        public ActionResult GetList(int userId)
+        {
+            return null;
+        }
+
+        public ActionResult DisplayProfile(int userId, int profileId)
+        {
+            return null;
+        }
+        public ActionResult DisplayProfile(int userId)
+        {
+            return null;
+        }
+
 
     }
 }

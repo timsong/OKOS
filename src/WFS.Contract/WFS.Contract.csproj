@@ -54,6 +54,7 @@
     <Compile Include="FoodOption.cs" />
     <Compile Include="Interfaces\IAddressInfo.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="OrderProfile.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="PhoneAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

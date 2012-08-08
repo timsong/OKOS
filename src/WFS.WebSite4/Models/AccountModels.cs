@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using WFS.Contract;
+using WFS.Framework;
 
 namespace WFS.WebSite4.Models
 {
@@ -53,16 +54,12 @@ namespace WFS.WebSite4.Models
         }
     }
 
-    public class RegisterModel
+    public class RegisterModel : EditModelBase<CustomerAccount>
     {
         public RegisterModel()
         {
             AddressInfo = new PhoneAddress();
         }
-
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -80,7 +77,9 @@ namespace WFS.WebSite4.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
 
         public PhoneAddress AddressInfo { get; set; }

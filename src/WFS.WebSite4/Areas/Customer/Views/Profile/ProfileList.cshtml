@@ -1,0 +1,19 @@
+﻿@model List<WFS.Contract.OrderProfile>
+
+@foreach (var item in Model) {
+    <div class="panel">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="eight columns">
+                </div>
+                <div class="one columns">
+                    @Html.RouteLink("Edit/View","admin.vendor.display",new {vendorID = item.OrderProfileId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrderProfileId })
+                </div>
+                <div class="one columns"></div>
+            </div>
+        </div>
+    </div>
+}

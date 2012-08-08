@@ -43,7 +43,7 @@ namespace WFS.Domain.Managers
             ((Result<CustomerAccount>)addRes).Merge<CustomerAccount, CustomerAccount>(resp);
 
             if (resp.Status == Status.Success)
-                resp.Value = addRes.Value;
+                resp.AccountInfo = addRes.Value;
 
             return resp;
         }
