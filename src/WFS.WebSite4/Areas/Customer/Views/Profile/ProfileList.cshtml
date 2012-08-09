@@ -1,6 +1,17 @@
-﻿@model List<WFS.Contract.OrderProfile>
+﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileViewModel
 
-@foreach (var item in Model) {
+@if (Model.Profiles.Count <= 0)
+{
+    <div class="row">
+        <div class="eleven columns push one">
+            Before you can place an order, please create an order profile so we know who you are ordering for.
+        </div>
+    </div>        
+}
+
+
+@foreach (var item in Model.Profiles)
+{
     <div class="panel">
         <div class="row">
             <div class="twelve columns">

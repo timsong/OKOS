@@ -45,6 +45,7 @@
     <Compile Include="Managers\CustomerManager.cs" />
     <Compile Include="Managers\EmailManager.cs" />
     <Compile Include="Managers\FoodItemManager.cs" />
+    <Compile Include="Managers\OrderProfileManager.cs" />
     <Compile Include="Managers\PayPalManager.cs" />
     <Compile Include="Managers\SaveOrganization.cs" />
     <Compile Include="Managers\SchoolManager.cs" />

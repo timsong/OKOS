@@ -156,6 +156,7 @@
     <Compile Include="Areas\Customer\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Customer\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\OrderProfileAddEditModel.cs" />
     <Compile Include="Areas\Customer\Models\OrderProfileViewModel.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Images\foundation\right-arrow.png" />
     <Content Include="Images\foundation\rotator-black.png" />
     <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\customer\customerprofile.js" />
     <Content Include="Scripts\admin\dashboard.js" />
     <Content Include="Scripts\admin\school.js" />
     <Content Include="Scripts\admin\foodcategory.list.js" />

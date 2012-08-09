@@ -104,8 +104,8 @@ namespace WFS.WebSite4.Controllers
                     Roles.AddUserToRole(model.Email, WFSRoleEnum.Customer.ToString());
                     FormsAuthentication.SetAuthCookie(model.Email, createPersistentCookie: false);
 
-                    var uiresponse = new UIResponse<int>();
-                    uiresponse.Subject = resp.AccountInfo.User.UserId;
+                    var uiresponse = new UIResponse<Guid>();
+                    uiresponse.Subject = resp.AccountInfo.User.MembershipGuid;
                     return Json(uiresponse);
                 }
                 else

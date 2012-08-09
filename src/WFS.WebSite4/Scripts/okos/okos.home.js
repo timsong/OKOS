@@ -80,7 +80,7 @@
 				    if (data.Status == 0 || data.Status == 4) {
 				    }
 				    else {
-				        var profUrl = '/Customer/Profile/Index/{userId}'.bind({ userId: data.Subject });
+				        var profUrl = '/Customer/Profile/Index/{membershipId}'.bind({ membershipId: data.Subject });
 				        window.location(profUrl);
 				    }
 				}

@@ -1,6 +1,8 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using WFS.Contract;
+
 namespace WFS.WebSite4.Areas.Customer.Models
 {
     public class OrderProfileViewModel
@@ -10,7 +12,7 @@ namespace WFS.WebSite4.Areas.Customer.Models
             Profiles = new List<OrderProfile>();
         }
 
-        public int UserId { get; set; }
+        public Guid MembershipId { get; set; }
 
         public List<OrderProfile> Profiles { get; set; }
     }

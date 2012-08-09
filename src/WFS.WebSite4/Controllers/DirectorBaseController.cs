@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.Routing;
+using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Controllers
 {
@@ -17,6 +18,7 @@ namespace WFS.WebSite4.Controllers
 			if (this.HttpContext.Request.IsAuthenticated)
 			{
 				var roles = Roles.GetRolesForUser(User.Identity.Name);
+                var mem = Membership.GetUser(User.Identity.Name);
 
 				var role = roles.FirstOrDefault();
 
@@ -28,6 +30,9 @@ namespace WFS.WebSite4.Controllers
 					var context = new RequestContext(filterContext.HttpContext, filterContext.RouteData);
 
 					var url = string.Format("/{0}/Dashboard", roles.First());
+
+                    if (role == WFSRoleEnum.Customer.ToString())
+                        url += "/" + mem.ProviderUserKey.ToString();
 
 					context.HttpContext.Response.Redirect(url, true);
 				}

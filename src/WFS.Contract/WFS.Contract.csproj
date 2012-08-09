@@ -62,6 +62,7 @@
     <Compile Include="ReqResp\Creates\CreateCustomerAccount.cs" />
     <Compile Include="ReqResp\GetGrades.cs" />
     <Compile Include="ReqResp\GetTeachers.cs" />
+    <Compile Include="ReqResp\OrderProfile.cs" />
     <Compile Include="ReqResp\SaveFoodOption.cs" />
     <Compile Include="ReqResp\GetFoodOptionById.cs" />
     <Compile Include="ReqResp\Creates\CreateSchoolRequest.cs" />

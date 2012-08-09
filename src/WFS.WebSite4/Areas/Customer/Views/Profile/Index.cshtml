@@ -6,23 +6,20 @@
 }
 
 <h2>Ordering Profiles</h2>
+@Html.HiddenFor(model => model.MembershipId, new { @id = "membershipId" })
 
-@if (Model.Profiles.Count <= 0)
-{
-    <div class="row">
-        <div class="eleven columns push one">
-            Before you can place an order, please create an order profile so we know who you are ordering for.
-        </div>
-    </div>        
-}
-
-<div id="modalEdit" class="reveal-modal">
-	
-</div>
 <p class="p_t5">
-	<a href="javascript:void(0)" msclick="vendor.add">Add New Profile</a>
+	<a href="javascript:void(0)" msclick="customerprofile.showAddProfile">Add New Profile</a>
 </p>
 
-<div id="vendorListPanel">
-@{ Html.RenderPartial("VendorList", Model); }
+
+<div id="modalEdit" class="reveal-modal">
 </div>
+
+<div id="profileListPanel">
+</div>
+
+
+@section scripts{
+    @System.Web.Optimization.Scripts.Render("~/bundles/customer/profiles")
+}
