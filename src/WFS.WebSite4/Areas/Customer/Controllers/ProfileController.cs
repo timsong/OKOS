@@ -54,11 +54,22 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
 
             var uiresult = new UIResponse<OrderProfileAddEditModel>();
             uiresult.Subject = model;
-            uiresult.HtmlResult = RenderPartialViewToString("AddEditProfile", model);
+            uiresult.HtmlResult = RenderPartialViewToString("AddProfile", model);
             uiresult.Status = Status.Success;
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult SetInfo(OrderProfileAddEditModel model)
+        {
+            //populate data here
 
+            var uiresult = new UIResponse<OrderProfileAddEditModel>();
+            uiresult.Subject = model;
+
+            uiresult.HtmlResult = RenderPartialViewToString(model.IsSchool.Value ? "StudentInfo" : "EmployeeInfo", model);
+            uiresult.Status = Status.Success;
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

@@ -22,6 +22,7 @@ namespace WFS.WebSite4.Areas.Customer
 
             context.MapRoute("Customer.Profile.Display", "Customer/Profile/DisplayProfile/{membershipId}/{profileId}", new { controller = "Profile", action = "DisplayProfile" });
             context.MapRoute("Customer.Profile.Add", "Customer/Profile/Add", new { controller = "Profile", action = "AddProfile" });
+            context.MapRoute("Customer.Profile.SetInfoScreen", "Customer/Profile/SetInfo", new { controller = "Profile", action = "SetInfo" });
 
             #endregion
 

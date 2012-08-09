@@ -20,11 +20,15 @@ namespace WFS.WebSite4.Areas.Customer.Models
         }
 
         public OrderProfile Profile { get; set; }
-        public bool IsNew { get; set; }
 
         public List<SelectListItem> Grades { get; set; }
         public List<SelectListItem> Teachers { get; set; }
         public List<SelectListItem> LunchPeriods { get; set; }
+
+        public bool? IsSchool { get; set; }
+        public bool? IsSelf { get; set; }
+        public bool IsNew { get; set; }
+        public bool IsComplete { get; set; }
 
     }
 }

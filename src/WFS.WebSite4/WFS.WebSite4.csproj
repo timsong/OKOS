@@ -427,10 +427,19 @@
     <Content Include="Areas\Customer\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Customer\Views\Profile\AddEditProfile.cshtml" />
+    <Content Include="Areas\Customer\Views\Profile\ProfileList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Customer\Views\Profile\ProfileList.cshtml" />
+    <Content Include="Areas\Customer\Views\Profile\StudentInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\EmployeeInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\AddProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\EditProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -448,7 +457,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>25393</DevelopmentServerPort>
+          <DevelopmentServerPort>5088</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -23,6 +23,42 @@
             });
         }
 
+        , loadEntryScreen: function (e) {
+            var isSelf = $("#IsSelfRB").attr('checked');
+            var isSomone = $("#IsSomeoneElseRB").attr('checked');
+            var isSchool = $("#IsSchoolRB").attr('checked');
+            var isCompany = $("#IsCompanyRB").attr('checked');
+
+            var personChecked = false;
+            var schoolChecked = false;
+
+            if (isSelf == 'checked' || isSomone == 'checked') {
+                personChecked = true;
+            }
+            if (isSchool == 'checked' || isCompany == 'checked') {
+                schoolChecked = true;
+            }
+
+            if (personChecked && schoolChecked) {
+
+                var isSelfChecked = (isSelf == "checked");
+                var isSchoolChecked = (isSchool == "checked");
+
+                var url = '/Customer/Profile/SetInfo';
+
+                $("#IsSelf").val(isSelfChecked);
+                $("#IsSchool").val(isSchoolChecked);
+
+                var data = $(newOrderProfile).serialize();
+                ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    ms.ml.html('#infoArea', data.HtmlResult);
+				}
+                });
+            }
+        }
     };
 
 

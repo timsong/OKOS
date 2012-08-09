@@ -1,0 +1,68 @@
+﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
+
+<form id="newOrderProfile"  method="post"> 
+    
+    @Html.HiddenFor(x => x.IsSchool, new { id = "IsSchool" })
+    @Html.HiddenFor(x => x.IsSelf, new { id = "IsSelf" })
+
+    <div class="row">
+        <div class="four columns">
+            <label class="right">Are you ordering for:</label>
+        </div>
+        <div class="eight columns">
+            <div class="row">
+                <div class="three columns">
+                    <label class="right">Yourself?</label>
+                </div>
+                <div class="two columns">
+                     @Html.RadioButtonFor(x => Model.IsSelf, false, new { @class = "custom radio", @id = "IsSelfRB", @msclick = "customerprofile.loadEntryScreen" })
+                </div>
+                <div class="five columns">
+                     <label class="right">Someone Else?</label>
+                </div>
+                <div class="two columns end">
+                    @Html.RadioButtonFor(x => Model.IsSelf, false, new { @class = "custom radio", @id = "IsSomeoneElseRB", @msclick = "customerprofile.loadEntryScreen" })
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <div class="row p_t10">
+        <div class="four columns">
+            <label class="right">Is this for a:</label>
+        </div>
+        <div class="eight columns">
+            <div class="row">
+                <div class="three columns">
+                    <label class="right">School?</label>
+                </div>
+                <div class="two columns">
+                     @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio", @id = "IsSchoolRB", @msclick = "customerprofile.loadEntryScreen" })
+                </div>
+                <div class="five columns">
+                     <label class="right">Company?</label>
+                </div>
+                <div class="two columns end">
+                    @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio ", @id = "IsCompanyRB", @msclick = "customerprofile.loadEntryScreen" })
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <div class="p_t10" id ="infoArea">
+    </div>
+</form>
+
+<div class="row p_t10">
+	<div class="six columns right end">
+        <div class="button-bar">
+          <ul class="button-group">
+            <li><a href="#" id="save-link" msclick="customerprofile.saveProfile" class="radius button">Save</a></li>
+          </ul>
+
+          <ul class="button-group">
+            <li><a href="#" class="close-reveal-modal radius button">Cancel</a></li>
+          </ul>
+        </div>
+	</div>
+</div>
