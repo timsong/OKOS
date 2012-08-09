@@ -19,6 +19,7 @@ namespace WFS.DataContext
             this.Organizations = new HashSet<Organization>();
             this.SupportTickets = new HashSet<SupportTicket>();
             this.SupportTickets1 = new HashSet<SupportTicket>();
+            this.UserOrderProfiles = new HashSet<UserOrderProfile>();
         }
     
         public int UserId { get; set; }
@@ -33,6 +34,7 @@ namespace WFS.DataContext
         public virtual ICollection<SupportTicket> SupportTickets { get; set; }
         public virtual ICollection<SupportTicket> SupportTickets1 { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<UserOrderProfile> UserOrderProfiles { get; set; }
     }
     
 }

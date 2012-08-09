@@ -103,6 +103,9 @@
     <Compile Include="User.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserOrderProfile.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="VendorFoodCategory.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
