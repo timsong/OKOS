@@ -1,3 +1,43 @@
 ﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
 
-<h2>Student Info</h2>
+<h4>New Student Profile</h4>
+
+<div class="row">
+    <div class="two columns">
+        <label class="right p_t10">First Name:</label>
+    </div>
+    <div class="four columns">
+        @Html.TextBoxFor(x => x.Profile.FirstName)
+    </div>
+    <div class="two columns">
+        <label class="right p_t10">Last Name:</label>
+    </div>
+    <div class="four columns">
+        @Html.TextBoxFor(x => x.Profile.LastName)
+    </div>
+</div>
+
+<fieldset class="p_t20">
+    <legend>Enter as much of the following information as possible</legend>
+
+            <label class="right p_t5">Student Grade:</label>
+
+    <div class="row">
+        <div class="four columns">
+            <label class="right p_t5">Student Teacher:</label>
+        </div>
+        <div class="six columns end">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="four columns">
+            <label class="right p_t5">Lunch Period:</label>
+        </div>
+        <div class="six columns end">
+        </div>
+    </div>
+
+</fieldset>
+
+
