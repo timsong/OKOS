@@ -90,9 +90,9 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
                 uiresponse.AdditionalPayload = new
                 {
-                    addressHtml = RenderPartialViewToString("DisplayAddress", uiresponse.Subject)
+                    addressHtml = RenderPartialViewToString("DisplayAddress", uiresponse.Subject.Vendor)
                     ,
-                    contactHtml = RenderPartialViewToString("DisplayContact", uiresponse.Subject)
+					contactHtml = RenderPartialViewToString("DisplayContact", uiresponse.Subject.Vendor)
                 };
 
                 return Json(uiresponse);
