@@ -45,43 +45,19 @@ namespace WFS.Domain.Managers
 
             return response;
         }
-        public GetFoodCategoriesByVendorResponse GetFoodCategoriesByVendor(GetFoodCategoriesByVendorRequest request)
-        {
-            var response = new GetFoodCategoriesByVendorResponse();
 
-            var query = new GetFoodCategoryListQuery(request.VendorId);
-            var result = this._repository.ExecuteQuery(query);
+		public ChangeOrganizationActiveStatusResponse ChangeVendorActiveStatus(ChangeOrganizationActiveStatusRequest request)
+		{
+			var resp = new ChangeOrganizationActiveStatusResponse();
 
-            if (result.Status == Status.Success)
-                response.FoodCategories = result.Values;
+			var command = new ChangeOrganizationActivateStatusCommand(request.OrganizationID, request.NewActiveStatus);
+			var result = _repository.ExecuteCommand(command);
 
-            return response;
-        }
-        public GetFoodCategoryByIdResponse GetFoodCategoryById(GetFoodCategoryByIdRequest request)
-        {
-            var response = new GetFoodCategoryByIdResponse();
+			if (result.Status == Status.Success)
+				resp.Organization = (Vendor)result.Value;
 
-            var query = new GetFoodCategoryByIdQuery(request.FoodCategoryID);
-            var result = this._repository.ExecuteQuery(query);
-
-            if (result.Status == Status.Success)
-                response.FoodCategory = result.Value;
-
-            return response;
-        }
-
-        public ChangeOrganizationActiveStatusResponse ChangeVendorActiveStatus(ChangeOrganizationActiveStatusRequest request)
-        {
-            var resp = new ChangeOrganizationActiveStatusResponse();
-
-            var command = new ChangeOrganizationActivateStatusCommand(request.OrganizationID, request.NewActiveStatus);
-            var result = _repository.ExecuteCommand(command);
-
-            if (result.Status == Status.Success)
-                resp.Organization = (Vendor)result.Value;
-
-            return resp;
-        }
+			return resp;
+		}
 
 		public SaveVendorResponse SaveVendor(SaveVendorRequest request)
 		{
@@ -114,6 +90,33 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
+		#region food category
+		public GetFoodCategoriesByVendorResponse GetFoodCategoriesByVendor(GetFoodCategoriesByVendorRequest request)
+		{
+			var response = new GetFoodCategoriesByVendorResponse();
+
+			var query = new GetFoodCategoryListQuery(request.VendorId);
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodCategories = result.Values;
+
+			return response;
+		}
+
+		public GetFoodCategoryByIdResponse GetFoodCategoryById(GetFoodCategoryByIdRequest request)
+		{
+			var response = new GetFoodCategoryByIdResponse();
+
+			var query = new GetFoodCategoryByIdQuery(request.FoodCategoryID);
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodCategory = result.Value;
+
+			return response;
+		}
+
 		public SaveFoodCategoryResponse SaveFoodCategory(SaveFoodCategoryRequest request)
 		{
 			var resp = new SaveFoodCategoryResponse();
@@ -124,6 +127,18 @@ namespace WFS.Domain.Managers
 
 			return resp;
 		}
+
+		public DeleteFoodCategoryResponse DeleteFoodCategory(DeleteFoodCategoryRequest request)
+		{
+			var resp = new DeleteFoodCategoryResponse();
+
+			var command = new DeleteFoodCategoryCommand(request.FoodCategoryId);
+
+			_repository.ExecuteCommand(command);
+
+			return resp;
+		}
+		#endregion
 
 		public GetFoodOptionsByVendorResponse GetFoodOptionByVendorId(GetFoodOptionsByVendorRequest request)
 		{
@@ -175,17 +190,6 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
-		public DeleteFoodCategoryResponse DeleteFoodCategory(DeleteFoodCategoryRequest request)
-		{
-			var resp = new DeleteFoodCategoryResponse();
-
-			var command = new DeleteFoodCategoryCommand(request.FoodCategoryId);
-
-			_repository.ExecuteCommand(command);
-
-			return resp;
-		}
-
 		public DeleteFoodOptionResponse DeleteFoodOption(DeleteFoodOptionRequest request)
 		{
 			var resp = new DeleteFoodOptionResponse();
@@ -196,5 +200,57 @@ namespace WFS.Domain.Managers
 
 			return resp;
 		}
+
+
+
+		#region food item
+		public GetFoodItemsByVendorIdResponse GetFoodItemsByVendorId(GetFoodItemsByVendorIdRequest request)
+		{
+			var response = new GetFoodItemsByVendorIdResponse();
+
+			var query = new GetFoodItemsByVendorQuery(request.VendorId);
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodItems = result.Value;
+
+			return response;
+		}
+
+		public GetFoodItemByIdResponse GetFoodItemById(GetFoodItemByIdRequest request)
+		{
+			var response = new GetFoodItemByIdResponse();
+
+			var query = new GetFoodItemByIdQuery(request.FoodItemId);
+			var result = this._repository.ExecuteQuery(query);
+
+			if (result.Status == Status.Success)
+				response.FoodItem = result.Value;
+
+			return response;
+		}
+
+		public SaveFoodItemResponse SaveFoodItem(SaveFoodItemRequest request)
+		{
+			var resp = new SaveFoodItemResponse();
+
+			var command = new SaveFoodItemCommand(request.Subject);
+
+			resp = _repository.ExecuteCommand(command) as SaveFoodItemResponse;
+
+			return resp;
+		}
+
+		public DeleteFoodItemResponse DeleteFoodItem(DeleteFoodItemRequest request)
+		{
+			var resp = new DeleteFoodItemResponse();
+
+			var command = new DeleteFoodItemCommand(request.FoodItemId);
+
+			_repository.ExecuteCommand(command);
+
+			return resp;
+		}
+		#endregion
 	}
 }

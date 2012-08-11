@@ -52,6 +52,17 @@ namespace WFS.WebSite4.Areas.Admin
 			context.MapRoute("admin.foodoption.createfoodoption", "Admin/FoodOption/AddFoodOption/{vendorId}", new { controller = "FoodOption", action = "AddFoodOption" });
 			#endregion
 
+			#region food item
+			context.MapRoute("Admin_FoodItem_List", "Admin/FoodItem/GetList/{vendorID}", new { controller = "FoodItem", action = "List" });
+
+			context.MapRoute("Admin_FoodItem_EditFoodItem", "Admin/FoodItem/EditFoodItem/{FoodItemID}", new { controller = "FoodItem", action = "EditFoodItem" });
+
+			context.MapRoute("Admin_FoodItem_Save", "Admin/FoodItem/Save", new { controller = "FoodItem", action = "Save" });
+
+			context.MapRoute("Admin_FoodItem_DeleteFoodItem", "Admin/FoodItem/Delete/{vendorId}/{foodItemID}", new { controller = "FoodItem", action = "DeleteFoodItem" });
+
+			context.MapRoute("Admin_FoodItem_CreateFoodItem", "Admin/FoodItem/AddFoodItem/{vendorId}", new { controller = "FoodItem", action = "AddFoodItem" });
+			#endregion
 
 
             context.MapRoute(

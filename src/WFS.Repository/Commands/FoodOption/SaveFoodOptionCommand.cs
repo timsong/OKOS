@@ -32,6 +32,8 @@ namespace WFS.Repository.Commands
 					var newFo = ent.VendorFoodOptions.Add(_foodOption.ToDataModel());
 
 					dbContext.SaveChanges();
+
+					result.Messages.Add(new Message { Text = "Food Option saved successfully." });
 				}
 				else
 				{

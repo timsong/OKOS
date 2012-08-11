@@ -34,7 +34,10 @@
 		@{Html.RenderAction("List", "FoodOption", new { controller="FoodOption"
 			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
 	</li>
-	<li id="foodItemsPanelTab"> food items </li>
+	<li id="foodItemsPanelTab">
+		@{Html.RenderAction("List", "FoodItem", new { controller="FoodItem"
+			, action="List", area="Admin", vendorId = Model.Vendor.OrganizationId }); }
+	</li>
 	<li id="menusPanelTab"> menus </li>
 	<li id="storesPanelTab"> stores </li>
 </ul>

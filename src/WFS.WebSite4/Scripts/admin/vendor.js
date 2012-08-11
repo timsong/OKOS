@@ -123,13 +123,13 @@
 			);
 		}
 	};
-	var childControllerF = function (domain, overrides) {
+	var childControllerF = function (domain, addVendorId) {
 		var lDomain = domain.substring(0, 1).toLowerCase() + domain.substring(1);
 		var addU = '/Admin/{dom}/Add{dom}/'.bind({ dom: domain }) + '{vendorId}';
-		var edU = '/Admin/{dom}/Edit{dom}/'.bind({ dom: domain }) + '{id}';
+		var edU = '/Admin/{dom}/Edit{dom}/'.bind({ dom: domain }) + '{id}' + (addVendorId ? '?vendorId={vendorId}' : '');
 		var delU = '/Admin/{dom}/Delete/'.bind({ dom: domain }) + '{vendorId}/{id}';
 		var sel = '#{l}EditForm'.bind({ l: lDomain });
-		var saveU = '/Admin/{dom}/Save'.bind({ dom: domain });
+		var saveU = '/Admin/{dom}/Save'.bind({ dom: domain }) + (addVendorId ? '?vendorId={vendorId}' : '');
 		var listSel = '#{l}ListPanel'.bind({ l: lDomain });
 		var messagePanel = '#{l}MessagePanel'.bind({ l: lDomain });
 		var c = {
@@ -140,7 +140,8 @@
 			}
 		, edit: function (e) {
 			var id = $(this).attr('data-id');
-			var url = edU.bind({ id: id });
+			var vendorId = $(this).attr('data-vendor-id');
+			var url = edU.bind({ id: id, vendorId: vendorId });
 			vendor.loadF(url);
 		}
 		, del: function () {
@@ -153,6 +154,7 @@
 			});
 		}
 		, save: function () {
+			var vendorId = $(this).attr('data-vendor-id');
 			vendor.saveF(messagePanel, saveU, sel
 				, function (data) {
 					ms.ml.html(listSel, data.HtmlResult);
@@ -168,4 +170,5 @@
 	}
 	window.category = childControllerF('FoodCategory');
 	window.foodOption = childControllerF('FoodOption');
+	window.foodItem= childControllerF('FoodItem', true);
 })(window);

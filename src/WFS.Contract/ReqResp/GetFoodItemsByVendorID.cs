@@ -7,7 +7,8 @@ namespace WFS.Contract.ReqResp
     public class GetFoodItemsByVendorIdRequest
     {
         public int VendorId { get; set; }
-        public ActiveDataRequestEnum ActiveDataRequest { get; set; }
+     
+		public ActiveDataRequestEnum ActiveDataRequest { get; set; }
     }
 
     public class GetFoodItemsByVendorIdResponse : BaseResponse

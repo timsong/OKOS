@@ -1,0 +1,56 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.FoodItemEditModel
+<h2>Manage Food Item</h2>
+<form id="foodItemEditForm" method="post">
+    @Html.Hidden("FoodItemId", Model.Subject.FoodItemId)
+    @Html.Hidden("vendorId", Model)
+	<div class="panel">
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Category: </label>
+            </div>
+            <div class="eight columns end">
+				@Html.DropDownList("FoodCategoryId", Model.CategoriesList, Model.Subject.FoodCategoryId)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Name: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Name", Model.Subject.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Description: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextArea("Description", Model.Subject.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Cost: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Cost", Model.Subject.Cost)
+            </div>
+        </div>
+        <div class="row">
+            <div class="three columns">
+                <label class="right inline">Price: </label>
+            </div>
+            <div class="eight columns end">
+                @Html.TextBox("Price", Model.Subject.Price)
+            </div>
+        </div>
+	</div>
+</form>
+<div class="row">
+    <div class="six columns">
+        <a href="#" id="save-link" msclick="foodItem.save" class="radius button" data-vendor-id="@Model.VendorId">Save</a>
+    </div>
+    <div class="six columns">
+        <a href="#" class="close-reveal-modal radius button">Cancel</a>
+    </div>
+</div>

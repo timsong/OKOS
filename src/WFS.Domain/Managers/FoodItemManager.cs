@@ -15,18 +15,18 @@ namespace WFS.Domain.Managers
             _repository = repository;
         }
 
-        public GetFoodItemsByVendorIdResponse GetFoodItemsByVendor(GetFoodItemsByVendorIdRequest request)
-        {
-            var response = new GetFoodItemsByVendorIdResponse();
+		//public GetFoodItemsByVendorIdResponse GetFoodItemsByVendor(GetFoodItemsByVendorIdRequest request)
+		//{
+		//    var response = new GetFoodItemsByVendorIdResponse();
 
-            var query = new GetFoodItemListQuery(request.VendorId, request.ActiveDataRequest);
-            var result = this._repository.ExecuteQuery(query);
+		//    var query = new GetFoodItemListQuery(request.VendorId, request.ActiveDataRequest);
+		//    var result = this._repository.ExecuteQuery(query);
 
-            if (result.Status == Status.Success)
-                response.FoodItems = result.Values;
+		//    if (result.Status == Status.Success)
+		//        response.FoodItems = result.Value;
 
-            return response;
-        }
+		//    return response;
+		//}
 
         public CreateFoodItemResponse CreateFoodItem(CreateFoodItemRequest request)
         {

@@ -139,6 +139,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
+    <Compile Include="Areas\Admin\Models\FoodItemModels.cs" />
     <Compile Include="Areas\Admin\Models\FoodOptionModels.cs" />
     <Compile Include="Areas\Admin\Models\SchoolAddEditModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
@@ -446,6 +448,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Confirm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodItem\AddEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodItem\FoodItemList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodItem\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,6 +8,27 @@ namespace WFS.Repository.Conversions
 {
     public static class FoodItemConversion
     {
+		static void Map(this C.FoodItem foodItem, FoodItem existing)
+		{
+			existing.Name = foodItem.Name;
+
+			existing.Description = foodItem.Description;
+
+			existing.VendorFoodCategoryID = foodItem.FoodCategoryId;
+
+			existing.IsActive = foodItem.IsActive;
+
+			existing.Cost = foodItem.Cost;
+
+			existing.Price = foodItem.Price;
+		}
+
+		public static void ForUpdate(this FoodItem existing, C.FoodItem FoodItem)
+		{
+			FoodItem.Map(existing);
+		}
+
+
         public static C.FoodItem ToContract(this FoodItem data)
         {
             if (data == null)
@@ -20,18 +41,22 @@ namespace WFS.Repository.Conversions
                 FoodCategoryId = data.VendorFoodCategoryID,
                 FoodItemId = data.FoodItemId,
                 IsActive = data.IsActive,
+				Category = data.VendorFoodCategory != null ? data.VendorFoodCategory.Name : string.Empty,
                 Cost = data.Cost,
-                Price = data.Price,
-                Category = data.VendorFoodCategory.Name,
-                CategoryType = (FoodCategoryTypeEnum)Enum.Parse(typeof(FoodCategoryTypeEnum), data.VendorFoodCategory.CategoryType)
+                Price = data.Price
             };
-
-
-            if (data.FoodItemOptions.Count > 0)
-                model.Options.AddRange(data.FoodItemOptions.Select(x => x.VendorFoodOption.ToContract()).ToList());
 
             return model;
         }
-    }
+
+		public static FoodItem ToDataModel(this C.FoodItem domain)
+		{
+			var model = new FoodItem { };
+
+			domain.Map(model);
+
+			return model;
+		}
+	}
 }
 
