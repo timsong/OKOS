@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Web.Mvc;
-using System.Web.Security;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web;
+using System.Web.Mvc;
+using WFS.Contract;
+using WFS.Framework;
 
 namespace WFS.WebSite4.Models
 {
-	public interface ILoginConverter
-	{
-		LoginModel ToLogin();
-	}
+    public interface ILoginConverter
+    {
+        LoginModel ToLogin();
+    }
     public class ChangePasswordModel : ILoginConverter
     {
         [Required]
@@ -29,12 +27,12 @@ namespace WFS.WebSite4.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    
-		public LoginModel  ToLogin()
-		{
- 			return new LoginModel{ UserName = HttpContext.Current.User.Identity.Name };
-		}
-	}
+
+        public LoginModel ToLogin()
+        {
+            return new LoginModel { UserName = HttpContext.Current.User.Identity.Name };
+        }
+    }
 
     public class LoginModel : ILoginConverter
     {
@@ -50,17 +48,18 @@ namespace WFS.WebSite4.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
 
-		public LoginModel ToLogin()
-		{
-			return this;
-		}
+        public LoginModel ToLogin()
+        {
+            return this;
+        }
     }
 
-    public class RegisterModel : ILoginConverter
+    public class RegisterModel : EditModelBase<CustomerAccount>
     {
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public RegisterModel()
+        {
+            AddressInfo = new PhoneAddress();
+        }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -78,17 +77,20 @@ namespace WFS.WebSite4.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-		public LoginModel ToLogin()
-		{
-			return new LoginModel { UserName = UserName };
-		}
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+
+        public PhoneAddress AddressInfo { get; set; }
+
     }
 
-	public static class AccountModelExtensions
-	{
-		public static LoginModel GetLoginModel(this ILoginConverter subject)
-		{
-			return subject.ToLogin();
-		}
-	}
+    public static class AccountModelExtensions
+    {
+        public static LoginModel GetLoginModel(this ILoginConverter subject)
+        {
+            return subject.ToLogin();
+        }
+    }
 }

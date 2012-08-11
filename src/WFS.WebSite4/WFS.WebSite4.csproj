@@ -153,6 +153,11 @@
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
+    <Compile Include="Areas\Customer\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Customer\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Customer\Models\OrderProfileAddEditModel.cs" />
+    <Compile Include="Areas\Customer\Models\OrderProfileViewModel.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -176,9 +181,6 @@
     <Compile Include="Routes\RouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayAddress.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
@@ -221,6 +223,7 @@
     <Content Include="Images\foundation\right-arrow.png" />
     <Content Include="Images\foundation\rotator-black.png" />
     <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\customer\customerprofile.js" />
     <Content Include="Scripts\admin\dashboard.js" />
     <Content Include="Scripts\admin\school.js" />
     <Content Include="Scripts\admin\foodcategory.list.js" />
@@ -370,9 +373,6 @@
     <Content Include="Areas\Admin\Views\Vendor\DisplayVendor.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\DisplayContact.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\SupportTicket\NewSupportTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -414,6 +414,33 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodOption\List.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Shared\_LayoutPageCustomer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\ProfileList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\StudentInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\EmployeeInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\AddProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Customer\Views\Profile\EditProfile.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -430,7 +457,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53610</DevelopmentServerPort>
+          <DevelopmentServerPort>5088</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -1,0 +1,18 @@
+﻿@using WFS.WebSite.Helpers
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";	
+}
+@section primaryNav {
+	@{ @RenderSection("primaryNav", false) }
+}
+
+@section styles{
+	@{ @RenderSection("styles", false) }
+}
+
+@section scripts{
+	@{ @RenderSection("scripts", false) }
+}
+
+@RenderBody()
+

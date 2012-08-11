@@ -40,5 +40,14 @@ namespace WFS.DataContext
         public DbSet<VendorFoodOption> VendorFoodOptions { get; set; }
         public DbSet<VendorMenu> VendorMenus { get; set; }
         public DbSet<SupportTicket> SupportTickets { get; set; }
+        public DbSet<DaysOff> DaysOffs { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<LunchPeriod> LunchPeriods { get; set; }
+        public DbSet<SchoolDaysOff> SchoolDaysOffs { get; set; }
+        public DbSet<SchoolGrade> SchoolGrades { get; set; }
+        public DbSet<SchoolLunchPeriod> SchoolLunchPeriods { get; set; }
+        public DbSet<SchoolTeacher> SchoolTeachers { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<UserOrderProfile> UserOrderProfiles { get; set; }
     }
 }

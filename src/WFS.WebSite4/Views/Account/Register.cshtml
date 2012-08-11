@@ -1,44 +1,76 @@
 ﻿@model WFS.WebSite4.Models.RegisterModel
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Create a new account";
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
+    <h2>@ViewBag.Title.</h2>
 </hgroup>
 
 <p class="message-info">
     Passwords must be at least @Membership.MinRequiredPasswordLength characters long.
 </p>
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary()
+@Html.ValidationSummary()
+
+<form id="newRegistrationForm"  method="post"> 
 
     <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Email)
+        <legend>Registration Information</legend>
+        <div class="row">
+            <div class="two columns">
+                <label class="right inline">First Name:</label>
+            </div>
+            <div class="four columns">
+                @Html.TextBoxFor(m => m.FirstName)
+            </div>
+            <div class="two columns">
+                <label class="right inline">Last Name:</label>
+            </div>
+            <div class="four columns end">
+                @Html.TextBoxFor(m => m.LastName)
+            </div>
+        </div>
+        <div class="p_t5 row">
+            <div class="two columns">
+                <label class="right inline">Email Address:</label>
+            </div>
+            <div class="four columns">
                 @Html.TextBoxFor(m => m.Email)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
+            </div>
+            <div class="two columns">
+                <label class="right inline">Password:</label>
+            </div>
+            <div class="four columns">
                 @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
+            </div>
+        </div>
+        <div class="row">
+            <div class="two columns push eight">
+                <label class="right inline">Confirm Password</label>
+            </div>
+            <div class="four columns end">
                 @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
+            </div>
+        </div>
     </fieldset>
-}
+
+
+    <fieldset>
+        <legend>Address Information</legend>
+			@{Html.RenderPartial("AddressInfo",		
+					Model.AddressInfo, 
+					new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+
+    </fieldset>
+</form>
+
+<div class="row">
+	<div class="right">
+		<a href="#" id="save-link" msclick="home.createAccount" class="radius button">Create Account</a>&nbsp;&nbsp;&nbsp;
+	</div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

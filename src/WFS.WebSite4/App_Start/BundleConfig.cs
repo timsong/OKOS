@@ -46,6 +46,7 @@ namespace WFS.WebSite4
             bundles.Add(new ScriptBundle("~/bundles/admin").Include("~/Scripts/admin/*.js"));
             bundles.Add(new ScriptBundle("~/bundles/admin/school").Include("~/Scripts/admin/school.js"));
             bundles.Add(new ScriptBundle("~/bundles/admin/vendor").Include("~/Scripts/admin/vendor.js"));
+            bundles.Add(new ScriptBundle("~/bundles/customer/profiles").Include("~/Scripts/customer/customerprofile.js"));
             #endregion
         }
     }

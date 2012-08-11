@@ -1,0 +1,25 @@
+﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_LayoutPageCustomer.cshtml";
+}
+
+<h2>Ordering Profiles</h2>
+@Html.HiddenFor(model => model.MembershipId, new { @id = "membershipId" })
+
+<p class="p_t5">
+	<a href="javascript:void(0)" msclick="customerprofile.showAddProfile">Add New Profile</a>
+</p>
+
+
+<div id="modalEdit" class="reveal-modal">
+</div>
+
+<div id="profileListPanel">
+</div>
+
+
+@section scripts{
+    @System.Web.Optimization.Scripts.Render("~/bundles/customer/profiles")
+}

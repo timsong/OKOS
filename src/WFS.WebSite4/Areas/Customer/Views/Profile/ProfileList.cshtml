@@ -1,0 +1,30 @@
+﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileViewModel
+
+@if (Model.Profiles.Count <= 0)
+{
+    <div class="row">
+        <div class="eleven columns push one">
+            Before you can place an order, please create an order profile so we know who you are ordering for.
+        </div>
+    </div>        
+}
+
+
+@foreach (var item in Model.Profiles)
+{
+    <div class="panel">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="eight columns">
+                </div>
+                <div class="one columns">
+                    @Html.RouteLink("Edit/View","admin.vendor.display",new {vendorID = item.OrderProfileId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrderProfileId })
+                </div>
+                <div class="one columns"></div>
+            </div>
+        </div>
+    </div>
+}

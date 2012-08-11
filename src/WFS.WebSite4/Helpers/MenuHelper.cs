@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -14,7 +12,7 @@ namespace WFS.WebSite.Helpers
     [Flags]
     public enum UserType
     {
-        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16, VendorAdmin = 0x32
+        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16, VendorAdmin = 0x32, Customer = 0x64
     }
 
     public class RouteInfo
@@ -26,7 +24,7 @@ namespace WFS.WebSite.Helpers
         {
             this.AccessType = RouteAccessType.All;
             this.RouteValues = new { };
-			ExactMatch = false;
+            ExactMatch = false;
             this.HtmlAttributes = new { };
         }
 
@@ -60,11 +58,11 @@ namespace WFS.WebSite.Helpers
 
         const string EXC_ROUTE_NOTFOUND = "RouteLinkExists: Route {0} not found in route collection.";
 
-		public static MvcHtmlString RouteLinkExists(this HtmlHelper helper, string linkText, string routeName, object routeValues, object htmlAttributes, string routeMatchesClass)
+        public static MvcHtmlString RouteLinkExists(this HtmlHelper helper, string linkText, string routeName, object routeValues, object htmlAttributes, string routeMatchesClass)
         {
             return helper.RouteLinkExists(linkText, routeName, routeValues, htmlAttributes, routeMatchesClass, false);
         }
-		public static MvcHtmlString RouteLinkExists(this HtmlHelper helper, string linkText, string routeName, object routeValues, object htmlAttributes, string routeMatchesClass, bool exactMatch)
+        public static MvcHtmlString RouteLinkExists(this HtmlHelper helper, string linkText, string routeName, object routeValues, object htmlAttributes, string routeMatchesClass, bool exactMatch)
         {
             RouteInfo routeInfo = new RouteInfo();
             routeInfo.AccessType = RouteAccessType.All;
@@ -78,30 +76,30 @@ namespace WFS.WebSite.Helpers
         }
         public static MvcHtmlString RouteLinkExists(this HtmlHelper helper, RouteInfo routeInfo)
         {
-			bool isNotAuthType = true;
+            bool isNotAuthType = true;
 
-			if (routeInfo.AccessType == RouteAccessType.Auth)
-			{
-				foreach (string role in Roles.GetRolesForUser())
-				{
-					var userType = (UserType)Enum.Parse(typeof(UserType), role);
-					if (isNotAuthType)
-						isNotAuthType = !(((routeInfo.UserType & userType) == userType) && routeInfo.AccessType == RouteAccessType.Auth);
-				}
-			}
-			else
-			{
-				isNotAuthType = false;
-			}
-		
-            bool isNotAuth =	HttpContext.Current.User.Identity.IsAuthenticated && routeInfo.AccessType == RouteAccessType.NonAuth;
-			bool isAuth =		HttpContext.Current.User.Identity.IsAuthenticated && routeInfo.AccessType == RouteAccessType.NonAuth;
+            if (routeInfo.AccessType == RouteAccessType.Auth)
+            {
+                foreach (string role in Roles.GetRolesForUser())
+                {
+                    var userType = (UserType)Enum.Parse(typeof(UserType), role);
+                    if (isNotAuthType)
+                        isNotAuthType = !(((routeInfo.UserType & userType) == userType) && routeInfo.AccessType == RouteAccessType.Auth);
+                }
+            }
+            else
+            {
+                isNotAuthType = false;
+            }
+
+            bool isNotAuth = HttpContext.Current.User.Identity.IsAuthenticated && routeInfo.AccessType == RouteAccessType.NonAuth;
+            bool isAuth = HttpContext.Current.User.Identity.IsAuthenticated && routeInfo.AccessType == RouteAccessType.NonAuth;
             bool isActive = routeInfo.IsActive();
 
             // auth type filter
             if (isNotAuth || isNotAuthType || !isActive)
             {
-                return new MvcHtmlString (string.Empty);
+                return new MvcHtmlString(string.Empty);
             }
 
             if (helper.RouteCollection[routeInfo.RouteName] == null)
@@ -117,15 +115,15 @@ namespace WFS.WebSite.Helpers
 
             if (routeInfo.IsDisabled())
             {
-                return new MvcHtmlString (string.Format(TMP_URL, "disabledMenuItem", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
+                return new MvcHtmlString(string.Format(TMP_URL, "disabledMenuItem", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
             }
             else if (url == HttpContext.Current.Request.Url.AbsolutePath)
             {
-				return new MvcHtmlString(string.Format(TMP_URL, "active", routeInfo.RouteMatchClass, helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
+                return new MvcHtmlString(string.Format(TMP_URL, "active", routeInfo.RouteMatchClass, helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
             }
             else if (area == currentArea && !routeInfo.ExactMatch)
             {
-                return new MvcHtmlString (string.Format(TMP_URL, "", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
+                return new MvcHtmlString(string.Format(TMP_URL, "", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));
             }
 
             return new MvcHtmlString(string.Format(TMP_URL, "", "", helper.RouteLink(routeInfo.LinkText, routeInfo.RouteName, routeInfo.RouteValues, routeInfo.HtmlAttributes).ToHtmlString()));

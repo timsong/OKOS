@@ -13,14 +13,13 @@ else
 		@Html.RouteLink("Sign Up", "Register", new { }, new { @class = "radius success button small" })
 	</div>
 	<div id="loginModal" class="reveal-modal">
-	@if (Model == null)
- {
-     Html.RenderPartial("~/Views/Account/Login.cshtml");
- }
- else
- {
-     Html.RenderPartial("~/Views/Account/Login.cshtml", ((WFS.WebSite4.Models.ILoginConverter)Model).GetLoginModel());
- }
-		
+	    @if (Model == null)
+        {
+            Html.RenderPartial("~/Views/Account/Login.cshtml");
+        }
+        else
+        {
+		    @Html.RouteLink("Register", "Register", new { }, new { @class = "radius success button small" })
+        }
 	</div>
 }
