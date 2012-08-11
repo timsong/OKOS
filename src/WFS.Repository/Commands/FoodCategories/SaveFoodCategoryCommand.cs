@@ -34,6 +34,8 @@ namespace WFS.Repository.Commands
 					dbContext.SaveChanges();
 
 					result.Value = foodCategory.ToContract();
+
+					result.Messages.Add(new Message { Text = "Food Category saved successfully." });
 				}
 				else
 				{
@@ -42,6 +44,8 @@ namespace WFS.Repository.Commands
 					foodCategory.ForUpdate(_foodCategory);
 
 					dbContext.SaveChanges();
+
+					result.Messages.Add(new Message { Text = "Food Category saved successfully." });
 				}
             }
             catch (Exception ex)

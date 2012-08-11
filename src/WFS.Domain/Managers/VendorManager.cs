@@ -118,12 +118,9 @@ namespace WFS.Domain.Managers
 		{
 			var resp = new SaveFoodCategoryResponse();
 
-			//Create Vendor and VendorUser
-			var faCmd = new SaveFoodCategoryCommand(request.Subject);
+			var command = new SaveFoodCategoryCommand(request.Subject);
 
-			var fcRes = _repository.ExecuteCommand(faCmd);
-
-			((Result<FoodCategory>)fcRes).Merge<FoodCategory, FoodCategory>(resp);
+			resp = _repository.ExecuteCommand(command) as SaveFoodCategoryResponse;
 
 			return resp;
 		}
@@ -160,12 +157,9 @@ namespace WFS.Domain.Managers
 		{
 			var resp = new SaveFoodOptionResponse();
 
-			//Create Vendor and VendorUser
-			var faCmd = new SaveFoodOptionCommand(request.Subject);
+			var command = new SaveFoodOptionCommand(request.Subject);
 
-			var fcRes = _repository.ExecuteCommand(faCmd);
-
-			((Result<FoodOption>)fcRes).Merge<FoodOption, FoodOption>(resp);
+			resp = _repository.ExecuteCommand(command) as SaveFoodOptionResponse;
 
 			return resp;
 		}

@@ -843,7 +843,10 @@
 	ms.message = {
 		get: function (context, messageSel, msgs) {
 			ms.ml.html(messageSel, '');
-			msgs.SYSTEMERROR = 'A serious error has occurred.  If this continues please contact an administrator.';
+			msgs = $.extend(msgs, {
+				SYSTEMERROR: 'A serious error has occurred.  If this continues please contact an administrator.'
+				, GENERALSAVE: 'Save was successful.'
+			});
 			var msgC = {
 				sendInfo: function (msg) {
 					$(messageSel).removeClass('secondary alert success');
@@ -916,6 +919,3 @@
 		}
 	}
 })(window);
-
-
-

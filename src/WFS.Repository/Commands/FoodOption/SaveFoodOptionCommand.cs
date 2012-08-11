@@ -42,6 +42,8 @@ namespace WFS.Repository.Commands
 					dbContext.SaveChanges();
 
 					result.Value = (C.FoodOption)existing.ToContract();
+
+					result.Messages.Add(new Message { Text = "Food Option saved successfully." });
 				}
             }
             catch (Exception ex)

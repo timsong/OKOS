@@ -53,19 +53,25 @@
 					}
 				});
 		}
-		, saveF: function (url, formSel, onfin, onerr) {
+		, saveF: function (messagePanel, url, formSel, onfin, onerr) {
 			var data = $(formSel).serialize();
+			var msgC = ms.message.get('save', messagePanel, {} );
 			ms.ajax.send({ url: url
 				, type: 'POST'
 				, data: data
+				, errorHandler: function (data) {
+					msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
+				}
 				, successHandler: function (data) {
-					if (data.Status != 2) {
+					if (data.Status != '2') {
 						ms.ml.html('#modalEdit', data.HtmlResult);
+						msgC.send(data.Status, data);
 						if ($.isFunction(onerr)) {
 							onerr(data);
 						};
 					}
 					else {
+						msgC.sendInfo(data);
 						if ($.isFunction(onerr)) {
 							onfin(data);
 						};
@@ -117,8 +123,7 @@
 			);
 		}
 	};
-
-	var childControllerF = function (domain) {
+	var childControllerF = function (domain, overrides) {
 		var lDomain = domain.substring(0, 1).toLowerCase() + domain.substring(1);
 		var addU = '/Admin/{dom}/Add{dom}/'.bind({ dom: domain }) + '{vendorId}';
 		var edU = '/Admin/{dom}/Edit{dom}/'.bind({ dom: domain }) + '{id}';
@@ -148,7 +153,7 @@
 			});
 		}
 		, save: function () {
-			vendor.saveF(saveU, sel
+			vendor.saveF(messagePanel, saveU, sel
 				, function (data) {
 					ms.ml.html(listSel, data.HtmlResult);
 					$('#modalEdit').trigger('reveal:close');
@@ -161,11 +166,6 @@
 		};
 		return c;
 	}
-
 	window.category = childControllerF('FoodCategory');
-
 	window.foodOption = childControllerF('FoodOption');
-
-	$(document).ready(function () { });
-
 })(window);
