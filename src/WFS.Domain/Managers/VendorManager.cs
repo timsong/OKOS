@@ -170,5 +170,13 @@ namespace WFS.Domain.Managers
 
 			return resp;
 		}
+
+		public DeleteVendorResponse DeleteVendor(DeleteVendorRequest request)
+		{
+			var resp = new DeleteVendorResponse();
+
+
+			return resp;
+		}
 	}
 }

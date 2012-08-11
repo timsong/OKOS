@@ -14,7 +14,7 @@ namespace WFS.WebSite.Helpers
     [Flags]
     public enum UserType
     {
-        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16
+        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16, VendorAdmin = 0x32
     }
 
     public class RouteInfo
