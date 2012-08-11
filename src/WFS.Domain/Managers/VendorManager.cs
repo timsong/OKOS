@@ -134,7 +134,7 @@ namespace WFS.Domain.Managers
 
 			var command = new DeleteFoodCategoryCommand(request.FoodCategoryId);
 
-			_repository.ExecuteCommand(command);
+			resp = _repository.ExecuteCommand(command) as DeleteFoodCategoryResponse;
 
 			return resp;
 		}
@@ -185,7 +185,7 @@ namespace WFS.Domain.Managers
 
 			var command = new DeleteVendorCommand(request.VendorId);
 
-			_repository.ExecuteCommand(command);
+			resp = _repository.ExecuteCommand(command) as DeleteVendorResponse;
 
 			return resp;
 		}
@@ -196,7 +196,7 @@ namespace WFS.Domain.Managers
 
 			var command = new DeleteFoodOptionCommand(request.FoodOptionId);
 
-			_repository.ExecuteCommand(command);
+			resp = _repository.ExecuteCommand(command) as DeleteFoodOptionResponse;
 
 			return resp;
 		}
@@ -247,7 +247,7 @@ namespace WFS.Domain.Managers
 
 			var command = new DeleteFoodItemCommand(request.FoodItemId);
 
-			_repository.ExecuteCommand(command);
+			resp = _repository.ExecuteCommand(command) as DeleteFoodItemResponse;
 
 			return resp;
 		}

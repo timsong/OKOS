@@ -30,6 +30,8 @@ namespace WFS.Repository.Commands
 			{
 				var foodItem = context.FoodItems.FirstOrDefault(x => x.FoodItemId.Equals(_foodItemId));
 
+				foodItem.IsDeleted = true;
+
 				context.SaveChanges();
 
 				result.Status = Status.Success;

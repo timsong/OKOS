@@ -27,6 +27,7 @@ namespace WFS.DataContext
         public bool IsActive { get; set; }
         public string Name { get; set; }
         public int VendorFoodCategoryID { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }
         public virtual ICollection<MenuItem> MenuItems { get; set; }

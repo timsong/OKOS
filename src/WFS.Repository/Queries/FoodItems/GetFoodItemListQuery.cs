@@ -18,7 +18,7 @@ namespace WFS.Repository.Queries
 		{
 			var ent = (WFS.DataContext.WFSEntities)dbContext;
 
-			var data = ent.FoodItems.Where(x => x.VendorFoodCategory.OrganizationID == _vendorID).AsEnumerable().Select(x => x.ToContract());
+			var data = ent.FoodItems.Where(x => x.VendorFoodCategory.OrganizationID == _vendorID && !x.IsDeleted).AsEnumerable().Select(x => x.ToContract());
 
 			var result = new Result<List<C.FoodItem>>();
 

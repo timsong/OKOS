@@ -180,6 +180,7 @@
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="VendorFoodCategoryID" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
         </EntityType>
@@ -1146,6 +1147,7 @@
           <NavigationProperty Name="MenuItems" Relationship="WFSModel.FK_MenuItem_FoodItem" FromRole="FoodItem" ToRole="MenuItem" />
           <Property Type="Int32" Name="VendorFoodCategoryID" Nullable="false" />
           <NavigationProperty Name="VendorFoodCategory" Relationship="WFSModel.FK_FoodItem_FoodCategory1" FromRole="FoodItem" ToRole="VendorFoodCategory" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
         </EntityType>
         <Association Name="FK_FoodItemOption_FoodItem">
           <End Type="WFSModel.FoodItem" Role="FoodItem" Multiplicity="1" />
@@ -1705,6 +1707,7 @@
           <EntitySetMapping Name="FoodItems">
             <EntityTypeMapping TypeName="WFSModel.FoodItem">
               <MappingFragment StoreEntitySet="FoodItem">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="VendorFoodCategoryID" ColumnName="VendorFoodCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
