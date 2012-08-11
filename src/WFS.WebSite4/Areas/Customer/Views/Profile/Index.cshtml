@@ -7,9 +7,10 @@
 
 <h2>Ordering Profiles</h2>
 @Html.HiddenFor(model => model.MembershipId, new { @id = "membershipId" })
+@Html.HiddenFor(model => model.UserId, new { @id = "userId" })
 
 <p class="p_t5">
-	<a href="javascript:void(0)" msclick="customerprofile.showAddProfile">Add New Profile</a>
+	<a href="javascript:void(0)" msclick="customerprofile.showAddProfile"  data-id="@Model.UserId">Add New Profile</a>
 </p>
 
 

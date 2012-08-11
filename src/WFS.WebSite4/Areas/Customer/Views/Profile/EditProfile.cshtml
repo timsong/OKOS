@@ -1,1 +1,23 @@
 ﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
+
+<fieldset class="p_t5">
+    <legend>Profile Information</legend>
+
+    <div class="row p_t10">
+        <div class="five columns">
+            <div class="row">First Name: (required)</div>
+            <div class="row">
+                @Html.TextBoxFor(x => x.Profile.FirstName, new {@id="txtFirstName" })
+            </div>
+        </div>
+        <div class="one columns">
+        </div>
+        <div class="five columns end">
+            <div class="row">Last Name: (required)</div>
+            <div class="row">
+                @Html.TextBoxFor(x => x.Profile.LastName, new { @id = "txtLastName" })
+            </div>
+        </div>
+    </div>
+
+</fieldset>

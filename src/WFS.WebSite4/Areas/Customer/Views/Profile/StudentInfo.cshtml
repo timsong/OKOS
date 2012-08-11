@@ -1,29 +1,39 @@
 ﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
 
-<h4>New Student Profile</h4>
+<fieldset class="p_t5">
+    <legend>Profile Information</legend>
 
-<div class="row">
-    <div class="two columns">
-        <label class="right p_t10">First Name:</label>
+    <div class="row p_t10">
+    Enter the name of the person you wish to order for (use your own name if you will be ordering for yourself)
     </div>
-    <div class="four columns">
-        @Html.TextBoxFor(x => x.Profile.FirstName)
-    </div>
-    <div class="two columns">
-        <label class="right p_t10">Last Name:</label>
-    </div>
-    <div class="four columns">
-        @Html.TextBoxFor(x => x.Profile.LastName)
-    </div>
-</div>
 
-<fieldset class="p_t20">
-    <legend>Enter as much of the following information as possible</legend>
+    <div class="row p_t20">
+        <div class="five columns">
+            <div class="row">First Name: (required)</div>
+            <div class="row">
+                @Html.TextBoxFor(x => x.Profile.FirstName, new {@id="txtFirstName" })
+            </div>
+        </div>
+        <div class="one columns">
+        </div>
+        <div class="five columns end">
+            <div class="row">Last Name: (required)</div>
+            <div class="row">
+                @Html.TextBoxFor(x => x.Profile.LastName, new { @id = "txtLastName" })
+            </div>
+        </div>
+    </div>
 
+    <div class="row p_t10">
+        <div class="three columns">
             <label class="right p_t5">Student Grade:</label>
+        </div>
+        <div class="six columns end">
+        </div>
+    </div>
 
     <div class="row">
-        <div class="four columns">
+        <div class="three columns">
             <label class="right p_t5">Student Teacher:</label>
         </div>
         <div class="six columns end">
@@ -31,7 +41,7 @@
     </div>
 
     <div class="row">
-        <div class="four columns">
+        <div class="three columns">
             <label class="right p_t5">Lunch Period:</label>
         </div>
         <div class="six columns end">

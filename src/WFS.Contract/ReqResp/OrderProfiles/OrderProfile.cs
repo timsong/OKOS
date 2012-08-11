@@ -1,11 +1,15 @@
-﻿using System;
-using WFS.Repository;
+﻿using WFS.Repository;
 
 namespace WFS.Contract.ReqResp
 {
     public class GetOrderProfileListRequest
     {
-        public Guid MembershipId { get; set; }
+        public int UserId { get; set; }
+    }
+
+    public class GetOrderProfileByIdRequest
+    {
+        public int ProfileId { get; set; }
     }
 
     public class GetOrderProfileListResponse : ListResult<OrderProfile>
@@ -14,5 +18,16 @@ namespace WFS.Contract.ReqResp
         {
             Values = new System.Collections.Generic.List<OrderProfile>();
         }
+
+        public int UserId { get; set; }
+    }
+
+    public class GetOrderProfileResponse : Result<OrderProfile>
+    {
+        public GetOrderProfileResponse()
+        {
+            Value = new OrderProfile();
+        }
+
     }
 }

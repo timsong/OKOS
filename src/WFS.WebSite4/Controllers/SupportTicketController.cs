@@ -31,21 +31,21 @@ namespace WFS.WebSite4.Controllers
             {
                 var userResp = _wfsUserMgr.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
 
-                if (userResp.Status == Status.Success && userResp.UserInfo.UserId > 0)
+                if (userResp.Status == Status.Success && userResp.Value.UserId > 0)
                 {
-                    var uiresult = userResp.ToUIResult<SupportTicketNewModel>(() => new SupportTicketNewModel()
+                    var uiresult = userResp.ToUIResult<SupportTicketNewModel, WFSUser>(x => new SupportTicketNewModel()
                     {
-                        FirstName = userResp.UserInfo.FirstName,
-                        LastName = userResp.UserInfo.LastName,
-                        EmailAddress = userResp.UserInfo.EmailAddress,
-                        UserId = userResp.UserInfo.UserId
+                        FirstName = userResp.Value.FirstName,
+                        LastName = userResp.Value.LastName,
+                        EmailAddress = userResp.Value.EmailAddress,
+                        UserId = userResp.Value.UserId,
                     }, (m) => RenderPartialViewToString("NewSupportTicket", m));
 
                     return Json(uiresult, JsonRequestBehavior.AllowGet);
                 }
             }
 
-            var noUserResult = new GetWfsUserInfoByUserNameResponse().ToUIResult<SupportTicketNewModel>(() => new SupportTicketNewModel() { },
+            var noUserResult = new GetWfsUserInfoResponse().ToUIResult<SupportTicketNewModel, WFSUser>(x => new SupportTicketNewModel() { },
                     (m) => RenderPartialViewToString("NewSupportTicket", m));
 
             return Json(noUserResult, JsonRequestBehavior.AllowGet);
@@ -119,7 +119,7 @@ namespace WFS.WebSite4.Controllers
         {
             var userResp = _wfsUserMgr.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
 
-            model.Ticket.ResolvedByUserID = userResp.UserInfo.UserId;
+            model.Ticket.ResolvedByUserID = userResp.Value.UserId;
 
             var resp = _tickManager.SaveSupportTicket(new SaveSupportTicketRequest()
                 {

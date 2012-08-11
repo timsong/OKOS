@@ -13,6 +13,7 @@ namespace WFS.WebSite4.Areas.Customer.Models
         }
 
         public Guid MembershipId { get; set; }
+        public int UserId { get; set; }
 
         public List<OrderProfile> Profiles { get; set; }
     }

@@ -13,7 +13,6 @@ namespace WFS.Repository.Queries
             _supportTicketId = supportTicketId;
         }
 
-        #region IQuery<Vendor> Members
 
         public IResult<C.SupportTicket> Execute(System.Data.Entity.DbContext dbContext)
         {
@@ -26,8 +25,6 @@ namespace WFS.Repository.Queries
 
             return result;
         }
-
-        #endregion
     }
 }
 

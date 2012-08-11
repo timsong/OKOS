@@ -15,7 +15,11 @@
     <div class="panel">
         <div class="row">
             <div class="twelve columns">
-                <div class="eight columns">
+                <div class="five columns">
+                   @String.Format("{0}, {1}", item.LastName, item.FirstName)
+                </div>
+                <div class="five columns">
+                   @item.OrganizationName
                 </div>
                 <div class="one columns">
                     @Html.RouteLink("Edit/View","admin.vendor.display",new {vendorID = item.OrderProfileId })
@@ -23,7 +27,6 @@
                 <div class="one columns">
                     @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrderProfileId })
                 </div>
-                <div class="one columns"></div>
             </div>
         </div>
     </div>
