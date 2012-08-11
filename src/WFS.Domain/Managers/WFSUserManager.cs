@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using WFS.Contract.ReqResp;
+using WFS.Framework;
 using WFS.Repository;
-using WFS.Contract.ReqResp;
 using WFS.Repository.Queries;
 
 namespace WFS.Domain.Managers
 {
-    public class WFSUserManager        
+    public class WFSUserManager
     {
         private WFSRepository _repository;
 
@@ -17,18 +14,34 @@ namespace WFS.Domain.Managers
             _repository = repository;
         }
 
-        public GetWfsUserInfoByUserNameResponse  GetWfsUserInfoByUserName (GetWfsUserInfoByUserNameRequest request)
+        public GetWfsUserInfoResponse GetWfsUserInfoByUserName(GetWfsUserInfoByUserNameRequest request)
         {
-            var response = new GetWfsUserInfoByUserNameResponse();
+            var response = new GetWfsUserInfoResponse();
 
             var query = new GetWFSUserInfoByUserNameQuery(request.UserName);
             var result = this._repository.ExecuteQuery(query);
 
+            response.Merge(result);
+
             if (result.Status == Status.Success)
-                response.UserInfo = result.Value;
+                response.Value = result.Value;
 
             return response;
         }
 
+        public GetWfsUserInfoResponse GetWfsUserInfoByMembershipId(GetWfsUserInfoByMembershipIdRequest request)
+        {
+            var response = new GetWfsUserInfoResponse();
+
+            var query = new GetWFSUserInfoByMembershipIdQuery(request.MembershipId);
+            var result = this._repository.ExecuteQuery(query);
+
+            response.Merge(result);
+
+            if (result.Status == Status.Success)
+                response.Value = result.Value;
+
+            return response;
+        }
     }
 }

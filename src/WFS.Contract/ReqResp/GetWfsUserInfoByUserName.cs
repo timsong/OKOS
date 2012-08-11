@@ -1,4 +1,5 @@
-﻿using WFS.Framework;
+﻿using System;
+using WFS.Repository;
 
 namespace WFS.Contract.ReqResp
 {
@@ -7,13 +8,16 @@ namespace WFS.Contract.ReqResp
         public string UserName { get; set; }
     }
 
-    public class GetWfsUserInfoByUserNameResponse : BaseResponse
+    public class GetWfsUserInfoByMembershipIdRequest
     {
-        public GetWfsUserInfoByUserNameResponse()
-        {
-            UserInfo = new WFSUser();
-        }
+        public Guid MembershipId { get; set; }
+    }
 
-        public WFSUser UserInfo { get; set; }
+    public class GetWfsUserInfoResponse : Result<WFSUser>
+    {
+        public GetWfsUserInfoResponse()
+        {
+            Value = new WFSUser();
+        }
     }
 }

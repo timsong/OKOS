@@ -82,8 +82,10 @@
     <Compile Include="Queries\GetFoodItemListQuery.cs" />
     <Compile Include="Queries\GetSupportTicketByIdQuery.cs" />
     <Compile Include="Queries\GetUnResolvedSupportTicketsQuery.cs" />
+    <Compile Include="Queries\GetWFSUserInfoByMembershipIdQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByUserNameQuery.cs" />
-    <Compile Include="Queries\OrderProfiles\GetOrderProfileListByMemIdQuery.cs" />
+    <Compile Include="Queries\OrderProfiles\GetOrderProfileByIdQuery.cs" />
+    <Compile Include="Queries\OrderProfiles\GetOrderProfileListByUserIdQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationsByTypeListQuery.cs" />
     <Compile Include="WFSRepository.cs" />

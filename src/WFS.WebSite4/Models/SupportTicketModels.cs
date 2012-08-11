@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WFS.Contract;
 using WFS.Contract.Enums;
+using System.Web.Mvc;
 
 namespace WFS.WebSite4.Models
 {

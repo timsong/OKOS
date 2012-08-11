@@ -1,0 +1,14 @@
+﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
+
+<div class="row">
+    <div class="four columns">
+        <label class="p_t5">Choose your school:</label>
+    </div>
+    <div class="eight columns">
+       @Html.DropDownListFor(x => x.SelectedSchool, new SelectList(Model.Schools, "Value", "Text",
+                                                         Model.Schools), new { @id = "ddlSchoolChoice" }) 
+    </div>
+</div>
+
+<div class="p_t10" id ="studentInfoArea">
+</div>

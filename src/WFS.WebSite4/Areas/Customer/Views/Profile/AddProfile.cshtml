@@ -3,59 +3,35 @@
 <form id="newOrderProfile"  method="post"> 
     
     @Html.HiddenFor(x => x.IsSchool, new { id = "IsSchool" })
-    @Html.HiddenFor(x => x.IsSelf, new { id = "IsSelf" })
+    @Html.HiddenFor(x => x.Profile.UserId)
 
-<div class="row">
-    <div class="six columns">
-        <fieldset>
-            <legend>Are you ordering for:</legend>
+    <div class="row">
+        <div class="six columns">
+            <fieldset>
+                <legend>Is this for a:</legend>
 
-            <div class="row">
-                <div class="three columns">
-                    <label class="p_t5">Yourself?</label>
+                <div class="row">
+                    <div class="three columns">
+                        <label class="p_t5">School?</label>
+                    </div>
+                    <div class="two columns">
+                        @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio", @id = "IsSchoolRB", @msclick = "customerprofile.loadChoiceScreen" })
+                    </div>
+                    <div class="four columns">
+                        <label class="right p_t5">Company?</label>
+                    </div>
+                    <div class="two columns end">
+                        @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio ", @id = "IsCompanyRB", @msclick = "customerprofile.loadChoiceScreen" })
+                    </div>        
                 </div>
-                <div class="one columns">
-                    @Html.RadioButtonFor(x => Model.IsSelf, false, new { @class = "custom radio", @id = "IsSelfRB", @msclick = "customerprofile.loadEntryScreen" })
-                </div>
-                <div class="six columns">
-                    <label class="right p_t5">Someone Else?</label>
-                </div>
-                <div class="one columns end">
-                    @Html.RadioButtonFor(x => Model.IsSelf, false, new { @class = "custom radio", @id = "IsSomeoneElseRB", @msclick = "customerprofile.loadEntryScreen" })
-                </div>        
-            </div>
-            <br />
-        </fieldset>
+                <br />
+            </fieldset>    
+        </div>
     </div>
-    <div class="six columns">
-        <fieldset>
-            <legend>Is this for a:</legend>
-
-            <div class="row">
-                <div class="three columns">
-                    <label class="p_t5">School?</label>
-                </div>
-                <div class="two columns">
-                    @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio", @id = "IsSchoolRB", @msclick = "customerprofile.loadEntryScreen" })
-                </div>
-                <div class="four columns">
-                    <label class="right p_t5">Company?</label>
-                </div>
-                <div class="two columns end">
-                    @Html.RadioButtonFor(x => Model.IsSchool, false, new { @class = "custom radio ", @id = "IsCompanyRB", @msclick = "customerprofile.loadEntryScreen" })
-                </div>        
-            </div>
-            <br />
-        </fieldset>    
-    </div>
-
-</div>
-
-
-
 
     <div class="p_t10" id ="infoArea">
     </div>
+
 </form>
 
 <div class="row p_t10">
