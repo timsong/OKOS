@@ -20,7 +20,7 @@ namespace WFS.Repository.Queries
             var ent = (WFS.DataContext.WFSEntities)dbContext;
             var type = _type.ToString();
 
-            var data = ent.Organizations.Where(x => x.OrganizationType == type).AsEnumerable().Select(x => x.ToContract());
+            var data = ent.Organizations.Where(x => x.OrganizationType == type && !x.IsDeleted).AsEnumerable().Select(x => x.ToContract());
 
             var result = new ListResult<C.Organization>(data.ToList());
             result.Status = Status.Success;

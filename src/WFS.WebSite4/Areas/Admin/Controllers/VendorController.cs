@@ -67,6 +67,15 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
 
+		[HttpPost]
+		public ActionResult DeleteVendor(int vendorId)
+		{
+			UIResponse<bool> response = _vendorMgr.DeleteVendor(new DeleteVendorRequest { VendorId = vendorId })
+				.ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("VendorList", GetVendors()));
+
+			return Json(response);
+		}
+
         public ActionResult EditVendor(int vendorID)
         {
             var resp = _vendorMgr.GetVendorById(new GetOrganizationByIdRequest { OrganizationID = vendorID });

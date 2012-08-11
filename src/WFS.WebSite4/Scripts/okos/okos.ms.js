@@ -1,6 +1,6 @@
 ﻿/// <reference path="/Scripts/jquery-1.5.1-vsdoc.js" />
 /// <reference path="/Scripts/messaging.js" />
-
+/// <reference path="jquery-1.6.2-vsdoc.js" />
 /// <reference path="jquery.scrollTo.js" />
 (function (window) {
 	/** setup __base class ***/
@@ -335,30 +335,6 @@
 			});
 		}
 	};
-	ms.pos = {
-		setPos: function (e, sel) {
-			var config = {};
-			config.element = e.srcElement;
-			config.x = e.clientX;
-			config.y = e.clientY;
-			var width = $(sel).width();
-			var height = $(sel).height();
-			var offsetY = 10, offsetX = 20;
-			var x = (config.x + width + offsetX > $(window).width()) ? config.x - (width + offsetX) : config.x + offsetX;
-			var y = (config.y + height + offsetY > $(window).height()) ? config.y - (height + offsetY) : config.y + offsetY;
-			$(sel).css('position', 'fixed').css('top', y).css('left', x);
-		}
-	};
-	ms.fmt = {
-		phone: function (rawPhone) {
-			var phone = rawPhone;
-			if (rawPhone.substring(0, 1) == 1) phone = phone.substring(1);
-			if (rawPhone.length == 10) {
-				phone = '(' + rawPhone.substr(0, 3) + ')' + rawPhone.substr(3, 3) + '-' + rawPhone.substr(6, 4);
-			}
-			return phone;
-		}
-	};
 	ms.event = {
 		events: []
 		, on: function (options) {
@@ -464,11 +440,6 @@
 					options.meth.call(options.scope);
 				}
 				catch (exx) {
-					ms.log.log({
-						title: 'Error occurred'
-					, body: exx.message
-					, type: 'Exception'
-					});
 					options.onerror.call(options.scope, exx);
 					ex = exx;
 				}
@@ -489,16 +460,9 @@
 				ms.event.fire('ajaxCall');
 			}
 			, error: function (data) {
-
-				ms.log.log({
-					title: 'Error occurred during ajax call ms.ajax.send: url[' + options.url + '] type["' + options.type + '"] data["' + options.data + '"]'
-					, body: escape(data.responseText)
-					, type: 'Exception'
-				});
 				if ($.isFunction(options.errorHandler)) {
 					options.errorHandler.call(scope, data);
 				}
-
 				ms.msg.sendMsg('sysWarning', data.responseText);
 			}
 			}, options);
@@ -611,37 +575,6 @@
 		}
 	} ()
 	};
-	ms.form = {
-		dirtify: function (options) {
-			options = $.extend({ selector: '', dirtyClass: '', showDirty: false }, options);
-			$(options.selector).each(function (idx) {
-				$(this).attr('ts-original', $(this).val());
-			});
-		}
-	};
-	ms.search = {
-		within: function (subject, find) {
-			// prepare search text
-			var finalFound = false;
-			var notFound = false;
-			find = find.toLowerCase().replace(/\s\s/g, ' ').replace(/[\s]*\+[\s]*/g, '+').replace(/\s+/g, '|');
-			var finds = find.split('+');
-			$(finds).each(function (idx) {
-				var findOrs = this.split('|');
-				var found = false;
-				$(findOrs).each(function (idxsub) {
-					if (subject.indexOf(this) >= 0 && this.length > 0)
-						found = true;
-				});
-				if (!notFound) {
-					finalFound = (subject.indexOf(this) >= 0) || found;
-					if (!finalFound) notFound = true;
-				}
-			});
-			ms.msg.sendMsg('sysWarning', finds.length + ' -- ' + subject);
-			return finalFound;
-		}
-	};
 	ms.store = {
 		get: function (key, defaultValue) {
 			if (!window.localStorage || this.shouldUseCookie()) {
@@ -698,146 +631,7 @@
 			});
 		}
 	};
-	ms.win = {
-		templates: []
-		, init: function () {
-			$('.emailLink').click(function (e) {
-				if ($(this).attr('href') != '#') {
-					e.stopImmediatePropagation();
-				}
-			});
-			ms.ajax.send({ url: '/System/ModalWindow'
-				, successHandler: function (data) {
-					ms.win.templates['modal'] = data;
-				}
-			});
-		}
-		, closeModal: function (id) {
-			///	<summary>
-			///		 ms.win.closeModal(id) - Closes a modal window by removing it from the DOM.
-			///	</summary>
-			///	<param name="id" type="String">
-			///		A string id that matches the call to ms.win.modal.  If no id was passed into the original call a random id was returned.
-			///	</param>
-			$('#modalWindowOuter_' + id).remove();
-		}
-		, resizeModal: function () {
-			$('.modalWindowInner').css('left', ($(window).width() - $('.modalWindowInner').width()) / 2);
-		}
-		, prepActionMenu: function (id) {
-			var options = this.windows[id];
-			var winid = '#' + options.windowIdSuffix + id;
-			if ($(winid).find('.addToFormAction').length > 0) {
-				var menuActionHtml = $(winid).find('.addToFormAction').html().replace(/msset/g, 'xyz');
-				ms.ml.html($('#modalWindowOuter_' + id).find('.' + options.headerSuffix), menuActionHtml);
-				$(winid).find('.addToFormAction').remove();
-			}
-		}
-		, windows: []
-		, modal: function (options) {
-			///	<summary>
-			///		 ms.win.model(options) - This function accepts a js params object.
-			///	</summary>
-			///	<param name="options" type="jQuery">
-			///		expected options properties:
-			///			 [ id: an id that is bound into the dom element (default is rnd). ] -&b
-			///			 [ url: the url of the view to load. ] -
-			///			 [ selector: non-functional now. ] -
-			///			 [ binder: a callback used once the view is succesfully loaded.  Use to bind events, post load. ]
-			///	</param>
-			///	<returns type="Integer" />
-			var options = $.extend({
-				windowInnerClass: 'modalWindowInner'
-				, closeLinkSuffix: 'modalCloseLink_'
-				, headerSuffix: 'headerMenuAction'
-				, windowShellIdSuffix: 'modalWindowOuter_'
-				, windowIdSuffix: 'modalWindow_'
-				, headerIdSuffix: 'modalWindow_header_'
-				, id: ms.utility.getRnd(), clickAway: false, url: null, selector: null, title: 'Window', htmlResult: null, binder: function () { }
-			}, options);
-			this.windows[options.id] = options;
-			var outerId = '#' + options.windowShellIdSuffix + options.id;
-			if (options.url && $(outerId).length == 0) {
-				var htmlx = $.format(ms.win.templates['modal'], options.id);
-				$('body').append(htmlx);
-				var winid = '#' + options.windowIdSuffix + options.id;
-				$('#' + options.closeLinkSuffix + options.id).click(function (e) {
-					ms.win.closeModal(options.id);
-				});
-				ms.ajax.send({
-					url: options.url
-					, asynch: false
-					, successHandler: function (data) {
-						if (typeof data.HtmlResult != 'undefined') {
-							ms.ml.html(winid, data.HtmlResult);
-						}
-						else {
-							ms.ml.html(winid, data);
-						}
-						if (options.clickAway) {
-							$('.' + options.modalWindowInner).click(function (e) {
-								e.stopImmediatePropagation();
-							});
-							$(winid).click(function (e) {
-								e.stopImmediatePropagation();
-							});
-							$(outerId).click(function (e) {
-								e.stopImmediatePropagation();
-								ms.win.closeModal(options.id);
-							});
-						}
-						ms.win.resizeModal();
-						ms.win.prepActionMenu(options.id);
-						$(window).resize(function () {
-							ms.win.resizeModal();
-						});
-						$('#' + options.headerIdSuffix + options.id).html(options.title);
-						options.binder.call(this);
-					}
-				});
-			}
-			else if ($(outerId).length > 0) {
-				$(outerId).show();
-			}
 
-			if (options.htmlResult) {
-
-				var htmlx = $.format(ms.win.templates['modal'], options.id);
-				$('#main').append(htmlx);
-				var winid = '#' + options.windowIdSuffix + options.id;
-				$('#' + options.closeLinkSuffix + options.id).click(function (e) {
-					ms.win.closeModal(options.id);
-				});
-				setTimeout(function () {
-					$(winid).html(options.htmlResult);
-
-					if (options.clickAway) {
-						$('.' + options.modalWindowInner).click(function (e) {
-							e.stopImmediatePropagation();
-						});
-						$(winid).click(function (e) {
-							e.stopImmediatePropagation();
-						});
-						$(outerId).click(function (e) {
-							e.stopImmediatePropagation();
-							ms.win.closeModal(options.id);
-						});
-					}
-
-					ms.win.resizeModal();
-					ms.win.prepActionMenu(options.id);
-
-					$(window).resize(function () {
-						ms.win.resizeModal();
-					});
-					$('#' + options.headerIdSuffix + options.id).html(options.title);
-					options.binder.call(this);
-				}, 100);
-			}
-
-			return options.id;
-		}
-	};
 	ms.msg = {
 		msgOptions: { el: '#messageBox', contentEl: '#messageBox', errorClass: 'errorMessageBox', infoClass: 'infoMessageBox', waitingClass: 'waitingMessageBox', warningClass: 'warningMessageBox' }
 	, qCtrl: new __queueController({})
@@ -971,7 +765,6 @@
 		ms.msg.init({});
 		ms.ajax.init();
 		ms.decEventBind.init();
-		ms.link.init();
 	});
 	ms.dyn = {
 		parse: function (subject, path) {
@@ -988,538 +781,53 @@
 	};
 
 	ms.debug = false;
-	ms.log = {
-		logger: { url: '/System/Log' }
-		, setLogger: function (options) {
-			this.logger = $.extend(this.logger, options);
-		}
-	   , log: function (options) {
-
-	   }
-	};
-	ms.convert = {
-		toDate: function (raw) {
-			var rex = /([\d]+)-([\d]+)-([\d]+)T([\d]+):([\d]+):([\d]+)\.([\d]+)-([\d]+):([\d]+)/;
-			var out = rex.exec(raw);
-			var date = new Date(parseInt(out[1]), out[2] - 1, parseInt(out[3]), parseInt(out[4]), parseInt(out[5]), parseInt(out[6]), parseInt(out[7]));
-			return date;
-		}
-	};
-
-	ms.enu = {
-		enums: []
-	, get: function (eName, value) {
-		return this.enums[eName][value];
-	}
-	, build: function (enumsOut) {
-		var s = this;
-		$(enumsOut.enumsOut).each(function (idx) {
-			var n = this.name;
-			s.enums[n] = [];
-			$(this.values).each(function (idx) {
-				s.enums[n][idx] = { value: this.value, text: this.text };
-			});
-		});
-	}
-	};
-	ms.viewModel = {
-		adapters: []
-			, get: function (adapterName) {
-				return new this.adapters[adapterName]();
-			}
-			, bind: function (adapterName, object) {
-				if (!this.adapters[adapterName]) {
-					throw new Error('Adapter [' + adapterName + '] not found.');
-				}
-				var a = this.get(adapterName);
-				if (a.defer) {
-					$(document).ready(function () {
-						a.bind(object);
-					});
-				}
-				else {
-					a.bind(object);
-				}
-			}
-			, register: function (adapterName, adapter) {
-				if (!adapter.prototype.bind) {
-					throw new Error(adapterName + ' does not contain method "bind".');
-				}
-				this.adapters[adapterName] = adapter;
-			}
-	};
-	ms.menu = {
-		enableDisabledItems: function (selector) {
-			if (typeof (selector[0]) === "undefined") selector = '';
-			$('.disabledMenuItem a' + selector).unbind('click');
-			$('.disabledMenuItem a' + selector).removeClass('disabledMenuItem');
-		},
-		setDisabledItems: function () {
-			$('.disabledMenuItem a').click(function (e) {
-				e.preventDefault();
-			});
-		}
-	};
-
-	ms.checkbox = {
-		toggleKey: function (e) {
-			if (32 == e.keyCode) ms.checkbox.toggle.call(this, e);
-		}
-		, toggle: function (e) {
-			var id = $(this).attr('mscbid');
-			var trueImg = ms.utility.getAttr(this, 'mstrue', '/Content/images/true.jpg');
-			var falseImg = ms.utility.getAttr(this, 'msfalse', '/Content/images/false.jpg');
-			var val = parseBool($('input[type="hidden"][mscbid="' + id + '"]').val());
-			$(this).attr('value', !val);
-			$('input[type="hidden"][mscbid="' + id + '"]').val(!val);
-			$('img[mscbid="' + id + '"]').attr('src', val ? falseImg : trueImg);
-		}
-	};
 
 	ms.utility = new __utility();
 	ms.utility.initPage();
-	$(document).ready(function () {
-		ms.win.init();
-		ms.menu.setDisabledItems();
-	});
-	/*** jquery extensions ***/
-})(window);
 
-/// <reference path="jquery-1.6.2-vsdoc.js" />
-
-(function (window) {
-	ani = {
-		interval: 500
-		, defers: []
-		, start: function (id) {
-			var a = ani.defers[id];
-			if (a && a.live == false) {
-				a.live = true;
-				a.s.call(this, function () {
-					a.running = false;
-				});
-			}
-			else if (a && a.live) {
-				return;
-			}
-			else {
-				throw new Error("Deferred animation sequence " + id + " not found.");
-			}
-
+	ms.ml = {
+		append: function (el, html) {
+			$(el).append(html);
+			ms.decEventBind.init();
 		}
-		, asynchreach: function (next, selector, meth, speed) {
-			var s = this;
-			$(selector)[meth](speed);
-			if ($.isFunction(next)) {
-				next.call(s);
-			}
-		}
-		, prep: function (v) {
-			return v.replace(/\'/g, '');
-		}
-		, reachJ: function (next, selector, meth, speed) {
-			var s = this;
-			$(selector)[meth](speed, function () {
-				if ($.isFunction(next)) {
-					next.call(s);
-				}
-			});
-		}
-		, reachStart: function (next, id) {
-			var s = this;
-			ani.rDebug('*** STARTING NEW AT ' + id);
-			ani.start(id);
-		}
-		, call: function (next, meth) {
-			var s = this;
-			var func = eval(meth);
-			if ($.isFunction(func)){
-				func.call(s);
-			}
-			if ($.isFunction(next)) {
-				next.call(s);
-			}
-		}
-		, addClass: function (next, cls) {
-			var s = this;
-			$(this).addClass(cls);
-			if ($.isFunction(next)) {
-				next.call(s);
-			}
-		}
-		, removeClass: function (next, cls) {
-			var s = this;
-			$(this).removeClass(cls);
-			if ($.isFunction(next)) {
-				next.call(s);
-			}
-		}
-		, initDefer: function(){
-			var sx = this;
-			var s = ani;
-			s.defers[$(this).attr('id')] = { s: function () {
-					ani.process.call(sx);
-				}, live: false
-			};
-		}
-		, init: function () {
-			var s = this;
-			this.registerJ('fadeIn,fadeOut,show,hide,slideDown,slideUp');
-			this.registerAsynchJ('fadeIn,fadeOut,show,hide,slideDown,slideUp');
-			$('*[ani="defer"]').each(function (idx) {
-				ani.initDefer.call(this);
-			});
-			$('*[ani="start"]').each(function (idx) {
-				var attr = $(this).attr('ani');
-				ani.process.call(this);
-			});
-		}
-		, registerAsynchJ: function (jMethName) {
-			var jarray = jMethName.split(',');
-			var s = this;
-			$(jarray).each(function (idx) {
-				var a = 'asynch' + this;
-				var b = this;
-				s[a] = function (next, speed) {
-					var speed = !isNaN(speed) ? 'fast' : speed;
-					var s = this;
-					$(s)[b](speed);
-					if ($.isFunction(next)) {
-						next.call(s);
-					}
-				};
-			});
-		}
-		, registerJ: function (jMethName) {
-			var jarray = jMethName.split(',');
-			var s = this;
-			$(jarray).each(function (idx) {
-				var a = this;
-				s[this] = function (next, speed) {
-					var p = [];
-					if (!isNaN(speed)&&speed!=''){
-						speed = parseInt(speed);
-					}
-					p.push(speed);
-					p.push(function () {
-						if ($.isFunction(next)) {
-							next.call(s);
-						}
-					});
-					var s = this;
-
-					$(s)[a](p[0], p[1]);
-				};
-			});
-		}
-		, isDebug: false
-		, debug: function (next) {
-			var s = this;
-			ani.isDebug = true;
-			if ($.isFunction(next)) {
-				next.call(s);
-			}
-		}
-		, getParms: function () {
-			var arr = $(this).attr('parms');
-			return arr;
-		}
-		, wait: function (next, dur) {
-			var s = this;
-			if ($.isFunction(next)) {
-				setTimeout(function () {
-					next.call(s);
-				}, dur);
-			}
-		}
-		, debugSay: function (msg, style) {
-			if (ani.isDebug) $('#aniDebugBox').append('<div style="' + style + '">' + msg + '</div>');
-		}
-		, sequence: function (next, reverse) {
-			reverse = reverse=='true';
-			ani.debugSay('-------> sequence ' + reverse);
-			function _act() {
-				var f = seq.pop();
-				if (f) {
-					ani.process.call(f, function () {
-						_act.call();
-					});
-				}
-				else if ($.isFunction(next)) {
-					next.call(this);
-				}
-			};
-			var s = this;
-			var seq = [];
-			var kids = $(s).children('*[ani]');
-			$(kids).each(function (idx) {
-				seq.push(this);
-			});
-			seq = reverse==true ? seq : seq.reverse();
-			ani.debugSay('-------> count: ' + seq.length);
-			_act();
-		}
-		, getTime: function () {
-			var currentTime = new Date()
-			var hours = currentTime.getHours()
-			var minutes = currentTime.getMinutes()
-			var seconds = currentTime.getSeconds();
-			return hours + ':' + minutes + ':' + seconds;
-		}
-		, rDebugClear: function () {
-			$('#aniDebugBox').html('');
-		}
-		, stops: []
-		, stop: function(id){
-			ani.stops[id] = true;
-			$('#' + id).attr('ani', 'defer');
-			var el = $('#' + id)[0];
-			ani.initDefer.call(el);
-		}
-		, restart: function(id){
-			ani.stops[id] = false;
-			ani.defers[id].live = false;
-			ani.start(id);
-		}
-		, rDebug: function (action, params) {
-			if (!ani.isDebug) return;
-			if ($('#aniDebugBox').length == 0) {
-				$('body').append('<div id="aniDebugBoxOuter" style="border: solid 1px red; min-width: 300px; font-size: 7pt; position: fixed; top: 1px; left: 1px; max-height: 500px; overflow: auto;"></div>');
-				$('#aniDebugBoxOuter').append('<div><a id="aniDebugBoxClear" href="javascript:ani.rDebugClear()">clear</a></div>');
-				$('#aniDebugBoxOuter').append('<div id="aniDebugBox"></div>');
-				for (key in ani.defers) {
-					ani.rDebug('DEFER: ' + key);
-				};
-			}
-			var parms = ($.isArray(params)) ? '(' + params.join(',') + ')' : '';
-			var id = $(this).attr('id') ? $(this).attr('id') : 'no id';
-			ani.debugSay(ani.getTime() + '---&gt; ' + id + ' ' + action + parms);
-		}
-		, rDebugFail: function (action, ex) {
-			var id = $(this).attr('id') ? $(this).attr('id') : 'no id';
-			ani.debugSay(ani.getTime() + ' EXCEPTION---&gt; ' + $(this).attr('id') + ' ' + action + ' at ' + id + ': ' + ex.message, 'color: red;');
-		}
-		, act: function (raw, action, next) {
-			try {
-				var s = this;
-				var id = $(this).parents('*[ani="start"]').attr('id');
-				if (!id) { 
-					id = $(this).attr('id');
-				}
-				if (ani.stops[id]) return;
-				ani.rDebug.call(this, action);
-				var params = raw.replace(action, '').replace(/[\s]*\(/g, '').replace(/[\s]*\)/g, '').split(',');
-				$(params).each(function (idx) {
-					params[idx] = this.replace(/^[\s]*\'/g, '').replace(/\'$/g, '');
-				});
-				ani.rDebug.call(this, action, params);
-				params.splice(0, 0, next);
-				var act = ani[action];
-				if (!act) { throw new Error('action ' + action + ' is invalid'); }
-				act.apply(s, params, function () {
-					if ($.isFunction(next)) {
-						next.call(this, raw);
-					}
-				});
-			} catch (ex) {
-				ani.rDebugFail.call(this, action, ex);
-			}
-		}
-		, process: function (next, shutdown) {
-			function _act() {
-				var first = actions.pop();
-				var raw = first;
-				if (first) {
-					first = first.replace(/\([^\)]*\)/g, '').replace(/[\t\s]+/g, '');
-					ani.act.call(s, raw, first, _act);
-				}
-				else if ($.isFunction(next)) {
-					next.call(this);
-				}
-				else if ($.isFunction(shutdown)) {
-					shutdown.call(this);
-				}
-			}
-			var s = this;
-			var action = $(this).attr('action');
-			if (!action) return;
-			var actions = action.split(';').reverse();
-			_act();
-		}
-	};
-	window.ani = ani;
-
-function jGallary(config) {
-	for (key in config) {
-		this[key] = config[key];
-	}
-	this.tabs = new Array();
-	var scopeMe = this;
-	if (this.nextEl)
-		$(this.nextEl).bind("click", function() { scopeMe.next(); });
-
-	if (this.previousEl)
-		$(this.previousEl).bind("click", function() { scopeMe.previous(); });
-		
-	if (this.init!=null)
-		this.init();
-
-	if (this.animate && !isNaN(this.animateInterval)) {
-		setInterval("jQuery['_gal_" + this.name + "'].next()", this.animateInterval);
-	}
-};
-
-jGallary.prototype = {
-	name: null
-	, animate: false
-	, animateInterval: 1000
-	, containerEl: null
-	, _currentId: 0
-	, speed: 200
-	, nextCallBack: null
-	, previousCallBack: null
-	, gotoCallBack: null
-	, nextEl: null
-	, previousEl: null
-	, effect: "easeInOutSine"
-	, setName: function(name) { this.name = name; }
-	, getName: function() { return this.name; }
-	, addTab: function(tabId) { this.tabs[this.tabs.length] = "#" + tabId; }
-	, next: function() {
-		if (this._currentId >= this.tabs.length - 1) {
-			this._currentId = 0;
-			isReset = true;
-		}
-		else this._currentId++;
-		$(this.containerEl).stop().scrollTo($(this.tabs[this._currentId]), this.speed, { easing: this.effect });
-		if (this.nextCallBack)
-			this.nextCallBack.call(this, this._currentId);
-	}
-	, previous: function() {
-
-		if (this._currentId <= 0) this._currentId = this.tabs.length - 1;
-		else this._currentId--;
-
-		$(this.containerEl).stop().scrollTo($(this.tabs[this._currentId]), this.speed, { easing: this.effect });
-		if (this.previousCallBack)
-			this.previousCallBack.call(this, this._currentId);
-
-	}
-	, gotoTab: function(tabId){
-	
-		for(key in this.tabs)
-		{
-			if (this.tabs[key]==tabId)
-			{
-				$(this.containerEl).stop().scrollTo($(this.tabs[key]), this.speed, { easing: this.effect });
-				this._currentId = key;
-
-				if (this.gotoCallBack)
-					this.gotoCallBack.call(this, this._currentId);
-				return;
-			}
-		}
-		
-	}
-	, init: function() {
-
-	}
-};
-
-ms.loader = {
-	clear: function(e){
-		e.stopImmediatePropagation();
-		var sel = $(this).attr('msselector');
-		$(sel).html(results);
-	}
-	, ajax: function(e, type, data){
-		e.stopImmediatePropagation();
-		var s = this;
-		var url = $(this).attr('msurl');
-		var sel = $(this).attr('msselector');
-		var callback = $(this).attr('mshandle');
-		var opt = { url: url
-			, type: type
-			, successHandler: function(results){
-				if (callback){
-					callback = eval(callback);
-				}
-				if ($.isFunction(callback)){
-					callback.call(s, results);
-				}
-			}
-			, errorHandler: function(r){
-
-			}
-		};
-		if (data){
-			opt.data = data;
-		}
-		ms.ajax.send(opt);
-	}
-	, get: function(e){
-		ms.loader.ajax.call(this, e, 'GET');
-	}
-	, post: function(e){
-		var form = $(this).attr('msform');
-		var formData = $(form).serialize();
-		ms.loader.ajax.call(this, e, 'POST', formData);
-	}
-	, load: function(e){
-		e.stopImmediatePropagation();
-		var url = $(this).attr('msurl');
-		var sel = $(this).attr('msselector');
-		ms.ajax.send({ url: url
-			, successHandler: function(results){
-				$(sel).html(results);
-			}
-		});
-	}
-}
-
-ms.ml = {
-	append: function(el, html) {
-		$(el).append(html);
-		ms.decEventBind.init();
-	}
-	, prepend: function(el, html) {
+	, prepend: function (el, html) {
 		$(el).prepend(html);
 		ms.decEventBind.init();
 	}
-	, toggleClass: function(e){
+	, toggleClass: function (e) {
 		var cls = $(this).attr('msvalues').toString().split(',');
 		var s = this;
 		var found = false;
 		var stop = false;
-		$(cls).each(function(idx){
+		$(cls).each(function (idx) {
 			if (stop) return;
-			if (found){
+			if (found) {
 				stop = true;
 				$(s).addClass(this.toString());
 			}
-			else if ($(s).hasClass(this)){
+			else if ($(s).hasClass(this)) {
 				found = true;
 				$(s).removeClass(this.toString());
 			}
 		});
-		if (!stop){
+		if (!stop) {
 			$(s).addClass(cls[0].toString());
 		}
 	}
-	, html: function(el, html){
+	, html: function (el, html) {
 		$(el).html(html);
 		ms.decEventBind.init();
 	}
-};
+	};
 
-ms.modal = {
-	confirmF: function(){
-		var value = $(this).attr('data-value');
-		ms.modal.currentHandler.call(this, value);
-		$('#modalConfirm').trigger('reveal:close');
-	}
-	, currentHandler: function(){ }
-	, confirm: function(title, handler){
+	ms.modal = {
+		confirmF: function () {
+			var value = $(this).attr('data-value');
+			ms.modal.currentHandler.call(this, value);
+			$('#modalConfirm').trigger('reveal:close');
+		}
+	, currentHandler: function () { }
+	, confirm: function (title, handler) {
 		this.currentHandler = handler;
 		ms.ml.html('#modalConfirmTitle', title);
 		$('#modalConfirm').reveal({
@@ -1530,41 +838,41 @@ ms.modal = {
 		});
 	}
 	, confirmValues: { YES: 'YES', NO: 'NO', CANCEL: 'CANCEL' }
-}
+	}
 
-ms.message = {
-	get: function(context, messageSel, msgs){
-		ms.ml.html(messageSel, '');
-		msgs.SYSTEMERROR = 'A serious error has occurred.  If this continues please contact an administrator.';
-		return {
-			sendInfo: function(msg){
-				$(messageSel).removeClass('secondary alert success');
-				this.temp(2, msg);
+	ms.message = {
+		get: function (context, messageSel, msgs) {
+			ms.ml.html(messageSel, '');
+			msgs.SYSTEMERROR = 'A serious error has occurred.  If this continues please contact an administrator.';
+			var msgC = {
+				sendInfo: function (msg) {
+					$(messageSel).removeClass('secondary alert success');
+					msgC.send(2, msg);
+				}
+			, sendError: function (msg) {
+				msgC.send(4, msg);
 			}
-			, sendError: function(msg){
-				this.temp(4, msg);
-			}
-			, sendWarning: function(msg){
-				this.temp(8, msg);
+			, sendWarning: function (msg) {
+				msgC.send(8, msg);
 			}
 			, msgs: msgs
 			, qCtrl: new __queueController({})
-			, getMsg: function(status, msg){
+			, getMsg: function (status, msg) {
 				var scope = this;
-				var s = this.lookupStatus(status);
+				var s = msgC.lookupStatus(status);
 				var pid = '{c}_{id}'.bind({ c: context.replace(/[^\w^\d]+/g, '_'), id: msg.replace(/[^\w^\d]+/g, '_') }).toLowerCase();
 				var id = '__msg_{id}'.bind({ id: pid });
 				var msgMl = '<div id="{id}" class="alert-box {cls} round">{msg}</div>'.bind({ id: id, cls: s.cls, stat: s.title, msg: msg });
-				return { 
-					send: function(){
+				return {
+					send: function () {
 						ms.ml.append(messageSel, msgMl);
 						var qI = new __queueInfo({
 							key: '{c}-PAGEMESSAGE'.bind({ c: context })
 							, interval: 500
 							, lifespan: 2000
 							, onComplete: function () {
-								if (s.onFClear){
-									$('#' + id).fadeOut('fast', function(){
+								if (s.onFClear) {
+									$('#' + id).fadeOut('fast', function () {
 										$('#' + id).remove();
 									});
 								}
@@ -1575,32 +883,34 @@ ms.message = {
 					, status: s
 					, msg: msgMl
 				};
-				return ;
+				return;
 			}
-			, temp: function(status, msg){
-				if (msg.Messages === undefined){
-					var m = this.getMsg(status, msg);
+			, send: function (status, msg) {
+				if (msg.Messages === undefined) {
+					var m = msgC.getMsg(status, msg);
 					m.send();
 				}
 				else {
-					msg.Messages.select(function(){
-						var m = this.getMsg(this.Status, msg);
+					msg.Messages.select(function () {
+						var msg = this;
+						var m = msgC.getMsg(status, this.Text);
 						m.send();
 					});
 				}
 			}
-			, lookupStatus: function(id){
-				return this.statususes[id];
+			, lookupStatus: function (id) {
+				return msgC.statususes[id];
 			}
-			, statususes: { 
-				1:  { title: 'System Error', cls: 'alert', onFClear: false }
+			, statususes: {
+				1: { title: 'System Error', cls: 'alert', onFClear: false }
 				, 2: { title: '', cls: 'success', onFClear: true }
 				, 4: { title: 'Error', cls: 'alert', onFClear: false }
 				, 8: { title: 'Warning', cls: '', onFClear: true }
 			}
+			}
+			return msgC;
 		}
 	}
-}
 })(window);
 
 

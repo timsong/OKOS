@@ -175,6 +175,9 @@ namespace WFS.Domain.Managers
 		{
 			var resp = new DeleteVendorResponse();
 
+			var command = new DeleteVendorCommand(request.VendorId);
+
+			_repository.ExecuteCommand(command);
 
 			return resp;
 		}

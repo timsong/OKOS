@@ -39,6 +39,7 @@ namespace WFS.DataContext
         public string PhoneExt { get; set; }
         public bool IsActive { get; set; }
         public int UserId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<VendorFoodCategory> VendorFoodCategories { get; set; }
         public virtual ICollection<VendorFoodOption> VendorFoodOptions { get; set; }

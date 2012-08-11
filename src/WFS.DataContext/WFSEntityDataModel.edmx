@@ -248,6 +248,7 @@
           <Property Name="OrganizationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ParentOrgId" Type="int" />
           <Property Name="OrganizationType" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="Address1" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Address2" Type="varchar" MaxLength="100" />
@@ -1195,6 +1196,7 @@
           <NavigationProperty Name="SchoolGrades" Relationship="WFSModel.FK_SchoolGrades_Schools" FromRole="Organization" ToRole="SchoolGrade" />
           <NavigationProperty Name="SchoolLunchPeriods" Relationship="WFSModel.FK_SchoolLunchPeriods_Schools" FromRole="Organization" ToRole="SchoolLunchPeriod" />
           <NavigationProperty Name="SchoolTeachers" Relationship="WFSModel.FK_SchoolTeachers_Schools" FromRole="Organization" ToRole="SchoolTeacher" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
         </EntityType>
         <EntityType Name="VendorFoodCategory">
           <Key>
@@ -1712,6 +1714,7 @@
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="WFSModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />

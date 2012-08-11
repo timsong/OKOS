@@ -28,15 +28,15 @@
 					msgC.sendError(msgC.msgs.SYSTEMERROR);
 				}
 				, successHandler: function (data) {
-					if (data.Status == 0 || data.Status == 4) {
-						msgC.sendError(data);
+					if (data.Status != 2) {
+						msgC.send(data.Status, data);
 						if ($.isFunction(onerr)) {
 							onerr(data);
 						}
 					}
 					else {
 						msgC.sendInfo(data);
-						if ($.isFunction(onerr)) {
+						if ($.isFunction(onfin)) {
 							onfin(data);
 						};
 					}
@@ -59,7 +59,7 @@
 				, type: 'POST'
 				, data: data
 				, successHandler: function (data) {
-					if (data.Status == 0 || data.Status == 4) {
+					if (data.Status != 2) {
 						ms.ml.html('#modalEdit', data.HtmlResult);
 						if ($.isFunction(onerr)) {
 							onerr(data);
@@ -81,8 +81,8 @@
 			var id = $(this).attr('msid');
 			var name = $(this).attr('msname');
 			var url = '/Admin/Vendors/Delete/{id}'.bind({ id: id });
-			vendor.deleteF(url, 'Vendor', name, function () {
-				vendor.loadList();
+			vendor.deleteF(url, 'Vendor', name, function (data) {
+				ms.ml.html('#vendorListPanel', data.HtmlResult);
 			});
 		}
 		, loadList: function (e) {
