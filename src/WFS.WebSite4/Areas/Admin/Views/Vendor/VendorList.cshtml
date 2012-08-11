@@ -10,7 +10,7 @@
                     @Html.RouteLink("Edit/View","admin.vendor.display",new {vendorID = item.OrganizationId })
                 </div>
                 <div class="one columns">
-                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrganizationId })
+					<a href="javascript:void(0)" msclick="vendor.del" msname="@item.Name" msid="@item.OrganizationId">Delete</a>
                 </div>
                 <div class="one columns"></div>
             </div>

@@ -1,4 +1,6 @@
-﻿(function (window) {
+﻿/// <reference path="/Scripts/okos/okos.ms.js" />
+/// <reference path="/Scripts/okos/okos.mikerowsoft.js" />
+(function (window) {
 	window.vendor = {
 		loadF: function (url) {
 			ms.ajax.send({ url: url
@@ -12,6 +14,44 @@
 					});
 				}
 			});
+		}
+		, deleteF: function (url, type, name, onfin, onerr) {
+			var msgs = {
+				CONFIRM: 'Are you sure that you want to delete {type}: {name}?'.bind({ type: type, name: name })
+				, CANCELLED: 'Delete of {type} was cancelled'.bind({ type: type })
+			}
+			var msgC = ms.message.get('delete', '#vendorMessagePanel', msgs);
+			var deleteF = function () {
+				ms.ajax.send({ url: url
+				, type: 'POST'
+				, errorHandler: function (data) {
+					msgC.sendError(msgC.msgs.SYSTEMERROR);
+				}
+				, successHandler: function (data) {
+					if (data.Status == 0 || data.Status == 4) {
+						msgC.sendError(data);
+						if ($.isFunction(onerr)) {
+							onerr(data);
+						}
+					}
+					else {
+						msgC.sendInfo(data);
+						if ($.isFunction(onerr)) {
+							onfin(data);
+						};
+					}
+				}
+				});
+			};
+			ms.modal.confirm(msgs.CONFIRM
+				, function (value) {
+					if (value == ms.modal.confirmValues.YES) {
+						deleteF();
+					}
+					else {
+						msgC.sendWarning(msgC.msgs.CANCELLED);
+					}
+				});
 		}
 		, saveF: function (url, formSel, onfin, onerr) {
 			var data = $(formSel).serialize();
@@ -37,6 +77,17 @@
 
 		}
 		, mode: null
+		, del: function () {
+			var id = $(this).attr('msid');
+			var name = $(this).attr('msname');
+			var url = '/Admin/Vendors/Delete/{id}'.bind({ id: id });
+			vendor.deleteF(url, 'Vendor', name, function () {
+				vendor.loadList();
+			});
+		}
+		, loadList: function (e) {
+			alert('reloading the list');
+		}
 		, add: function (e) {
 			vendor.mode = 'add';
 			var url = '/Admin/Vendors/Add';

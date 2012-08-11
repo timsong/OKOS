@@ -231,179 +231,7 @@
 			ms.msg.sendMsg('sysWarning', e);
 		};
 	});
-	ms.panelBase = function (base) {
-		return $.extend(base, {
-			apply: function () {
-				var s = this;
-				$('.' + this.key + 'PanelSet').each(function (idx) {
-					s.applyFor(this);
-				});
-			}
-			, init: function () {
-				var s = this;
-				ms.event.on({ key: 'ajaxCall', func: function () { s.apply(); } });
-				this.apply();
-			}
-		});
-	};
-	ms.collapsingPanelApplyFor = function (selector, onclick, expando) {
-		var att = $(selector).attr('ms-set');
-		if (att) return;
-		$(selector).find('.collapsePanelToggle').each(function (idx) {
-			$(this).click(function (e) {
-				onclick.call(this, selector)
-			});
-		});
-		$(selector).attr('ts-set', true);
-		$(selector).find('.expandedPanel').hide();
-		$(selector).find('.hiddenPanel').show();
-		expando.call(this);
-	};
-	ms.append = function (selector, html) {
-		$(selector).append(html);
-		ms.event.fire('ajaxCall');
-	};
-	ms.panel = {
-		sideNavScrolling: {
-			goto: function (e) {
-				var attr = $(this).attr('msid');
-				var id = $(this).parent().parent().attr('id');
-				var panel = '.sideNavScrollingPanelSetPanel:eq(' + attr + ')';
-				var body = '#' + id + ' .panelBody';
-				$(body).scrollTo(panel, 250, {});
-			}
-			, getId: function (id) {
-				return '#sideNavScrollingPanelSet' + id;
-			}
-			, successValidation: function (id) {
-				$(this.getId(id) + ' .sideNavScrollingPanelSetItem').removeClass('sideNavScrollingPanelFailed');
-			}
-			, failValidation: function (id, errorMap, errorList) {
-				ms.panel.sideNavScrolling.successValidation(id);
-				var id = this.getId(id);
-				$(errorList).each(function (idx) {
-					var seq = $(this.element).parents('.sideNavScrollingPanelSetPanel').attr('msid');
-					$(id + ' .sideNavScrollingPanelSetItem:eq(' + seq + ')').addClass('sideNavScrollingPanelFailed');
-				});
-			}
-			, register: function (id) {
-				var height = $(this.getId(id) + ' .panelBody').parent().parent().parent().height();
-				$(this.getId(id) + ' .sideNavScrollingPanelSetPanel').css('height', height - 30);
-				$(this.getId(id) + ' .panelBody').css('height', height - 27);
-			}
-		}
-		, scrolling: new ms.panelBase({ key: 'scrolling',
-			applyFor: function (selector) {
-				var att = $(selector).attr('ts-set');
-				if (att) return;
-				this.recalcFor(selector);
-				$(selector).find('.scrollingPanelPrimaryHeader a[tsscroll]').each(function (idx) {
-					var attr = $(this).attr('tsset');
-					if (attr) return;
-					$(this).attr('tsset', true);
-					$(this).click(function (e) {
-						var sel = $(selector).find('.outerScrollingPanel');
-						var id = 'ts-' + ms.utility.getRnd();
-						var sub = $(selector).find('.scrollingPanel:eq(' + idx + ')');
-						$(sel).scrollTo(sub, 250, {});
-					});
-				});
-			}
-			, goto: function (selector, idx) {
-				var sel = $(selector).find('.outerScrollingPanel');
-				var sub = $(selector).find('.scrollingPanel:eq(' + idx + ')');
-				$(sel).scrollTo(sub, 250, {});
-			}
-			, recalcFor: function (selector) {
-				var parWidth = $(selector).width();
-				var width = $(selector).find('.scrollingPanel').length * (parWidth + 10);
-				$(selector).find('.scrollingPanel').width(parWidth - 5);
-				$(selector).find('.outerScrollingPanel').width(parWidth);
-				$(selector).find('.innerScrollingPanel').width(width + 100);
-			}
-		})
-		, collapsing: new ms.panelBase({ key: 'collapsing',
-			applyFor: function (selector) {
-				ms.collapsingPanelApplyFor.call(this, selector, function (e) {
-					if (!$(this).hasClass('collapseToggle')) {
-						$(this).addClass('collapseToggle').removeClass('expandToggle');
-						$(this).parent().parent().find('.expandedPanel').show();
-						$(this).parent().parent().find('.hiddenPanel').hide();
-					}
-					else {
-						$(this).removeClass('collapseToggle').addClass('expandToggle');
-						$(this).parent().parent().find('.expandedPanel').hide();
-						$(this).parent().parent().find('.hiddenPanel').show();
-					}
-				}, function () {
-					$(selector).find('.collapsingBody[expanded="True"]').find('.expandedPanel').show().parent().find('.hiddenPanel').hide().parent().parent()
-						.find('.expandToggle').removeClass('expandToggle').addClass('collapseToggle');
-				});
-			}
-		})
-		, toggledCollapsing: new ms.panelBase({ key: 'toggledCollapsing',
-			applyFor: function (selector) {
-				ms.collapsingPanelApplyFor.call(this, selector, function (e) {
-					$(selector).find('.collapseToggle').each(function (i) {
-						$(this).removeClass('collapseToggle').addClass('expandToggle');
-						$(this).parent().parent().find('.expandedPanel').hide();
-						$(this).parent().parent().find('.hiddenPanel').show();
-					});
-					if (!$(this).hasClass('collapseToggle')) {
-						$(this).addClass('collapseToggle').removeClass('expandToggle');
-						$(this).parent().parent().find('.expandedPanel').show();
-						$(this).parent().parent().find('.hiddenPanel').hide();
-					}
-				}, function () {
-					$(selector).find('.expandedPanel:first-child').first().show().parent().find('.hiddenPanel').hide().parent().parent().find('.expandToggle').removeClass('expandToggle').addClass('collapseToggle');
-				});
-			}
-		})
-		, init: function () {
-			for (k in this) {
-				if (this[k].init)
-					this[k].init.call(this[k]);
-			}
-		}
-	};
-	ms.summarize = {
-		apply: function () {
-			$('*[summarize]').each(function () {
-				ms.summarize.applyFor(this);
-			});
-		}
-			, applyFor: function (selector) {
-				var att = $(selector).attr('ts-summary');
-				var len = $(selector).attr('summarize');
-				var rlen = $(selector).text().length;
-				if (rlen > len) {
-					var text = $(selector).text().substring(0, len) + '...';
-					$(selector).html(text);
-				}
-			}
-			, init: function () {
-				this.apply();
-			}
-	};
-	ms.summarize = {
-		apply: function () {
-			$('*[summarize]').each(function () {
-				ms.summarize.applyFor(this);
-			});
-		}
-		, applyFor: function (selector) {
-			var att = $(selector).attr('ts-summary');
-			var len = $(selector).attr('summarize');
-			var rlen = $(selector).text().length;
-			if (rlen > len) {
-				var text = $(selector).text().substring(0, len) + '...';
-				$(selector).html(text);
-			}
-		}
-		, init: function () {
-			this.apply();
-		}
-	};
+
 	ms.decEventBind = {
 		init: function () {
 			function setup() {
@@ -521,100 +349,6 @@
 			$(sel).css('position', 'fixed').css('top', y).css('left', x);
 		}
 	};
-	ms.tooltip = {
-		tooltips: []
-		, pos: function (config) {
-			var width = $('#tooltip').width();
-			var height = $('#tooltip').height();
-			var offsetY = 10, offsetX = 20;
-			var x = (config.x + width + offsetX > $(window).width()) ? config.x - (width + offsetX) : config.x + offsetX;
-			var y = (config.y + height + offsetY > $(window).height()) ? config.y - (height + offsetY) : config.y + offsetY;
-			$('#tooltip').fadeIn('fast').css('position', 'fixed').css('top', y).css('left', x);
-		}
-		, qCtrl: null
-		, closing: false
-		, applyFor: function (selector) {
-			$(selector).each(function () {
-				var rTooltip = $(this).attr('tooltip');
-				if ($(this).attr('ms-tooltip-id')) return;
-				var s = this;
-				if (rTooltip) {
-					ms.err.exec({
-						meth: function () {
-							var tooltipConfig = $.extend({ elementId: null, method: null, parms: {} }, $.parseJSON(rTooltip.toString().replace(/\'/g, '"')));
-							var id = ms.tooltip.tooltips.length;
-							ms.tooltip.tooltips.push(tooltipConfig);
-							$(s).attr('ms-tooltip-id', id);
-						}
-						, rethrow: false
-					});
-				}
-				$(this).mouseleave(function (e) {
-					ms.tooltip.closing = true;
-					if ($(this).hasClass('tile')) {
-						ms.tile.hoverTileOut(this);
-					}
-					ms.tooltip.tid = setTimeout(function () {
-						$('#tooltip').html('');
-						$('#tooltip').fadeOut('fast');
-					}, 10);
-				});
-				$(this).mouseenter(function (e) {
-					if ($(this).hasClass('tile')) {
-						ms.tile.hoverTile(this);
-					}
-					var config = ms.tooltip.tooltips[$(this).attr('ms-tooltip-id')];
-					if (ms.tooltip.closing) {
-						clearTimeout(ms.tooltip.tid);
-					}
-					config.element = e.srcElement;
-					config.x = e.clientX;
-					config.y = e.clientY;
-					$('#tooltip').html(config.text);
-					var msg = '';
-					if (config.elementId) {
-						msg = $('#' + config.elementId).html();
-					}
-					else if (config.method) {
-						msg = config.method.call(config, config.parms);
-					}
-					else {
-						msg = config.text;
-					}
-					$('#tooltip').html(msg);
-					ms.tooltip.pos(config);
-					e.stopImmediatePropagation();
-				});
-			});
-		}
-		, apply: function () {
-			$('*[tooltip]').each(function () {
-				ms.tooltip.applyFor(this);
-			});
-		}
-		, init: function () {
-			this.qCtrl = new __queueController({});
-			ms.event.on({
-				key: 'ajaxCall'
-				, func: function () {
-					ms.tooltip.apply();
-				}
-			});
-
-			ms.ajax.send({ url: '/System/Tooltip'
-				, successHandler: function (data) {
-					$('body').append(data);
-					$('#tooltip').hide();
-				}
-			});
-			this.apply();
-		}
-	};
-	$(document).ready(function () {
-		ms.summarize.init();
-		ms.tooltip.init();
-		ms.panel.init();
-	});
 	ms.fmt = {
 		phone: function (rawPhone) {
 			var phone = rawPhone;
@@ -623,179 +357,6 @@
 				phone = '(' + rawPhone.substr(0, 3) + ')' + rawPhone.substr(3, 3) + '-' + rawPhone.substr(6, 4);
 			}
 			return phone;
-		}
-	};
-	ms.q = {
-		between: function (value, start, end) {
-			return value <= end && value >= start;
-		}
-	};
-	ms.list = {
-		lists: []
-		, pageHandlers: []
-		, onChange: function (id, handler) {
-			var config = ms.list.lists[id];
-			if (config)
-				config.handlers.push(handler);
-			else if (this.pageHandlers[id]) {
-				this.pageHandlers[id].push(handler);
-			}
-			else {
-				this.pageHandlers[id] = [];
-				this.pageHandlers[id].push(handler);
-			}
-		}
-		, register: function (options) {
-
-			if (this.lists[options.id]) {
-				var oldOptions = this.lists[options.id];
-				oldOptions.totalRecordCount = options.totalRecordCount;
-				oldOptions.currentIndex = options.currentIndex;
-				oldOptions.pageSize = options.pageSize;
-				oldOptions.scriptCallback = (options.scriptCallback && options.scriptCallback.length > 0) ? options.scriptCallback : oldOptions.scriptCallback;
-				if (options.filterSelector && options.filterSelector.length > 0) {
-					oldOptions.filterSelector = options.filterSelector;
-					oldOptions.isFiltered = true;
-				}
-			}
-			else {
-				this.lists[options.id] = $.extend({ handlers: this.pageHandlers[options.id] ? this.pageHandlers[options.id] : [] }, options);
-			}
-			this.updateHeader(options.id);
-		}
-		, applyFilter: function (id, callback) {
-			this.move(id, true, function (config) {
-				return 0;
-			}, function (config) {
-				if (callback) {
-					callback.call(config, config);
-				}
-			});
-		}
-		, update: function (id) {
-			var config = ms.list.lists[id];
-			var pages = config.totalRecordCount / config.pageSize;
-			$('#' + id).find('.pageListHeaderBox').show();
-			if (pages <= 1) {
-				$('#' + id).find('.pageListHeaderBox').hide();
-			}
-			else if (ms.q.between(pages, 1, 3)) {
-				$('#' + id).find('.firstArrow').hide();
-				$('#' + id).find('.lastArrow').hide();
-			}
-			$('#' + id + '_links').html('');
-			for (var i = 0; i < pages; i++) {
-				var label = i + 1;
-				$('#' + id + '_links').append(' <a href="javascript:ms.list.page(\'' + id + '\',' + i * config.pageSize + ')">' + label + '</a> ');
-			}
-			$(config.handlers).each(function (idx) {
-				var s = this;
-				ms.err.exec({
-					meth: function () {
-						s.call(config, config, idx);
-					}
-					, onerror: function (ex) {
-						ms.msg.sendError('An error has occurred during ' + id + ' list state change.');
-						ms.msg.sendMsg('sysWarning', ex.message);
-					}
-					, scope: config
-					, rethrow: false
-				});
-			});
-		}
-		, updateHeader: function (id) {
-			this.update(id);
-			var config = ms.list.lists[id];
-			$('#' + config.id + '_statCurrentIndex').html(config.currentIndex + 1);
-
-			if ((config.totalRecordCount % config.pageSize) + config.currentIndex == config.totalRecordCount) {
-				$('#' + config.id + '_statPageSize').html(config.totalRecordCount);
-			}
-			else {
-				$('#' + config.id + '_statPageSize').html(config.currentIndex + config.pageSize);
-			}
-			$('#' + config.id + '_statTotalCount').html(config.totalRecordCount);
-		}
-		, loadCurrent: function () {
-
-		}
-		, page: function (id, index) {
-			var config = ms.list.lists[id];
-			config.currentIndex = index;
-			this.move(id, true, function (config) {
-				return index;
-			});
-		}
-		, move: function (id, forceRun, cb, callback) {
-			var config = ms.list.lists[id];
-			var currentIndex = cb(config);
-			var url = !config.isFiltered ? config.route + '/' + config.id + '/' + currentIndex + '/' + config.pageSize : config.route;
-			ms.msg.sendMsg('sysWarning', 'moving to: ' + url);
-			if (currentIndex != config.currentIndex || forceRun) {
-				var ajax = {
-					url: url
-					, successHandler: function (data) {
-						$('#' + config.id + '_list').html(data);
-						config.currentIndex = currentIndex;
-						ms.list.updateHeader(id);
-						config = ms.list.lists[id];
-
-						if (config.scriptCallback && config.scriptCallback.length > 0) {
-							eval(config.scriptCallback).call();
-						}
-						if (callback) {
-							callback.call(config, config);
-						}
-					}
-					, errorHandler: function (data) {
-						ms.msg.sendError('An error has occurred while paging a list.');
-						ms.msg.sendMsg('sysWarning', 'unknown error ms.list.move(' + config.id + ') : ' + data.responseText);
-					}
-				};
-				if (config.isFiltered) {
-					ajax = $.extend({ data: $(config.filterSelector).serialize(), type: 'POST' }, ajax);
-					ajax.data += '&currentIndex=' + currentIndex;
-					ajax.data += '&pageSize=' + config.pageSize;
-				}
-				ms.ajax.send(ajax);
-			}
-		}
-		, first: function (id) {
-			this.move(id, false, function (config) {
-				return 0;
-			});
-		}
-		, last: function (id) {
-			this.move(id, false, function (config) {
-				var pages = Math.ceil(config.totalRecordCount / config.pageSize);
-				var lastPageItems = config.totalRecordCount - ((pages - 1) * config.pageSize);
-				return config.totalRecordCount - lastPageItems;
-			});
-		}
-		, prev: function (id) {
-			this.move(id, false, function (config) {
-				return config.currentIndex > 0 ? Math.max(config.currentIndex - (config.pageSize), 0) : config.currentIndex;
-			});
-		}
-		, next: function (id) {
-			this.move(id, false, function (config) {
-				return config.currentIndex < config.totalRecordCount - config.pageSize ? config.currentIndex + config.pageSize : config.currentIndex;
-			});
-		}
-		, prepList: function (selector) {
-			$(selector).hover(function () {
-				$(this).addClass('alternatingHover');
-			}, function () {
-				$(this).removeClass('alternatingHover');
-			});
-			$(selector + ':visible').each(function (idx) {
-				$(this).removeClass('alternatingItem0');
-				$(this).removeClass('alternatingItem1');
-				$(this).addClass('alternatingItem' + idx % 2);
-			});
-		}
-		, init: function () {
-
 		}
 	};
 	ms.event = {
@@ -829,13 +390,6 @@
 				}
 				});
 				ms.msg.sendMsg('sysWarning', 'EventHandler ' + s.func.toString() + ' firing.');
-			});
-		}
-	};
-	ms.link = {
-		init: function () {
-			$('.cancelClick').live('click', function (e) {
-				e.stopImmediatePropagation();
 			});
 		}
 	};
@@ -1958,29 +1512,96 @@ ms.ml = {
 	}
 };
 
-jQuery.fn.addGallary = function(config) {
-
-	var newGallary = new jGallary(config);
-	jQuery["_gal_" + newGallary.getName()] = newGallary;
-	// validate the
-	return this.each(function() {
-	
-		newGallary.addTab(this.id);
-	});
-};
-
-jQuery.getGallary = function(gallaryName){
-	return jQuery["_gal_" + gallaryName];
+ms.modal = {
+	confirmF: function(){
+		var value = $(this).attr('data-value');
+		ms.modal.currentHandler.call(this, value);
+		$('#modalConfirm').trigger('reveal:close');
+	}
+	, currentHandler: function(){ }
+	, confirm: function(title, handler){
+		this.currentHandler = handler;
+		ms.ml.html('#modalConfirmTitle', title);
+		$('#modalConfirm').reveal({
+			animation: 'fadeAndPop'
+			, animationspeed: 300
+			, closeOnBackgroundClick: true
+			, dismissModalClass: 'close-reveal-modal'
+		});
+	}
+	, confirmValues: { YES: 'YES', NO: 'NO', CANCEL: 'CANCEL' }
 }
-	$(document).ready(function () {
-		ani.init();
-		$('.scrollable').live('mousemove', function () {
-			$(this).addClass('set-scrollable');
-		});
 
-		$('.scrollable').live('mouseleave', function () {
-			$(this).removeClass('set-scrollable');
-		});
-	});
-
+ms.message = {
+	get: function(context, messageSel, msgs){
+		ms.ml.html(messageSel, '');
+		msgs.SYSTEMERROR = 'A serious error has occurred.  If this continues please contact an administrator.';
+		return {
+			sendInfo: function(msg){
+				$(messageSel).removeClass('secondary alert success');
+				this.temp(2, msg);
+			}
+			, sendError: function(msg){
+				this.temp(4, msg);
+			}
+			, sendWarning: function(msg){
+				this.temp(8, msg);
+			}
+			, msgs: msgs
+			, qCtrl: new __queueController({})
+			, getMsg: function(status, msg){
+				var scope = this;
+				var s = this.lookupStatus(status);
+				var pid = '{c}_{id}'.bind({ c: context.replace(/[^\w^\d]+/g, '_'), id: msg.replace(/[^\w^\d]+/g, '_') }).toLowerCase();
+				var id = '__msg_{id}'.bind({ id: pid });
+				var msgMl = '<div id="{id}" class="alert-box {cls} round">{msg}</div>'.bind({ id: id, cls: s.cls, stat: s.title, msg: msg });
+				return { 
+					send: function(){
+						ms.ml.append(messageSel, msgMl);
+						var qI = new __queueInfo({
+							key: '{c}-PAGEMESSAGE'.bind({ c: context })
+							, interval: 500
+							, lifespan: 2000
+							, onComplete: function () {
+								if (s.onFClear){
+									$('#' + id).fadeOut('fast', function(){
+										$('#' + id).remove();
+									});
+								}
+							}
+						});
+						scope.qCtrl.queue(qI);
+					}
+					, status: s
+					, msg: msgMl
+				};
+				return ;
+			}
+			, temp: function(status, msg){
+				if (msg.Messages === undefined){
+					var m = this.getMsg(status, msg);
+					m.send();
+				}
+				else {
+					msg.Messages.select(function(){
+						var m = this.getMsg(this.Status, msg);
+						m.send();
+					});
+				}
+			}
+			, lookupStatus: function(id){
+				return this.statususes[id];
+			}
+			, statususes: { 
+				1:  { title: 'System Error', cls: 'alert', onFClear: false }
+				, 2: { title: '', cls: 'success', onFClear: true }
+				, 4: { title: 'Error', cls: 'alert', onFClear: false }
+				, 8: { title: 'Warning', cls: '', onFClear: true }
+			}
+		}
+	}
+}
 })(window);
+
+
+

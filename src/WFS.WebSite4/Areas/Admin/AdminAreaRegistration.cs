@@ -69,7 +69,9 @@ namespace WFS.WebSite4.Areas.Admin
  
 			context.MapRoute("admin.vendor.display", "Admin/Vendors/DisplayVendor/{vendorID}", new { controller = "Vendor", action = "DisplayVendor" });
 
-            context.MapRoute(
+			context.MapRoute("admin.vendor.delete", "Admin/Vendors/Delete/{vendorId}", new { controller = "Vendor", action = "DeleteVendor" });
+
+			context.MapRoute(
                 "Admin_Vendor_CreateVendor",
                 "Admin/Vendors/AddVendor",
                 new { controller = "Vendor", action = "AddVendor" }
