@@ -13,7 +13,7 @@
                 <a href="javascript:void(0)" msclick="category.edit" data-id="@item.FoodCategoryId">Edit/View</a>
             </div>
             <div class="one columns end">
-                @Html.RouteLink("Delete", "Admin_FoodCategory_DeleteFoodCategory", new { FoodCategoryID = item.FoodCategoryId })
+                <a href="javascript:void(0)" msclick="category.del" data-name="@item.Name" data-vendor-id="@item.VendorId" data-id="@item.FoodCategoryId">Delete</a>
             </div>
 
         </div>

@@ -78,11 +78,15 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			}
         }
 
-        public ActionResult DeleteFoodOption(int OptionsId)
-        {
-			//var resp = _vendorMgr.DeleteOptions(new DeleteOptions{ OptionsId 
-			throw new NotImplementedException();
+		[HttpPost]
+		public ActionResult DeleteFoodOption(int vendorId, int foodOptionId)
+		{
+			UIResponse<bool> response = _vendorMgr.DeleteFoodOption(new DeleteFoodOptionRequest { FoodOptionId = foodOptionId })
+				.ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("FoodOptionList", GetList(vendorId)));
+
+			return Json(response);
 		}
+
 		public ActionResult AddFoodOption(int vendorId)
 		{
 			var m = new FoodOptionEditModel();

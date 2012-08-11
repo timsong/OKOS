@@ -3,7 +3,6 @@ using WFS.Contract.ReqResp;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
-using WFS.Contract.ReqResp;
 using WFS.Repository.Commands.Vendor;
 using System.Web.Security;
 using WFS.Framework.Extensions;
@@ -176,6 +175,28 @@ namespace WFS.Domain.Managers
 			var resp = new DeleteVendorResponse();
 
 			var command = new DeleteVendorCommand(request.VendorId);
+
+			_repository.ExecuteCommand(command);
+
+			return resp;
+		}
+
+		public DeleteFoodCategoryResponse DeleteFoodCategory(DeleteFoodCategoryRequest request)
+		{
+			var resp = new DeleteFoodCategoryResponse();
+
+			var command = new DeleteFoodCategoryCommand(request.FoodCategoryId);
+
+			_repository.ExecuteCommand(command);
+
+			return resp;
+		}
+
+		public DeleteFoodOptionResponse DeleteFoodOption(DeleteFoodOptionRequest request)
+		{
+			var resp = new DeleteFoodOptionResponse();
+
+			var command = new DeleteFoodOptionCommand(request.FoodOptionId);
 
 			_repository.ExecuteCommand(command);
 

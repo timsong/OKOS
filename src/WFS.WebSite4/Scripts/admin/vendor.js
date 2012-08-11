@@ -15,17 +15,17 @@
 				}
 			});
 		}
-		, deleteF: function (url, type, name, onfin, onerr) {
+		, deleteF: function (messagePanel, url, type, name, onfin, onerr) {
 			var msgs = {
 				CONFIRM: 'Are you sure that you want to delete {type}: {name}?'.bind({ type: type, name: name })
 				, CANCELLED: 'Delete of {type} was cancelled'.bind({ type: type })
 			}
-			var msgC = ms.message.get('delete', '#vendorMessagePanel', msgs);
+			var msgC = ms.message.get('delete', messagePanel, msgs);
 			var deleteF = function () {
 				ms.ajax.send({ url: url
 				, type: 'POST'
 				, errorHandler: function (data) {
-					msgC.sendError(msgC.msgs.SYSTEMERROR);
+					msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
 				}
 				, successHandler: function (data) {
 					if (data.Status != 2) {
@@ -81,7 +81,7 @@
 			var id = $(this).attr('msid');
 			var name = $(this).attr('msname');
 			var url = '/Admin/Vendors/Delete/{id}'.bind({ id: id });
-			vendor.deleteF(url, 'Vendor', name, function (data) {
+			vendor.deleteF('#vendorMessagePanel', url, 'Vendor', name, function (data) {
 				ms.ml.html('#vendorListPanel', data.HtmlResult);
 			});
 		}
@@ -122,9 +122,11 @@
 		var lDomain = domain.substring(0, 1).toLowerCase() + domain.substring(1);
 		var addU = '/Admin/{dom}/Add{dom}/'.bind({ dom: domain }) + '{vendorId}';
 		var edU = '/Admin/{dom}/Edit{dom}/'.bind({ dom: domain }) + '{id}';
+		var delU = '/Admin/{dom}/Delete/'.bind({ dom: domain }) + '{vendorId}/{id}';
 		var sel = '#{l}EditForm'.bind({ l: lDomain });
 		var saveU = '/Admin/{dom}/Save'.bind({ dom: domain });
 		var listSel = '#{l}ListPanel'.bind({ l: lDomain });
+		var messagePanel = '#{l}MessagePanel'.bind({ l: lDomain });
 		var c = {
 			add: function (e) {
 				var id = $(this).attr('data-vendor-id');
@@ -135,6 +137,15 @@
 			var id = $(this).attr('data-id');
 			var url = edU.bind({ id: id });
 			vendor.loadF(url);
+		}
+		, del: function () {
+			var id = $(this).attr('data-id');
+			var vendorId = $(this).attr('data-vendor-id');
+			var name = $(this).attr('data-name');
+			var url = delU.bind({ id: id, vendorId: vendorId });
+			vendor.deleteF(messagePanel, url, domain.splitByUCase(), name, function (data) {
+				ms.ml.html(listSel, data.HtmlResult);
+			});
 		}
 		, save: function () {
 			vendor.saveF(saveU, sel

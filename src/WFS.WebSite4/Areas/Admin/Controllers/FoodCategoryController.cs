@@ -91,10 +91,13 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			}
         }
 
-        public ActionResult DeleteFoodCategory(int foodCategoryId)
+		[HttpPost]
+		public ActionResult DeleteFoodCategory(int vendorId, int foodCategoryId)
         {
-			//var resp = _vendorMgr.DeleteFoodCategory(new DeleteFoodCategory{ FoodCategoryId 
-			throw new NotImplementedException();
+			UIResponse<bool> response = _vendorMgr.DeleteFoodCategory(new DeleteFoodCategoryRequest { FoodCategoryId = foodCategoryId })
+				.ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("FoodCategoryList", GetList(vendorId)));
+
+			return Json(response);
 		}
 
         public ActionResult AddFoodCategory(int vendorId)

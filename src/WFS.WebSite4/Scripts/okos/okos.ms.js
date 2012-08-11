@@ -910,6 +910,10 @@
 			}
 			return msgC;
 		}
+		, showSystemError: function () {
+			var msg = $(this).find('.bigmessage').html();
+			alert(msg);
+		}
 	}
 })(window);
 

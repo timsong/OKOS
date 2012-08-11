@@ -375,6 +375,7 @@
           </Key>
           <Property Name="VendorFoodCategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="OrganizationID" Type="int" Nullable="false" />
           <Property Name="CategoryType" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
@@ -387,6 +388,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="VendorMenu">
@@ -1208,6 +1210,7 @@
           <Property Type="String" Name="CategoryType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="FoodItems" Relationship="WFSModel.FK_FoodItem_FoodCategory1" FromRole="VendorFoodCategory" ToRole="FoodItem" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_FoodCategory_Vendor1" FromRole="VendorFoodCategory" ToRole="Organization" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
         </EntityType>
         <EntityType Name="VendorFoodOption">
           <Key>
@@ -1221,6 +1224,7 @@
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodOption1" FromRole="VendorFoodOption" ToRole="FoodItemOption" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_FoodOption_Vendor1" FromRole="VendorFoodOption" ToRole="Organization" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
         </EntityType>
         <EntityType Name="VendorMenu">
           <Key>
@@ -1734,6 +1738,7 @@
           <EntitySetMapping Name="VendorFoodCategories">
             <EntityTypeMapping TypeName="WFSModel.VendorFoodCategory">
               <MappingFragment StoreEntitySet="VendorFoodCategory">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
                 <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1744,6 +1749,7 @@
           <EntitySetMapping Name="VendorFoodOptions">
             <EntityTypeMapping TypeName="WFSModel.VendorFoodOption">
               <MappingFragment StoreEntitySet="VendorFoodOption">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

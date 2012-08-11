@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\FoodCategory\SaveFoodCategoryCommand.cs" />
+    <Compile Include="Commands\FoodCategories\DeleteFoodCategoryCommand.cs" />
+    <Compile Include="Commands\FoodCategories\SaveFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
+    <Compile Include="Commands\FoodOption\DeleteFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodOption\SaveFoodOptionCommand.cs" />
     <Compile Include="Commands\MembershipCreateStatus.cs" />
     <Compile Include="Commands\Menus\CreateVendorMenuCommand.cs" />

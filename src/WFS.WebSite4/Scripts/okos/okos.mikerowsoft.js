@@ -72,7 +72,9 @@
 		}
 		return s;
 	}
-
+	String.prototype.splitByUCase = function () {
+		return this.replace(/([A-Z])/g, ' $1');
+	}
 	window.parseBool = function (str) {
 		return str.toString().toLowerCase() == 'true';
 	}

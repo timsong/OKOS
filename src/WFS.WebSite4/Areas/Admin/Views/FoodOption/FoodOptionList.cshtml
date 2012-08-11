@@ -10,7 +10,7 @@
                 <a href="javascript:void(0)" msclick="foodOption.edit" data-id="@item.FoodOptionId">Edit/View</a>
             </div>
             <div class="one columns end">
-                @Html.RouteLink("Delete", "admin.foodoption.deletefoodoption", new { FoodOptionID = item.FoodOptionId })
+                <a href="javascript:void(0)" msclick="foodOption.del" data-name="@item.Name" data-vendor-id="@item.VendorId" data-id="@item.FoodOptionId">Delete</a>
             </div>
 
         </div>

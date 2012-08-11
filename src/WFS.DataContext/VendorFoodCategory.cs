@@ -23,6 +23,7 @@ namespace WFS.DataContext
         public string Name { get; set; }
         public int OrganizationID { get; set; }
         public string CategoryType { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<FoodItem> FoodItems { get; set; }
         public virtual Organization Organization { get; set; }

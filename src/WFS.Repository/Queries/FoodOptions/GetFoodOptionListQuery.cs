@@ -15,7 +15,7 @@ namespace WFS.Repository.Queries
         public IListResult<C.FoodOption> Execute(System.Data.Entity.DbContext dbContext)
         {
             var ent = (WFS.DataContext.WFSEntities)dbContext;
-            var data = ent.VendorFoodOptions.Where(x => x.OrganizationId == _vendorID).AsEnumerable().Select(x => x.ToContract());
+            var data = ent.VendorFoodOptions.Where(x => x.OrganizationId == _vendorID && !x.IsDeleted).AsEnumerable().Select(x => x.ToContract());
 
             var result = new ListResult<C.FoodOption>(data.ToList());
             result.Status = Status.Success;
