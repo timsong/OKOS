@@ -25,7 +25,7 @@ namespace WFS.Domain.Managers
         {
             var response = new GetOrganizationListByTypeResponse();
 
-            var query = new GetOrganizationsByTypeListQuery(request.Type);
+            var query = new GetOrganizationsByTypeListQuery(request.Type, request.DataRequest);
             var result = this._repository.ExecuteQuery(query);
 
             if (result.Status == Status.Success)

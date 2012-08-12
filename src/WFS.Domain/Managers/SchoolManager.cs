@@ -21,7 +21,7 @@ namespace WFS.Domain.Managers
         {
             var response = new GetSchoolsResponse();
 
-            var query = new GetOrganizationsByTypeListQuery(OrganizationTypeEnum.School);
+            var query = new GetOrganizationsByTypeListQuery(OrganizationTypeEnum.School, request.DataRequest);
             var result = this._repository.ExecuteQuery(query);
 
             if (result.Status == Status.Success)

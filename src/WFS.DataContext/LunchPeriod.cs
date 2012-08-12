@@ -14,17 +14,13 @@ namespace WFS.DataContext
 {
     public partial class LunchPeriod
     {
-        public LunchPeriod()
-        {
-            this.SchoolLunchPeriods = new HashSet<SchoolLunchPeriod>();
-        }
-    
         public int LunchPeriodId { get; set; }
         public string Name { get; set; }
         public System.TimeSpan StartTime { get; set; }
         public System.TimeSpan EndTime { get; set; }
+        public int SchoolId { get; set; }
     
-        public virtual ICollection<SchoolLunchPeriod> SchoolLunchPeriods { get; set; }
+        public virtual Organization Organization { get; set; }
     }
     
 }

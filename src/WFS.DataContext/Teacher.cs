@@ -14,17 +14,13 @@ namespace WFS.DataContext
 {
     public partial class Teacher
     {
-        public Teacher()
-        {
-            this.SchoolTeachers = new HashSet<SchoolTeacher>();
-        }
-    
         public int TeacherId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Description { get; set; }
+        public int SchoolId { get; set; }
     
-        public virtual ICollection<SchoolTeacher> SchoolTeachers { get; set; }
+        public virtual Organization Organization { get; set; }
     }
     
 }

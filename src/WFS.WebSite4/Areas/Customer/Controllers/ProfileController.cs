@@ -8,6 +8,7 @@ using WFS.Framework.Extensions;
 using WFS.Framework.Responses;
 using WFS.WebSite4.Areas.Customer.Models;
 using WFS.WebSite4.Controllers;
+using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Areas.Customer.Controllers
 {
@@ -15,14 +16,15 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
     {
         private readonly WFSUserManager _wfsUserMgr;
         private readonly OrderProfileManager _profManager;
+        private readonly SchoolManager _schoolMgr;
 
-        public ProfileController(WFSUserManager wfsUserMgr, OrderProfileManager profManager)
+        public ProfileController(WFSUserManager wfsUserMgr, OrderProfileManager profManager, SchoolManager schoolMgr)
         {
             this._wfsUserMgr = wfsUserMgr;
             this._profManager = profManager;
+            this._schoolMgr = schoolMgr;
         }
-        //
-        // GET: /SupportTicket/
+
         public ActionResult Index(Guid membershipId)
         {
             var resp = _wfsUserMgr.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = membershipId });
@@ -85,15 +87,13 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             //populate data here
             if (model.IsSchool.Value)
             {
+                var resp = _schoolMgr.GetSchoolList(new GetSchoolsRequest() { DataRequest = ActiveDataRequestEnum.ActiveOnly });
+
                 model.Schools.Clear();
 
                 model.Schools.Add(new SelectListItem() { Value = "0", Text = "Please Select a School", Selected = true });
-                model.Schools.Add(new SelectListItem() { Value = "1", Text = "University Park Elelmentary" });
-                model.Schools.Add(new SelectListItem() { Value = "2", Text = "El Camino Real High School" });
-                model.Schools.Add(new SelectListItem() { Value = "3", Text = "St. Andrews Academy" });
-                model.Schools.Add(new SelectListItem() { Value = "4", Text = "South High School" });
-                model.Schools.Add(new SelectListItem() { Value = "5", Text = "Lompoc Correctional School" });
-                model.Schools.Add(new SelectListItem() { Value = "6", Text = "ITT Tech" });
+                foreach (var x in resp.Schools)
+                    model.Schools.Add(new SelectListItem() { Value = x.OrganizationId.ToString(), Text = x.Name });
             }
 
 
