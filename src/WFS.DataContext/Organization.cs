@@ -24,6 +24,7 @@ namespace WFS.DataContext
             this.SchoolGrades = new HashSet<SchoolGrade>();
             this.SchoolLunchPeriods = new HashSet<SchoolLunchPeriod>();
             this.SchoolTeachers = new HashSet<SchoolTeacher>();
+            this.UserOrderProfiles = new HashSet<UserOrderProfile>();
         }
     
         public int OrganizationId { get; set; }
@@ -51,6 +52,7 @@ namespace WFS.DataContext
         public virtual ICollection<SchoolGrade> SchoolGrades { get; set; }
         public virtual ICollection<SchoolLunchPeriod> SchoolLunchPeriods { get; set; }
         public virtual ICollection<SchoolTeacher> SchoolTeachers { get; set; }
+        public virtual ICollection<UserOrderProfile> UserOrderProfiles { get; set; }
     }
     
 }
