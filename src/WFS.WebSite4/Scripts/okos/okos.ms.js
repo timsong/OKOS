@@ -871,11 +871,11 @@
 						ms.ml.append(messageSel, msgMl);
 						var qI = new __queueInfo({
 							key: '{c}-PAGEMESSAGE'.bind({ c: context })
-							, interval: 500
-							, lifespan: 2000
+							, interval: 200
+							, lifespan: 1500
 							, onComplete: function () {
 								if (s.onFClear) {
-									$('#' + id).fadeOut('fast', function () {
+									$('#' + id).slideUp('fast', function () {
 										$('#' + id).remove();
 									});
 								}
@@ -915,7 +915,6 @@
 		}
 		, showSystemError: function () {
 			var msg = $(this).find('.bigmessage').html();
-			alert(msg);
 		}
 	}
 })(window);

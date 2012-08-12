@@ -32,6 +32,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			var m = new FoodItemsListViewModel() {
 				Items = resp.FoodItems
 				, VendorId = vendorId
+				, Options = _vendorMgr.GetFoodOptionByVendorId(new GetFoodOptionsByVendorRequest { VendorId = vendorId }).FoodOptions
 			};
 
 			return m;
@@ -95,6 +96,14 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 			return Json(response);
 		}
 
+		public ActionResult SetFoodOption(int foodItemId, int foodOptionId, bool selected)
+		{
+			UIResponse<bool> response = _vendorMgr.SetFoodOptionForFoodItem(new SetFoodOptionForFoodItemRequest { FoodItemId = foodItemId, FoodOptionId = foodOptionId, Selected = selected })
+				.ToUIResult<bool, bool>((x) => true);
+
+			return Json(response);
+		}
+		
 		public ActionResult AddFoodItem(int vendorId)
 		{
 			var m = new FoodItemEditModel();

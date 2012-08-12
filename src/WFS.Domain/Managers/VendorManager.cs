@@ -21,7 +21,8 @@ namespace WFS.Domain.Managers
             _repository = repository;
         }
 
-        public GetOrganizationListByTypeResponse GetVendorList(GetOrganizationByTypeListRequest request)
+		#region vendor
+		public GetOrganizationListByTypeResponse GetVendorList(GetOrganizationByTypeListRequest request)
         {
             var response = new GetOrganizationListByTypeResponse();
 
@@ -59,6 +60,17 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
+		public DeleteVendorResponse DeleteVendor(DeleteVendorRequest request)
+		{
+			var resp = new DeleteVendorResponse();
+
+			var command = new DeleteVendorCommand(request.VendorId);
+
+			resp = _repository.ExecuteCommand(command) as DeleteVendorResponse;
+
+			return resp;
+		}
+
 		public SaveVendorResponse SaveVendor(SaveVendorRequest request)
 		{
 			var resp = new SaveVendorResponse();
@@ -89,6 +101,7 @@ namespace WFS.Domain.Managers
 
 			return resp;
 		}
+		#endregion
 
 		#region food category
 		public GetFoodCategoriesByVendorResponse GetFoodCategoriesByVendor(GetFoodCategoriesByVendorRequest request)
@@ -140,6 +153,7 @@ namespace WFS.Domain.Managers
 		}
 		#endregion
 
+		#region food option
 		public GetFoodOptionsByVendorResponse GetFoodOptionByVendorId(GetFoodOptionsByVendorRequest request)
 		{
 			var response = new GetFoodOptionsByVendorResponse();
@@ -179,17 +193,6 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
-		public DeleteVendorResponse DeleteVendor(DeleteVendorRequest request)
-		{
-			var resp = new DeleteVendorResponse();
-
-			var command = new DeleteVendorCommand(request.VendorId);
-
-			resp = _repository.ExecuteCommand(command) as DeleteVendorResponse;
-
-			return resp;
-		}
-
 		public DeleteFoodOptionResponse DeleteFoodOption(DeleteFoodOptionRequest request)
 		{
 			var resp = new DeleteFoodOptionResponse();
@@ -201,7 +204,7 @@ namespace WFS.Domain.Managers
 			return resp;
 		}
 
-
+		#endregion
 
 		#region food item
 		public GetFoodItemsByVendorIdResponse GetFoodItemsByVendorId(GetFoodItemsByVendorIdRequest request)
@@ -248,6 +251,17 @@ namespace WFS.Domain.Managers
 			var command = new DeleteFoodItemCommand(request.FoodItemId);
 
 			resp = _repository.ExecuteCommand(command) as DeleteFoodItemResponse;
+
+			return resp;
+		}
+
+		public SetFoodOptionForFoodItemResponse SetFoodOptionForFoodItem(SetFoodOptionForFoodItemRequest request)
+		{
+			var resp = new SetFoodOptionForFoodItemResponse();
+
+			var command = new SetFoodOptionForFoodItemCommand(request.FoodItemId, request.FoodOptionId, request.Selected);
+
+			resp = _repository.ExecuteCommand(command) as SetFoodOptionForFoodItemResponse;
 
 			return resp;
 		}

@@ -43,6 +43,7 @@ namespace WFS.Repository.Conversions
                 IsActive = data.IsActive,
 				Category = data.VendorFoodCategory != null ? data.VendorFoodCategory.Name : string.Empty,
                 Cost = data.Cost,
+				Options = data.FoodItemOptions.Select(x => x.VendorFoodOption.ToContract()).ToList(),
                 Price = data.Price
             };
 

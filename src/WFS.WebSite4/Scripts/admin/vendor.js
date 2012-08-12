@@ -15,6 +15,13 @@
 				}
 			});
 		}
+		, loadListF: function (url, listSel) {
+			ms.ajax.send({ url: url
+				, successHandler: function (data) {
+					ms.ml.html(listSel, data);
+				}
+			});
+		}
 		, deleteF: function (messagePanel, url, type, name, onfin, onerr) {
 			var msgs = {
 				CONFIRM: 'Are you sure that you want to delete {type}: {name}?'.bind({ type: type, name: name })
@@ -55,7 +62,7 @@
 		}
 		, saveF: function (messagePanel, url, formSel, onfin, onerr) {
 			var data = $(formSel).serialize();
-			var msgC = ms.message.get('save', messagePanel, {} );
+			var msgC = ms.message.get('save', messagePanel, {});
 			ms.ajax.send({ url: url
 				, type: 'POST'
 				, data: data
@@ -80,7 +87,6 @@
 			});
 		}
 		, list: function (e, callback) {
-
 		}
 		, mode: null
 		, del: function () {
@@ -92,7 +98,6 @@
 			});
 		}
 		, loadList: function (e) {
-			alert('reloading the list');
 		}
 		, add: function (e) {
 			vendor.mode = 'add';
@@ -131,6 +136,7 @@
 		var sel = '#{l}EditForm'.bind({ l: lDomain });
 		var saveU = '/Admin/{dom}/Save'.bind({ dom: domain }) + (addVendorId ? '?vendorId={vendorId}' : '');
 		var listSel = '#{l}ListPanel'.bind({ l: lDomain });
+		var listU = '/Admin/{dom}/GetList/'.bind({ dom: domain }) + '{vendorId}';
 		var messagePanel = '#{l}MessagePanel'.bind({ l: lDomain });
 		var c = {
 			add: function (e) {
@@ -153,22 +159,55 @@
 				ms.ml.html(listSel, data.HtmlResult);
 			});
 		}
+		, events: { SAVE: 'SAVE-{dom}'.bind({ dom: domain }) }
 		, save: function () {
 			var vendorId = $(this).attr('data-vendor-id');
 			vendor.saveF(messagePanel, saveU, sel
 				, function (data) {
 					ms.ml.html(listSel, data.HtmlResult);
 					$('#modalEdit').trigger('reveal:close');
+					ms.event.fire(c.events.SAVE, data, vendorId);
 				}
 				, function (data) {
 					ms.ml.html('#modalEdit', data.HtmlResult);
 				}
 			);
 		}
+		, loadList: function (vendorId) {
+			vendor.loadListF(listU.bind({ vendorId: vendorId }), listSel);
+		}
 		};
 		return c;
 	}
 	window.category = childControllerF('FoodCategory');
-	window.foodOption = childControllerF('FoodOption');
-	window.foodItem= childControllerF('FoodItem', true);
+	window.foodOption = $.extend({
+		init: function () {
+			ms.event.on({ key: foodOption.events.SAVE, func: function (data, vendorId) {
+				foodItem.loadList(vendorId);
+			}
+			});
+		}
+	}, childControllerF('FoodOption'));
+	window.foodItem = $.extend({
+		showOptions: function () {
+			var id = $(this).attr('data-id');
+			$('.optionsEditPanel:visible').slideUp();
+			$('.optionsEditPanel[data-id="{id}"]'.bind({ id: id })).slideDown();
+		}
+		, setOption: function () {
+			var id = $(this).attr('msid');
+			var itemId = $(this).attr('msitemid');
+			var checked = $(this).attr('checked') !== undefined;
+			var url = '/Admin/FoodItem/SetFoodOption/{foodItemId}/{foodOptionId}/{selected}'.bind({ foodItemId: id, foodOptionId: itemId, selected: checked });
+			ms.ajax.send({ url: url
+				, successHandler: function () {
+					
+				} 
+			});
+		}
+	}
+	, childControllerF('FoodItem', true));
+	$(document).ready(function () {
+		foodOption.init();
+	});
 })(window);
