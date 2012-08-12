@@ -458,6 +458,12 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodItem\List.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Vendor\EditOptions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FoodItem\EditOptions.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -474,7 +480,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5088</DevelopmentServerPort>
+          <DevelopmentServerPort>40568</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -1,0 +1,12 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.FoodItemEditModel
+
+@foreach (var item in Model.Parent.Options)
+{
+	<div class="left w25">
+		@{
+			bool _checked = Model.Subject.Options.FirstOrDefault(x => x.FoodOptionId.Equals(item.FoodOptionId)) != null;
+		}
+		@Html.CheckBox("xtuf", _checked, new { msclick="foodItem.setOption", msid=item.FoodOptionId, msitemid=Model.Subject.FoodItemId }) @item.Name
+	</div>	
+}
+<div class="clear"></div>

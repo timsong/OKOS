@@ -1,18 +1,27 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.FoodItemsListViewModel
 
-@foreach (var item in Model.Items) {
+@foreach (var item in Model.Items)
+{
     <div class="panel">
         <div class="row">
             <div class="eight columns">
 				<span class="round label">@item.Category</span>
                 @item.Name
             </div>
-            <div class="two columns">
+            <div class="one columns">
                 <a href="javascript:void(0)" msclick="foodItem.edit" data-vendor-id="@Model.VendorId" data-id="@item.FoodItemId">Edit/View</a>
+            </div>
+            <div class="one columns">
+                <a href="javascript:void(0)" msclick="foodItem.showOptions" data-vendor-id="@Model.VendorId" data-id="@item.FoodItemId">Options</a>
             </div>
             <div class="one columns end">
                 <a href="javascript:void(0)" msclick="foodItem.del" data-name="@item.Name" data-vendor-id="@Model.VendorId" data-id="@item.FoodItemId">Delete</a>
             </div>
         </div>
+		<div class="hide optionsEditPanel" data-id="@item.FoodItemId">
+			<div class="panel">
+				@{ Html.RenderPartial("EditOptions", new WFS.WebSite4.Areas.Admin.Models.FoodItemEditModel(item).SetParent(Model)); }
+			</div>
+		</div>
     </div>
 }

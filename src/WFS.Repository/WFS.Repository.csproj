@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Commands\FoodCategories\DeleteFoodCategoryCommand.cs" />
     <Compile Include="Commands\FoodCategories\SaveFoodCategoryCommand.cs" />
+    <Compile Include="Commands\FoodItem\SetFoodOptionForFoodItemCommand.cs" />
     <Compile Include="Commands\FoodItem\CreateFoodItemCommand.cs" />
     <Compile Include="Commands\FoodItem\DeleteFoodItemCommand.cs" />
     <Compile Include="Commands\FoodItem\SaveFoodItemCommand.cs" />

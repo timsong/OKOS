@@ -43,6 +43,7 @@ namespace WFS.Repository.Conversions
             return model;
         }
 
+
 		public static VendorFoodOption ToDataModel (this C.FoodOption domain)
 		{
 			var model = new VendorFoodOption { };

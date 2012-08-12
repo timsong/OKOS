@@ -16,7 +16,9 @@ namespace WFS.WebSite4.Areas.Admin.Models
 		public List<FoodItem> Items { get; set; }
 
 		public int VendorId { get; set; }
-    }
+
+		public List<FoodOption> Options { get; set; }
+	}
 
 	public class FoodItemEditModel : EditModelBase<FoodItem>
     {
@@ -48,6 +50,15 @@ namespace WFS.WebSite4.Areas.Admin.Models
 		}
 
 		public FoodItem Subject { get; set; }
+
+		public FoodItemsListViewModel Parent { get; set; }
+
+		public FoodItemEditModel SetParent(FoodItemsListViewModel listModel)
+		{
+			Parent = listModel;
+
+			return this;
+		}
 
 		public int VendorId { get; set; }
 	}
