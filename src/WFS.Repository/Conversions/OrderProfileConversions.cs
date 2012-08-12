@@ -20,7 +20,9 @@ namespace WFS.Repository.Conversions
                     TeacherId = data.TeacherId,
                     Title = data.Title,
                     UserId = data.UserId,
-                    OrderProfileId = data.OrderProfileId
+                    OrderProfileId = data.OrderProfileId,
+                    OrganizationId = data.OrganizationId,
+                    OrganizationName = data.Organization.Name
                 };
 
             //if (model.TeacherId.HasValue)
@@ -42,7 +44,8 @@ namespace WFS.Repository.Conversions
                 TeacherId = model.TeacherId,
                 Title = model.Title,
                 UserId = model.UserId,
-                IsActive = true
+                IsActive = true,
+                OrganizationId = model.OrganizationId
             };
 
             return data;
