@@ -92,5 +92,19 @@ namespace WFS.Domain.Managers
 
             return response;
         }
+
+        public GetLunchPeriodsResponse GetLunchPeriodss(GetLunchPeriodsRequest request)
+        {
+            var response = new GetLunchPeriodsResponse();
+
+            //var query = new GetOrganizationByIdQuery(request.SchoolID);
+            //var result = this._repository.ExecuteQuery(query);
+
+            //if (result.Status == Status.Success)
+            //    response.Value = (School)result.Value;
+
+            return response;
+        }
+
     }
 }

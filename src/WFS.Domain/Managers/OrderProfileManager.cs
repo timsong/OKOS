@@ -3,16 +3,20 @@ using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Commands;
 using WFS.Repository.Queries;
+using WFS.Contract;
+using WFS.Contract.Enums;
 
 namespace WFS.Domain.Managers
 {
     public class OrderProfileManager
     {
-        private WFSRepository _repository;
+        private readonly WFSRepository _repository;
+        private readonly SchoolManager _schoolManager;
 
-        public OrderProfileManager(WFSRepository repository)
+        public OrderProfileManager(WFSRepository repository, SchoolManager schoolManager)
         {
             _repository = repository;
+            _schoolManager = schoolManager;
         }
 
         public GetOrderProfileResponse GetOrderProfileById(GetOrderProfileByIdRequest request)
@@ -57,6 +61,16 @@ namespace WFS.Domain.Managers
             return resp;
         }
 
+        public GetOrderProfleSetupDataResponse GetOrderProfleSetupDataBySchool (GetOrderProfleSetupDataRequest request)
+        {
+            var resp = new GetOrderProfleSetupDataResponse();
 
+            resp.Teachers = _schoolManager.GetTeachers(new GetTeachersRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
+            resp.Grades = _schoolManager.GetGrades(new GetGradesRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
+            resp.LunchPeriods = _schoolManager.GetLunchPeriodss(new GetLunchPeriodsRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
+
+            return resp;
+        }
+            
     }
 }

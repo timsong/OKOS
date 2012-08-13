@@ -88,12 +88,6 @@
     <Compile Include="SchoolGrade.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="SchoolLunchPeriod.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SchoolTeacher.cs">
-      <DependentUpon>WFSDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="SupportTicket.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>

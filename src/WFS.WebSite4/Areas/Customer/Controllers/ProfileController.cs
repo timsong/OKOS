@@ -111,6 +111,16 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             var uiresult = new UIResponse<OrderProfileAddEditModel>();
             uiresult.Subject = model;
 
+            var resp = _profManager.GetOrderProfleSetupDataBySchool(new GetOrderProfleSetupDataRequest() { SchoolId = model.Profile.OrganizationId });
+
+            model.Grades.Clear();
+            model.LunchPeriods.Clear();
+            model.Teachers.Clear();
+
+            resp.Grades.ForEach(x => model.Grades.Add(new SelectListItem() { Value = x.SchoolGradeId.ToString(), Text = x.Name }));
+            resp.LunchPeriods.ForEach(x => model.LunchPeriods.Add(new SelectListItem() { Value = x.LunchPeriodId.ToString(), Text = String.Format("{0} - {1}", x.StartTime.ToShortTimeString(), x.EndTime.ToShortTimeString()) }));
+            resp.Teachers.ForEach(x => model.Teachers.Add(new SelectListItem() { Value = x.TeacherId.ToString(), Text = String.Format("{0}, {1}", x.LastName, x.FirstName) }));
+
             uiresult.HtmlResult = RenderPartialViewToString("StudentInfo", model);
             uiresult.Status = Status.Success;
             return Json(uiresult, JsonRequestBehavior.AllowGet);
