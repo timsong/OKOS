@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using WFS.Contract;
+using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.Framework;
@@ -8,7 +9,6 @@ using WFS.Framework.Extensions;
 using WFS.Framework.Responses;
 using WFS.WebSite4.Areas.Customer.Models;
 using WFS.WebSite4.Controllers;
-using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Areas.Customer.Controllers
 {
@@ -129,6 +129,25 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
         [HttpPost]
         public ActionResult SaveProfile(OrderProfileAddEditModel model)
         {
+            if (!String.IsNullOrEmpty(model.SelectedLunchPeriod))
+            {
+                int id = Convert.ToInt32(model.SelectedLunchPeriod);
+                model.Profile.LunchPeriodId = (id > 0) ? id : (int?)null;
+            }
+
+            if (!String.IsNullOrEmpty(model.SelectedGrade))
+            {
+                int id = Convert.ToInt32(model.SelectedGrade);
+                model.Profile.GradeId = (id > 0) ? id : (int?)null;
+            }
+
+            if (!String.IsNullOrEmpty(model.SelectedTeacher))
+            {
+                int id = Convert.ToInt32(model.SelectedTeacher);
+                model.Profile.TeacherId = (id > 0) ? id : (int?)null;
+            }
+
+
             var resp = _profManager.SaveOrderProfile(new SaveOrderProfileRequest() { Profile = model.Profile });
 
             if (resp.Status == Status.Success)

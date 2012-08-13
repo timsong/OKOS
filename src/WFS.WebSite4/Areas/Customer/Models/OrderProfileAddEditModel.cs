@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using WFS.Contract;
 using WFS.Framework;
-using System.Web.Mvc;
 
 namespace WFS.WebSite4.Areas.Customer.Models
 {
@@ -28,7 +28,9 @@ namespace WFS.WebSite4.Areas.Customer.Models
 
         public OrderProfile Profile { get; set; }
 
-        public string SelectedSchool { get; set; }
+        public string SelectedGrade { get; set; }
+        public string SelectedTeacher { get; set; }
+        public string SelectedLunchPeriod { get; set; }
 
         public List<SelectListItem> Schools { get; set; }
         public List<SelectListItem> Grades { get; set; }

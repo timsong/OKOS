@@ -459,9 +459,6 @@
     <Content Include="Areas\Admin\Views\FoodItem\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Vendor\EditOptions.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\FoodItem\EditOptions.cshtml" />
   </ItemGroup>
   <PropertyGroup>
