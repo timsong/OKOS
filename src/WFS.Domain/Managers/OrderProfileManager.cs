@@ -71,6 +71,20 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
+
+        public DeleteOrderProfileResponse DeleteOrderProfile (DeleteOrderProfileRequest request)
+        {
+            var resp = new DeleteOrderProfileResponse();
+
+            var command = new DeleteOrderProfileCommand(request.ProfileId);
+            var result = _repository.ExecuteCommand(command);
+            resp.Merge(result);
+
+            if (resp.Status == Status.Success)
+                resp.Value = result.Value;
+
+            return resp;
+        }
             
     }
 }

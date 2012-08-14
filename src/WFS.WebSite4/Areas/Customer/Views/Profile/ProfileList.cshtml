@@ -22,10 +22,10 @@
                    @item.OrganizationName
                 </div>
                 <div class="one columns">
-                    @Html.RouteLink("Edit/View","admin.vendor.display",new {vendorID = item.OrderProfileId })
+	                <a href="javascript:void(0)" msclick="customerprofile.showEditProfile"  data-id="@item.OrderProfileId">Edit/View</a>
                 </div>
                 <div class="one columns">
-                    @Html.ActionLink("Delete", "Delete", new { vendorID = item.OrderProfileId })
+	                <a href="javascript:void(0)" msclick="customerprofile.deleteProfile"  data-id="@item.OrderProfileId" data-userId="@item.UserId", data-name="@String.Format("{0}, {1}", item.LastName, item.FirstName)">Delete</a>
                 </div>
             </div>
         </div>

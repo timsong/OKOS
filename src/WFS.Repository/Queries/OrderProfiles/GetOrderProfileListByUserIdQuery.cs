@@ -19,7 +19,7 @@ namespace WFS.Repository.Queries
             var ent = (WFS.DataContext.WFSEntities)dbContext;
 
             var data = from prof in ent.UserOrderProfiles
-                       where prof.UserId == _userId && prof.IsActive
+                       where prof.UserId == _userId && !prof.IsDeleted
                        orderby prof.LastName, prof.FirstName
                        select prof;
 

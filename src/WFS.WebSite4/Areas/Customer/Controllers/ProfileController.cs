@@ -39,6 +39,13 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
         }
         public ActionResult GetList(int userId)
         {
+            var uiresult = GetListOfProfiles(userId);
+
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+        }
+
+        private UIResponse<OrderProfileViewModel> GetListOfProfiles(int userId)
+        {
             var resp = _profManager.GetListOfProfiles(new GetOrderProfileListRequest() { UserId = userId });
             var model = new OrderProfileViewModel()
             {
@@ -49,8 +56,7 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             uiresult.Subject = model;
             uiresult.HtmlResult = RenderPartialViewToString("ProfileList", model);
             uiresult.Status = resp.Status;
-
-            return Json(uiresult, JsonRequestBehavior.AllowGet);
+            return uiresult;
         }
 
         public ActionResult AddProfile(int userId)
@@ -75,7 +81,7 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
 
             var uiresult = new UIResponse<OrderProfileAddEditModel>();
             uiresult.Subject = model;
-            uiresult.HtmlResult = RenderPartialViewToString("AddProfile", model);
+            uiresult.HtmlResult = RenderPartialViewToString("EditProfile", model);
             uiresult.Status = Status.Success;
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
@@ -164,6 +170,15 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
                     });
                 return Json(uiResp);
             }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProfile(int profileId, int userId)
+        {
+            UIResponse<bool> response = _profManager.DeleteOrderProfile(new DeleteOrderProfileRequest() { ProfileId = profileId })
+                .ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("ProfileList", GetListOfProfiles(userId).Subject));
+
+            return Json(response);
         }
 
 

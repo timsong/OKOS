@@ -22,8 +22,8 @@ namespace WFS.DataContext
         public Nullable<int> TeacherId { get; set; }
         public Nullable<int> SchoolGradeId { get; set; }
         public Nullable<int> LunchPeriodId { get; set; }
-        public bool IsActive { get; set; }
         public int OrganizationId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual WFSUser WFSUser { get; set; }
         public virtual Organization Organization { get; set; }

@@ -1,6 +1,8 @@
 ﻿
+using WFS.Contract.Enums;
 using WFS.DataContext;
 using C = WFS.Contract;
+using System;
 
 namespace WFS.Repository.Conversions
 {
@@ -22,11 +24,9 @@ namespace WFS.Repository.Conversions
                     UserId = data.UserId,
                     OrderProfileId = data.OrderProfileId,
                     OrganizationId = data.OrganizationId,
-                    OrganizationName = data.Organization.Name
+                    OrganizationName = data.Organization.Name,
+                    OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.Organization.OrganizationType)
                 };
-
-            //if (model.TeacherId.HasValue)
-            //    model.TeacherName = d
 
             return model;
         }
@@ -44,7 +44,7 @@ namespace WFS.Repository.Conversions
                 TeacherId = model.TeacherId,
                 Title = model.Title,
                 UserId = model.UserId,
-                IsActive = true,
+                IsDeleted = false,
                 OrganizationId = model.OrganizationId
             };
 
@@ -60,7 +60,6 @@ namespace WFS.Repository.Conversions
             existing.SchoolGradeId = model.GradeId;
             existing.TeacherId = model.TeacherId;
             existing.Title = model.Title;
-            existing.IsActive = true;
         }
     }
 

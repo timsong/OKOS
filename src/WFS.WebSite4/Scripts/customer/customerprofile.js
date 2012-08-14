@@ -60,7 +60,7 @@
         , loadStudentInfo: function (e) {
             var url = '/Customer/Profile/SetSchoolInfo';
             var data = $(newOrderProfile).serialize();
-           
+
             ms.ajax.send({
                 url: url
 				, type: 'POST'
@@ -69,14 +69,14 @@
 				    ms.ml.html('#studentInfoArea', data.HtmlResult);
 				}
             });
-}
+        }
 
         , saveProfile: function (e) {
             var url = '/Customer/Profile/Save';
             var data = $(newOrderProfile).serialize();
 
-                ms.ajax.send({
-                    url: url
+            ms.ajax.send({
+                url: url
 				        , type: 'POST'
 				        , data: data
 				        , successHandler: function (data) {
@@ -88,20 +88,46 @@
 				                customerprofile.listProfiles();
 				            }
 				        }
-                });
+            });
         }
 
-		, validate: function () {
+		, deleteProfile: function (e) {
+		    var profileName = $(this).attr('data-name');
+		    var id = $(this).attr('data-id');
+		    var userId = $(this).attr('data-userId');
+		    var confirm = 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName });
 
+		    ms.modal.confirm(confirm
+				, function (value) {
+				    if (value == ms.modal.confirmValues.YES) {
+				        var url = '/Customer/Profile/Delete/{profileID}/{userId}'.bind({ profileID: id, userId: userId });
 
-        }
+				        ms.ajax.send({
+				            url: url
+				        , type: 'POST'
+				        , data: ''
+				        , successHandler: function (data) {
+				            if (data.Status == 0 || data.Status == 4) {
+				                ms.ml.html('#modalEdit', data.HtmlResult);
+				            }
+				            else {
+				                $('#modalEdit').trigger('reveal:close');
+				                customerprofile.listProfiles();
+				            }
+				        }
+				        });
+				    }
+				    else {
+				    }
+				});
+
+		}
 
     };
 
 
     $(document).ready(function () {
         customerprofile.listProfiles();
-        customerprofile.validate();
     });
 
 })(window);

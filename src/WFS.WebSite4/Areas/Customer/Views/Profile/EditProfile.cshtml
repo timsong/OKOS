@@ -1,23 +1,89 @@
 ﻿@model WFS.WebSite4.Areas.Customer.Models.OrderProfileAddEditModel
 
-<fieldset class="p_t5">
-    <legend>Profile Information</legend>
+<form id="newOrderProfile"  method="post"> 
 
+    <fieldset class="p_t5">
+        <legend>Profile Information for:</legend>
+
+        <div class="row p_t10">
+            <div class="five columns">
+                <div class="row">First Name: (required)</div>
+                <div class="row">
+                    @Html.TextBoxFor(x => x.Profile.FirstName, new {@id="txtFirstName" })
+                </div>
+            </div>
+            <div class="one columns">
+            </div>
+            <div class="five columns end">
+                <div class="row">Last Name: (required)</div>
+                <div class="row">
+                    @Html.TextBoxFor(x => x.Profile.LastName, new { @id = "txtLastName" })
+                </div>
+            </div>
+        </div>
+        <br />
+    </fieldset>
+
+    @Html.HiddenFor(x => x.IsSchool, new { id = "IsSchool" })
+    @Html.HiddenFor(x => x.Profile.UserId)
+
+<div class="row">
     <div class="row p_t10">
-        <div class="five columns">
-            <div class="row">First Name: (required)</div>
-            <div class="row">
-                @Html.TextBoxFor(x => x.Profile.FirstName, new {@id="txtFirstName" })
-            </div>
+        <div class="three columns">
+            @if (Model.Profile.OrganizationType == WFS.Contract.Enums.OrganizationTypeEnum.School)
+            {
+                <label class="right">School:</label>
+            }
+            else
+	        {
+              <label class="right">Company:</label>  
+	        }
         </div>
-        <div class="one columns">
+        <div class="six columns end">
+            @Model.Profile.OrganizationName
         </div>
-        <div class="five columns end">
-            <div class="row">Last Name: (required)</div>
-            <div class="row">
-                @Html.TextBoxFor(x => x.Profile.LastName, new { @id = "txtLastName" })
-            </div>
+    </div>        
+</div>
+
+@if (Model.Profile.OrganizationType == WFS.Contract.Enums.OrganizationTypeEnum.School)
+{
+    <div class="row p_t10">
+        <div class="three columns">
+            <label class="right p_t5">Student Grade:</label>
+        </div>
+        <div class="six columns end">
+            @Html.DropDownListFor(x => x.SelectedGrade, new SelectList(Model.Grades, "Value", "Text",
+                                                         Model.Grades), new { @id = "ddlGradeChoice" }) 
         </div>
     </div>
+        <br />
 
-</fieldset>
+    <div class="row">
+        <div class="three columns">
+            <label class="right p_t5">Student Teacher:</label>
+        </div>
+        <div class="six columns end">
+            @Html.DropDownListFor(x => x.SelectedTeacher, new SelectList(Model.Teachers, "Value", "Text",
+                                                         Model.Teachers), new { @id = "ddlTeacherChoice" }) 
+        </div>
+    </div>
+        <br />
+
+    <div class="row">
+        <div class="three columns">
+            <label class="right p_t5">Lunch Period:</label>
+        </div>
+        <div class="six columns end">
+            @Html.DropDownListFor(x => x.SelectedLunchPeriod, new SelectList(Model.LunchPeriods, "Value", "Text",
+                                                         Model.LunchPeriods), new { @id = "ddlLunchPeriodChoice" }) 
+        </div>
+    </div>
+}
+
+</form>
+<div class="row">
+	<div class="five columns offset-by-seven">
+            <a href="#" id="save-link" msclick="customerprofile.saveProfile" class="radius button small">Save</a>
+		<a href="#" class=" close-reveal-modal radius button small">Cancel</a>
+	</div>
+</div>

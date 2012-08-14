@@ -1,4 +1,5 @@
 ﻿
+using WFS.Contract.Enums;
 namespace WFS.Contract
 {
     public class OrderProfile
@@ -20,5 +21,7 @@ namespace WFS.Contract
         public string GradeName { get; set; }
         public string LunchPeriodName { get; set; }
         public string OrganizationName { get; set; }
+        public OrganizationTypeEnum OrganizationType { get; set; }
+
     }
 }

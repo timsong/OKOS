@@ -63,6 +63,7 @@
     <Compile Include="ReqResp\ChangeOrganizationActiveStatus.cs" />
     <Compile Include="ReqResp\GetLunchPeriod.cs" />
     <Compile Include="ReqResp\ListResult.cs" />
+    <Compile Include="ReqResp\OrderProfiles\DeleteOrderProfile.cs" />
     <Compile Include="ReqResp\OrderProfiles\GetOrderProfleSetupData.cs" />
     <Compile Include="ReqResp\SetFoodOptionForFoodItem.cs" />
     <Compile Include="ReqResp\DeleteFoodItem.cs" />

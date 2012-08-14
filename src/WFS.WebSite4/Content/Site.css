@@ -42,12 +42,39 @@ h2 { color: Black !important; }
 	display:block;
 }
 
+.w5 { width: 4%; }
+.w10 { width: 9%; }
+.w15 { width: 14%; }
+.w20 { width: 19%; }
+.w25 { width: 24%; }
+.w30 { width: 29%; }
+.w40 { width: 39%; }
+.w50 { width: 49%;}
+.w60 { width: 59%;}
+.w70 { width: 69%;}
+.w75 { width: 74%;}
+.w80 { width: 79%;}
+.w90 { width: 89%;}
+.w95 { width: 94%;}
+.w100 { width: 99%;}
+.w150px {width: 150px;}
+.w960 { width: 960px;}
+
+.h10 { min-height: 10px; }
+.h20 { min-height: 20px; }
+.h50 { min-height: 50px; }
+.h100 { min-height: 100px; }
+.h150 { min-height: 150px; }
+.h200 { min-height: 200px; }
+.h300 { min-height: 300px; }
+.h150px {height:150px;}
+
+.clear { clear: both;}
+
 .p_t5 {padding-top: 5px;} 
 .p_t10 {padding-top: 10px;} 
 .p_t20 {padding-top: 20px;} 
 .p_l10 {padding-left: 10px;} 
 
-.w150px {width: 150px;}
 
-.h150px {height:150px;}
 	
