@@ -95,7 +95,13 @@
 		    var profileName = $(this).attr('data-name');
 		    var id = $(this).attr('data-id');
 		    var userId = $(this).attr('data-userId');
-		    var confirm = 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName });
+
+		    var msgs = {
+		          CONFIRM: 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName })
+		        , SUCCEED: 'The profile for {name} was deleted.'.bind({ name: profileName })
+				, CANCELLED: 'Delete of profile was cancelled'
+		    }
+		    var msgC = ms.message.get('delete', 'profileMessagePanel', msgs);
 
 		    ms.modal.confirm(confirm
 				, function (value) {
@@ -104,20 +110,25 @@
 
 				        ms.ajax.send({
 				            url: url
-				        , type: 'POST'
-				        , data: ''
-				        , successHandler: function (data) {
-				            if (data.Status == 0 || data.Status == 4) {
-				                ms.ml.html('#modalEdit', data.HtmlResult);
+				            , type: 'POST'
+				            , errorHandler: function (data) {
+					            msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
 				            }
-				            else {
-				                $('#modalEdit').trigger('reveal:close');
-				                customerprofile.listProfiles();
+				            , successHandler: function (data) {
+				                if (data.Status == 0 || data.Status == 4) {
+						            msgC.send(data.Status, data);
+				                    ms.ml.html('#modalEdit', data.HtmlResult);
+				                }
+				                else {
+						            msgC.sendInfo(data);
+				                    $('#modalEdit').trigger('reveal:close');
+				                    customerprofile.listProfiles();
+				                }
 				            }
-				        }
 				        });
 				    }
-				    else {
+				else {
+				        msgC.sendWarning(msgC.msgs.CANCELLED);
 				    }
 				});
 

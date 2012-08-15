@@ -2,7 +2,7 @@
 @if (Request.IsAuthenticated)
 {
     <div>
-		Welcome @Html.RouteLink(User.Identity.Name, "ChangePassword", new { }, new { @class = "radius success button small", title = "Change password" })
+		Welcome @User.Identity.Name @Html.RouteLink("My Account", "ChangePassword", new { }, new { @class = "radius success button small", title = "Change password" })
 		@Html.RouteLink("Logout", "LogOff", new { }, new { @class = "radius success button small" })
     </div>
 }
@@ -12,14 +12,8 @@ else
 		<a href="#" class="radius success button small" data-reveal-id="loginModal" id="loginLink">Login</a>
 		@Html.RouteLink("Sign Up", "Register", new { }, new { @class = "radius success button small" })
 	</div>
+    
 	<div id="loginModal" class="reveal-modal">
-	    @if (Model == null)
-        {
-            Html.RenderPartial("~/Views/Account/Login.cshtml");
-        }
-        else
-        {
-		    @Html.RouteLink("Register", "Register", new { }, new { @class = "radius success button small" })
-        }
+      @{ Html.RenderPartial("~/Views/Account/Login.cshtml");}
 	</div>
 }

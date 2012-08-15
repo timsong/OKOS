@@ -1,4 +1,4 @@
-﻿@model WFS.WebSite4.Models.LoginModel
+﻿@model WFS.WebSite4.Models.RegisterModel
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl })) {
        
@@ -11,11 +11,11 @@
 
         <div class="row p_t5">
             <div class="three columns">
-                <label class="right inline">User Name: </label>
+                <label class="right inline">Email: </label>
             </div>
 
             <div class="seven columns end">
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.Email)
             </div>
         </div>
         <div class="row p_t5">

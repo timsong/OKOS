@@ -73,6 +73,12 @@ namespace WFS.WebSite4
             );
 
             routes.MapRoute(
+                name: "TermsAndConditions",
+                url: "TermsAndConditions",
+                defaults: new { controller = "Account", action = "ShowTerms" }
+            );
+
+            routes.MapRoute(
                 name: "Register",
                 url: "register",
                 defaults: new { controller = "Account", action = "Register" }
@@ -116,8 +122,6 @@ namespace WFS.WebSite4
                 url: "Support/Tickets/GetList",
                 defaults: new { controller = "SupportTicket", action = "GetUnresolvedTickets" }
             );
-
-
         }
 
     }

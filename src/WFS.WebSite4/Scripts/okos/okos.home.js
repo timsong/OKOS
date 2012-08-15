@@ -80,13 +80,28 @@
 				    if (data.Status == 0 || data.Status == 4) {
 				    }
 				    else {
-				        var profUrl = '/Customer/Profile/Index/{membershipId}'.bind({ membershipId: data.Subject});
+				        var profUrl = '/Customer/Profile/Index/{membershipId}'.bind({ membershipId: data.Subject });
 				        window.location(profUrl);
 				    }
 				}
             });
+        }
+
+        , showTerms: function () {
+            var url = '/TermsAndConditions';
+            ms.ajax.send({ url: url
+                , successHandler: function (data) {
+                    ms.ml.html('#termsModal', data.HtmlResult);
+                    $('#termsModal').reveal();
+                }
+                , errorHandler: function (data) {
+                    ms.ml.html('#termsModal', data.HtmlResult);
+                    $('#termsModal').reveal();
+                }
+            });
 
         }
+
 
     };
 })(window);

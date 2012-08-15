@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WFS.Contract;
 using WFS.Contract.Enums;
+using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.Framework;
 using WFS.Framework.Responses;
@@ -17,9 +18,12 @@ namespace WFS.WebSite4.Controllers
     public class AccountController : BaseController
     {
         private readonly CustomerManager _customerManager;
-        public AccountController(CustomerManager customerManager)
+        private readonly WFSUserManager _wfsUSerManager;
+
+        public AccountController(CustomerManager customerManager, WFSUserManager wfsUSerManager)
         {
             _customerManager = customerManager;
+            _wfsUSerManager = wfsUSerManager;
         }
 
         [AllowAnonymous]
@@ -31,26 +35,23 @@ namespace WFS.WebSite4.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public ActionResult Login(RegisterModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (Membership.ValidateUser(model.Email, model.Password))
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                if (Url.IsLocalUrl(returnUrl))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return Redirect(returnUrl);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    return RedirectToAction("Index", "Home");
                 }
+            }
+            else
+            {
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -69,6 +70,17 @@ namespace WFS.WebSite4.Controllers
         {
             var m = new RegisterModel();
             return View(m);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ShowTerms()
+        {
+            var uiresponse = new UIResponse<RegisterModel>();
+
+            uiresponse.Status = Status.Success;
+            uiresponse.HtmlResult = RenderPartialViewToString("TermsAndCond", null);
+
+            return Json(uiresponse, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
@@ -129,44 +141,51 @@ namespace WFS.WebSite4.Controllers
 
         public ActionResult ChangePassword()
         {
-            return View();
+            var m = new RegisterModel();
+
+            var resp = _wfsUSerManager.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
+
+            m.FirstName = resp.Value.FirstName;
+            m.LastName = resp.Value.LastName;
+
+            return View(m);
         }
 
         //
         // POST: /Account/ChangePassword
 
-        [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
-        {
-            if (ModelState.IsValid)
-            {
+        //[HttpPost]
+        //public ActionResult ChangePassword(ChangePasswordModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
-                // ChangePassword will throw an exception rather
-                // than return false in certain failure scenarios.
-                bool changePasswordSucceeded;
-                try
-                {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, userIsOnline: true);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
-                }
-                catch (Exception)
-                {
-                    changePasswordSucceeded = false;
-                }
+        //        // ChangePassword will throw an exception rather
+        //        // than return false in certain failure scenarios.
+        //        bool changePasswordSucceeded;
+        //        try
+        //        {
+        //            MembershipUser currentUser = Membership.GetUser(User.Identity.Name, userIsOnline: true);
+        //            changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+        //        }
+        //        catch (Exception)
+        //        {
+        //            changePasswordSucceeded = false;
+        //        }
 
-                if (changePasswordSucceeded)
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
-            }
+        //        if (changePasswordSucceeded)
+        //        {
+        //            return RedirectToAction("ChangePasswordSuccess");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+        //        }
+        //    }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
         //
         // GET: /Account/ChangePasswordSuccess

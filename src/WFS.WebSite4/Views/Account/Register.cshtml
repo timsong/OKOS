@@ -14,6 +14,9 @@
 
 @Html.ValidationSummary()
 
+<div id="registerMessagePanel"></div>
+<div id="termsModal"  class="reveal-modal"></div>
+
 <form id="newRegistrationForm"  method="post"> 
 
     <fieldset>
@@ -64,11 +67,12 @@
 					new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
 
     </fieldset>
+
 </form>
 
 <div class="row">
 	<div class="right">
-		<a href="#" id="save-link" msclick="home.createAccount" class="radius button">Create Account</a>&nbsp;&nbsp;&nbsp;
+		<a href="#" id="save-link" msclick="home.showTerms" class="radius button">Create Account</a>&nbsp;&nbsp;&nbsp;
 	</div>
 </div>
 
