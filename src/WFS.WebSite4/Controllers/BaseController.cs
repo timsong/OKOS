@@ -35,7 +35,17 @@ namespace WFS.WebSite4.Controllers
 
                 return i;
             }
+        }
+        public Guid AuthenticatedMembershipId
+        {
+            get
+            {
+                var cookieName = "WHSUserId";
+                var myCookie = System.Web.HttpContext.Current.Request.Cookies[cookieName];
+                var g = new Guid(myCookie.Values["MembershipId"]);
 
+                return g;
+            }
         }
     }
 }

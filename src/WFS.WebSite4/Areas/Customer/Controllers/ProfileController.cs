@@ -25,28 +25,29 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             this._schoolMgr = schoolMgr;
         }
 
-        public ActionResult Index(Guid membershipId)
+        public ActionResult Index()
         {
-            var resp = _wfsUserMgr.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = membershipId });
+            var i = AuthenticatedUserId;
+            var resp = _wfsUserMgr.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
 
             var m = new OrderProfileViewModel()
             {
-                MembershipId = membershipId,
+                MembershipId = AuthenticatedMembershipId,
                 UserId = resp.Value.UserId
             };
 
             return View(m);
         }
-        public ActionResult GetList(int userId)
+        public ActionResult GetList()
         {
-            var uiresult = GetListOfProfiles(userId);
+            var uiresult = GetListOfProfiles();
 
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
 
-        private UIResponse<OrderProfileViewModel> GetListOfProfiles(int userId)
+        private UIResponse<OrderProfileViewModel> GetListOfProfiles()
         {
-            var resp = _profManager.GetListOfProfiles(new GetOrderProfileListRequest() { UserId = userId });
+            var resp = _profManager.GetListOfProfiles(new GetOrderProfileListRequest() { UserId = AuthenticatedUserId });
             var model = new OrderProfileViewModel()
             {
                 Profiles = resp.Values
@@ -59,10 +60,10 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             return uiresult;
         }
 
-        public ActionResult AddProfile(int userId)
+        public ActionResult AddProfile()
         {
             var model = new OrderProfileAddEditModel();
-            model.Profile.UserId = userId;
+            model.Profile.UserId = AuthenticatedUserId;
 
             //populate data here
 
@@ -163,20 +164,20 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             }
             else
             {
-                var uiResp = resp.ToUIResult<OrderProfileAddEditModel, OrderProfile>(x => new OrderProfileAddEditModel(resp.Value), x =>
+                var uiResp = resp.ToUIResult<OrderProfileAddEditModel, OrderProfile>(x => new OrderProfileAddEditModel(model.Profile), x =>
                     {
                         x.Merge(resp);
-                        return RenderPartialViewToString("AddProfile", model);
+                        return  (x.Profile.OrderProfileId > 0) ?  RenderPartialViewToString("EditProfile", model):   RenderPartialViewToString("AddProfile", model);
                     });
                 return Json(uiResp);
             }
         }
 
         [HttpPost]
-        public ActionResult DeleteProfile(int profileId, int userId)
+        public ActionResult DeleteProfile(int profileId)
         {
             UIResponse<bool> response = _profManager.DeleteOrderProfile(new DeleteOrderProfileRequest() { ProfileId = profileId })
-                .ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("ProfileList", GetListOfProfiles(userId).Subject));
+                .ToUIResult<bool, bool>((x) => true, (x) => RenderPartialViewToString("ProfileList", GetListOfProfiles().Subject));
 
             return Json(response);
         }

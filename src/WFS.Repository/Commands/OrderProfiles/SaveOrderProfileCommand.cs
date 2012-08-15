@@ -27,10 +27,13 @@ namespace WFS.Repository.Commands
                 {
                     var ordProf = context.UserOrderProfiles.FirstOrDefault(x => x.OrderProfileId.Equals(_OrderProfile.OrderProfileId));
                     ordProf.ForUpdate(_OrderProfile);
+                    result.Value = ordProf.ToContract();
                 }
                 else
                 {
-                    context.UserOrderProfiles.Add(_OrderProfile.ToDataModel());
+                    var ordProf = _OrderProfile.ToDataModel();
+                    context.UserOrderProfiles.Add(ordProf);
+                    result.Value = ordProf.ToContract();
                 }
 
                 dbContext.SaveChanges();

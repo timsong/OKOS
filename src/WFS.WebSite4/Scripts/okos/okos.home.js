@@ -72,17 +72,28 @@
         , createAccount: function (e) {
             var url = '/register';
 
+            var msgs = {
+		          SUCCEED: 'Your Account was created'
+				, FAILED: 'Account creation failed, please file a support ticket'
+            }
+            var msgC = ms.message.get('save', '#registerMessagePanel', msgs);
+
+            $('#termsModal').trigger('reveal:close');
             var data = $(newRegistrationForm).serialize();
             ms.ajax.send({ url: url
 				, type: 'POST'
 				, data: data
 				, successHandler: function (data) {
 				    if (data.Status == 0 || data.Status == 4) {
+				        msgC.sendError(data.Status, data);
 				    }
 				    else {
-				        var profUrl = '/Customer/Profile/Index/{membershipId}'.bind({ membershipId: data.Subject });
+				        var profUrl = '/Customer/Profile/Index';
 				        window.location(profUrl);
 				    }
+				}
+				, errorHandler: function (data) {
+				    msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
 				}
             });
         }

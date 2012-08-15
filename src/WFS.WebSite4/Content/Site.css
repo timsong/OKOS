@@ -3,7 +3,14 @@
     clear: both;
     padding-bottom: 35px;
     border-radius: 10px;
-    width: 960px
+    width: 960px;
+    font-size: 10px;
+}
+
+.headerLogo 
+{
+    width: 360px;
+    height: 200px;
 }
 
 .field-validation-error {

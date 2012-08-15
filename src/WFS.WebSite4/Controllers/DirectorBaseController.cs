@@ -28,8 +28,8 @@ namespace WFS.WebSite4.Controllers
 
                     var url = string.Format("/{0}/Dashboard", roles.First());
 
-                    if (role == WFSRoleEnum.Customer.ToString())
-                        url += "/" + mem.ProviderUserKey.ToString();
+                    //if (role == WFSRoleEnum.Customer.ToString())
+                    //    url += "/" + mem.ProviderUserKey.ToString();
 
                     context.HttpContext.Response.Redirect(url, true);
                 }

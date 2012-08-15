@@ -49,6 +49,8 @@
             <label class="right p_t5">Lunch Period:</label>
         </div>
         <div class="six columns end">
+            @Html.DropDownListFor(x => x.SelectedLunchPeriod, new SelectList(Model.LunchPeriods, "Value", "Text",
+                                                         Model.LunchPeriods), new { @id = "ddlLunchPeriodChoice" }) 
         </div>
     </div>
 

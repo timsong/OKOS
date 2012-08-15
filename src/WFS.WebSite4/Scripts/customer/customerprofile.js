@@ -2,8 +2,7 @@
     window.customerprofile = {
 
         listProfiles: function (e) {
-            var userId = $("#userId").val();
-            var url = '/Customer/Profile/GetList/{userId}'.bind({ userId: userId });
+            var url = '/Customer/Profile/GetList';
             ms.ajax.send({ url: url
                 , successHandler: function (data) {
                     ms.ml.html('#profileListPanel', data.HtmlResult);
@@ -12,8 +11,7 @@
         }
 
         , showAddProfile: function (e) {
-            var id = $(this).attr('data-id');
-            var url = '/Customer/Profile/Add/{userId}'.bind({ userId: id });
+            var url = '/Customer/Profile/Add';
 
             ms.ajax.send({ url: url
                 , successHandler: function (data) {
@@ -94,7 +92,6 @@
 		, deleteProfile: function (e) {
 		    var profileName = $(this).attr('data-name');
 		    var id = $(this).attr('data-id');
-		    var userId = $(this).attr('data-userId');
 
 		    var msgs = {
 		          CONFIRM: 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName })
@@ -106,7 +103,7 @@
 		    ms.modal.confirm(msgs.CONFIRM
 				, function (value) {
 				    if (value == ms.modal.confirmValues.YES) {
-				        var url = '/Customer/Profile/Delete/{profileID}/{userId}'.bind({ profileID: id, userId: userId });
+				        var url = '/Customer/Profile/Delete/{profileID}'.bind({ profileID: id});
 
 				        ms.ajax.send({
 				            url: url
