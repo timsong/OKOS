@@ -101,9 +101,9 @@
 		        , SUCCEED: 'The profile for {name} was deleted.'.bind({ name: profileName })
 				, CANCELLED: 'Delete of profile was cancelled'
 		    }
-		    var msgC = ms.message.get('delete', 'profileMessagePanel', msgs);
+		    var msgC = ms.message.get('delete', '#profileMessagePanel', msgs);
 
-		    ms.modal.confirm(confirm
+		    ms.modal.confirm(msgs.CONFIRM
 				, function (value) {
 				    if (value == ms.modal.confirmValues.YES) {
 				        var url = '/Customer/Profile/Delete/{profileID}/{userId}'.bind({ profileID: id, userId: userId });

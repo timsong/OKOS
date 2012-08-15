@@ -12,26 +12,19 @@ using System.Collections.Generic;
 
 namespace WFS.DataContext
 {
-    public partial class UserOrderProfile
+    public partial class Order
     {
-        public UserOrderProfile()
+        public Order()
         {
             this.OrderItems = new HashSet<OrderItem>();
         }
     
-        public int OrderProfileId { get; set; }
+        public int OrderId { get; set; }
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> TeacherId { get; set; }
-        public Nullable<int> SchoolGradeId { get; set; }
-        public Nullable<int> LunchPeriodId { get; set; }
-        public int OrganizationId { get; set; }
-        public bool IsDeleted { get; set; }
+        public string TransactionId { get; set; }
+        public System.DateTime DateTimeCreated { get; set; }
     
         public virtual WFSUser WFSUser { get; set; }
-        public virtual Organization Organization { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
     

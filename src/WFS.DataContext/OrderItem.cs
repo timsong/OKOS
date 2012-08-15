@@ -12,24 +12,24 @@ using System.Collections.Generic;
 
 namespace WFS.DataContext
 {
-    public partial class VendorFoodOption
+    public partial class OrderItem
     {
-        public VendorFoodOption()
+        public OrderItem()
         {
-            this.FoodItemOptions = new HashSet<FoodItemOption>();
             this.OrderItemOptions = new HashSet<OrderItemOption>();
         }
     
-        public int VendorFoodOptionId { get; set; }
-        public int OrganizationId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Cost { get; set; }
-        public decimal Price { get; set; }
-        public bool IsDeleted { get; set; }
+        public int OrderItemId { get; set; }
+        public int OrderId { get; set; }
+        public int FoodItemId { get; set; }
+        public int OrderProfileId { get; set; }
+        public bool IsCancelled { get; set; }
+        public decimal PriceCharged { get; set; }
+        public System.DateTime DeliveryDate { get; set; }
     
-        public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }
-        public virtual Organization Organization { get; set; }
+        public virtual FoodItem FoodItem { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual UserOrderProfile UserOrderProfile { get; set; }
         public virtual ICollection<OrderItemOption> OrderItemOptions { get; set; }
     }
     

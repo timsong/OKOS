@@ -10,6 +10,7 @@ using WFS.Domain.Managers;
 using WFS.Framework;
 using WFS.Framework.Responses;
 using WFS.WebSite4.Models;
+using System.Web;
 
 namespace WFS.WebSite4.Controllers
 {
@@ -40,6 +41,14 @@ namespace WFS.WebSite4.Controllers
             if (Membership.ValidateUser(model.Email, model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                var resp = _wfsUSerManager.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = model.Email });
+
+                var cookieName = "WHSUserId";
+                var myCookie = System.Web.HttpContext.Current.Request.Cookies[cookieName] ?? new HttpCookie(cookieName);
+                myCookie.Values["UserId"] = resp.Value.UserId.ToString();
+                System.Web.HttpContext.Current.Response.Cookies.Add(myCookie);
+
+
                 if (Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);

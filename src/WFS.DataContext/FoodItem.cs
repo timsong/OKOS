@@ -18,6 +18,7 @@ namespace WFS.DataContext
         {
             this.FoodItemOptions = new HashSet<FoodItemOption>();
             this.MenuItems = new HashSet<MenuItem>();
+            this.OrderItems = new HashSet<OrderItem>();
         }
     
         public int FoodItemId { get; set; }
@@ -32,6 +33,7 @@ namespace WFS.DataContext
         public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }
         public virtual ICollection<MenuItem> MenuItems { get; set; }
         public virtual VendorFoodCategory VendorFoodCategory { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
     
 }

@@ -72,6 +72,15 @@
     <Compile Include="MenuItem.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItemOption.cs">
+      <DependentUpon>WFSDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Organization.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
