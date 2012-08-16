@@ -85,7 +85,7 @@
 				, data: data
 				, successHandler: function (data) {
 				    if (data.Status == 0 || data.Status == 4) {
-				        msgC.sendError(data.Status, data);
+				        msgC.sendError(data.Subject.Messages);
 				    }
 				    else {
 				        var profUrl = '/Customer/Profile/Index';
@@ -132,7 +132,7 @@
 				        msgC.sendError(data.Status, data);
 				    }
 				    else {
-				        msgC.sendInfo(data);
+				        msgC.sendInfo(msgC.msgs.SUCCEED);
 				    }
 				}
 				, errorHandler: function (data) {

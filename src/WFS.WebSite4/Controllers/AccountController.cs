@@ -145,7 +145,7 @@ namespace WFS.WebSite4.Controllers
         }
         #endregion
 
-        public ActionResult UpdateAccount(RegisterModel model)
+        public ActionResult UpdateAccount()
         {
             var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
 
