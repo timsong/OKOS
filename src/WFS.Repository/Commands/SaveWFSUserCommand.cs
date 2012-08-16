@@ -52,14 +52,15 @@ namespace WFS.Repository.Commands
 			if (matchingUsers > 0)
 			{
 				response.Status = Status.Error;
-
 				response.Messages.Add(new Message ("UNIQUEVALIDATION", "Email address is not unique"));
-
 				return false;
 			}
 
-			var mUser = context.Users.FirstOrDefault(x => x.UserId.Equals(wfsUser.MembershipGuid));
+            var memUser = System.Web.Security.Membership.GetUser(_user.MembershipGuid);
+            memUser.Email = _user.EmailAddress;
+            System.Web.Security.Membership.UpdateUser(memUser);
 
+            var mUser = context.Users.FirstOrDefault(x => x.UserId.Equals(wfsUser.MembershipGuid));
 			mUser.UserName = _user.EmailAddress;
 
 			context.SaveChanges();

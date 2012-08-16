@@ -70,22 +70,30 @@
         }
 
         , saveProfile: function (e) {
+            var type = $(this).attr('data-type');
+
+            var profileName = $('#txtFirstName').val() + ' ' + $('#txtLastName').val();
+
+            var msgs = {SUCCEED: 'The profile for {name} was {type}.'.bind({ name: profileName, type: type })}
+            var msgC = ms.message.get('save', '#profileMessagePanel', msgs);
+
             var url = '/Customer/Profile/Save';
             var data = $(newOrderProfile).serialize();
-
             ms.ajax.send({
                 url: url
-				        , type: 'POST'
-				        , data: data
-				        , successHandler: function (data) {
-				            if (data.Status == 0 || data.Status == 4) {
-				                ms.ml.html('#modalEdit', data.HtmlResult);
-				            }
-				            else {
-				                $('#modalEdit').trigger('reveal:close');
-				                customerprofile.listProfiles();
-				            }
-				        }
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status != 2) {
+				        msgC.sendError(data.Status, data);
+				        ms.ml.html('#modalEdit', data.HtmlResult);
+				    }
+				    else {
+				        msgC.sendInfo(msgC.msgs.SUCCEED);
+				        $('#modalEdit').trigger('reveal:close');
+				        customerprofile.listProfiles();
+				    }
+				}
             });
         }
 
@@ -94,7 +102,7 @@
 		    var id = $(this).attr('data-id');
 
 		    var msgs = {
-		          CONFIRM: 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName })
+		        CONFIRM: 'Are you sure that you want to delete the profile for {name}?'.bind({ name: profileName })
 		        , SUCCEED: 'The profile for {name} was deleted.'.bind({ name: profileName })
 				, CANCELLED: 'Delete of profile was cancelled'
 		    }
@@ -103,28 +111,28 @@
 		    ms.modal.confirm(msgs.CONFIRM
 				, function (value) {
 				    if (value == ms.modal.confirmValues.YES) {
-				        var url = '/Customer/Profile/Delete/{profileID}'.bind({ profileID: id});
+				        var url = '/Customer/Profile/Delete/{profileID}'.bind({ profileID: id });
 
 				        ms.ajax.send({
 				            url: url
 				            , type: 'POST'
 				            , errorHandler: function (data) {
-					            msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
+				                msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
 				            }
 				            , successHandler: function (data) {
 				                if (data.Status == 0 || data.Status == 4) {
-						            msgC.send(data.Status, data);
+				                    msgC.send(data.Status, data);
 				                    ms.ml.html('#modalEdit', data.HtmlResult);
 				                }
 				                else {
-						            msgC.sendInfo(data);
+				                    msgC.sendInfo(data);
 				                    $('#modalEdit').trigger('reveal:close');
 				                    customerprofile.listProfiles();
 				                }
 				            }
 				        });
 				    }
-				else {
+				    else {
 				        msgC.sendWarning(msgC.msgs.CANCELLED);
 				    }
 				});

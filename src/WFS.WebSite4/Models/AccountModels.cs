@@ -53,7 +53,7 @@ namespace WFS.WebSite4.Models
     //    }
     //}
 
-    public class RegisterModel : EditModelBase<CustomerAccount>, ILoginConverter
+    public class RegisterModel : EditModelBase<WFSUser>, ILoginConverter
     {
         public RegisterModel()
         {
@@ -82,11 +82,29 @@ namespace WFS.WebSite4.Models
         public string LastName { get; set; }
 
         public PhoneAddress AddressInfo { get; set; }
-
         public RegisterModel ToLogin()
         {
             return this;
         }
+    }
+
+    public class UpdateAccountModel : EditModelBase<WFSUser>
+    {
+        public WFSUser UserInfo { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        public string OldPassword { get; set; }
+
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
     }
 
     public static class AccountModelExtensions

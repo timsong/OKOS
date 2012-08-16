@@ -65,6 +65,7 @@
     <Compile Include="ReqResp\ListResult.cs" />
     <Compile Include="ReqResp\OrderProfiles\DeleteOrderProfile.cs" />
     <Compile Include="ReqResp\OrderProfiles\GetOrderProfleSetupData.cs" />
+    <Compile Include="ReqResp\SaveWFSUserInfo.cs" />
     <Compile Include="ReqResp\SetFoodOptionForFoodItem.cs" />
     <Compile Include="ReqResp\DeleteFoodItem.cs" />
     <Compile Include="ReqResp\SaveFoodItem.cs" />

@@ -141,6 +141,33 @@
             });
         }
 
+        , updatePassword: function (e) {
+            var url = '/updatepassword';
+
+            var msgs = {
+                SUCCEED: 'Your password was update successfully'
+				, FAILED: 'Password update failed, please file a support ticket'
+            }
+            var msgC = ms.message.get('password', '#passwordMessagePanel', msgs);
+
+            var data = $(passwordInfoForm).serialize();
+            ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status != 2) {
+				        msgC.sendError(data.Status, data);
+				    }
+				    else {
+				        msgC.sendInfo(msgC.msgs.SUCCEED);
+				    }
+				}
+				, errorHandler: function (data) {
+				    msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
+				}
+            });
+        }
+
 
     };
 })(window);

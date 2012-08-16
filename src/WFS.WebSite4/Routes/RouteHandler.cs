@@ -97,6 +97,11 @@ namespace WFS.WebSite4
                 defaults: new { controller = "Account", action = "UpdateAccountPost" }
             );
 
+            routes.MapRoute(
+                name: "UpdatePassword",
+                url: "updatepassword",
+                defaults: new { controller = "Account", action = "UpdatePassword" }
+            );
 
         }
 

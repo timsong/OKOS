@@ -17,12 +17,10 @@ namespace WFS.WebSite4.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        private readonly CustomerManager _customerManager;
         private readonly WFSUserManager _wfsUSerManager;
 
-        public AccountController(CustomerManager customerManager, WFSUserManager wfsUSerManager)
+        public AccountController(WFSUserManager wfsUSerManager)
         {
-            _customerManager = customerManager;
             _wfsUSerManager = wfsUSerManager;
         }
 
@@ -46,18 +44,12 @@ namespace WFS.WebSite4.Controllers
                 AddAuthCookie(resp.Value.UserId, resp.Value.MembershipGuid);
 
                 if (Url.IsLocalUrl(returnUrl))
-                {
                     return Redirect(returnUrl);
-                }
                 else
-                {
                     return RedirectToAction("Index", "Home");
-                }
             }
             else
-            {
                 ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            }
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -96,13 +88,13 @@ namespace WFS.WebSite4.Controllers
         {
             if (ModelState.IsValid)
             {
-                var acct = new CustomerAccount();
-                acct.User.FirstName = model.FirstName;
-                acct.User.LastName = model.LastName;
-                acct.User.Password = model.Password;
-                acct.User.UserType = WFSUserTypeEnum.Customer;
-                acct.User.EmailAddress = model.Email;
-                acct.AddressInfo = new PhoneAddress()
+                var acct = new WFSUser();
+                acct.FirstName = model.FirstName;
+                acct.LastName = model.LastName;
+                acct.Password = model.Password;
+                acct.UserType = WFSUserTypeEnum.Customer;
+                acct.EmailAddress = model.Email;
+                acct.BillingAddress = new PhoneAddress()
                 {
                     Address1 = model.AddressInfo.Address1,
                     Address2 = model.AddressInfo.Address2,
@@ -113,17 +105,14 @@ namespace WFS.WebSite4.Controllers
                     PhoneExt = model.AddressInfo.PhoneExt,
                 };
 
-                var resp = _customerManager.SaveCustomer(new Contract.ReqResp.CreateCustomerAccountRequest()
-                    {
-                        AccountInfo = acct
-                    });
+                var resp = _wfsUSerManager.SaveCustomer(new SaveWFSUserRequest() { UserInfo = acct });
 
                 if (resp.Status == Status.Success)
                 {
                     Roles.AddUserToRole(model.Email, WFSRoleEnum.Customer.ToString());
                     FormsAuthentication.SetAuthCookie(model.Email, createPersistentCookie: false);
 
-                    AddAuthCookie(resp.AccountInfo.User.UserId, resp.AccountInfo.User.MembershipGuid);
+                    AddAuthCookie(resp.UserInfo.UserId, resp.UserInfo.MembershipGuid);
 
                     var uiresponse = new UIResponse<Guid>();
                     return Json(uiresponse);
@@ -149,12 +138,9 @@ namespace WFS.WebSite4.Controllers
         {
             var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
 
-            var m = new RegisterModel()
-            {
-                FirstName = resp.Value.FirstName,
-                LastName = resp.Value.LastName,
-                Email = resp.Value.EmailAddress,
-                AddressInfo = resp.Value.BillingAddress,
+            var m = new UpdateAccountModel()
+            {   
+                 UserInfo = resp.Value
             };
 
             m.Merge(resp);
@@ -162,31 +148,49 @@ namespace WFS.WebSite4.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateAccountPost(RegisterModel model)
+        public ActionResult UpdateAccountPost(UpdateAccountModel model)
         {
-            var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
-
-            var m = new RegisterModel()
+            var resp = _wfsUSerManager.SaveCustomer(new SaveWFSUserRequest()
             {
-                FirstName = resp.Value.FirstName,
-                LastName = resp.Value.LastName,
-                Email = resp.Value.EmailAddress,
-                AddressInfo = resp.Value.BillingAddress,
-            };
+                UserInfo = model.UserInfo
+            });
+
 
             if (resp.Status == Status.Success)
             {
-                var uiresponse = resp.ToUIResult<RegisterModel, WFSUser>(x => model, x => RenderPartialViewToString("UpdateAccount", x));
+                var uiresponse = resp.ToUIResult<UpdateAccountModel, WFSUser>(x => model, x => RenderPartialViewToString("UpdateAccount", x));
                 return Json(uiresponse);
             }
             else
             {
-                var uiResp = resp.ToUIResult<RegisterModel, WFSUser>(x => model, x =>
+                var uiResp = resp.ToUIResult<UpdateAccountModel, WFSUser>(x => model, x =>
                 {
                     x.Merge(resp);
                     return RenderPartialViewToString("UpdateAccount", model);
                 });
                 return Json(uiResp);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePassword(UpdateAccountModel model)
+        {
+            var user = Membership.GetUser(model.UserInfo.MembershipGuid);
+            var res = user.ChangePassword(model.OldPassword, model.Password);
+
+            if (res)
+            {
+                var uiresponse = new UIResponse<UpdateAccountModel>();
+                uiresponse.Subject = model;
+                uiresponse.Status = Status.Success;
+                return Json(uiresponse);
+            }
+            else
+            {
+                var uiresponse = new UIResponse<UpdateAccountModel>();
+                uiresponse.Subject = model;
+                uiresponse.Status = Status.Error;
+                return Json(uiresponse);
             }
         }
 
