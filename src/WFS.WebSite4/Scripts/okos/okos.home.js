@@ -114,5 +114,33 @@
         }
 
 
+        , updateAccountInfo: function (e) {
+            var url = '/updateaccount';
+
+            var msgs = {
+                SUCCEED: 'Your Account was update successfully'
+				, FAILED: 'Account update failed, please file a support ticket'
+            }
+            var msgC = ms.message.get('update', '#updateMessagePanel', msgs);
+
+            var data = $(accountInfoForm).serialize();
+            ms.ajax.send({ url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+					if (data.Status != 2) {
+				        msgC.sendError(data.Status, data);
+				    }
+				    else {
+				        msgC.sendInfo(data);
+				    }
+				}
+				, errorHandler: function (data) {
+				    msgC.sendError(msgC.msgs.SYSTEMERROR, data.responseText);
+				}
+            });
+        }
+
+
     };
 })(window);

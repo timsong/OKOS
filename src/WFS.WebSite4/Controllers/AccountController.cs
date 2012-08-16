@@ -7,6 +7,7 @@ using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.Framework;
+using WFS.Framework.Extensions;
 using WFS.Framework.Responses;
 using WFS.WebSite4.Models;
 
@@ -144,18 +145,50 @@ namespace WFS.WebSite4.Controllers
         }
         #endregion
 
-        public ActionResult ChangePassword()
+        public ActionResult UpdateAccount(RegisterModel model)
         {
-            var m = new RegisterModel();
+            var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
 
-            var resp = _wfsUSerManager.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
+            var m = new RegisterModel()
+            {
+                FirstName = resp.Value.FirstName,
+                LastName = resp.Value.LastName,
+                Email = resp.Value.EmailAddress,
+                AddressInfo = resp.Value.BillingAddress,
+            };
 
-            m.FirstName = resp.Value.FirstName;
-            m.LastName = resp.Value.LastName;
-
+            m.Merge(resp);
             return View(m);
         }
 
+        [HttpPost]
+        public ActionResult UpdateAccountPost(RegisterModel model)
+        {
+            var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
+
+            var m = new RegisterModel()
+            {
+                FirstName = resp.Value.FirstName,
+                LastName = resp.Value.LastName,
+                Email = resp.Value.EmailAddress,
+                AddressInfo = resp.Value.BillingAddress,
+            };
+
+            if (resp.Status == Status.Success)
+            {
+                var uiresponse = resp.ToUIResult<RegisterModel, WFSUser>(x => model, x => RenderPartialViewToString("UpdateAccount", x));
+                return Json(uiresponse);
+            }
+            else
+            {
+                var uiResp = resp.ToUIResult<RegisterModel, WFSUser>(x => model, x =>
+                {
+                    x.Merge(resp);
+                    return RenderPartialViewToString("UpdateAccount", model);
+                });
+                return Json(uiResp);
+            }
+        }
 
 
         private static void AddAuthCookie(int userId, Guid membershipId)

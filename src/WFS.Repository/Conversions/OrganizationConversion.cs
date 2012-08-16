@@ -30,7 +30,7 @@ namespace WFS.Repository.Conversions
 			model.AddressInfo.ZipCode = data.ZipCode;
 			model.ParentOrgId = data.ParentOrgId;
 
-			model.User = data.WFSUser.ToDomainModel();
+			model.User = data.WFSUser.ToContract();
 
             return model;
         }

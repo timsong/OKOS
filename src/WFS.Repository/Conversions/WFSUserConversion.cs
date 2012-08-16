@@ -7,20 +7,6 @@ namespace WFS.Repository.Conversions
 {
     public static class WFSUserConversion
     {
-        public static C.WFSUser ToDomainModel(this WFSUser data)
-        {
-            C.WFSUser model = new C.WFSUser
-            {
-                FirstName = data.FirstName,
-                LastName = data.LastName,
-                AvailableCredit = data.AvailableCredit,
-                EmailAddress = data.User.Membership.Email,
-                MembershipGuid = data.MembershipGuid,
-                UserId = data.UserId,
-                UserType = (C.Enums.WFSUserTypeEnum)Enum.Parse(typeof(C.Enums.WFSUserTypeEnum), data.UserType)
-            };
-            return model;
-        }
 
         public static WFSUser ToDataModel(this C.WFSUser model)
         {
@@ -47,7 +33,6 @@ namespace WFS.Repository.Conversions
 
         public static void ForUpdateMembership(this C.WFSUser model, User existing)
         {
-            existing.Membership.Email = model.EmailAddress;
         }
 
         public static C.WFSUser ToContract(this WFSUser data)
@@ -66,6 +51,8 @@ namespace WFS.Repository.Conversions
                 UserType = (WFSUserTypeEnum)Enum.Parse(typeof(WFSUserTypeEnum), data.UserType),
             };
 
+            if (data.WFSUserAddress != null)
+                model.BillingAddress = data.WFSUserAddress.ToContract();
             return model;
         }
     }

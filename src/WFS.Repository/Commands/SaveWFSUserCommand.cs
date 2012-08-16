@@ -89,7 +89,7 @@ namespace WFS.Repository.Commands
 
 						context.SaveChanges();
 
-						result.Value = user.ToDomainModel();
+                        result.Value = user.ToContract();
 					}
 					else
 					{

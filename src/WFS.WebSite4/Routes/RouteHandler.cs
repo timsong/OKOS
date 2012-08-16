@@ -87,14 +87,17 @@ namespace WFS.WebSite4
             routes.MapRoute(
                 name: "ChangePassword",
                 url: "change-password",
-                defaults: new { controller = "Account", action = "ChangePassword" }
+                defaults: new { controller = "Account", action = "UpdateAccount" }
             );
 
+
             routes.MapRoute(
-                name: "ChangePasswordSuccess",
-                url: "change-password-success",
-                defaults: new { controller = "Account", action = "ChangePasswordSuccess" }
+                name: "UpdateAccount",
+                url: "updateaccount",
+                defaults: new { controller = "Account", action = "UpdateAccountPost" }
             );
+
+
         }
 
         private static void MapSupportRoutes(RouteCollection routes)
