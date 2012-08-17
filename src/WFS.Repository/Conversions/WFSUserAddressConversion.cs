@@ -6,8 +6,11 @@ namespace WFS.Repository.Conversions
 {
     public static class WFSUserAddressConversion
     {
-        public static C.PhoneAddress ToDomainModel(this WFSUserAddress data)
+        public static C.PhoneAddress ToContract(this WFSUserAddress data)
         {
+            if (data == null)
+                return null;
+
             C.PhoneAddress model = new C.PhoneAddress
             {
                 Address1 = data.Address1,

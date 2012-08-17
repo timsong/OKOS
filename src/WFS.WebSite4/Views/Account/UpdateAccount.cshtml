@@ -1,0 +1,100 @@
+﻿@model WFS.WebSite4.Models.UpdateAccountModel
+
+@{
+    ViewBag.Title = "Update Account Info";
+}
+
+<div id="updateMessagePanel"></div>
+<div id="passwordMessagePanel"></div>
+
+<fieldset>
+    <legend>Update Profile Information</legend>
+    <form id="accountInfoForm"  method="post">
+        @Html.HiddenFor(x => x.UserInfo.UserId)
+        @Html.HiddenFor(x => x.UserInfo.MembershipGuid)
+
+        <div class="row p_l20">
+            <div class="one columns">
+                <label class="right inline">First Name:</label>
+            </div>
+            <div class="four columns">
+                @Html.TextBoxFor(m => m.UserInfo.FirstName)
+            </div>
+            <div class="two columns">
+                <label class="right inline">Last Name:</label>
+            </div>
+            <div class="four columns end">
+                @Html.TextBoxFor(m => m.UserInfo.LastName)
+            </div>
+        </div>
+
+        <div class="row p_l20">
+            <div class="one columns">
+                <label class="right inline">Email:</label>
+            </div>
+            <div class="four columns end">
+                @Html.TextBoxFor(m => m.UserInfo.EmailAddress)
+                <div>(This is your login username)</div>
+            </div>
+        </div>
+
+        <div class="row p_t10">
+            @{Html.RenderPartial("AddressInfo",
+                Model.UserInfo.BillingAddress,
+                new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "UserInfo.BillingAddress" } });}
+        </div>
+    </form>
+    <div class="row">
+	    <div class="right">
+		    <a href="#" id="save-link" msclick="home.updateAccountInfo" class="radius button">Update Account</a>&nbsp;&nbsp;&nbsp;
+	    </div>
+    </div>
+    <br />
+</fieldset>
+
+
+<fieldset>
+    <legend>Change Password</legend>
+    <form id="passwordInfoForm"  method="post">
+        @Html.HiddenFor(x => x.UserInfo.MembershipGuid)
+        <div class="row p_l20">
+            <div class="two columns">
+                <label class="right inline">Old Password:</label>
+            </div>
+            <div class="four columns end">
+                @Html.PasswordFor(m => m.OldPassword)
+            </div>
+        </div>
+        <div class="row p_l20">
+            <div class="two columns">
+                <label class="right inline">New Password:</label>
+            </div>
+            <div class="four columns">
+                @Html.PasswordFor(m => m.Password)
+            </div>
+            <div class="one columns">
+                <label class="right inline">Confirm:</label>
+            </div>
+            <div class="four columns end">
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </div>
+        </div>
+    </form>
+    <div class="row">
+	    <div class="right">
+		    <a href="#" id="save-link" msclick="home.updatePassword" class="radius button">Update Password</a>&nbsp;&nbsp;&nbsp;
+	    </div>
+    </div>
+    <br />
+</fieldset>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

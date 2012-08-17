@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WFS.WebSite4.Controllers
 {
@@ -31,9 +32,18 @@ namespace WFS.WebSite4.Controllers
             {
                 var cookieName = "WHSUserId";
                 var myCookie = System.Web.HttpContext.Current.Request.Cookies[cookieName];
-                var i = Convert.ToInt32(myCookie.Values["UserId"]);
 
-                return i;
+                if (myCookie == null)
+                {
+                    FormsAuthentication.SignOut();
+                    RedirectToAction("Index", "Home");
+                    return 0;
+                }
+                else
+                {
+                    var i = Convert.ToInt32(myCookie.Values["UserId"]);
+                    return i;
+                }
             }
         }
         public Guid AuthenticatedMembershipId
@@ -42,6 +52,10 @@ namespace WFS.WebSite4.Controllers
             {
                 var cookieName = "WHSUserId";
                 var myCookie = System.Web.HttpContext.Current.Request.Cookies[cookieName];
+
+                if (myCookie == null)
+                    RedirectToRoute("LogOff"); 
+                
                 var g = new Guid(myCookie.Values["MembershipId"]);
 
                 return g;

@@ -6,33 +6,33 @@ using C = WFS.Contract;
 
 namespace WFS.Repository.Commands
 {
-    public class SaveWfsBillingAddressCommand : ICommand<C.CustomerAccount>
+    public class SaveWfsBillingAddressCommand : ICommand<C.WFSUser>
     {
-        private readonly C.CustomerAccount _acct;
+        private readonly C.WFSUser _userInfo;
 
-        public SaveWfsBillingAddressCommand(C.CustomerAccount account)
+        public SaveWfsBillingAddressCommand(C.WFSUser userInfo)
         {
-            _acct = account;
+            _userInfo = userInfo;
         }
 
-        public IResult<C.CustomerAccount> Execute(DbContext dbContext)
+        public IResult<C.WFSUser> Execute(DbContext dbContext)
         {
             var context = (WFS.DataContext.WFSEntities)dbContext;
-            var result = new Result<C.CustomerAccount>();
-            result.Value = _acct;
+            var result = new Result<C.WFSUser>();
+            result.Value = _userInfo;
 
             try
             {
-                var userAddy = context.WFSUserAddresses.FirstOrDefault(x => x.UserID.Equals(_acct.User.UserId));
+                var userAddy = context.WFSUserAddresses.FirstOrDefault(x => x.UserID.Equals(_userInfo.UserId));
 
                 if (userAddy == null)
                 {
-                    var address = _acct.AddressInfo.ToDataModel(_acct.User.UserId);
+                    var address = _userInfo.BillingAddress.ToDataModel(_userInfo.UserId);
                     context.WFSUserAddresses.Add(address);
                 }
                 else
                 {
-                    userAddy.ForUpdate(_acct.AddressInfo);
+                    userAddy.ForUpdate(_userInfo.BillingAddress);
                 }
 
                 dbContext.SaveChanges();

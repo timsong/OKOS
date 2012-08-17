@@ -2,6 +2,8 @@
 using WFS.Framework;
 using WFS.Repository;
 using WFS.Repository.Queries;
+using WFS.Repository.Commands;
+using WFS.Contract;
 
 namespace WFS.Domain.Managers
 {
@@ -43,5 +45,35 @@ namespace WFS.Domain.Managers
 
             return response;
         }
+
+
+        public SaveWFSUserResponse SaveCustomer(SaveWFSUserRequest request)
+        {
+            var resp = new SaveWFSUserResponse();
+            resp.Value = request.UserInfo;
+
+            var user = request.UserInfo;
+            var userCommand = new SaveWFSUserCommand(user);
+            var userResponse = _repository.ExecuteCommand(userCommand);
+
+            resp.Merge<WFSUser, WFSUser>((Result<WFSUser>)userResponse);
+
+            if (resp.Status != Status.Success)
+                return resp;
+
+            request.UserInfo = userResponse.Value;
+
+            var addCommand = new SaveWfsBillingAddressCommand(request.UserInfo);
+
+            var addRes = _repository.ExecuteCommand(addCommand);
+
+            ((Result<WFSUser>)addRes).Merge<WFSUser, WFSUser>(resp);
+
+            if (resp.Status == Status.Success)
+                resp.UserInfo = addRes.Value;
+
+            return resp;
+        }
+
     }
 }

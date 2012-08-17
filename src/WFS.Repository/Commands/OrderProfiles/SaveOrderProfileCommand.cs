@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Data.Entity;
-using C = WFS.Contract;
+using System.Linq;
 using WFS.Repository.Conversions;
+using C = WFS.Contract;
 
 
 namespace WFS.Repository.Commands
@@ -27,16 +27,22 @@ namespace WFS.Repository.Commands
                 {
                     var ordProf = context.UserOrderProfiles.FirstOrDefault(x => x.OrderProfileId.Equals(_OrderProfile.OrderProfileId));
                     ordProf.ForUpdate(_OrderProfile);
+                    dbContext.SaveChanges();
+
                     result.Value = ordProf.ToContract();
                 }
                 else
                 {
                     var ordProf = _OrderProfile.ToDataModel();
                     context.UserOrderProfiles.Add(ordProf);
+                    dbContext.SaveChanges();
+
+                    ordProf = context.UserOrderProfiles.FirstOrDefault(x => x.OrderProfileId.Equals(ordProf.OrderProfileId));
+                    ordProf.Organization = context.Organizations.FirstOrDefault(x => x.OrganizationId.Equals(ordProf.OrganizationId));
+
                     result.Value = ordProf.ToContract();
                 }
 
-                dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
