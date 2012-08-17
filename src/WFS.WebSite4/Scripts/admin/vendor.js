@@ -111,7 +111,7 @@
 			vendor.loadF(url);
 		}
 		, save: function (e) {
-			vendor.saveF('/Admin/Vendor/Save', '#vendorEditForm'
+			vendor.saveF('#vendorMessagePanel', '/Admin/Vendor/Save', '#vendorEditForm'
 				, function (data) {
 					if (vendor.mode == 'edit') {
 						ms.ml.html('#displayAddressPanel', data.AdditionalPayload.addressHtml);
