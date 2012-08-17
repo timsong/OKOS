@@ -1,8 +1,6 @@
 ﻿@model WFS.Contract.PhoneAddress
-
-<div class="eleven columns end">
-    <div class="panel">
-        <label>Address & Contact Info</label>
+    <fieldset>
+        <legend>Address & Contact Info</legend>
         <div class="row">
             <div class="twelve columns">
                 @Html.TextBoxFor(x => x.Address1, new { placeholder = "Address Line 1" })
@@ -38,5 +36,4 @@
                 @Html.TextBoxFor(x => x.PhoneExt, new {placeholder = "Extension" })
             </div>
         </div>  
-    </div>
-</div>
+    </fieldset>
