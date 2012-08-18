@@ -1,5 +1,4 @@
-﻿body { font-size: 10px; font-size: 1.0rem}
-label { font-size: 10px; font-size: 1.0rem}
+﻿body { font-size: 12px; font-size: 1.0rem}
 
 
 /* overrides for the top-nav*/
@@ -25,4 +24,10 @@ label { font-size: 10px; font-size: 1.0rem}
 .largeReveal
 {
 	width:600px;
+}
+
+    
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea 
+{
+	font-size: 12px; 
 }

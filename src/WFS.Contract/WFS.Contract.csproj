@@ -107,6 +107,7 @@
     <Compile Include="ReqResp\GetFoodOptionsByVendor.cs" />
     <Compile Include="ReqResp\GetOrganizationById.cs" />
     <Compile Include="ReqResp\GetOrganizationListByType.cs" />
+    <Compile Include="ReqResp\UserSearch.cs" />
     <Compile Include="SupportTicket.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="WFSUser.cs" />

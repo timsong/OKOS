@@ -90,6 +90,7 @@
     <Compile Include="Queries\FoodItems\GetFoodItemListQuery.cs" />
     <Compile Include="Queries\GetSupportTicketByIdQuery.cs" />
     <Compile Include="Queries\GetUnResolvedSupportTicketsQuery.cs" />
+    <Compile Include="Queries\GetUsersBySearchCriteriaQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByMembershipIdQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByUserNameQuery.cs" />
     <Compile Include="Queries\OrderProfiles\GetOrderProfileByIdQuery.cs" />

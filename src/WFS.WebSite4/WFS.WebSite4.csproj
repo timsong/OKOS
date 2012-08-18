@@ -153,6 +153,7 @@
     <Compile Include="Areas\Admin\Models\SchoolViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SchoolsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FoodCategoryModels.cs" />
+    <Compile Include="Areas\Admin\Models\UserListModels.cs" />
     <Compile Include="Areas\Admin\Models\VendorEditModel.cs" />
     <Compile Include="Areas\Admin\Models\VendorListViewModel.cs" />
     <Compile Include="Areas\Customer\Controllers\DashboardController.cs" />
@@ -224,6 +225,7 @@
     <Content Include="Images\foundation\right-arrow.png" />
     <Content Include="Images\foundation\rotator-black.png" />
     <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Scripts\admin\userSearch.js" />
     <Content Include="Scripts\customer\customerprofile.js" />
     <Content Include="Scripts\admin\dashboard.js" />
     <Content Include="Scripts\admin\school.js" />
@@ -463,6 +465,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\UpdateAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\User\SearchControl.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\User\SearchResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoadingView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

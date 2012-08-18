@@ -75,5 +75,19 @@ namespace WFS.Domain.Managers
             return resp;
         }
 
+        public UserSearchResponse GetUserSearchByNameAndFilter(UserSearchRequest request)
+        {
+            var response = new UserSearchResponse();
+
+            var query = new GetUsersBySearchCriteriaQuery(request.SearchText, request.RoleFilter);
+            var result = this._repository.ExecuteQuery(query);
+
+            response.Merge(result);
+
+            if (result.Status == Status.Success)
+                response.Values = result.Values;
+
+            return response;
+        }
     }
 }

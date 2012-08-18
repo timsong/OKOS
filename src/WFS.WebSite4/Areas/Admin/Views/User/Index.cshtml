@@ -1,6 +1,16 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
 
 <h2>Users</h2>
+		@{Html.RenderPartial("SearchControl", new WFS.WebSite4.Areas.Admin.Models.UserSearchModel());}
+        
+<div id="searchResults" class="">
+</div>
+
+
+@section scripts{
+	@System.Web.Optimization.Scripts.Render("~/bundles/admin/user")
+}

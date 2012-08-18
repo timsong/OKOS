@@ -78,11 +78,15 @@ h2 { color: Black !important; }
 
 .clear { clear: both;}
 
+.p_t2 {padding-top: 2px;} 
 .p_t5 {padding-top: 5px;} 
 .p_t10 {padding-top: 10px;} 
 .p_t20 {padding-top: 20px;} 
 .p_l10 {padding-left: 10px;} 
 .p_l20 {padding-left: 20px;} 
 
-
+.dropdownOverride 
+{
+	height: 32px;
+}
 	

@@ -27,6 +27,7 @@ namespace WFS.DataContext
         public decimal Cost { get; set; }
         public decimal Price { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         public virtual ICollection<FoodItemOption> FoodItemOptions { get; set; }
         public virtual Organization Organization { get; set; }

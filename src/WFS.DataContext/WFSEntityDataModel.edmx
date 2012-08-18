@@ -429,6 +429,7 @@
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="VendorMenu">
           <Key>
@@ -1351,6 +1352,7 @@
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_FoodOption_Vendor1" FromRole="VendorFoodOption" ToRole="Organization" />
           <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
           <NavigationProperty Name="OrderItemOptions" Relationship="WFSModel.FK_OrderItemOption_VendorFoodOption" FromRole="VendorFoodOption" ToRole="OrderItemOption" />
+          <Property Type="Boolean" Name="IsActive" />
         </EntityType>
         <EntityType Name="VendorMenu">
           <Key>
@@ -1959,6 +1961,7 @@
           <EntitySetMapping Name="VendorFoodOptions">
             <EntityTypeMapping TypeName="WFSModel.VendorFoodOption">
               <MappingFragment StoreEntitySet="VendorFoodOption">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
