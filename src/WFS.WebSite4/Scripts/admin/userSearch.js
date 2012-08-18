@@ -26,7 +26,6 @@
     };
 
 
-    $(document).foundationButtons();
     $(document).ready(function () {
     });
 
