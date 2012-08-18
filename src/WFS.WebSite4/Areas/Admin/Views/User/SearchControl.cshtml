@@ -1,0 +1,16 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.UserSearchModel
+
+<div class="row ">
+    <div class="eleven columns centered end">
+        <div class="six columns">
+            @Html.TextBoxFor(x => x.SearchProperty, new { placeholder = "Search First Name, Last Name or Email Address", @id="searchProperty" })
+        </div>
+        <div class="two columns">
+            @Html.DropDownListFor(x => x.SelectedRole, new SelectList(Model.Roles, "Value", "Text",
+                                                                  Model.Roles), new { @id = "ddlRoleChoice", @class = "small button dropdown" }) 
+        </div>
+        <div class="two columns p_t2">
+		    <a href="javascript:void(0)" msclick="usersearch.performSearch" class="button radius small p_t5">Search</a>
+	    </div>
+    </div>
+</div>
