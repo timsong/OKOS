@@ -8,9 +8,10 @@ namespace WFS.Contract.ReqResp
         public string UserName { get; set; }
     }
 
-    public class GetWfsUserInfoByMembershipIdRequest
+    public class GetWfsUserInfoByIdRequest
     {
-        public Guid MembershipId { get; set; }
+        public Guid? MembershipId { get; set; }
+        public int? UserId { get; set; }
     }
 
     public class GetWfsUserInfoResponse : Result<WFSUser>

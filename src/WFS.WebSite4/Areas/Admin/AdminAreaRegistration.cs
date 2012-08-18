@@ -126,6 +126,14 @@ namespace WFS.WebSite4.Areas.Admin
             context.MapRoute("admin.users.search",
                               "Admin/Users/Search/{searchText}/{filter}", new { controller = "User", action = "PerformSearch" });
 
+            context.MapRoute("admin.users.UserInfo",
+                             "Admin/Users/UserInfo/{userId}", new { controller = "User", action = "GetUserInfo" });
+
+            context.MapRoute("admin.users.UpdateUserInfo",
+                             "Admin/Users/UpdateUserInfo", new { controller = "User", action = "UpdateUserInfo" });
+
+            context.MapRoute("admin.users.UpdateUserBalance",
+                             "Admin/Users/UpdateUserBalance", new { controller = "User", action = "UpdateUserBalance" });
         }
     }
 }

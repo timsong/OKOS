@@ -1,39 +1,60 @@
 ﻿@model WFS.Contract.PhoneAddress
-    <fieldset>
-        <legend>Address & Contact Info</legend>
         <div class="row">
             <div class="twelve columns">
-                @Html.TextBoxFor(x => x.Address1, new { placeholder = "Address Line 1" })
+                Address Line 1
             </div>
         </div>
-        <br />
+        <div class="row">
+            <div class="twelve columns">
+                @Html.TextBoxFor(x => x.Address1)
+            </div>
+        </div>
+        <div class="row p_t5">
+            <div class="twelve columns">
+                Address Line 2
+            </div>
+        </div>
         <div class="row">
             <div class="twelve columns end">
-                @Html.TextBoxFor(x => x.Address2, new { placeholder = "Address Line 2" })
+                @Html.TextBoxFor(x => x.Address2)
             </div>
         </div>
-        <br />
-
-        <div class="row">
+        <div class="row p_t5">
             <div class="six columns">
-                @Html.TextBoxFor(x => x.City, new {placeholder = "City" })
+                City
             </div>
             <div class="three columns">
-                @Html.TextBoxFor(x => x.State, new {placeholder = "State" })
+                State
             </div>
             <div class="three columns">
-                @Html.TextBoxFor(x => x.ZipCode, new {placeholder = "Zip Code" })
+                Zip Code
             </div>
         </div>  
 
-        <br />
-
         <div class="row">
             <div class="six columns">
-                @Html.TextBoxFor(x => x.PhoneNumber, new {placeholder = "Phone Number" })
+                @Html.TextBoxFor(x => x.City)
+            </div>
+            <div class="three columns">
+                @Html.TextBoxFor(x => x.State)
+            </div>
+            <div class="three columns">
+                @Html.TextBoxFor(x => x.ZipCode)
+            </div>
+        </div>  
+        <div class="row p_t5">
+            <div class="six columns">
+                Phone Number
             </div>
             <div class="three columns end">
-                @Html.TextBoxFor(x => x.PhoneExt, new {placeholder = "Extension" })
+                Ext.
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                @Html.TextBoxFor(x => x.PhoneNumber)
+            </div>
+            <div class="three columns end">
+                @Html.TextBoxFor(x => x.PhoneExt)
             </div>
         </div>  
-    </fieldset>

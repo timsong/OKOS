@@ -26,14 +26,15 @@ namespace WFS.Repository.Conversions
 
         public static void ForUpdate(this WFSUser modified, WFSUser existing)
         {
-            existing.AvailableCredit = modified.AvailableCredit;
             existing.FirstName = modified.FirstName;
             existing.LastName = modified.LastName;
         }
 
-        public static void ForUpdateMembership(this C.WFSUser model, User existing)
+        public static void ForUpdateAccountCredits(this WFSUser modified, WFSUser existing)
         {
+            existing.AvailableCredit = modified.AvailableCredit;
         }
+
 
         public static C.WFSUser ToContract(this WFSUser data)
         {
@@ -53,6 +54,7 @@ namespace WFS.Repository.Conversions
 
             if (data.WFSUserAddress != null)
                 model.BillingAddress = data.WFSUserAddress.ToContract();
+
             return model;
         }
     }

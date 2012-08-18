@@ -18,13 +18,13 @@
                 <label class="right inline">First Name:</label>
             </div>
             <div class="four columns">
-                @Html.TextBoxFor(m => m.UserInfo.FirstName)
+                @Html.TextBoxFor(m => m.UserInfo.FirstName, new {@id="txtFirstName" })
             </div>
             <div class="two columns">
                 <label class="right inline">Last Name:</label>
             </div>
             <div class="four columns end">
-                @Html.TextBoxFor(m => m.UserInfo.LastName)
+                @Html.TextBoxFor(m => m.UserInfo.LastName, new { @id = "txtLastName" })
             </div>
         </div>
 

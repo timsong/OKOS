@@ -5,13 +5,15 @@ using C = WFS.Contract;
 
 namespace WFS.Repository.Queries
 {
-    public class GetWFSUserInfoByMembershipIdQuery : IQuery<C.WFSUser>
+    public class GetWFSUserInfoByIdQuery : IQuery<C.WFSUser>
     {
-        private readonly Guid _memId;
+        private readonly Guid? _memId;
+        private readonly int? _userId;
 
-        public GetWFSUserInfoByMembershipIdQuery(Guid membershipId)
+        public GetWFSUserInfoByIdQuery(Guid? membershipId, int? userId)
         {
             _memId = membershipId;
+            _userId = userId;
         }
 
         #region IQuery<C.WFSUser> Members
@@ -21,7 +23,7 @@ namespace WFS.Repository.Queries
             var ent = (WFS.DataContext.WFSEntities)dbContext;
             var data = (from x in ent.WFSUsers
                         join y in ent.Users on x.MembershipGuid equals y.UserId
-                        where y.UserId == _memId
+                        where (_memId.HasValue && y.UserId == _memId) || (_userId.HasValue && x.UserId == _userId)
                         select x).FirstOrDefault();
 
             if (data != null)

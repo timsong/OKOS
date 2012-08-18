@@ -28,7 +28,7 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
         public ActionResult Index()
         {
             var i = AuthenticatedUserId;
-            var resp = _wfsUserMgr.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
+            var resp = _wfsUserMgr.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { MembershipId = AuthenticatedMembershipId });
 
             var m = new OrderProfileViewModel()
             {

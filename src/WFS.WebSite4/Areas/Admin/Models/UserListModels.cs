@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using WFS.Contract;
+using WFS.Framework;
 
 namespace WFS.WebSite4.Areas.Admin.Models
 {
@@ -44,5 +46,10 @@ namespace WFS.WebSite4.Areas.Admin.Models
 
         public int UserId { get; set; }
         public Guid MembershipId { get; set; }
+    }
+
+    public class UserEditModel : EditModelBase<WFSUser>
+    {
+        public WFSUser UserInfo { get; set; }
     }
 }

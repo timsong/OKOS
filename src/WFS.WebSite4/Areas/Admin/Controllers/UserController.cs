@@ -3,9 +3,12 @@ using System.Web.Mvc;
 using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
+using WFS.Framework;
+using WFS.Framework.Extensions;
 using WFS.Framework.Responses;
 using WFS.WebSite4.Areas.Admin.Models;
 using WFS.WebSite4.Controllers;
+using WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
@@ -49,5 +52,52 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             return Json(uiresult, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetUserInfo(int userId)
+        {
+            var resp = _userManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { UserId = userId });
+
+            var m = new UserEditModel()
+            {
+                UserInfo = resp.Value
+            };
+
+            var uiresult = new UIResponse<UserEditModel>();
+            uiresult.Subject = m;
+            uiresult.HtmlResult = RenderPartialViewToString("UserInfo", m);
+            uiresult.Status = resp.Status;
+            return Json(uiresult, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserInfo(UserEditModel model)
+        {
+            var resp = _userManager.SaveCustomer(new SaveWFSUserRequest()
+            {
+                UserInfo = model.UserInfo
+            });
+
+
+            if (resp.Status == Status.Success)
+            {
+                var uiresponse = resp.ToUIResult<UserEditModel, WFSUser>(x => model, x => RenderPartialViewToString("UserInfo", x));
+                return Json(uiresponse);
+            }
+            else
+            {
+                var uiResp = resp.ToUIResult<UserEditModel, WFSUser>(x => model, x =>
+                {
+                    x.Merge(resp);
+                    return RenderPartialViewToString("UserInfo", model);
+                });
+                return Json(uiResp);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserBalance(UserEditModel model)
+        {
+            return null;
+        }
     }
 }

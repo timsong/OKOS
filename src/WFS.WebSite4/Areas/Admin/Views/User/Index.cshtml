@@ -4,11 +4,17 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
 }
 
-<h2>Users</h2>
+<h4>User Search</h4>
 		@{Html.RenderPartial("SearchControl", new WFS.WebSite4.Areas.Admin.Models.UserSearchModel());}
+
+
+<div id="modalEdit" class="reveal-modal largeReveal">
+</div>
+
         
 <div id="searchResults" class="">
 </div>
+
 
 
 @section scripts{

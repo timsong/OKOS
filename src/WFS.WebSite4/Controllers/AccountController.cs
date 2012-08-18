@@ -136,7 +136,7 @@ namespace WFS.WebSite4.Controllers
 
         public ActionResult UpdateAccount()
         {
-            var resp = _wfsUSerManager.GetWfsUserInfoByMembershipId(new GetWfsUserInfoByMembershipIdRequest() { MembershipId = AuthenticatedMembershipId });
+            var resp = _wfsUSerManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { MembershipId = AuthenticatedMembershipId });
 
             var m = new UpdateAccountModel()
             {   

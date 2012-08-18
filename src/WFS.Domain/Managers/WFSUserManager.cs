@@ -31,11 +31,11 @@ namespace WFS.Domain.Managers
             return response;
         }
 
-        public GetWfsUserInfoResponse GetWfsUserInfoByMembershipId(GetWfsUserInfoByMembershipIdRequest request)
+        public GetWfsUserInfoResponse GetWfsUserInfoById(GetWfsUserInfoByIdRequest request)
         {
             var response = new GetWfsUserInfoResponse();
 
-            var query = new GetWFSUserInfoByMembershipIdQuery(request.MembershipId);
+            var query = new GetWFSUserInfoByIdQuery(request.MembershipId, request.UserId);
             var result = this._repository.ExecuteQuery(query);
 
             response.Merge(result);
