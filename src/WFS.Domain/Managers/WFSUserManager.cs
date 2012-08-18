@@ -74,6 +74,21 @@ namespace WFS.Domain.Managers
 
             return resp;
         }
+        public SaveWFSUserResponse SaveUserAccountCredits(SaveWFSUserRequest request)
+        {
+            var resp = new SaveWFSUserResponse();
+
+            var userCommand = new SaveWfsUserAccountCreditCommand(request.UserInfo.UserId, request.UserInfo.AvailableCredit);
+            var userResponse = _repository.ExecuteCommand(userCommand);
+
+            resp.Merge<WFSUser, WFSUser>((Result<WFSUser>)userResponse);
+
+
+            if (resp.Status == Status.Success)
+                resp.UserInfo = userResponse.Value;
+
+            return resp;
+        }
 
         public UserSearchResponse GetUserSearchByNameAndFilter(UserSearchRequest request)
         {

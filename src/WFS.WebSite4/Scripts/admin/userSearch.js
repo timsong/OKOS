@@ -52,12 +52,29 @@
 				    }
 				}
             });
-
-
         }
 
         , updateAccountBalance: function (e) {
+            var msgs = { SUCCEED: 'The account balance has been updated.' }
+            var msgC = ms.message.get('balance', '#balanceMessagePanel', msgs);
 
+            var url = '/Admin/Users/UpdateUserBalance';
+            var data = $(balanceForm).serialize();
+
+            ms.ajax.send({
+                url: url
+				, type: 'POST'
+				, data: data
+				, successHandler: function (data) {
+				    if (data.Status != 2) {
+				        msgC.sendError(data.Status, data);
+				        ms.ml.html('#modalEdit', data.HtmlResult);
+				    }
+				    else {
+				        msgC.sendInfo(msgC.msgs.SUCCEED);
+				    }
+				}
+            });
         }
     };
 

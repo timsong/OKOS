@@ -1,20 +1,24 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.SearchResultsViewModel
 
-@foreach (var x in Model.Results)
-{
-    <div class="row p_t5">
-        <div class="three columns">
-            @Html.Label(x.DisplayName, new {@class="p_t5"})
-        </div>
-        <div class="three columns">
-            @Html.Label(x.EmailAddress, new {@class="p_t5"})
-        </div>
-        <div class="three columns">
-            @Html.Label(x.AccountType, new { @class = "p_t5" })
-        </div>
-        <div class="three columns end">
-		    <a href="javascript:void(0)" msclick="usersearch.getDetails" data-id="@x.UserId" class="button radius small">Edit</a>
-		    <a href="javascript:void(0)" msclick="usersearch.loginAs" data-id="@x.UserId" class="button radius small">Login As</a>
-        </div>
-    </div>    
-}
+
+<div class="panel">
+    <h5>Search Results</h5>
+    @foreach (var x in Model.Results)
+    {
+        <div class="row p_t5">
+            <div class="three columns">
+                @Html.Label(x.DisplayName, new {@class="p_t5"})
+            </div>
+            <div class="three columns">
+                @Html.Label(x.EmailAddress, new {@class="p_t5"})
+            </div>
+            <div class="three columns">
+                @Html.Label(x.AccountType, new { @class = "p_t5" })
+            </div>
+            <div class="three columns end">
+		        <a href="javascript:void(0)" msclick="usersearch.getDetails" data-id="@x.UserId" class="button radius small">Edit</a>
+		        <a href="javascript:void(0)" msclick="usersearch.loginAs" data-id="@x.UserId" class="button radius small">Login As</a>
+            </div>
+        </div>    
+    }
+</div>

@@ -30,12 +30,6 @@ namespace WFS.Repository.Conversions
             existing.LastName = modified.LastName;
         }
 
-        public static void ForUpdateAccountCredits(this WFSUser modified, WFSUser existing)
-        {
-            existing.AvailableCredit = modified.AvailableCredit;
-        }
-
-
         public static C.WFSUser ToContract(this WFSUser data)
         {
             if (data == null)
