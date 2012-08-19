@@ -54,8 +54,8 @@ namespace WFS.WebSite4.Controllers
                 var myCookie = System.Web.HttpContext.Current.Request.Cookies[cookieName];
 
                 if (myCookie == null)
-                    RedirectToRoute("LogOff"); 
-                
+                    RedirectToRoute("LogOff");
+
                 var g = new Guid(myCookie.Values["MembershipId"]);
 
                 return g;

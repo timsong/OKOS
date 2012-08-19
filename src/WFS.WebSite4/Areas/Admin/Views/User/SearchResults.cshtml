@@ -7,13 +7,13 @@
     {
         <div class="row p_t5">
             <div class="three columns">
-                @Html.Label(x.DisplayName, new {@class="p_t5"})
+               <label class="inline">@x.DisplayName</label>
             </div>
             <div class="three columns">
-                @Html.Label(x.EmailAddress, new {@class="p_t5"})
+                <label class="inline">@x.EmailAddress</label>
             </div>
             <div class="three columns">
-                @Html.Label(x.AccountType, new { @class = "p_t5" })
+                <label class="inline">@x.AccountType</label>
             </div>
             <div class="three columns end">
 		        <a href="javascript:void(0)" msclick="usersearch.getDetails" data-id="@x.UserId" class="button radius small">Edit</a>

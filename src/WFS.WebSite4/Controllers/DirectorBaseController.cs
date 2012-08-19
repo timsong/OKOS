@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using WFS.Contract.Enums;
+using WFS.Contract.ReqResp;
+using WFS.Domain.Managers;
 
 namespace WFS.WebSite4.Controllers
 {
@@ -14,8 +16,11 @@ namespace WFS.WebSite4.Controllers
 
             if (this.HttpContext.Request.IsAuthenticated)
             {
-                var roles = Roles.GetRolesForUser(User.Identity.Name);
-                var mem = Membership.GetUser(User.Identity.Name);
+
+                WFSUserManager _userManager = new WFSUserManager(new WFS.Repository.WFSRepository((DbContext)new WFS.DataContext.WFSEntities()));
+                var resp = _userManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { UserId = AuthenticatedUserId });
+
+                var roles = Roles.GetRolesForUser(resp.Value.EmailAddress);
 
                 var role = roles.FirstOrDefault();
 
@@ -27,9 +32,6 @@ namespace WFS.WebSite4.Controllers
                     var context = new RequestContext(filterContext.HttpContext, filterContext.RouteData);
 
                     var url = string.Format("/{0}/Dashboard", roles.First());
-
-                    //if (role == WFSRoleEnum.Customer.ToString())
-                    //    url += "/" + mem.ProviderUserKey.ToString();
 
                     context.HttpContext.Response.Redirect(url, true);
                 }

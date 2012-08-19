@@ -89,6 +89,9 @@ namespace WFS.WebSite4.Areas.Admin
                 "Admin/Vendors/AddVendor",
                 new { controller = "Vendor", action = "AddVendor" }
             );
+
+            context.MapRoute("admin.LoginAs",
+                             "Admin/LoginAs/{userId}", new { controller = "LoginAs", action = "LoginAs" });
         }
 
         private void MapSchoolRoutes(AreaRegistrationContext context)

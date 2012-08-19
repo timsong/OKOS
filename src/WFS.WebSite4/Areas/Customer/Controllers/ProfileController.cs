@@ -12,6 +12,7 @@ using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Customer.Controllers
 {
+    [RoleAuthorize(WFSRoleEnum.Customer, WFSRoleEnum.Admin, WFSRoleEnum.AccountManager, WFSRoleEnum.SystemAdmin)]
     public class ProfileController : BaseController
     {
         private readonly WFSUserManager _wfsUserMgr;
@@ -167,7 +168,7 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
                 var uiResp = resp.ToUIResult<OrderProfileAddEditModel, OrderProfile>(x => new OrderProfileAddEditModel(model.Profile), x =>
                     {
                         x.Merge(resp);
-                        return  (x.Profile.OrderProfileId > 0) ?  RenderPartialViewToString("EditProfile", model):   RenderPartialViewToString("AddProfile", model);
+                        return (x.Profile.OrderProfileId > 0) ? RenderPartialViewToString("EditProfile", model) : RenderPartialViewToString("AddProfile", model);
                     });
                 return Json(uiResp);
             }

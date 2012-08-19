@@ -143,6 +143,7 @@
     <Compile Include="Areas\Admin\Controllers\FoodOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginAsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />

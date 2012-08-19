@@ -139,8 +139,8 @@ namespace WFS.WebSite4.Controllers
             var resp = _wfsUSerManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { MembershipId = AuthenticatedMembershipId });
 
             var m = new UpdateAccountModel()
-            {   
-                 UserInfo = resp.Value
+            {
+                UserInfo = resp.Value
             };
 
             m.Merge(resp);
@@ -154,7 +154,6 @@ namespace WFS.WebSite4.Controllers
             {
                 UserInfo = model.UserInfo
             });
-
 
             if (resp.Status == Status.Success)
             {

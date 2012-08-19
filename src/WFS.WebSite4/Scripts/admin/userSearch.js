@@ -27,12 +27,14 @@
         }
 
         , loginAs: function (e) {
-            alert('Login As Clicked');
-            //set cookies, roles, and login as person and redirect to dashbaord
+            var id = $(this).attr('data-id');
+            var url = '/Admin/LoginAs/{userId}'.bind({ userId: id });
+
+            document.location(url);
         }
 
         , updateAccountInfo: function (e) {
-            var msgs = { SUCCEED: 'The account updated successfully.'}
+            var msgs = { SUCCEED: 'The account updated successfully.' }
             var msgC = ms.message.get('update', '#infoMessagePanel', msgs);
 
             var url = '/Admin/Users/UpdateUserInfo';
