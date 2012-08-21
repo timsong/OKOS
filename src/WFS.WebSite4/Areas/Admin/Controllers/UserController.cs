@@ -12,7 +12,7 @@ using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin)]
+    [RoleAuthorize(WFSRoleEnum.Admin)]
     public class UserController : BaseController
     {
         private readonly WFSUserManager _userManager;

@@ -14,25 +14,20 @@ namespace WFS.WebSite4.Controllers
         {
             base.OnActionExecuted(filterContext);
 
-            if (this.HttpContext.Request.IsAuthenticated)
+            if (this.HttpContext.Request.IsAuthenticated && AuthenticatedUserId > 0)
             {
-
-                WFSUserManager _userManager = new WFSUserManager(new WFS.Repository.WFSRepository((DbContext)new WFS.DataContext.WFSEntities()));
+                var _userManager = new WFSUserManager(new WFS.Repository.WFSRepository((DbContext)new WFS.DataContext.WFSEntities()));
                 var resp = _userManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { UserId = AuthenticatedUserId });
 
-                var roles = Roles.GetRolesForUser(resp.Value.EmailAddress);
-
+                var roles = Roles.GetRolesForUser(resp.Value.Username);
                 var role = roles.FirstOrDefault();
 
                 if (role != null)
                 {
-
-                    string routeName = string.Format("{0}.dashboard", role);
+                    var routeName = string.Format("{0}.dashboard", role);
+                    var url = string.Format("/{0}/Dashboard", role);
 
                     var context = new RequestContext(filterContext.HttpContext, filterContext.RouteData);
-
-                    var url = string.Format("/{0}/Dashboard", roles.First());
-
                     context.HttpContext.Response.Redirect(url, true);
                 }
 

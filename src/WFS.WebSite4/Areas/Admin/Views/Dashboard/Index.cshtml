@@ -5,7 +5,10 @@
 
 <h2>admin dashboard</h2>
 
-<div id="ticketList"></div>
+<div id="ticketList">
+    @{Html.RenderPartial("LoadingView");}
+</div>
+
 <div id="resolveTicketModal" class="largeReveal reveal-modal"></div>
 
 

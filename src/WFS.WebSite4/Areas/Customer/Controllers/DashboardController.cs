@@ -4,7 +4,7 @@ using WFS.Contract.Enums;
 
 namespace WFS.WebSite4.Areas.Customer.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Customer, WFSRoleEnum.Admin, WFSRoleEnum.AccountManager, WFSRoleEnum.SystemAdmin)]
+    [RoleAuthorize(WFSRoleEnum.Customer, WFSRoleEnum.Admin, WFSRoleEnum.AccountManager)]
     public class DashboardController : BaseController
     {
         public ActionResult Index()

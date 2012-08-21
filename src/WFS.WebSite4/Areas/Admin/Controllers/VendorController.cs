@@ -10,7 +10,7 @@ using C = WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(C.Enums.WFSRoleEnum.Admin, C.Enums.WFSRoleEnum.SystemAdmin)]
+    [RoleAuthorize(C.Enums.WFSRoleEnum.Admin)]
     public class VendorController : BaseController
     {
         #region cstor const managers
@@ -89,7 +89,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Save(C.Vendor model)
         {
-            model.User.UserType = C.Enums.WFSUserTypeEnum.Vendor;
+            model.User.UserType = C.Enums.WFSUserTypeEnum.VendorAdmin;
             var resp = _vendorMgr.SaveVendor(new C.ReqResp.SaveVendorRequest() { Subject = model });
 
             if (resp.Status == Status.Success)

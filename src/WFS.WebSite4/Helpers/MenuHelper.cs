@@ -3,17 +3,18 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Security;
+using WFS.Contract.Enums;
 namespace WFS.WebSite.Helpers
 {
     public enum RouteAccessType
     {
         NonAuth, Auth, All
     }
-    [Flags]
-    public enum UserType
-    {
-        Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16, VendorAdmin = 0x32, Customer = 0x64
-    }
+    //[Flags]
+    //public enum UserType
+    //{
+    //    Unknown = 0x0, Admin = 0x1, SystemAdmin= 0x2, Vendor = 0x4, School = 0x8, Parent = 0x16, VendorAdmin = 0x32, Customer = 0x64
+    //}
 
     public class RouteInfo
     {
@@ -35,7 +36,7 @@ namespace WFS.WebSite.Helpers
         public bool ExactMatch { get; set; }
         public string RouteMatchClass { get; set; }
         public RouteAccessType AccessType { get; set; }
-        public UserType UserType { get; set; }
+        public WFSUserTypeEnum UserType { get; set; }
 
         //public bool ActiveOrganizationOnly { get; set; }
 
@@ -82,9 +83,9 @@ namespace WFS.WebSite.Helpers
             {
                 foreach (string role in Roles.GetRolesForUser())
                 {
-                    var userType = (UserType)Enum.Parse(typeof(UserType), role);
+                    var userType = (WFSUserTypeEnum)Enum.Parse(typeof(WFSUserTypeEnum), role);
                     if (isNotAuthType)
-                        isNotAuthType = !(((routeInfo.UserType & userType) == userType) && routeInfo.AccessType == RouteAccessType.Auth);
+                        isNotAuthType = !((routeInfo.UserType == userType) && routeInfo.AccessType == RouteAccessType.Auth);
                 }
             }
             else

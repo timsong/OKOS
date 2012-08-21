@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin, WFSRoleEnum.AccountManager)]
+    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.AccountManager)]
     public class LoginAsController : BaseController
     {
         private readonly WFSUserManager _userManager;
@@ -44,14 +44,12 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             {
                 case WFSUserTypeEnum.Admin:
                     break;
-                case WFSUserTypeEnum.Vendor:
+                case WFSUserTypeEnum.VendorAdmin:
                     break;
-                case WFSUserTypeEnum.Store:
+                case WFSUserTypeEnum.StoreAdmin:
                     break;
                 case WFSUserTypeEnum.Customer:
                     return RedirectToRoute("Home");
-                case WFSUserTypeEnum.General:
-                    break;
                 default:
                     break;
             }

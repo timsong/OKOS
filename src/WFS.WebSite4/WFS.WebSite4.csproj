@@ -162,6 +162,10 @@
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
     <Compile Include="Areas\Customer\Models\OrderProfileAddEditModel.cs" />
     <Compile Include="Areas\Customer\Models\OrderProfileViewModel.cs" />
+    <Compile Include="Areas\SchoolAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\SchoolAdmin\SchoolAdminAreaRegistration.cs" />
+    <Compile Include="Areas\StoreAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\StoreAdmin\StoreAdminAreaRegistration.cs" />
     <Compile Include="Areas\VendorAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\VendorAdmin\VendorAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -220,12 +224,12 @@
     <Content Include="Error.htm" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\foundation\left-arrow.png" />
-    <Content Include="Images\foundation\mask-black.png" />
-    <Content Include="Images\foundation\pause-black.png" />
-    <Content Include="Images\foundation\right-arrow.png" />
-    <Content Include="Images\foundation\rotator-black.png" />
-    <Content Include="Images\foundation\timer-black.png" />
+    <Content Include="Content\images\foundation\left-arrow.png" />
+    <Content Include="Content\images\foundation\mask-black.png" />
+    <Content Include="Content\images\foundation\pause-black.png" />
+    <Content Include="Content\images\foundation\right-arrow.png" />
+    <Content Include="Content\images\foundation\rotator-black.png" />
+    <Content Include="Content\images\foundation\timer-black.png" />
     <Content Include="Scripts\admin\userSearch.js" />
     <Content Include="Scripts\customer\customerprofile.js" />
     <Content Include="Scripts\admin\dashboard.js" />
@@ -265,25 +269,25 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\aspNetHome.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\facebook.png" />
-    <Content Include="Images\findHosting.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\NuGetGallery.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
-    <Content Include="Images\twitter.png" />
-    <Content Include="Images\windowsLive.png" />
+    <Content Include="-OLD\accent.png" />
+    <Content Include="-OLD\aspNetHome.png" />
+    <Content Include="-OLD\bullet.png" />
+    <Content Include="-OLD\facebook.png" />
+    <Content Include="-OLD\findHosting.png" />
+    <Content Include="-OLD\heroAccent.png" />
+    <Content Include="-OLD\NuGetGallery.png" />
+    <Content Include="-OLD\orderedList0.png" />
+    <Content Include="-OLD\orderedList1.png" />
+    <Content Include="-OLD\orderedList2.png" />
+    <Content Include="-OLD\orderedList3.png" />
+    <Content Include="-OLD\orderedList4.png" />
+    <Content Include="-OLD\orderedList5.png" />
+    <Content Include="-OLD\orderedList6.png" />
+    <Content Include="-OLD\orderedList7.png" />
+    <Content Include="-OLD\orderedList8.png" />
+    <Content Include="-OLD\orderedList9.png" />
+    <Content Include="-OLD\twitter.png" />
+    <Content Include="-OLD\windowsLive.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -295,6 +299,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\SchoolAdmin\Models\" />
+    <Folder Include="Areas\StoreAdmin\Models\" />
     <Folder Include="Areas\VendorAdmin\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -478,6 +484,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\User\UserInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\StoreAdmin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\StoreAdmin\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\StoreAdmin\Views\Shared\_LayoutPageStoreAdmin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\SchoolAdmin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\SchoolAdmin\Views\Shared\_LayourPageSchoolAdmin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\SchoolAdmin\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

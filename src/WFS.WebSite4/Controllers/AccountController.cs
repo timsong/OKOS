@@ -57,9 +57,29 @@ namespace WFS.WebSite4.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            var adminCookie = System.Web.HttpContext.Current.Request.Cookies["adminAuthCookie"];
 
-            return RedirectToAction("Index", "Home");
+            if (adminCookie != null)
+            {
+                var id = Convert.ToInt32(adminCookie.Values["UserId"]);
+                var guid = new Guid(adminCookie.Values["MembershipId"]);
+                FormsAuthentication.SignOut();
+
+                var resp = _wfsUSerManager.GetWfsUserInfoById(new GetWfsUserInfoByIdRequest() { UserId = id });
+
+                AddAuthCookie(id, guid);
+
+                System.Web.HttpContext.Current.Response.Cookies["adminAuthCookie"].Value = null;
+                System.Web.HttpContext.Current.Response.Cookies["adminAuthCookie"].Expires = DateTime.Now.AddMonths(-1);
+
+                FormsAuthentication.SetAuthCookie(resp.Value.Username, true);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
         }
         #endregion
 

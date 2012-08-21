@@ -10,7 +10,7 @@ using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin)]
+    [RoleAuthorize(WFSRoleEnum.Admin)]
 	public class SchoolController : BaseController
     {
         private readonly SchoolManager _schoolMgr;
@@ -58,12 +58,11 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(School model)
         {
+            model.User.UserType = WFSUserTypeEnum.SchoolAdmin;
             var response = this._schoolMgr.CreateSchool(new CreateSchoolRequest() { School = model });
 
             if (response.Status == Status.Success)
-            {
                 return RedirectToRoute("admin.school.view", new { schoolId = response.Value.OrganizationId });
-            }
             else
             {
                 var viewModel = new SchoolAddEditModel(model);

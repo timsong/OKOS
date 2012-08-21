@@ -18,7 +18,6 @@ namespace WFS.Repository.Conversions
                 UserId = model.UserId,
                 UserType = model.UserType.ToString(),
                 AvailableCredit = model.AvailableCredit
-                // , WFSUserAddress = model.WFSUserAddress TODO
             };
 
             return data;
@@ -42,6 +41,7 @@ namespace WFS.Repository.Conversions
                 AvailableCredit = data.AvailableCredit,
                 MembershipGuid = data.MembershipGuid,
                 EmailAddress = data.User.Membership.Email,
+                Username = data.User.UserName,
                 UserId = data.UserId,
                 UserType = (WFSUserTypeEnum)Enum.Parse(typeof(WFSUserTypeEnum), data.UserType),
             };

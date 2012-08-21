@@ -114,7 +114,7 @@ namespace WFS.WebSite4.Controllers
         }
 
         [HttpPost]
-        [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.SystemAdmin, WFSRoleEnum.AccountManager)]
+        [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.AccountManager)]
         public ActionResult ResolveTicket(SupportTicketEditModel model)
         {
             var userResp = _wfsUserMgr.GetWfsUserInfoByUserName(new GetWfsUserInfoByUserNameRequest() { UserName = User.Identity.Name });
