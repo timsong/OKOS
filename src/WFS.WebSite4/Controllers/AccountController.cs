@@ -129,7 +129,6 @@ namespace WFS.WebSite4.Controllers
 
                 if (resp.Status == Status.Success)
                 {
-                    Roles.AddUserToRole(model.Email, WFSRoleEnum.Customer.ToString());
                     FormsAuthentication.SetAuthCookie(model.Email, createPersistentCookie: false);
 
                     AddAuthCookie(resp.UserInfo.UserId, resp.UserInfo.MembershipGuid);

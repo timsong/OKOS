@@ -10,7 +10,7 @@ using C = WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(C.Enums.WFSRoleEnum.Admin)]
+    [RoleAuthorize(C.Enums.WFSUserTypeEnum.Admin)]
     public class VendorController : BaseController
     {
         #region cstor const managers

@@ -137,6 +137,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Areas\AccountManager\AccountManagerAreaRegistration.cs" />
+    <Compile Include="Areas\AccountManager\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodItemController.cs" />
@@ -299,6 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AccountManager\Models\" />
     <Folder Include="Areas\SchoolAdmin\Models\" />
     <Folder Include="Areas\StoreAdmin\Models\" />
     <Folder Include="Areas\VendorAdmin\Models\" />
@@ -498,10 +501,19 @@
     <Content Include="Areas\SchoolAdmin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\SchoolAdmin\Views\Shared\_LayourPageSchoolAdmin.cshtml" />
+    <Content Include="Areas\SchoolAdmin\Views\Shared\_LayoutPageSchoolAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\SchoolAdmin\Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\AccountManager\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\AccountManager\Views\Shared\_LayoutPageAccountManager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\AccountManager\Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

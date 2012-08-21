@@ -5,7 +5,7 @@ namespace WFS.WebSite4
 {
     public class RoleAuthorize : AuthorizeAttribute
     {
-        public RoleAuthorize(params WFSRoleEnum[] DomainRoles)
+        public RoleAuthorize(params WFSUserTypeEnum[] DomainRoles)
         {
             foreach (var domainRole in DomainRoles)
             {

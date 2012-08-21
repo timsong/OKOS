@@ -1,14 +1,14 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
 using WFS.Domain.Managers;
 using WFS.WebSite4.Controllers;
-using System.Web.Security;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin, WFSRoleEnum.AccountManager)]
+    [RoleAuthorize(WFSUserTypeEnum.Admin, WFSUserTypeEnum.AccountManager)]
     public class LoginAsController : BaseController
     {
         private readonly WFSUserManager _userManager;
@@ -40,21 +40,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
             FormsAuthentication.SetAuthCookie(resp.Value.EmailAddress, false);
 
-            switch (resp.Value.UserType)
-            {
-                case WFSUserTypeEnum.Admin:
-                    break;
-                case WFSUserTypeEnum.VendorAdmin:
-                    break;
-                case WFSUserTypeEnum.StoreAdmin:
-                    break;
-                case WFSUserTypeEnum.Customer:
-                    return RedirectToRoute("Home");
-                default:
-                    break;
-            }
-
-            return null;
+            return RedirectToRoute("Home");
         }
 
     }

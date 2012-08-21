@@ -8,8 +8,13 @@
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Users", RouteName = "admin.users", UserType = WFSUserTypeEnum.Admin })
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Reports", RouteName = "admin.reports", UserType = WFSUserTypeEnum.Admin })
 	
+	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "accountmanager.dashboard", UserType = WFSUserTypeEnum.AccountManager })
+
     @Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "vendoradmin.dashboard", UserType = WFSUserTypeEnum.VendorAdmin })
-    @Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "storeadmin.dashboard", UserType = WFSUserTypeEnum.SchoolAdmin })
+
+    @Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "storeadmin.dashboard", UserType = WFSUserTypeEnum.StoreAdmin })
+
+    @Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "schooladmin.dashboard", UserType = WFSUserTypeEnum.SchoolAdmin })
 
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Home", RouteName = "Customer.Dashboard", UserType = WFSUserTypeEnum.Customer })
 	@Html.RouteLinkExists(new RouteInfo() { AccessType = RouteAccessType.Auth, ExactMatch = true, LinkText = "Profiles", RouteName = "Customer.Profile.Index", UserType = WFSUserTypeEnum.Customer })

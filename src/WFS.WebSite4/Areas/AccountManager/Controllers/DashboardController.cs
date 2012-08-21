@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WFS.WebSite4.Controllers;
-using WFS.Contract.Enums;
 
-namespace WFS.WebSite4.Areas.Admin.Controllers
+namespace WFS.WebSite4.Areas.AccountManager.Controllers
 {
-    [RoleAuthorize(WFSUserTypeEnum.Admin)]
-	public class ReportController : BaseController
+    public class DashboardController : Controller
     {
+        //
+        // GET: /AccountManager/Dashboard/
+
         public ActionResult Index()
         {
             return View();

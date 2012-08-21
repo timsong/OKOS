@@ -13,7 +13,7 @@ using WFS.Contract;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin)]
+    [RoleAuthorize(WFSUserTypeEnum.Admin)]
     public class FoodOptionController : BaseController
     {
         private readonly VendorManager _vendorMgr;

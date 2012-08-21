@@ -7,6 +7,7 @@ using WFS.DataContext;
 using WFS.Framework.Extensions;
 using WFS.Contract.ReqResp;
 using S = System.Web.Security;
+using System.Web.Security;
 namespace WFS.Repository.Commands
 {
     public class SaveWFSUserCommand : ICommand<C.WFSUser>
@@ -31,11 +32,11 @@ namespace WFS.Repository.Commands
 			if (status != S.MembershipCreateStatus.Success)
 			{
 				response.Status = Status.Error;
-
 				response.Messages.Add(new Message("CREATEUSERERROR", status.TranslateMessage()));
-
 				return false;
 			}
+
+            Roles.AddUserToRole(_user.EmailAddress, _user.UserType.ToString());
 
 			_user.MembershipGuid = (Guid)membership.ProviderUserKey;
 			

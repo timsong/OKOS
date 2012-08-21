@@ -10,7 +10,7 @@ using WFS.WebSite4.Controllers;
 
 namespace WFS.WebSite4.Areas.Admin.Controllers
 {
-    [RoleAuthorize(WFSRoleEnum.Admin)]
+    [RoleAuthorize(WFSUserTypeEnum.Admin)]
 	public class SchoolController : BaseController
     {
         private readonly SchoolManager _schoolMgr;

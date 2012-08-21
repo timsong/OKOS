@@ -14,7 +14,7 @@ namespace WFS.WebSite4.Areas.VendorAdmin
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            context.MapRoute("VendorAdmin.dashboard", "VendorAdmin_default/Dashboard", new { controller = "Dashboard", action = "Index" });
+            context.MapRoute("VendorAdmin.dashboard", "VendorAdmin/Dashboard", new { controller = "Dashboard", action = "Index" });
 
             context.MapRoute(
                 "VendorAdmin.default",
