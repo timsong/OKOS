@@ -18,7 +18,21 @@
 		<a href="/Admin/schools" class="button radius small">Back</a>
 	</div>
 </div>
+
+<fieldset>
+    <legend>Additional Info</legend>
+    <div class="row">
+        <div class="two columns">
+            <label class="right inline">Delivery Time:</label>
+        </div>
+        <div class="two columns end">
+            <label class="inline">@Model.School.DeliveryTime.ToString()</label>
+        </div>
+    </div>
+</fieldset>
+
 <dl class="tabs contained">  
+
 	<dd class="active"><a href="#gradesPanel">Grades</a></dd>
 	<dd><a href="#teachersPanel">Teachers</a></dd>
 	<dd><a href="#lunchPeriodPanel">Lunch Periods</a></dd>
@@ -26,7 +40,7 @@
 </dl>
 <ul class="tabs-content contained">
 	<li class="active" id="gradesPanelTab">
-        <a href="#" title="Add Grades" a>Add Grade</a>
+        <a href="#" title="Add Grades">Add Grade</a>
 	</li>
 	<li id="teachersPanelTab">
         <a href="#" title="Add Teachers">Add Teacher</a>
@@ -41,4 +55,5 @@
 <div id="modalEdit" class="reveal-modal"></div>
 @section Scripts {
     @System.Web.Optimization.Scripts.Render("~/bundles/admin")
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
 }

@@ -25,7 +25,7 @@ namespace WFS.Repository.Commands.School
             {
                 if (_School.OrganizationId > 0)
                 {
-                    var org = context.Organizations.FirstOrDefault(x => x.OrganizationId.Equals(_School.OrganizationId));
+                    var org = context.Schools.FirstOrDefault(x => x.SchoolId.Equals(_School.OrganizationId));
 
                     org.ForUpdate(_School);
 
@@ -36,9 +36,8 @@ namespace WFS.Repository.Commands.School
                 else
                 {
                     var org = _School.ToDataModel();
-                    org.School = new DataContext.School();
 
-                    context.Organizations.Add(org);
+                    context.Schools.Add(org);
                     dbContext.SaveChanges();
 
                     result.Value = (C.School)org.ToContract();

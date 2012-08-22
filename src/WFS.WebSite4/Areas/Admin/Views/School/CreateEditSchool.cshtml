@@ -12,20 +12,10 @@
 <div id="schoolMessagePanel"></div>
 
 <form id="schoolEditForm" method="post">
-    @Html.Hidden("OrganizationId", Model.School.OrganizationId)
-    @Html.Hidden("User.UserId", Model.School.User.UserId)
-    @Html.Hidden("User.MembershipGuid", Model.School.User.MembershipGuid)
-    @Html.Hidden("User.MembershipGuid", WFS.Contract.Enums.WFSUserTypeEnum.VendorAdmin)
-    @Html.Hidden("User.AvailableCredit", Model.School.User.AvailableCredit)
-	@if (Model.Status != WFS.Status.Success)
- {
-	<div class="alert-box alert round">
-		@foreach (var msg in Model.Messages)
-  {
-		<div>@msg.Text</div>
-  }
-	</div>
- }
+    @Html.HiddenFor(x => x.School.OrganizationId)
+    @Html.HiddenFor(x => x.School.User.UserId)
+    @Html.HiddenFor(x => x.School.User.MembershipGuid)
+
 	<div class="panel">
 		<div class="row">
 			<div class="twelve columns">
@@ -34,27 +24,26 @@
 						<label class="right inline">School Name:</label>
 					</div>
 					<div class="eight columns end">
-						@Html.TextBox("Name", Model.School.Name)
+						@Html.TextBoxFor(x => x.School.Name)
 					</div>
 				</div>
-				<div class="row">
+				<div class="row p_t10">
 					<div class="three columns">
 						<label class="right inline">Contact Name:</label>
 					</div>
 					<div class="four columns">
-						@Html.TextBox("User.FirstName", Model.School.User.FirstName, new { placeholder = "First Name" })
+						@Html.TextBoxFor(x => x.School.User.FirstName, new { placeholder = "First Name" })
 					</div>
 					<div class="four columns end">
-						@Html.TextBox("User.LastName", Model.School.User.LastName, new { placeholder = "Last Name" })
+						@Html.TextBoxFor(x => x.School.User.LastName, new { placeholder = "Last Name" })
 					</div>
 				</div>
-				<br />
-				<div class="row">
+				<div class="row p_t10">
 					<div class="three columns">
 						<label class="right inline">Contact Email:</label>
 					</div>
 					<div class="eight columns end">
-						@Html.TextBox("User.EmailAddress", Model.School.User.EmailAddress, new { placeholder = "Contact Email Address" })
+						@Html.TextBoxFor(x => x.School.User.EmailAddress, new { placeholder = "Contact Email Address" })
 					</div>
 				</div>
 				<div class="row @(Model.School.OrganizationId <= 0 ? string.Empty : "hide")">
@@ -62,7 +51,7 @@
 						<label class="right inline">Enter Password</label>
 					</div>
 					<div class="five columns end">
-						@Html.Password("User.Password")
+						@Html.PasswordFor(x => x.Password)
 					</div>
 				</div>
 				<div class="row @(Model.School.OrganizationId <= 0 ? string.Empty : "hide")">
@@ -70,13 +59,30 @@
 						<label class="right inline">Re-enter Password</label>
 					</div>
 					<div class="five columns end">
-						@Html.Password("User.Repassword")
+						@Html.PasswordFor(x => x.ConfirmPassword)
 					</div>
 				</div>
 
-				@{Html.RenderPartial("AddressInfo",
-                        Model.School.AddressInfo, 
-						new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "AddressInfo" } });}
+                <fieldset class="p_t10 p_b10">
+                    <legend>Additional Info</legend>
+                    <div class="row">
+                        <div class="four columns">
+                            <label class="inline">Delivery Time:</label>
+                        </div>
+                        <div class="three columns end">
+                            @Html.TextBoxFor(x => x.DeliveryTime, new {@id="deliveryTime" })
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+                <fieldset class="p_t10 p_b10">
+                    <legend>Contact Info</legend>
+				    @{Html.RenderPartial("AddressInfo",
+                            Model.School.AddressInfo, 
+						    new ViewDataDictionary(Html.ViewDataContainer.ViewData) { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "School.AddressInfo" } });}
+                </fieldset>
 			</div>
 		</div>
 	</div>

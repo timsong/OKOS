@@ -5,7 +5,7 @@
         <label class="p_t5">Choose your school:</label>
     </div>
     <div class="eight columns">
-       @Html.DropDownListFor(x => x.Profile.OrganizationId, new SelectList(Model.Schools, "Value", "Text",
+       @Html.DropDownListFor(x => x.Profile.SchoolId, new SelectList(Model.Schools, "Value", "Text",
                                                          Model.Schools), new { @id = "ddlSchoolChoice" }) 
     </div>
 </div>

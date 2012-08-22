@@ -10,6 +10,14 @@
 						, closeOnBackgroundClick: true
 						, dismissModalClass: 'close-reveal-modal'
 				    });
+				    $('#deliveryTime').timepicker({
+                        hours: { starts: 6, ends: 19 },
+                        minutes: { interval: 15 },
+                        rows: 3,
+                        showPeriod: true,
+                        showPeriodLabels: true,
+                        minuteText: 'Min'
+                    });
 				}
             });
         }

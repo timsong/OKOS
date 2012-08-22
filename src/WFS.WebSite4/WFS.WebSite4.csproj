@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="Areas\VendorAdmin\Views\Web.config" />
     <Content Include="Content\images\WFSLogo.png" />
+    <Content Include="Content\themes\base\jquery.ui.timepicker.css" />
     <Content Include="Content\old.Site.css" />
     <Content Include="Content\foundation.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -246,6 +247,7 @@
     <Content Include="Scripts\jquery-1.6.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui.timepicker.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />

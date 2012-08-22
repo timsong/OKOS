@@ -220,7 +220,6 @@
           </Key>
           <Property Name="GradeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Description" Type="nvarchar" MaxLength="512" />
           <Property Name="Order" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LunchPeriods">
@@ -1547,7 +1546,6 @@
           </Key>
           <Property Type="Int32" Name="GradeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Order" Nullable="false" />
           <NavigationProperty Name="SchoolGrades" Relationship="WFSModel.FK_SchoolGrades_Grades" FromRole="Grade" ToRole="SchoolGrade" />
         </EntityType>
@@ -1778,7 +1776,7 @@
             <PropertyRef Name="SchoolId" />
           </Key>
           <Property Type="Int32" Name="SchoolId" Nullable="false" />
-          <Property Type="Time" Name="DeliveryTime" />
+          <Property Type="Time" Name="DeliveryTime" Nullable="false" />
           <NavigationProperty Name="DaysOffs" Relationship="WFSModel.FK_DaysOff_School" FromRole="School" ToRole="DaysOff" />
           <NavigationProperty Name="LunchPeriods" Relationship="WFSModel.FK_LunchPeriods_School" FromRole="School" ToRole="LunchPeriod" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_School_Organization" FromRole="School" ToRole="Organization" />
@@ -2072,7 +2070,6 @@
             <EntityTypeMapping TypeName="WFSModel.Grade">
               <MappingFragment StoreEntitySet="Grades">
                 <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="GradeId" ColumnName="GradeId" />
               </MappingFragment>
@@ -2248,8 +2245,8 @@
           <ConnectorPoint PointX="6.75" PointY="10.528595377604166" />
           <ConnectorPoint PointX="6.916666666666667" PointY="10.528595377604166" />
           <ConnectorPoint PointX="7.083333333333333" PointY="10.528595377604166" />
-          <ConnectorPoint PointX="7.260416666666667" PointY="10.528595377604166" />
-          <ConnectorPoint PointX="7.427083333333333" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="10.528595377604166" />
           <ConnectorPoint PointX="7.5" PointY="10.528595377604166" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodOption1" >
@@ -2325,10 +2322,10 @@
           <ConnectorPoint PointX="11.052083333333334" PointY="7.6249999999999991" />
           <ConnectorPoint PointX="10.885416666666666" PointY="7.625" />
           <ConnectorPoint PointX="9.75" PointY="7.625" />
-          <ConnectorPoint PointX="9.75" PointY="8.1052864583333388" />
-          <ConnectorPoint PointX="7.427083333333333" PointY="8.1052864583333388" />
-          <ConnectorPoint PointX="7.260416666666667" PointY="8.1052864583333388" />
-          <ConnectorPoint PointX="7" PointY="8.1052864583333388" />
+          <ConnectorPoint PointX="9.75" PointY="7.9129850260416674" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="7.9129850260416665" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="7.9129850260416674" />
+          <ConnectorPoint PointX="7" PointY="7.9129850260416674" />
           <ConnectorPoint PointX="7" PointY="8.6821907552083246" />
           <ConnectorPoint PointX="6.083333333333333" PointY="8.6821907552083246" />
           <ConnectorPoint PointX="5.916666666666667" PointY="8.6821907552083246" />
@@ -2342,7 +2339,7 @@
           <ConnectorPoint PointX="1.7708348499126432" PointY="9.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.DaysOff" Width="1.5" PointX="6" PointY="19.625" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="WFSModel.Grade" Width="1.5" PointX="8" PointY="5.875" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="WFSModel.Grade" Width="1.5" PointX="8" PointY="5.875" Height="1.7879850260416665" />
         <EntityTypeShape EntityType="WFSModel.LunchPeriod" Width="1.5" PointX="9" PointY="20.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="WFSModel.SchoolGrade" Width="1.5" PointX="10.25" PointY="7.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="WFSModel.Teacher" Width="1.5" PointX="3" PointY="1.875" Height="1.9802864583333246" />
@@ -2352,19 +2349,19 @@
           <ConnectorPoint PointX="10.96875" PointY="7.875" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_SchoolGrades_Schools" >
-          <ConnectorPoint PointX="3.7818284230769228" PointY="11.125" />
-          <ConnectorPoint PointX="3.7818284230769228" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="3.75" PointY="11.125" />
+          <ConnectorPoint PointX="3.75" PointY="8.9612939453125" />
           <ConnectorPoint PointX="4.791666666666667" PointY="8.9612939453125" />
           <ConnectorPoint PointX="5.020833333333333" PointY="8.9612939453125" />
           <ConnectorPoint PointX="5.916666666666667" PointY="8.9612939453125" />
           <ConnectorPoint PointX="6.083333333333333" PointY="8.9612939453125" />
-          <ConnectorPoint PointX="7.25" PointY="8.9612939453125" />
-          <ConnectorPoint PointX="7.25" PointY="8.5" />
-          <ConnectorPoint PointX="7.260416666666667" PointY="8.5" />
-          <ConnectorPoint PointX="7.427083333333333" PointY="8.5" />
+          <ConnectorPoint PointX="7.125" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="7.125" PointY="8.5" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="8.5" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="8.5" />
           <ConnectorPoint PointX="9.875" PointY="8.5" />
-          <ConnectorPoint PointX="9.875" PointY="8.9612939453125" />
-          <ConnectorPoint PointX="10.25" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="9.875" PointY="9.2206652486979159" />
+          <ConnectorPoint PointX="10.25" PointY="9.2206652486979159" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.UserOrderProfile" Width="1.5" PointX="3" PointY="22.375" Height="3.7109993489583353" />
         <AssociationConnector Association="WFSModel.FK_UserOrderProfile_WFSUser" >
@@ -2434,8 +2431,8 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.School" Width="1.5" PointX="5.25" PointY="5.875" Height="2.5571907552083246" />
         <AssociationConnector Association="WFSModel.FK_DaysOff_School" >
-          <ConnectorPoint PointX="6.75" PointY="6.9901432291666694" />
-          <ConnectorPoint PointX="7.28125" PointY="6.9901432291666694" />
+          <ConnectorPoint PointX="6.75" PointY="6.8939925130208337" />
+          <ConnectorPoint PointX="7.28125" PointY="6.8939925130208337" />
           <ConnectorPoint PointX="7.28125" PointY="19.625" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_LunchPeriods_School" >
@@ -2456,12 +2453,12 @@
           <ConnectorPoint PointX="5.25" PointY="7.1535953776041623" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_SchoolGrades_School" >
-          <ConnectorPoint PointX="6.75" PointY="8.3312386067708317" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="8.3312386067708317" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="8.3312386067708317" />
-          <ConnectorPoint PointX="7.260416666666667" PointY="8.3312386067708317" />
-          <ConnectorPoint PointX="7.427083333333333" PointY="8.3312386067708317" />
-          <ConnectorPoint PointX="10.25" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="6.75" PointY="8.235087890624996" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="8.235087890624996" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="8.235087890624996" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="8.235087890624996" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="8.235087890624996" />
+          <ConnectorPoint PointX="10.25" PointY="8.235087890624996" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Teachers_School" >
           <ConnectorPoint PointX="6" PointY="5.875" />

@@ -21,7 +21,6 @@ namespace WFS.DataContext
     
         public int GradeId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public int Order { get; set; }
     
         public virtual ICollection<SchoolGrade> SchoolGrades { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using WFS.Contract;
 using WFS.Contract.Enums;
 using WFS.Contract.ReqResp;
@@ -60,7 +61,7 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            var viewModel = new SchoolAddEditModel(new School());
+            var viewModel = new SchoolAddEditModel();
             var uiresult = new UIResponse<SchoolAddEditModel>();
 
             uiresult.Subject = viewModel;
@@ -82,10 +83,14 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(School model)
+        public ActionResult Create(SchoolAddEditModel model)
         {
-            model.User.UserType = WFSUserTypeEnum.SchoolAdmin;
-            var resp = this._schoolMgr.CreateSchool(new SaveSchoolRequest() { Subject = model });
+            model.School.User.UserType = WFSUserTypeEnum.SchoolAdmin;
+            model.School.User.Password = model.Password;
+
+            var dt = DateTime.ParseExact(model.DeliveryTime, "hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+            model.School.DeliveryTime = dt.TimeOfDay;
+            var resp = this._schoolMgr.CreateSchool(new SaveSchoolRequest() { Subject = model.School });
 
             if (resp.Status == Status.Success)
             {
@@ -94,10 +99,10 @@ namespace WFS.WebSite4.Areas.Admin.Controllers
             }
             else
             {
-                var uiResp = resp.ToUIResult<SchoolAddEditModel, School>(x => new SchoolAddEditModel(model), x =>
+                var uiResp = resp.ToUIResult<SchoolAddEditModel, School>(x => new SchoolAddEditModel(model.School), x =>
                 {
                     x.Merge(resp);
-                    return (RenderPartialViewToString("createeditschool", new SchoolAddEditModel(model)));
+                    return (RenderPartialViewToString("createeditschool", new SchoolAddEditModel(model.School)));
                 });
                 return Json(uiResp);
             }

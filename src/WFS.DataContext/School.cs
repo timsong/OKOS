@@ -24,7 +24,7 @@ namespace WFS.DataContext
         }
     
         public int SchoolId { get; set; }
-        public Nullable<System.TimeSpan> DeliveryTime { get; set; }
+        public System.TimeSpan DeliveryTime { get; set; }
     
         public virtual ICollection<DaysOff> DaysOffs { get; set; }
         public virtual ICollection<LunchPeriod> LunchPeriods { get; set; }
