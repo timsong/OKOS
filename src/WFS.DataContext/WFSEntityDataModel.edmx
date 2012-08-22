@@ -20,7 +20,7 @@
           <EntitySet Name="Organization" EntityType="WFSModel.Store.Organization" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profiles" EntityType="WFSModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="WFSModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SchoolDaysOff" EntityType="WFSModel.Store.SchoolDaysOff" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="School" EntityType="WFSModel.Store.School" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SchoolGrades" EntityType="WFSModel.Store.SchoolGrades" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SupportTicket" EntityType="WFSModel.Store.SupportTicket" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Teachers" EntityType="WFSModel.Store.Teachers" store:Type="Tables" Schema="dbo" />
@@ -32,6 +32,10 @@
           <EntitySet Name="VendorMenu" EntityType="WFSModel.Store.VendorMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WFSUser" EntityType="WFSModel.Store.WFSUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WFSUserAddress" EntityType="WFSModel.Store.WFSUserAddress" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DaysOff_School" Association="WFSModel.Store.FK_DaysOff_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="DaysOff" EntitySet="DaysOff" />
+          </AssociationSet>
           <AssociationSet Name="FK_FoodCategory_Vendor" Association="WFSModel.Store.FK_FoodCategory_Vendor">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="VendorFoodCategory" EntitySet="VendorFoodCategory" />
@@ -52,8 +56,8 @@
             <End Role="Organization" EntitySet="Organization" />
             <End Role="VendorFoodOption" EntitySet="VendorFoodOption" />
           </AssociationSet>
-          <AssociationSet Name="FK_LunchPeriods_Organization" Association="WFSModel.Store.FK_LunchPeriods_Organization">
-            <End Role="Organization" EntitySet="Organization" />
+          <AssociationSet Name="FK_LunchPeriods_School" Association="WFSModel.Store.FK_LunchPeriods_School">
+            <End Role="School" EntitySet="School" />
             <End Role="LunchPeriods" EntitySet="LunchPeriods" />
           </AssociationSet>
           <AssociationSet Name="FK_MenuItem_FoodItem" Association="WFSModel.Store.FK_MenuItem_FoodItem">
@@ -92,20 +96,16 @@
             <End Role="WFSUser" EntitySet="WFSUser" />
             <End Role="Organization" EntitySet="Organization" />
           </AssociationSet>
-          <AssociationSet Name="FK_SchoolDaysOff_DaysOff" Association="WFSModel.Store.FK_SchoolDaysOff_DaysOff">
-            <End Role="DaysOff" EntitySet="DaysOff" />
-            <End Role="SchoolDaysOff" EntitySet="SchoolDaysOff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SchoolDaysOff_School" Association="WFSModel.Store.FK_SchoolDaysOff_School">
+          <AssociationSet Name="FK_School_Organization" Association="WFSModel.Store.FK_School_Organization">
             <End Role="Organization" EntitySet="Organization" />
-            <End Role="SchoolDaysOff" EntitySet="SchoolDaysOff" />
+            <End Role="School" EntitySet="School" />
           </AssociationSet>
           <AssociationSet Name="FK_SchoolGrades_Grades" Association="WFSModel.Store.FK_SchoolGrades_Grades">
             <End Role="Grades" EntitySet="Grades" />
             <End Role="SchoolGrades" EntitySet="SchoolGrades" />
           </AssociationSet>
-          <AssociationSet Name="FK_SchoolGrades_Schools" Association="WFSModel.Store.FK_SchoolGrades_Schools">
-            <End Role="Organization" EntitySet="Organization" />
+          <AssociationSet Name="FK_SchoolGrades_School" Association="WFSModel.Store.FK_SchoolGrades_School">
+            <End Role="School" EntitySet="School" />
             <End Role="SchoolGrades" EntitySet="SchoolGrades" />
           </AssociationSet>
           <AssociationSet Name="FK_SupportTicket_WFSUser" Association="WFSModel.Store.FK_SupportTicket_WFSUser">
@@ -116,12 +116,12 @@
             <End Role="WFSUser" EntitySet="WFSUser" />
             <End Role="SupportTicket" EntitySet="SupportTicket" />
           </AssociationSet>
-          <AssociationSet Name="FK_Teachers_Organization" Association="WFSModel.Store.FK_Teachers_Organization">
-            <End Role="Organization" EntitySet="Organization" />
+          <AssociationSet Name="FK_Teachers_School" Association="WFSModel.Store.FK_Teachers_School">
+            <End Role="School" EntitySet="School" />
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserOrderProfile_Organization" Association="WFSModel.Store.FK_UserOrderProfile_Organization">
-            <End Role="Organization" EntitySet="Organization" />
+          <AssociationSet Name="FK_UserOrderProfile_School" Association="WFSModel.Store.FK_UserOrderProfile_School">
+            <End Role="School" EntitySet="School" />
             <End Role="UserOrderProfile" EntitySet="UserOrderProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_UserOrderProfile_WFSUser" Association="WFSModel.Store.FK_UserOrderProfile_WFSUser">
@@ -186,6 +186,7 @@
             <PropertyRef Name="DaysOffId" />
           </Key>
           <Property Name="DaysOffId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="512" />
           <Property Name="Day" Type="date" />
@@ -331,13 +332,12 @@
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="256" />
         </EntityType>
-        <EntityType Name="SchoolDaysOff">
+        <EntityType Name="School">
           <Key>
-            <PropertyRef Name="SchoolDaysOffId" />
+            <PropertyRef Name="SchoolId" />
           </Key>
-          <Property Name="SchoolDaysOffId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SchoolId" Type="int" Nullable="false" />
-          <Property Name="DaysOffId" Type="int" Nullable="false" />
+          <Property Name="DeliveryTime" Type="time" />
         </EntityType>
         <EntityType Name="SchoolGrades">
           <Key>
@@ -387,7 +387,7 @@
           <Property Name="SchoolGradeId" Type="int" />
           <Property Name="LunchPeriodId" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="SchoolId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -465,6 +465,18 @@
           <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="PhoneExt" Type="varchar" MaxLength="10" />
         </EntityType>
+        <Association Name="FK_DaysOff_School">
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="1" />
+          <End Role="DaysOff" Type="WFSModel.Store.DaysOff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="DaysOff">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FoodCategory_Vendor">
           <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
           <End Role="VendorFoodCategory" Type="WFSModel.Store.VendorFoodCategory" Multiplicity="*" />
@@ -525,12 +537,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LunchPeriods_Organization">
-          <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
+        <Association Name="FK_LunchPeriods_School">
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="1" />
           <End Role="LunchPeriods" Type="WFSModel.Store.LunchPeriods" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
             </Principal>
             <Dependent Role="LunchPeriods">
               <PropertyRef Name="SchoolId" />
@@ -645,26 +657,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SchoolDaysOff_DaysOff">
-          <End Role="DaysOff" Type="WFSModel.Store.DaysOff" Multiplicity="1" />
-          <End Role="SchoolDaysOff" Type="WFSModel.Store.SchoolDaysOff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DaysOff">
-              <PropertyRef Name="DaysOffId" />
-            </Principal>
-            <Dependent Role="SchoolDaysOff">
-              <PropertyRef Name="DaysOffId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SchoolDaysOff_School">
+        <Association Name="FK_School_Organization">
           <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
-          <End Role="SchoolDaysOff" Type="WFSModel.Store.SchoolDaysOff" Multiplicity="*" />
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Organization">
               <PropertyRef Name="OrganizationId" />
             </Principal>
-            <Dependent Role="SchoolDaysOff">
+            <Dependent Role="School">
               <PropertyRef Name="SchoolId" />
             </Dependent>
           </ReferentialConstraint>
@@ -681,12 +681,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SchoolGrades_Schools">
-          <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
+        <Association Name="FK_SchoolGrades_School">
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="1" />
           <End Role="SchoolGrades" Type="WFSModel.Store.SchoolGrades" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
             </Principal>
             <Dependent Role="SchoolGrades">
               <PropertyRef Name="SchoolId" />
@@ -717,27 +717,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Teachers_Organization">
-          <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
+        <Association Name="FK_Teachers_School">
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="1" />
           <End Role="Teachers" Type="WFSModel.Store.Teachers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
             </Principal>
             <Dependent Role="Teachers">
               <PropertyRef Name="SchoolId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserOrderProfile_Organization">
-          <End Role="Organization" Type="WFSModel.Store.Organization" Multiplicity="1" />
+        <Association Name="FK_UserOrderProfile_School">
+          <End Role="School" Type="WFSModel.Store.School" Multiplicity="1" />
           <End Role="UserOrderProfile" Type="WFSModel.Store.UserOrderProfile" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
             </Principal>
             <Dependent Role="UserOrderProfile">
-              <PropertyRef Name="OrganizationId" />
+              <PropertyRef Name="SchoolId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -988,20 +988,11 @@
           <EntitySet Name="DaysOffs" EntityType="WFSModel.DaysOff" />
           <EntitySet Name="Grades" EntityType="WFSModel.Grade" />
           <EntitySet Name="LunchPeriods" EntityType="WFSModel.LunchPeriod" />
-          <EntitySet Name="SchoolDaysOffs" EntityType="WFSModel.SchoolDaysOff" />
           <EntitySet Name="SchoolGrades" EntityType="WFSModel.SchoolGrade" />
           <EntitySet Name="Teachers" EntityType="WFSModel.Teacher" />
-          <AssociationSet Name="FK_SchoolDaysOff_DaysOff" Association="WFSModel.FK_SchoolDaysOff_DaysOff">
-            <End Role="DaysOff" EntitySet="DaysOffs" />
-            <End Role="SchoolDaysOff" EntitySet="SchoolDaysOffs" />
-          </AssociationSet>
           <AssociationSet Name="FK_SchoolGrades_Grades" Association="WFSModel.FK_SchoolGrades_Grades">
             <End Role="Grade" EntitySet="Grades" />
             <End Role="SchoolGrade" EntitySet="SchoolGrades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SchoolDaysOff_School" Association="WFSModel.FK_SchoolDaysOff_School">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="SchoolDaysOff" EntitySet="SchoolDaysOffs" />
           </AssociationSet>
           <AssociationSet Name="FK_SchoolGrades_Schools" Association="WFSModel.FK_SchoolGrades_Schools">
             <End Role="Organization" EntitySet="Organizations" />
@@ -1010,10 +1001,6 @@
           <EntitySet Name="UserOrderProfiles" EntityType="WFSModel.UserOrderProfile" />
           <AssociationSet Name="FK_UserOrderProfile_WFSUser" Association="WFSModel.FK_UserOrderProfile_WFSUser">
             <End Role="WFSUser" EntitySet="WFSUsers" />
-            <End Role="UserOrderProfile" EntitySet="UserOrderProfiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserOrderProfile_Organization" Association="WFSModel.FK_UserOrderProfile_Organization">
-            <End Role="Organization" EntitySet="Organizations" />
             <End Role="UserOrderProfile" EntitySet="UserOrderProfiles" />
           </AssociationSet>
           <AssociationSet Name="FK_LunchPeriods_Organization" Association="WFSModel.FK_LunchPeriods_Organization">
@@ -1050,6 +1037,31 @@
           <AssociationSet Name="FK_OrderItemOption_VendorFoodOption" Association="WFSModel.FK_OrderItemOption_VendorFoodOption">
             <End Role="VendorFoodOption" EntitySet="VendorFoodOptions" />
             <End Role="OrderItemOption" EntitySet="OrderItemOptions" />
+          </AssociationSet>
+          <EntitySet Name="Schools" EntityType="WFSModel.School" />
+          <AssociationSet Name="FK_DaysOff_School" Association="WFSModel.FK_DaysOff_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="DaysOff" EntitySet="DaysOffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LunchPeriods_School" Association="WFSModel.FK_LunchPeriods_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="LunchPeriod" EntitySet="LunchPeriods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_School_Organization" Association="WFSModel.FK_School_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SchoolGrades_School" Association="WFSModel.FK_SchoolGrades_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="SchoolGrade" EntitySet="SchoolGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_School" Association="WFSModel.FK_Teachers_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrderProfile_School" Association="WFSModel.FK_UserOrderProfile_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="UserOrderProfile" EntitySet="UserOrderProfiles" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FoodItemOption">
@@ -1318,12 +1330,11 @@
           <NavigationProperty Name="Organization1" Relationship="WFSModel.FK_Vendor_Vendor1" FromRole="Organization" ToRole="Organization1" />
           <NavigationProperty Name="Organization2" Relationship="WFSModel.FK_Vendor_Vendor1" FromRole="Organization1" ToRole="Organization" />
           <NavigationProperty Name="VendorMenus" Relationship="WFSModel.FK_VendorMenu_Organization" FromRole="Organization" ToRole="VendorMenu" />
-          <NavigationProperty Name="SchoolDaysOffs" Relationship="WFSModel.FK_SchoolDaysOff_School" FromRole="Organization" ToRole="SchoolDaysOff" />
           <NavigationProperty Name="SchoolGrades" Relationship="WFSModel.FK_SchoolGrades_Schools" FromRole="Organization" ToRole="SchoolGrade" />
           <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
-          <NavigationProperty Name="UserOrderProfiles" Relationship="WFSModel.FK_UserOrderProfile_Organization" FromRole="Organization" ToRole="UserOrderProfile" />
           <NavigationProperty Name="LunchPeriods" Relationship="WFSModel.FK_LunchPeriods_Organization" FromRole="Organization" ToRole="LunchPeriod" />
           <NavigationProperty Name="Teachers" Relationship="WFSModel.FK_Teachers_Organization" FromRole="Organization" ToRole="Teacher" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_School_Organization" FromRole="Organization" ToRole="School" />
         </EntityType>
         <EntityType Name="VendorFoodCategory">
           <Key>
@@ -1527,7 +1538,8 @@
           <Property Type="DateTime" Name="Day" />
           <Property Type="DateTime" Name="RangeStart" />
           <Property Type="DateTime" Name="RangeEnd" />
-          <NavigationProperty Name="SchoolDaysOffs" Relationship="WFSModel.FK_SchoolDaysOff_DaysOff" FromRole="DaysOff" ToRole="SchoolDaysOff" />
+          <Property Type="Int32" Name="SchoolId" Nullable="false" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_DaysOff_School" FromRole="DaysOff" ToRole="School" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -1549,16 +1561,7 @@
           <Property Type="Time" Name="EndTime" Nullable="false" />
           <Property Type="Int32" Name="SchoolId" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_LunchPeriods_Organization" FromRole="LunchPeriod" ToRole="Organization" />
-        </EntityType>
-        <EntityType Name="SchoolDaysOff">
-          <Key>
-            <PropertyRef Name="SchoolDaysOffId" />
-          </Key>
-          <Property Type="Int32" Name="SchoolDaysOffId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="SchoolId" Nullable="false" />
-          <Property Type="Int32" Name="DaysOffId" Nullable="false" />
-          <NavigationProperty Name="DaysOff" Relationship="WFSModel.FK_SchoolDaysOff_DaysOff" FromRole="SchoolDaysOff" ToRole="DaysOff" />
-          <NavigationProperty Name="Organization" Relationship="WFSModel.FK_SchoolDaysOff_School" FromRole="SchoolDaysOff" ToRole="Organization" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_LunchPeriods_School" FromRole="LunchPeriod" ToRole="School" />
         </EntityType>
         <EntityType Name="SchoolGrade">
           <Key>
@@ -1569,6 +1572,7 @@
           <Property Type="Int32" Name="GradeId" Nullable="false" />
           <NavigationProperty Name="Grade" Relationship="WFSModel.FK_SchoolGrades_Grades" FromRole="SchoolGrade" ToRole="Grade" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_SchoolGrades_Schools" FromRole="SchoolGrade" ToRole="Organization" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_SchoolGrades_School" FromRole="SchoolGrade" ToRole="School" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -1580,19 +1584,8 @@
           <Property Type="String" Name="Description" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="SchoolId" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="WFSModel.FK_Teachers_Organization" FromRole="Teacher" ToRole="Organization" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_Teachers_School" FromRole="Teacher" ToRole="School" />
         </EntityType>
-        <Association Name="FK_SchoolDaysOff_DaysOff">
-          <End Type="WFSModel.DaysOff" Role="DaysOff" Multiplicity="1" />
-          <End Type="WFSModel.SchoolDaysOff" Role="SchoolDaysOff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DaysOff">
-              <PropertyRef Name="DaysOffId" />
-            </Principal>
-            <Dependent Role="SchoolDaysOff">
-              <PropertyRef Name="DaysOffId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SchoolGrades_Grades">
           <End Type="WFSModel.Grade" Role="Grade" Multiplicity="1" />
           <End Type="WFSModel.SchoolGrade" Role="SchoolGrade" Multiplicity="*" />
@@ -1602,18 +1595,6 @@
             </Principal>
             <Dependent Role="SchoolGrade">
               <PropertyRef Name="GradeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SchoolDaysOff_School">
-          <End Type="WFSModel.Organization" Role="Organization" Multiplicity="1" />
-          <End Type="WFSModel.SchoolDaysOff" Role="SchoolDaysOff" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
-            </Principal>
-            <Dependent Role="SchoolDaysOff">
-              <PropertyRef Name="SchoolId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1642,10 +1623,10 @@
           <Property Type="Int32" Name="SchoolGradeId" />
           <Property Type="Int32" Name="LunchPeriodId" />
           <NavigationProperty Name="WFSUser" Relationship="WFSModel.FK_UserOrderProfile_WFSUser" FromRole="UserOrderProfile" ToRole="WFSUser" />
-          <Property Type="Int32" Name="OrganizationId" Nullable="false" />
-          <NavigationProperty Name="Organization" Relationship="WFSModel.FK_UserOrderProfile_Organization" FromRole="UserOrderProfile" ToRole="Organization" />
           <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
           <NavigationProperty Name="OrderItems" Relationship="WFSModel.FK_OrderItem_UserOrderProfile" FromRole="UserOrderProfile" ToRole="OrderItem" />
+          <Property Type="Int32" Name="SchoolId" Nullable="false" />
+          <NavigationProperty Name="School" Relationship="WFSModel.FK_UserOrderProfile_School" FromRole="UserOrderProfile" ToRole="School" />
         </EntityType>
         <Association Name="FK_UserOrderProfile_WFSUser">
           <End Type="WFSModel.WFSUser" Role="WFSUser" Multiplicity="1" />
@@ -1656,18 +1637,6 @@
             </Principal>
             <Dependent Role="UserOrderProfile">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserOrderProfile_Organization">
-          <End Type="WFSModel.Organization" Role="Organization" Multiplicity="1" />
-          <End Type="WFSModel.UserOrderProfile" Role="UserOrderProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="OrganizationId" />
-            </Principal>
-            <Dependent Role="UserOrderProfile">
-              <PropertyRef Name="OrganizationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1801,6 +1770,91 @@
             </Principal>
             <Dependent Role="OrderItemOption">
               <PropertyRef Name="FoodOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="SchoolId" />
+          </Key>
+          <Property Type="Int32" Name="SchoolId" Nullable="false" />
+          <Property Type="Time" Name="DeliveryTime" />
+          <NavigationProperty Name="DaysOffs" Relationship="WFSModel.FK_DaysOff_School" FromRole="School" ToRole="DaysOff" />
+          <NavigationProperty Name="LunchPeriods" Relationship="WFSModel.FK_LunchPeriods_School" FromRole="School" ToRole="LunchPeriod" />
+          <NavigationProperty Name="Organization" Relationship="WFSModel.FK_School_Organization" FromRole="School" ToRole="Organization" />
+          <NavigationProperty Name="SchoolGrades" Relationship="WFSModel.FK_SchoolGrades_School" FromRole="School" ToRole="SchoolGrade" />
+          <NavigationProperty Name="Teachers" Relationship="WFSModel.FK_Teachers_School" FromRole="School" ToRole="Teacher" />
+          <NavigationProperty Name="UserOrderProfiles" Relationship="WFSModel.FK_UserOrderProfile_School" FromRole="School" ToRole="UserOrderProfile" />
+        </EntityType>
+        <Association Name="FK_DaysOff_School">
+          <End Type="WFSModel.School" Role="School" Multiplicity="1" />
+          <End Type="WFSModel.DaysOff" Role="DaysOff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="DaysOff">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LunchPeriods_School">
+          <End Type="WFSModel.School" Role="School" Multiplicity="1" />
+          <End Type="WFSModel.LunchPeriod" Role="LunchPeriod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="LunchPeriod">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_School_Organization">
+          <End Type="WFSModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="WFSModel.School" Role="School" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="OrganizationId" />
+            </Principal>
+            <Dependent Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SchoolGrades_School">
+          <End Type="WFSModel.School" Role="School" Multiplicity="1" />
+          <End Type="WFSModel.SchoolGrade" Role="SchoolGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="SchoolGrade">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_School">
+          <End Type="WFSModel.School" Role="School" Multiplicity="1" />
+          <End Type="WFSModel.Teacher" Role="Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="SchoolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrderProfile_School">
+          <End Type="WFSModel.School" Role="School" Multiplicity="1" />
+          <End Type="WFSModel.UserOrderProfile" Role="UserOrderProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="SchoolId" />
+            </Principal>
+            <Dependent Role="UserOrderProfile">
+              <PropertyRef Name="SchoolId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2004,6 +2058,7 @@
           <EntitySetMapping Name="DaysOffs">
             <EntityTypeMapping TypeName="WFSModel.DaysOff">
               <MappingFragment StoreEntitySet="DaysOff">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="RangeEnd" ColumnName="RangeEnd" />
                 <ScalarProperty Name="RangeStart" ColumnName="RangeStart" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
@@ -2034,15 +2089,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SchoolDaysOffs">
-            <EntityTypeMapping TypeName="WFSModel.SchoolDaysOff">
-              <MappingFragment StoreEntitySet="SchoolDaysOff">
-                <ScalarProperty Name="DaysOffId" ColumnName="DaysOffId" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="SchoolDaysOffId" ColumnName="SchoolDaysOffId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SchoolGrades">
             <EntityTypeMapping TypeName="WFSModel.SchoolGrade">
               <MappingFragment StoreEntitySet="SchoolGrades">
@@ -2066,8 +2112,8 @@
           <EntitySetMapping Name="UserOrderProfiles">
             <EntityTypeMapping TypeName="WFSModel.UserOrderProfile">
               <MappingFragment StoreEntitySet="UserOrderProfile">
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
                 <ScalarProperty Name="LunchPeriodId" ColumnName="LunchPeriodId" />
                 <ScalarProperty Name="SchoolGradeId" ColumnName="SchoolGradeId" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
@@ -2111,6 +2157,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="WFSModel.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2138,8 +2192,8 @@
         <EntityTypeShape EntityType="WFSModel.WFSUser" Width="1.5" PointX="0.75" PointY="9.125" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="WFSModel.WFSUserAddress" Width="1.5" PointX="3" PointY="5.25" Height="2.749492187499996" IsExpanded="true" />
         <AssociationConnector Association="WFSModel.FK_WFSUserAddress_WFSUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2291687993011475" PointY="9.125" />
-          <ConnectorPoint PointX="1.2291687993011475" PointY="6.624746093749998" />
+          <ConnectorPoint PointX="1.2291656998252867" PointY="9.125" />
+          <ConnectorPoint PointX="1.2291656998252867" PointY="6.624746093749998" />
           <ConnectorPoint PointX="2.5416666666666665" PointY="6.6247460937499971" />
           <ConnectorPoint PointX="2.7083333333333335" PointY="6.624746093749998" />
           <ConnectorPoint PointX="3" PointY="6.624746093749998" />
@@ -2160,8 +2214,8 @@
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.UserApplication" >
           <ConnectorPoint PointX="12.820314374999999" PointY="6.67258789062501" />
-          <ConnectorPoint PointX="12.820314374999999" PointY="9.3708285799398379" />
-          <ConnectorPoint PointX="16.25" PointY="9.3708285799398379" />
+          <ConnectorPoint PointX="12.820314374999999" PointY="9.3709952056604173" />
+          <ConnectorPoint PointX="16.25" PointY="9.3709952056604173" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.MembershipUser" >
           <ConnectorPoint PointX="16.25" PointY="7.5285546875000051" />
@@ -2192,45 +2246,63 @@
         <EntityTypeShape EntityType="WFSModel.VendorMenu" Width="1.5" PointX="5.25" PointY="15.875" Height="2.3648893229166674" />
         <AssociationConnector Association="WFSModel.FK_FoodItem_FoodCategory1" >
           <ConnectorPoint PointX="6.75" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="7.260416666666667" PointY="10.528595377604166" />
+          <ConnectorPoint PointX="7.427083333333333" PointY="10.528595377604166" />
           <ConnectorPoint PointX="7.5" PointY="10.528595377604166" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodItemOption_FoodOption1" >
           <ConnectorPoint PointX="6.75" PointY="12.626152846153847" />
+          <ConnectorPoint PointX="6.9410744349011209" PointY="12.435078411252725" />
+          <ConnectorPoint PointX="7.0589255650988791" PointY="12.317227281054969" />
           <ConnectorPoint PointX="7.125" PointY="12.251152846153847" />
           <ConnectorPoint PointX="7.125" PointY="13.230286458333332" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="13.230286458333332" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="13.230286458333332" />
-          <ConnectorPoint PointX="8.1666666666666661" PointY="13.230286458333332" />
-          <ConnectorPoint PointX="8.3333333333333339" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="7.9010404166666675" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="8.0677070833333335" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="8.3854191666666669" PointY="13.230286458333332" />
+          <ConnectorPoint PointX="8.5520858333333347" PointY="13.230286458333332" />
           <ConnectorPoint PointX="9.375" PointY="13.230286458333332" />
           <ConnectorPoint PointX="9.7499999999999982" PointY="12.855286458333334" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_MenuItem_Menu1" >
           <ConnectorPoint PointX="6.75" PointY="16.115143229166669" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="16.115143229166669" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="7.9010404166666675" PointY="16.115143229166669" />
+          <ConnectorPoint PointX="8.0677070833333335" PointY="16.115143229166669" />
           <ConnectorPoint PointX="9.75" PointY="16.115143229166669" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodCategory_Vendor1" >
           <ConnectorPoint PointX="4.5" PointY="11.466095377604166" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="11.466095377604166" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="11.466095377604166" />
           <ConnectorPoint PointX="5.25" PointY="11.466095377604166" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_FoodOption_Vendor1" >
-          <ConnectorPoint PointX="4.5" PointY="14.095896809895834" />
-          <ConnectorPoint PointX="5.25" PointY="14.095896809895834" />
+          <ConnectorPoint PointX="4.5" PointY="14.192047526041666" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="14.192047526041666" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="14.192047526041666" />
+          <ConnectorPoint PointX="5.25" PointY="14.192047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Organization_WFSUser" >
           <ConnectorPoint PointX="2.25" PointY="11.884348958333334" />
           <ConnectorPoint PointX="3" PointY="11.884348958333334" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Vendor_Vendor1" >
-          <ConnectorPoint PointX="3.5319230769230767" PointY="17.143616536458335" />
-          <ConnectorPoint PointX="3.5319230769230767" PointY="17.393616536458335" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="17.393616536458335" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="17.143616536458335" />
+          <ConnectorPoint PointX="3.4176923076923078" PointY="11.125" />
+          <ConnectorPoint PointX="3.4176923076923078" PointY="10.875" />
+          <ConnectorPoint PointX="3.75" PointY="10.875" />
+          <ConnectorPoint PointX="3.75" PointY="11.125" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_VendorMenu_Organization" >
           <ConnectorPoint PointX="4.5" PointY="16.509308268229169" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="16.509308268229169" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="16.509308268229169" />
           <ConnectorPoint PointX="5.25" PointY="16.509308268229169" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.SupportTicket" Width="1.5" PointX="1.5" PointY="18.125" Height="3.7109993489583353" />
@@ -2243,94 +2315,93 @@
           <ConnectorPoint PointX="2.046875" PointY="18.125" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_WFSUser_Users" >
-          <ConnectorPoint PointX="16.25" PointY="8.7139664774699241" />
-          <ConnectorPoint PointX="12.903647708333333" PointY="8.7139664774699241" />
-          <ConnectorPoint PointX="12.736981041666665" PointY="8.7139664774699241" />
-          <ConnectorPoint PointX="12.411457083333334" PointY="8.7139664774699241" />
-          <ConnectorPoint PointX="12.244790416666666" PointY="8.7139664774699241" />
-          <ConnectorPoint PointX="12" PointY="8.7139664774699241" />
+          <ConnectorPoint PointX="16.25" PointY="8.714049790330213" />
+          <ConnectorPoint PointX="12.903647708333333" PointY="8.714049790330213" />
+          <ConnectorPoint PointX="12.736981041666665" PointY="8.714049790330213" />
+          <ConnectorPoint PointX="12.411457083333334" PointY="8.714049790330213" />
+          <ConnectorPoint PointX="12.244790416666666" PointY="8.714049790330213" />
+          <ConnectorPoint PointX="12" PointY="8.714049790330213" />
           <ConnectorPoint PointX="12" PointY="7.625" />
           <ConnectorPoint PointX="11.052083333333334" PointY="7.6249999999999991" />
           <ConnectorPoint PointX="10.885416666666666" PointY="7.625" />
           <ConnectorPoint PointX="9.75" PointY="7.625" />
-          <ConnectorPoint PointX="9.75" PointY="8.249492187499996" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="8.249492187499996" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="8.249492187499996" />
-          <ConnectorPoint PointX="1.7708363996505736" PointY="8.249492187499996" />
-          <ConnectorPoint PointX="1.7708363996505736" PointY="9.125" />
+          <ConnectorPoint PointX="9.75" PointY="8.1052864583333388" />
+          <ConnectorPoint PointX="7.427083333333333" PointY="8.1052864583333388" />
+          <ConnectorPoint PointX="7.260416666666667" PointY="8.1052864583333388" />
+          <ConnectorPoint PointX="7" PointY="8.1052864583333388" />
+          <ConnectorPoint PointX="7" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="5.1467938717948716" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="4.9801272051282055" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="1.7708348499126432" PointY="8.6821907552083246" />
+          <ConnectorPoint PointX="1.7708348499126432" PointY="9.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.DaysOff" Width="1.5" PointX="6" PointY="19.625" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="WFSModel.Grade" Width="1.5" PointX="8" PointY="5.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="WFSModel.LunchPeriod" Width="1.5" PointX="9" PointY="20.875" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="WFSModel.SchoolDaysOff" Width="1.5" PointX="8.25" PointY="17.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="WFSModel.SchoolGrade" Width="1.5" PointX="10.25" PointY="7.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="WFSModel.Teacher" Width="1.5" PointX="3" PointY="1.875" Height="1.9802864583333246" />
-        <AssociationConnector Association="WFSModel.FK_SchoolDaysOff_DaysOff" >
-          <ConnectorPoint PointX="7.5" PointY="20.333893729166668" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="20.333893729166668" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="20.333893729166668" />
-          <ConnectorPoint PointX="8.4375" PointY="20.333893729166668" />
-          <ConnectorPoint PointX="8.4375" PointY="19.855286458333339" />
-        </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_SchoolGrades_Grades" >
           <ConnectorPoint PointX="9.5" PointY="6.75" />
           <ConnectorPoint PointX="10.96875" PointY="6.75" />
           <ConnectorPoint PointX="10.96875" PointY="7.875" />
         </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_SchoolDaysOff_School" >
-          <ConnectorPoint PointX="3.7160554423076926" PointY="16.951315104166667" />
-          <ConnectorPoint PointX="3.7160554423076926" PointY="18.932444661458334" />
-          <ConnectorPoint PointX="4.0871943878205128" PointY="18.932444661458334" />
-          <ConnectorPoint PointX="4.2538610544871789" PointY="18.932444661458334" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="18.932444661458334" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="18.932444661458334" />
-          <ConnectorPoint PointX="8.25" PointY="18.932444661458334" />
-        </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_SchoolGrades_Schools" >
-          <ConnectorPoint PointX="3.75" PointY="11.125" />
-          <ConnectorPoint PointX="3.75" PointY="8.5" />
+          <ConnectorPoint PointX="3.7818284230769228" PointY="11.125" />
+          <ConnectorPoint PointX="3.7818284230769228" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="7.25" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="7.25" PointY="8.5" />
+          <ConnectorPoint PointX="7.260416666666667" PointY="8.5" />
+          <ConnectorPoint PointX="7.427083333333333" PointY="8.5" />
           <ConnectorPoint PointX="9.875" PointY="8.5" />
-          <ConnectorPoint PointX="9.875" PointY="8.86514322916667" />
-          <ConnectorPoint PointX="10.25" PointY="8.86514322916667" />
+          <ConnectorPoint PointX="9.875" PointY="8.9612939453125" />
+          <ConnectorPoint PointX="10.25" PointY="8.9612939453125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="WFSModel.UserOrderProfile" Width="1.5" PointX="3" PointY="22.375" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="WFSModel.UserOrderProfile" Width="1.5" PointX="3" PointY="22.375" Height="3.7109993489583353" />
         <AssociationConnector Association="WFSModel.FK_UserOrderProfile_WFSUser" >
-          <ConnectorPoint PointX="1.09375" PointY="12.643697916666666" />
-          <ConnectorPoint PointX="1.09375" PointY="24.134348958333334" />
-          <ConnectorPoint PointX="1.2135441666666667" PointY="24.134348958333334" />
-          <ConnectorPoint PointX="1.3802108333333332" PointY="24.134348958333334" />
-          <ConnectorPoint PointX="3" PointY="24.134348958333334" />
-        </AssociationConnector>
-        <AssociationConnector Association="WFSModel.FK_UserOrderProfile_Organization" >
-          <ConnectorPoint PointX="4.1705277211538458" PointY="16.951315104166667" />
-          <ConnectorPoint PointX="4.1705277211538458" PointY="22.375" />
+          <ConnectorPoint PointX="0.9667953125" PointY="12.643697916666666" />
+          <ConnectorPoint PointX="0.9667953125" PointY="24.230499674479169" />
+          <ConnectorPoint PointX="1.1627622916666667" PointY="24.230499674479169" />
+          <ConnectorPoint PointX="1.3294289583333332" PointY="24.230499674479169" />
+          <ConnectorPoint PointX="3" PointY="24.230499674479169" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_LunchPeriods_Organization" >
-          <ConnectorPoint PointX="3.3267757211538465" PointY="16.951315104166667" />
-          <ConnectorPoint PointX="3.3267757211538465" PointY="22.239889322916667" />
-          <ConnectorPoint PointX="4.0871943878205128" PointY="22.239889322916667" />
-          <ConnectorPoint PointX="4.2538610544871789" PointY="22.239889322916667" />
-          <ConnectorPoint PointX="8.625" PointY="22.239889322916667" />
-          <ConnectorPoint PointX="8.625" PointY="21.9612939453125" />
-          <ConnectorPoint PointX="9" PointY="21.9612939453125" />
+          <ConnectorPoint PointX="3.4471799825721154" PointY="16.951315104166667" />
+          <ConnectorPoint PointX="3.4471799825721154" PointY="22.057444661458334" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="22.057444661458334" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="22.057444661458334" />
+          <ConnectorPoint PointX="5.75" PointY="22.057444661458334" />
+          <ConnectorPoint PointX="5.75" PointY="22.624492187499996" />
+          <ConnectorPoint PointX="8.625" PointY="22.624492187499996" />
+          <ConnectorPoint PointX="8.625" PointY="22.368681826822915" />
+          <ConnectorPoint PointX="9" PointY="22.368681826822915" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Teachers_Organization" >
           <ConnectorPoint PointX="3.0011528461538459" PointY="11.125" />
           <ConnectorPoint PointX="2.625" PointY="10.748847153846153" />
-          <ConnectorPoint PointX="2.625" PointY="4.422587890625" />
-          <ConnectorPoint PointX="3" PointY="4.047587890625" />
+          <ConnectorPoint PointX="2.625" PointY="4.6148893229166656" />
+          <ConnectorPoint PointX="3" PointY="4.2398893229166656" />
         </AssociationConnector>
         <EntityTypeShape EntityType="WFSModel.Order" Width="1.5" PointX="3" PointY="26.75" Height="2.1725878906250102" />
         <EntityTypeShape EntityType="WFSModel.OrderItem" Width="1.5" PointX="11.75" PointY="18.25" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="WFSModel.OrderItemOption" Width="1.5" PointX="14" PointY="16" Height="1.9802864583333388" />
         <AssociationConnector Association="WFSModel.FK_OrderItem_FoodItem" >
-          <ConnectorPoint PointX="7.875" PointY="12.076396484375" />
-          <ConnectorPoint PointX="7.875" PointY="20.604449364583335" />
-          <ConnectorPoint PointX="11.75" PointY="20.604449364583335" />
+          <ConnectorPoint PointX="7.9843737500000005" PointY="12.076396484375" />
+          <ConnectorPoint PointX="7.9843737500000005" PointY="19.53125" />
+          <ConnectorPoint PointX="11.75" PointY="19.53125" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_Order_WFSUser" >
-          <ConnectorPoint PointX="1.2968775" PointY="12.643697916666666" />
-          <ConnectorPoint PointX="1.2968775" PointY="27.836293945312505" />
+          <ConnectorPoint PointX="1.246095625" PointY="12.643697916666666" />
+          <ConnectorPoint PointX="1.246095625" PointY="27.836293945312505" />
           <ConnectorPoint PointX="3" PointY="27.836293945312505" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_OrderItem_Order" >
@@ -2339,8 +2410,8 @@
           <ConnectorPoint PointX="12.5" PointY="21.384095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_OrderItem_UserOrderProfile" >
-          <ConnectorPoint PointX="4.5" PointY="24.501892903645835" />
-          <ConnectorPoint PointX="12.0937475" PointY="24.501892903645835" />
+          <ConnectorPoint PointX="4.5" PointY="24.869058815369577" />
+          <ConnectorPoint PointX="12.0937475" PointY="24.869058815369577" />
           <ConnectorPoint PointX="12.0937475" PointY="21.384095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_OrderItemOption_OrderItem" >
@@ -2350,12 +2421,58 @@
         </AssociationConnector>
         <AssociationConnector Association="WFSModel.FK_OrderItemOption_VendorFoodOption" >
           <ConnectorPoint PointX="6.75" PointY="13.771393229166666" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="13.771393229166666" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="13.771393229166666" />
-          <ConnectorPoint PointX="8.1666666666666661" PointY="13.771393229166666" />
-          <ConnectorPoint PointX="8.3333333333333339" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="7.9010404166666675" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="8.0677070833333335" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="8.3854191666666669" PointY="13.771393229166666" />
+          <ConnectorPoint PointX="8.5520858333333347" PointY="13.771393229166666" />
           <ConnectorPoint PointX="14.75" PointY="13.771393229166666" />
           <ConnectorPoint PointX="14.75" PointY="16" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WFSModel.School" Width="1.5" PointX="5.25" PointY="5.875" Height="2.5571907552083246" />
+        <AssociationConnector Association="WFSModel.FK_DaysOff_School" >
+          <ConnectorPoint PointX="6.75" PointY="6.9901432291666694" />
+          <ConnectorPoint PointX="7.28125" PointY="6.9901432291666694" />
+          <ConnectorPoint PointX="7.28125" PointY="19.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_LunchPeriods_School" >
+          <ConnectorPoint PointX="6" PointY="8.4321907552083246" />
+          <ConnectorPoint PointX="6" PointY="9.125" />
+          <ConnectorPoint PointX="7" PointY="9.125" />
+          <ConnectorPoint PointX="7" PointY="19.375" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="19.375" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="19.375" />
+          <ConnectorPoint PointX="7.75" PointY="19.375" />
+          <ConnectorPoint PointX="7.75" PointY="21.434970330729165" />
+          <ConnectorPoint PointX="9" PointY="21.434970330729165" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_School_Organization" >
+          <ConnectorPoint PointX="4.5" PointY="11.126152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="10.751152846153847" />
+          <ConnectorPoint PointX="4.875" PointY="7.1535953776041623" />
+          <ConnectorPoint PointX="5.25" PointY="7.1535953776041623" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_SchoolGrades_School" >
+          <ConnectorPoint PointX="6.75" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="7.260416666666667" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="7.427083333333333" PointY="8.3312386067708317" />
+          <ConnectorPoint PointX="10.25" PointY="8.3312386067708317" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_Teachers_School" >
+          <ConnectorPoint PointX="6" PointY="5.875" />
+          <ConnectorPoint PointX="6" PointY="3.0574446614583328" />
+          <ConnectorPoint PointX="4.5" PointY="3.0574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="WFSModel.FK_UserOrderProfile_School" >
+          <ConnectorPoint PointX="5.3134605384615385" PointY="8.4321907552083246" />
+          <ConnectorPoint PointX="4.9375" PointY="8.8081512936698623" />
+          <ConnectorPoint PointX="4.9375" PointY="23.551280572987324" />
+          <ConnectorPoint PointX="4.5" PointY="23.551280572987324" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

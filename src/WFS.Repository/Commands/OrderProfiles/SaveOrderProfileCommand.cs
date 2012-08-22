@@ -38,7 +38,7 @@ namespace WFS.Repository.Commands
                     dbContext.SaveChanges();
 
                     ordProf = context.UserOrderProfiles.FirstOrDefault(x => x.OrderProfileId.Equals(ordProf.OrderProfileId));
-                    ordProf.Organization = context.Organizations.FirstOrDefault(x => x.OrganizationId.Equals(ordProf.OrganizationId));
+                    ordProf.School = context.Schools.FirstOrDefault(x => x.SchoolId.Equals(ordProf.SchoolId));
 
                     result.Value = ordProf.ToContract();
                 }

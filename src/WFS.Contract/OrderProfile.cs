@@ -15,7 +15,7 @@ namespace WFS.Contract
         public int? TeacherId { get; set; }
         public int? GradeId { get; set; }
         public int? LunchPeriodId { get; set; }
-        public int OrganizationId { get; set; }
+        public int SchoolId { get; set; }
 
         public string TeacherName { get; set; }
         public string GradeName { get; set; }

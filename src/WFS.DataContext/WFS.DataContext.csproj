@@ -91,7 +91,7 @@
     <Compile Include="Role.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="SchoolDaysOff.cs">
+    <Compile Include="School.cs">
       <DependentUpon>WFSDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="SchoolGrade.cs">

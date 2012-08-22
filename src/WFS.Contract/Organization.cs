@@ -51,7 +51,7 @@ namespace WFS.Contract
             OrganizationType = OrganizationTypeEnum.School;
         }
 
-        public DateTime DeliveryTime { get; set; }
+        public TimeSpan? DeliveryTime { get; set; }
     }
 
     public class Store : Vendor

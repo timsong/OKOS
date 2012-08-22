@@ -14,19 +14,15 @@ namespace WFS.DataContext
 {
     public partial class DaysOff
     {
-        public DaysOff()
-        {
-            this.SchoolDaysOffs = new HashSet<SchoolDaysOff>();
-        }
-    
         public int DaysOffId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> Day { get; set; }
         public Nullable<System.DateTime> RangeStart { get; set; }
         public Nullable<System.DateTime> RangeEnd { get; set; }
+        public int SchoolId { get; set; }
     
-        public virtual ICollection<SchoolDaysOff> SchoolDaysOffs { get; set; }
+        public virtual School School { get; set; }
     }
     
 }

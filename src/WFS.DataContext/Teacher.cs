@@ -21,6 +21,7 @@ namespace WFS.DataContext
         public int SchoolId { get; set; }
     
         public virtual Organization Organization { get; set; }
+        public virtual School School { get; set; }
     }
     
 }

@@ -23,9 +23,9 @@ namespace WFS.Repository.Conversions
                     Title = data.Title,
                     UserId = data.UserId,
                     OrderProfileId = data.OrderProfileId,
-                    OrganizationId = data.OrganizationId,
-                    OrganizationName = data.Organization.Name,
-                    OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.Organization.OrganizationType)
+                    SchoolId = data.SchoolId,
+                    OrganizationName = data.School.Organization.Name,
+                    OrganizationType = (OrganizationTypeEnum)Enum.Parse(typeof(OrganizationTypeEnum), data.School.Organization.OrganizationType)
                 };
 
 
@@ -46,7 +46,7 @@ namespace WFS.Repository.Conversions
                 Title = model.Title,
                 UserId = model.UserId,
                 IsDeleted = false,
-                OrganizationId = model.OrganizationId
+                SchoolId = model.SchoolId
             };
 
             return data;

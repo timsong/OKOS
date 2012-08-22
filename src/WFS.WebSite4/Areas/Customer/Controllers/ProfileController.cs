@@ -119,7 +119,7 @@ namespace WFS.WebSite4.Areas.Customer.Controllers
             var uiresult = new UIResponse<OrderProfileAddEditModel>();
             uiresult.Subject = model;
 
-            var resp = _profManager.GetOrderProfleSetupDataBySchool(new GetOrderProfleSetupDataRequest() { SchoolId = model.Profile.OrganizationId });
+            var resp = _profManager.GetOrderProfleSetupDataBySchool(new GetOrderProfleSetupDataRequest() { SchoolId = model.Profile.SchoolId });
 
             model.Grades.Clear();
             model.LunchPeriods.Clear();

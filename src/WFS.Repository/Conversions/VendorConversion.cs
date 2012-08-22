@@ -12,25 +12,15 @@ namespace WFS.Repository.Conversions
 		static void Map(this C.Vendor vendor, Organization existing)
 		{
 			existing.Address1 = vendor.AddressInfo.Address1;
-
 			existing.Address2 = vendor.AddressInfo.Address2;
-	
 			existing.City = vendor.AddressInfo.City;
-			
 			existing.State = vendor.AddressInfo.State;
-			
 			existing.ZipCode = vendor.AddressInfo.ZipCode;
-			
 			existing.IsActive = vendor.IsActive;
-			
 			existing.Name = vendor.Name;
-			
 			existing.OrganizationType = vendor.OrganizationType.ToString();
-			
 			existing.PhoneExt = vendor.AddressInfo.PhoneExt;
-			
 			existing.PhoneNumber = vendor.AddressInfo.PhoneNumber;
-			
 			existing.UserId = vendor.User.UserId;
 		}
 
@@ -40,7 +30,6 @@ namespace WFS.Repository.Conversions
 
 			var data = new Organization { OrganizationId = domain.OrganizationId };
 
-			domain.Map(data);
 
 			return data;
         }

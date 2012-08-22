@@ -43,12 +43,12 @@ namespace WFS.DataContext
         public DbSet<DaysOff> DaysOffs { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<LunchPeriod> LunchPeriods { get; set; }
-        public DbSet<SchoolDaysOff> SchoolDaysOffs { get; set; }
         public DbSet<SchoolGrade> SchoolGrades { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<UserOrderProfile> UserOrderProfiles { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderItemOption> OrderItemOptions { get; set; }
+        public DbSet<School> Schools { get; set; }
     }
 }

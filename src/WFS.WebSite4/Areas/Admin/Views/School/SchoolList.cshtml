@@ -1,8 +1,7 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolsViewModel
 
 @foreach (var item in Model.Schools) {
-    <div class="panel">
-        <div class="row">
+        <div class="row p_t10">
             <div class="twelve columns">
                 <div class="eight columns">
                     @item.Name
@@ -16,5 +15,4 @@
                 <div class="one columns"></div>
             </div>
         </div>
-    </div>
 }
