@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using WFS.Contract.Enums;
-using WFS.Contract.Interfaces;
 
 namespace WFS.Contract
 {
     [Serializable]
     [KnownType(typeof(Vendor))]
+    [KnownType(typeof(School))]
     public abstract class Organization
     {
         public Organization()
@@ -27,9 +27,12 @@ namespace WFS.Contract
         public WFSUser User { get; set; }
     }
 
+    [Serializable]
+    [KnownType(typeof(Store))]
     public class Vendor : Organization
     {
-        public Vendor() : base()
+        public Vendor()
+            : base()
         {
             Stores = new List<Store>();
             Menus = new List<Menu>();
@@ -47,6 +50,8 @@ namespace WFS.Contract
         {
             OrganizationType = OrganizationTypeEnum.School;
         }
+
+        public DateTime DeliveryTime { get; set; }
     }
 
     public class Store : Vendor

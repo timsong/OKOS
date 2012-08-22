@@ -1,0 +1,20 @@
+﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolsViewModel
+
+@foreach (var item in Model.Schools) {
+    <div class="panel">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="eight columns">
+                    @item.Name
+                </div>
+                <div class="one columns">
+                    @Html.RouteLink("Edit/View","admin.school.view",new { schoolID = item.OrganizationId })
+                </div>
+                <div class="one columns">
+                    @Html.ActionLink("Delete", "admin.school.delete", new { vendorID = item.OrganizationId })
+                </div>
+                <div class="one columns"></div>
+            </div>
+        </div>
+    </div>
+}

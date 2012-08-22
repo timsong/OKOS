@@ -425,7 +425,7 @@
           <Property Name="VendorFoodOptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
@@ -1345,7 +1345,7 @@
           <Property Type="Int32" Name="VendorFoodOptionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="OrganizationId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="FoodItemOptions" Relationship="WFSModel.FK_FoodItemOption_FoodOption1" FromRole="VendorFoodOption" ToRole="FoodItemOption" />

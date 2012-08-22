@@ -33,6 +33,15 @@
 				}
             });
         }
+
+        , getList: function (e) {
+            var url = '/admin/Schools/GetList';
+            ms.ajax.send({ url: url
+                , successHandler: function (data) {
+                    ms.ml.html('#schoolList', data.HtmlResult);
+                }
+            });
+        }
 		, add: function (e) {
 		    var url = '/admin/schools/create';
 		    school.loadF(url);
@@ -43,11 +52,16 @@
             school.loadF(url);
         }
 		, save: function (e) {
+		    var msgs = { SUCCEED: 'The school was created.'}
+
 		    school.saveF('/admin/schools/create', '#schoolEditForm'
 				, function (data) {
-				    $('#modalEdit').trigger('reveal:close');
+				    var url = '/admin/schools/{schoolId}'.bind({ schoolId: data.Subject.School.OrganizationId });
+				    document.location(url);
 				}
 				, function (data) {
+				    var msgC = ms.message.get('save', '#schoolMessagePanel', msgs);
+				    msgC.sendError(data.Status, data);
 				    ms.ml.html('#modalEdit', data.HtmlResult);
 				}
 			);
@@ -55,5 +69,6 @@
     };
 
     $(document).ready(function () {
+        school.getList();
     });
 })(window);

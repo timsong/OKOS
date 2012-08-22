@@ -1,19 +1,31 @@
 ﻿@model WFS.WebSite4.Areas.Admin.Models.SchoolAddEditModel
 
-<h2>Manage School</h2>
+@if(Model.School.OrganizationId > 0)
+    {
+        <h2>Manage School</h2>     
+    }
+    else
+    {
+        <h2>Create School</h2>     
+    }
+
+<div id="schoolMessagePanel"></div>
+
 <form id="schoolEditForm" method="post">
     @Html.Hidden("OrganizationId", Model.School.OrganizationId)
     @Html.Hidden("User.UserId", Model.School.User.UserId)
     @Html.Hidden("User.MembershipGuid", Model.School.User.MembershipGuid)
     @Html.Hidden("User.MembershipGuid", WFS.Contract.Enums.WFSUserTypeEnum.VendorAdmin)
     @Html.Hidden("User.AvailableCredit", Model.School.User.AvailableCredit)
-	@if (Model.Status != WFS.Status.Success) {
+	@if (Model.Status != WFS.Status.Success)
+ {
 	<div class="alert-box alert round">
-		@foreach (var msg in Model.Messages) {
+		@foreach (var msg in Model.Messages)
+  {
 		<div>@msg.Text</div>
-		}
+  }
 	</div>
-	}
+ }
 	<div class="panel">
 		<div class="row">
 			<div class="twelve columns">

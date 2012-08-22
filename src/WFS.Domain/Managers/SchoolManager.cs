@@ -5,6 +5,7 @@ using WFS.Repository.Queries;
 using WFS.Repository.Commands;
 using WFS.Contract;
 using WFS.Framework;
+using WFS.Repository.Commands.School;
 
 namespace WFS.Domain.Managers
 {
@@ -43,21 +44,21 @@ namespace WFS.Domain.Managers
             return response;
         }
 
-        public CreateSchoolResponse CreateSchool(CreateSchoolRequest request)
+        public SaveSchoolResponse CreateSchool(SaveSchoolRequest request)
         {
-            var response = new CreateSchoolResponse();
-            response.Value = request.School;
+            var response = new SaveSchoolResponse();
+            response.Value = request.Subject;
 
-            var user = request.School.User;
-            var userResponse = _repository.ExecuteCommand(new SaveWFSUserCommand(request.School.User));
+            var user = request.Subject.User;
+            var userResponse = _repository.ExecuteCommand(new SaveWFSUserCommand(request.Subject.User));
 
             response.Merge(userResponse);
 
             if (response.Status != Status.Success)
                 return response;
 
-            request.School.User = userResponse.Value;
-            var schoolResponse = _repository.ExecuteCommand(new CreateOrganizationCommand(request.School.AddressInfo, request.School.Name, request.School.User.UserId, null, OrganizationTypeEnum.School));
+            request.Subject.User = userResponse.Value;
+            var schoolResponse = _repository.ExecuteCommand(new SaveSchoolCommand(request.Subject));
 
             schoolResponse.Merge(response);
 
