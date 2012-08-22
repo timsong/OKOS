@@ -2,17 +2,15 @@
 using WFS.Repository;
 namespace WFS.Contract
 {
-    public class GetGradesRequest
+    public class GetSchoolGradesRequest
     {
-        public GetGradesRequest()
+        public GetSchoolGradesRequest()
         {
-            DataRequest = ActiveDataRequestEnum.All;
         }
         public int SchoolId { get; set; }
-        public ActiveDataRequestEnum DataRequest { get; set; }
     }
 
-    public class GetGradesResponse : ListResult<Grade>
+    public class GetSchoolGradesResponse : ListResult<SchoolGrade>
     {
     }
 }

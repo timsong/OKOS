@@ -65,20 +65,12 @@ namespace WFS.WebSite4.Areas.Admin
         {
             context.MapRoute("admin.schools", "admin/schools", new { controller = "School", action = "Schools" });
             context.MapRoute("admin.schools.list", "Admin/schools/GetList", new { controller = "School", action = "List" });
-
             context.MapRoute("admin.school.create", "admin/schools/create", new { controller = "School", action = "Create" });
+            context.MapRoute("admin.school.edit", "admin/schools/edit/{schoolId}", new { controller = "School", action = "Edit" });
+            context.MapRoute("admin.school.view", "admin/schools/{schoolid}", new { controller = "School", action = "School" });
 
-            context.MapRoute(
-                "admin.school.edit",
-                "admin/schools/edit/{schoolId}",
-                new { controller = "School", action = "Edit" }
-            );
+            context.MapRoute("admin.grades.list", "Admin/Grades/GetList/{schoolId}", new { controller = "Grades", action = "List" });
 
-            context.MapRoute(
-                "admin.school.view",
-                "admin/schools/{schoolid}",
-                new { controller = "School", action = "School" }
-            );
         }
         private void MapUserRoutes(AreaRegistrationContext context)
         {

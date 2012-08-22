@@ -66,7 +66,7 @@ namespace WFS.Domain.Managers
             var resp = new GetOrderProfleSetupDataResponse();
 
             resp.Teachers = _schoolManager.GetTeachers(new GetTeachersRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
-            resp.Grades = _schoolManager.GetGrades(new GetGradesRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
+            resp.Grades = _schoolManager.GetSchoolGrades(new GetSchoolGradesRequest() { SchoolId = request.SchoolId}).Values;
             resp.LunchPeriods = _schoolManager.GetLunchPeriodss(new GetLunchPeriodsRequest() { SchoolId = request.SchoolId, DataRequest = ActiveDataRequestEnum.ActiveOnly }).Values;
 
             return resp;

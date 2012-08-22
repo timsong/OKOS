@@ -69,6 +69,7 @@
     <Compile Include="Commands\SupportTickets\SaveSupportTicketCommand.cs" />
     <Compile Include="Commands\Vendor\DeleteVendorCommand.cs" />
     <Compile Include="Commands\Vendor\SaveVendorCommand.cs" />
+    <Compile Include="Conversions\GradeConversions.cs" />
     <Compile Include="Conversions\SchoolConversion.cs" />
     <Compile Include="Conversions\ExtendOrganization\ExtendSchool.cs" />
     <Compile Include="Conversions\OrderProfileConversions.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Queries\GetUsersBySearchCriteriaQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByMembershipIdQuery.cs" />
     <Compile Include="Queries\GetWFSUserInfoByUserNameQuery.cs" />
+    <Compile Include="Queries\Grades\GetGradeList.cs" />
+    <Compile Include="Queries\Grades\GetSchoolGradeListBySchoolId.cs" />
     <Compile Include="Queries\OrderProfiles\GetOrderProfileByIdQuery.cs" />
     <Compile Include="Queries\OrderProfiles\GetOrderProfileListByUserIdQuery.cs" />
     <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />

@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\FoodOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GradesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\SchoolController.cs" />
@@ -519,6 +520,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\School\SchoolList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Grades\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Grades\GradeList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

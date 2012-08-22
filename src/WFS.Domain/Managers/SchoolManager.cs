@@ -68,9 +68,9 @@ namespace WFS.Domain.Managers
             return response;
         }
 
-        public GetGradesResponse GetGrades(GetGradesRequest request)
+        public GetSchoolGradesResponse GetSchoolGrades(GetSchoolGradesRequest request)
         {
-            var response = new GetGradesResponse();
+            var response = new GetSchoolGradesResponse();
 
             //var query = new GetOrganizationByIdQuery(request.SchoolID);
             //var result = this._repository.ExecuteQuery(query);

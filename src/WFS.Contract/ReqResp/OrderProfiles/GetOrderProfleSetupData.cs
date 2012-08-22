@@ -15,11 +15,11 @@ namespace WFS.Contract.ReqResp
         {
             Teachers = new List<Teacher>();
             LunchPeriods = new List<LunchPeriod>();
-            Grades = new List<Grade>();
+            Grades = new List<SchoolGrade>();
         }
 
         public List<Teacher> Teachers { get; set; }
         public List<LunchPeriod> LunchPeriods { get; set; }
-        public List<Grade> Grades { get; set; }
+        public List<SchoolGrade> Grades { get; set; }
     }
 }
