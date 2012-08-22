@@ -36,9 +36,9 @@ namespace WFS.Repository.Commands.School
                 else
                 {
                     var org = _School.ToDataModel();
+                    org.School = new DataContext.School();
 
                     context.Organizations.Add(org);
-
                     dbContext.SaveChanges();
 
                     result.Value = (C.School)org.ToContract();
